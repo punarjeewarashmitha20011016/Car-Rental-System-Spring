@@ -28,7 +28,7 @@ public class CustomerController {
     @DeleteMapping(params = {"nic"})
     ResponseUtil delete(@RequestParam String nic) {
         customerService.delete(nic);
-        return new ResponseUtil(200, "Customer Saved Successfully", null);
+        return new ResponseUtil(200, "Customer delete Successfully", null);
     }
 
     @GetMapping(path = "getAll")
