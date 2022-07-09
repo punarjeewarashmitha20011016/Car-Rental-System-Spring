@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("car")
+@RequestMapping(path = "car")
 @CrossOrigin
 public class CarController {
     @Autowired

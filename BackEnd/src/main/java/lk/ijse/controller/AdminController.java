@@ -6,7 +6,7 @@ import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("admin")
+@RequestMapping(path = "admin")
 @RestController
 @CrossOrigin
 public class AdminController {
