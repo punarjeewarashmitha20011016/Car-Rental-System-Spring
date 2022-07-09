@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "customer")
+@CrossOrigin
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -17,22 +18,26 @@ public class CustomerController {
         customerService.save(dto);
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }
+
     @PutMapping
     ResponseUtil update(@RequestBody CustomerDTO dto) {
         customerService.update(dto);
         return new ResponseUtil(200, "Customer Updated Successfully", dto);
     }
+
     @DeleteMapping(params = {"nic"})
     ResponseUtil delete(@RequestParam String nic) {
         customerService.delete(nic);
         return new ResponseUtil(200, "Customer Saved Successfully", null);
     }
+
     @GetMapping(path = "getAll")
-    ResponseUtil getAll(){
-        return new ResponseUtil(200,"Data Fetched Successfully",customerService.getAll());
+    ResponseUtil getAll() {
+        return new ResponseUtil(200, "Data Fetched Successfully", customerService.getAll());
     }
-    @GetMapping(path = "search",params = {"nic"})
-    ResponseUtil search(@RequestParam String nic){
-        return new ResponseUtil(200,"Customer Searched Successfully",customerService.search(nic));
+
+    @GetMapping(path = "search", params = {"nic"})
+    ResponseUtil search(@RequestParam String nic) {
+        return new ResponseUtil(200, "Customer Searched Successfully", customerService.search(nic));
     }
 }
