@@ -26,5 +26,6 @@ public class Car {
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;
+    private String carBookedOrNotStatus;
 
 }

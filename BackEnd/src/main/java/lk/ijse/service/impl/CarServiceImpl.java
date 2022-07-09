@@ -21,14 +21,14 @@ public class CarServiceImpl implements CarService {
     private ModelMapper mapper;
 
     public void save(CarDTO dto) {
-        if (repo.existsById(dto.getRegistrationNo())) {
+        if (repo.existsById(dto.getC_RegNo())) {
             throw new RuntimeException("Car Save Failed");
         }
         repo.save(mapper.map(dto, Car.class));
     }
 
     public void update(CarDTO dto) {
-        if (repo.existsById(dto.getRegistrationNo())) {
+        if (repo.existsById(dto.getC_RegNo())) {
             repo.save(mapper.map(dto, Car.class));
         }
         throw new RuntimeException("Car Update Failed");

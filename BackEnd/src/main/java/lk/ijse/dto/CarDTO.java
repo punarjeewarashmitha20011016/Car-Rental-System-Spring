@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class CarDTO {
-    private String registrationNo;
+    private String c_RegNo;
     private String brand;
     private String type;
     private String transmissionType;
@@ -21,5 +21,5 @@ public class CarDTO {
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;
-
+    private String carBookedOrNotStatus;
 }
