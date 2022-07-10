@@ -33,7 +33,6 @@ public class DriverController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestBody DriverDTO dto) {
-        /*======================================*/
         MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
         MultipartFile nicFile = saveAnUpdateFileForNic(dto);
         /*======================================*/

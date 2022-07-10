@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -20,7 +21,8 @@ public class Car {
     private String type;
     private String transmissionType;
     private String fuelType;
-    private String images;
+    @Embedded
+    private CarImages images;
     private int noOfPassengers;
     private String freeMileage;
     private double priceForExtraKm;
