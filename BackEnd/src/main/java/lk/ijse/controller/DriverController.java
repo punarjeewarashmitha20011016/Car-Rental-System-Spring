@@ -22,9 +22,11 @@ public class DriverController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@RequestBody DriverDTO dto) throws URISyntaxException {
         /*======================================*/
-        MultipartFile file = saveAnUpdateFile(dto);
+        MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
+        MultipartFile nicFile = saveAnUpdateFileForNic(dto);
         /*======================================*/
-        dto.setLicensePhoto("uploads/" + file.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
         driverService.save(dto);
         return new ResponseUtil(200, "Driver Saved Successfully", dto);
     }
@@ -32,9 +34,11 @@ public class DriverController {
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestBody DriverDTO dto) {
         /*======================================*/
-        MultipartFile file = saveAnUpdateFile(dto);
+        MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
+        MultipartFile nicFile = saveAnUpdateFileForNic(dto);
         /*======================================*/
-        dto.setLicensePhoto("uploads/" + file.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
         driverService.update(dto);
         return new ResponseUtil(200, "Driver Updated Successfully", dto);
     }
@@ -55,8 +59,23 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Searched Successfully", driverService.search(nic));
     }
 
-    private MultipartFile saveAnUpdateFile(DriverDTO dto) {
+    private MultipartFile saveAnUpdateFileForLicense(DriverDTO dto) {
         MultipartFile file = (MultipartFile) dto.getLicensePhotoFile();
+        try {
+            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+            File uploadsDir = new File(projectPath + "/uploads");
+            System.out.println(projectPath);
+            uploadsDir.mkdir();
+
+            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    private MultipartFile saveAnUpdateFileForNic(DriverDTO dto) {
+        MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
         try {
             String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
             File uploadsDir = new File(projectPath + "/uploads");
