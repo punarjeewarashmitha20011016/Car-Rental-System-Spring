@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Data
 @ToString
 @Entity
-public class Driver{
+public class Driver {
     @Id
     private String nic;
     private String licenseNo;
@@ -21,4 +21,5 @@ public class Driver{
     private String nicPhoto;
     private int contactNo;
     private String address;
+    private String availableStatus;
 }

@@ -26,24 +26,29 @@ public class BookingCarController {
         return new ResponseUtil(200, "Booking Updated Successfully", dto);
     }
 
-    @DeleteMapping(params = {"boId"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil delete(@RequestParam String boId) {
         bookingCarService.deleteABooking(boId);
         return new ResponseUtil(200, "Booking deleted Successfully", null);
     }
 
-    @GetMapping(path = "getAll",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAll() {
         return new ResponseUtil(200, "Data Fetched Successfully", bookingCarService.getAll());
     }
 
-    @GetMapping(path = "search", params = {"boId"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "search", params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil search(@RequestParam String boId) {
         return new ResponseUtil(200, "Booking Searched Successfully", bookingCarService.searchBooking(boId));
     }
 
-    @GetMapping(path = "generateBookingId",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking Id generated Successfully", bookingCarService.generateBookingId());
+    }
+
+    @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil checkAvailableDriverForBooking() {
+        return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.generateBookingId());
     }
 }

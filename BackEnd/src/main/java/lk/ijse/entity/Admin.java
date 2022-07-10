@@ -1,4 +1,4 @@
-package lk.ijse.dto;
+package lk.ijse.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

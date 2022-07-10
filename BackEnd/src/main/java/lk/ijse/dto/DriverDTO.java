@@ -16,4 +16,5 @@ public class DriverDTO {
     private String nicPhoto;
     private int contactNo;
     private String address;
+    private String availableStatus;
 }

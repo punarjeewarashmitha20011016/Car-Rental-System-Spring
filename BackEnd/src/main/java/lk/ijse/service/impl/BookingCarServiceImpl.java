@@ -1,11 +1,14 @@
 package lk.ijse.service.impl;
 
 import lk.ijse.dto.BookingDTO;
+import lk.ijse.dto.BookingDetailsDTO;
+import lk.ijse.dto.DriverDTO;
 import lk.ijse.entity.Booking;
-import lk.ijse.entity.BookingDetails;
 import lk.ijse.entity.Car;
+import lk.ijse.entity.Driver;
 import lk.ijse.repo.BookingCarRepo;
 import lk.ijse.repo.CarRepo;
+import lk.ijse.repo.DriverRepo;
 import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -28,6 +31,9 @@ public class BookingCarServiceImpl implements BookingCarService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private DriverRepo driverRepo;
 
     @Override
     public String generateBookingId() {
@@ -54,16 +60,26 @@ public class BookingCarServiceImpl implements BookingCarService {
             throw new RuntimeException("Booking a Car failed");
         }
         repo.save(mapper.map(dto, Booking.class));
-        List<BookingDetails> bookingList = mapper.map(dto.getBookingDetails(), new TypeToken<List<BookingDetails>>() {
-        }.getType());
-        for (BookingDetails b : bookingList
+        List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
+        for (BookingDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getC_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("not booked")) {
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
                 throw new RuntimeException("Booking a Car failed");
             }
-            car.setCarBookedOrNotStatus("booked");
+            car.setCarBookedOrNotStatus("Booked");
             carRepo.save(car);
+            if (b.getDriverNic() == "") {
+
+            } else {
+                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
+                if (driver.getAvailableStatus().equals("Available")) {
+                    driver.setAvailableStatus("Not Available");
+                    driverRepo.save(mapper.map(driver, Driver.class));
+                }else {
+                    throw new RuntimeException("Booking a Car failed");
+                }
+            }
         }
     }
 
@@ -73,15 +89,25 @@ public class BookingCarServiceImpl implements BookingCarService {
             throw new RuntimeException("Booking Update failed");
         }
         repo.save(mapper.map(dto, Booking.class));
-        List<BookingDetails> bookingList = mapper.map(dto.getBookingDetails(), new TypeToken<List<BookingDetails>>() {
-        }.getType());
-        for (BookingDetails b : bookingList
+        List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
+        for (BookingDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getC_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("booked")) {
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked")) {
                 throw new RuntimeException("Booking a Car failed");
             }
-            car.setCarBookedOrNotStatus("not booked");
+            car.setCarBookedOrNotStatus("Not Booked");
+            if (b.getDriverNic() == "") {
+
+            } else {
+                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
+                if (driver.getAvailableStatus().equals("Not Available")) {
+                    driver.setAvailableStatus("Available");
+                    driverRepo.save(mapper.map(driver, Driver.class));
+                }else {
+                    throw new RuntimeException("Booking a Car failed");
+                }
+            }
             carRepo.save(car);
         }
     }
@@ -107,5 +133,16 @@ public class BookingCarServiceImpl implements BookingCarService {
     public List<BookingDTO> getAll() {
         return mapper.map(repo.findAll(), new TypeToken<List<Booking>>() {
         }.getType());
+    }
+
+    @Override
+    public DriverDTO getAvailableDriver() {
+        List<DriverDTO> driverDTOList = mapper.map(driverRepo.findAllByAvailableStatus("available"), new TypeToken<List<DriverDTO>>() {
+        }.getType());
+        for (DriverDTO dto : driverDTOList
+        ) {
+            return dto;
+        }
+        throw new RuntimeException("No driver available for booking");
     }
 }
