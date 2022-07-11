@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import sun.util.resources.LocaleData;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -15,29 +17,30 @@ import java.time.LocalDate;
 @ToString
 @Entity
 @IdClass(BookingCar_Pk.class)
-public class BookingDetails {
+public class BookingDetails implements Serializable {
     @Id
-    private String boId;
+    private String bookingId;
     @Id
-    private String c_RegNo;
+    private String car_RegNo;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(referencedColumnName = "nic")
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(referencedColumnName = "nic", nullable = true)
     private Driver driverNic;
     private String carType;
-    private LocalDate pickupDate;
-    private String pickupTime;
+    private LocalDate dateOfPickup;
+    private String timeOfPickup;
     private String pickupVenue;
     private LocalDate returnedDate;
-    private String returnTime;
+    private String returnedTime;
     private String returnedVenue;
     private double lossDamage;
     private double cost;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "boId", referencedColumnName = "boId", insertable = false, updatable = false)
-    private Booking booking;
+    @ManyToOne
+    @JoinColumn(name = "bookingId", referencedColumnName = "boId", insertable = false, updatable = false)
+    private Booking bookingEntity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "c_RegNo", referencedColumnName = "c_RegNo", insertable = false, updatable = false)
-    private Car car;
+    @ManyToOne
+    @JoinColumn(name = "car_RegNo", referencedColumnName = "c_RegNo", insertable = false, updatable = false)
+    private Car carEntity;
 }

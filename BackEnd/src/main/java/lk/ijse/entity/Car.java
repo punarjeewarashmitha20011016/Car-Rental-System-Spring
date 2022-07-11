@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +14,8 @@ import javax.persistence.Id;
 @ToString
 @Entity
 public class Car {
+    @OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    List<BookingDetails> carList;
     @Id
     private String c_RegNo;
     private String brand;

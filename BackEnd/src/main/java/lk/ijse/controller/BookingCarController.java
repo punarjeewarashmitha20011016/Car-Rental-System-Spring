@@ -4,6 +4,7 @@ import lk.ijse.dto.BookingDTO;
 import lk.ijse.service.BookingCarService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class BookingCarController {
     private BookingCarService bookingCarService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil saveBooking(@RequestBody BookingDTO dto) {
         bookingCarService.bookingACar(dto);
         return new ResponseUtil(200, "Booking Saved Successfully", dto);

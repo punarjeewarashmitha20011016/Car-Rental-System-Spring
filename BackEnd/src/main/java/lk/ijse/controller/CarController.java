@@ -24,14 +24,16 @@ public class CarController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@RequestBody CarDTO dto) {
-        CarImagesDTO carImages = saveAnUpdateFileForCarImages(dto.getCarImagesFiles());
-        dto.setImages(carImages);
+        /*CarImagesDTO carImages = saveAnUpdateFileForCarImages(dto.getCarImagesFiles());
+        dto.setImages(carImages);*/
         carService.save(dto);
         return new ResponseUtil(200, "Car Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestBody CarDTO dto) {
+        CarImagesDTO carImages = saveAnUpdateFileForCarImages(dto.getCarImagesFiles());
+        dto.setImages(carImages);
         carService.update(dto);
         return new ResponseUtil(200, "Car Updated Successfully", dto);
     }

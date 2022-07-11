@@ -21,18 +21,24 @@ public class CustomerController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@RequestBody CustomerDTO dto) {
-        /*======================================*/
+        /*======================================*//*
         MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
         MultipartFile nicFile = saveAnUpdateFileForNic(dto);
-        /*======================================*/
+        *//*======================================*//*
         dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
-        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());*/
         customerService.save(dto);
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestBody CustomerDTO dto) {
+        /*======================================*/
+        MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
+        MultipartFile nicFile = saveAnUpdateFileForNic(dto);
+        /*======================================*/
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
         customerService.update(dto);
         return new ResponseUtil(200, "Customer Updated Successfully", dto);
     }
