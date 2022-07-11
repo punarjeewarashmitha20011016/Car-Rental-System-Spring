@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @ToString
-public class BookingDetailsDTO {
+public class BookingRequestDetailsDTO {
     private String bookingId;
     private String car_RegNo;
     private String driverNic;

@@ -1,44 +1,40 @@
 package lk.ijse.controller;
 
-import lk.ijse.dto.BookingDTO;
-import lk.ijse.dto.DriverDTO;
-import lk.ijse.service.BookingCarService;
+import lk.ijse.dto.BookingRequestDTO;
+import lk.ijse.service.BookingCarRequestService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-@RequestMapping(path = "bookingCarController")
+@RequestMapping(path = "bookingCarRequestController")
 @RestController
 @CrossOrigin
-public class BookingCarController {
+public class BookingCarRequestController {
     /*Test image file process in sanu sirs project*/
+    @Qualifier("bookingCarRequestService")
     @Autowired
-    private BookingCarService bookingCarService;
+    private BookingCarRequestService bookingCarService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseUtil saveBooking(@RequestBody BookingDTO dto) {
-        bookingCarService.bookingACar(dto);
-        return new ResponseUtil(200, "Booking Saved Successfully", dto);
+    ResponseUtil saveBooking(@RequestBody BookingRequestDTO dto) {
+        bookingCarService.requestingABookingSave(dto);
+        return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@RequestBody BookingDTO dto) {
-        bookingCarService.updateBookingForFinal(dto);
-        return new ResponseUtil(200, "Booking Updated Successfully", dto);
+    ResponseUtil update(@RequestBody BookingRequestDTO dto) {
+        bookingCarService.requestingABookingUpdate(dto);
+        return new ResponseUtil(200, "Booking Request Updated Successfully", dto);
     }
 
     @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil delete(@RequestParam String boId) {
-        bookingCarService.deleteABooking(boId);
-        return new ResponseUtil(200, "Booking deleted Successfully", null);
+        bookingCarService.deleteABookingRequest(boId);
+        return new ResponseUtil(200, "Booking Request deleted Successfully", null);
     }
 
     @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,21 +44,21 @@ public class BookingCarController {
 
     @GetMapping(path = "search", params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil search(@RequestParam String boId) {
-        return new ResponseUtil(200, "Booking Searched Successfully", bookingCarService.searchBooking(boId));
+        return new ResponseUtil(200, "Booking Request Searched Successfully", bookingCarService.searchRequestBooking(boId));
     }
 
     @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil generateBookingId() {
-        return new ResponseUtil(200, "Booking Id generated Successfully", bookingCarService.generateBookingId());
+        return new ResponseUtil(200, "Booking Request Id generated Successfully", bookingCarService.generateBookingRequestId());
     }
 
     @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAvailableDriverForBooking() {
-        return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.generateBookingId());
+        return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
     }
 
-    private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
-        /*Put an alert in front end to */
+    /*private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
+     *//*Put an alert in front end to *//*
         MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
         try {
             String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -75,5 +71,5 @@ public class BookingCarController {
             e.printStackTrace();
         }
         return file;
-    }
+    }*/
 }

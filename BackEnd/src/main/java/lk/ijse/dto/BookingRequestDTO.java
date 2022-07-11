@@ -14,13 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @ToString
-public class BookingDTO {
+public class BookingRequestDTO {
     private String boId;
     private String cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate date;
     private String time;
     private double cost;
-    private List<BookingDetailsDTO> bookingDetails;
-
+    private List<BookingRequestDetailsDTO> bookingDetails;
 }

@@ -101,6 +101,7 @@ public class BookingCarServiceImpl implements BookingCarService {
         List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
         for (BookingDetailsDTO b : bookingList
         ) {
+            bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
             if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked")) {
                 throw new RuntimeException("Booking a Car failed");
