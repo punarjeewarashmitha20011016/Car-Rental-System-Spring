@@ -23,4 +23,6 @@ public interface BookingCarService {
     List<BookingDTO> getAll();
 
     DriverDTO getAvailableDriver();
+
+    void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingDTO dto);
 }

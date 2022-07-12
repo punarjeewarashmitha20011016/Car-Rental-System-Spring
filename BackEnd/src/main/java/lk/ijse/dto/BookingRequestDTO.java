@@ -22,4 +22,5 @@ public class BookingRequestDTO {
     private String time;
     private double cost;
     private List<BookingRequestDetailsDTO> bookingDetails;
+    private BookingRequestPaymentsDTO requestPaymentsDTO;
 }

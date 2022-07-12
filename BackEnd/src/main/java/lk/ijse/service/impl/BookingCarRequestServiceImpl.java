@@ -5,11 +5,9 @@ import lk.ijse.dto.BookingRequestDetailsDTO;
 import lk.ijse.dto.DriverDTO;
 import lk.ijse.entity.Booking;
 import lk.ijse.entity.BookingRequest;
+import lk.ijse.entity.BookingRequestPayments;
 import lk.ijse.entity.Car;
-import lk.ijse.repo.BookingCarRequestDetailsRepo;
-import lk.ijse.repo.BookingCarRequestRepo;
-import lk.ijse.repo.CarRepo;
-import lk.ijse.repo.DriverRepo;
+import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarRequestService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -39,6 +37,9 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     @Autowired
     private DriverRepo driverRepo;
 
+    @Autowired
+    private BookingRequestPaymentsRepo paymentsRepo;
+
     @Override
     public String generateBookingRequestId() {
         PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
@@ -59,9 +60,30 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     }
 
     @Override
+    public String generateBookingRequestPaymentsId() {
+        PageRequest request = PageRequest.of(0, 1, Sort.by("paymentsId").descending());
+        BookingRequestPayments map = mapper.map(repo.findAll(request), BookingRequestPayments.class);
+        if (map.getBoId() != null) {
+            int temp = Integer.parseInt(map.getPaymentsId().split("-")[1]);
+            temp = temp + 1;
+            if (temp <= 9) {
+                return "PBR-00" + temp;
+            } else if (temp <= 99) {
+                return "PBR-0" + temp;
+            } else {
+                return "PBR-" + temp;
+            }
+        } else {
+            return "PBR-001";
+        }
+    }
+
+    @Override
     public void requestingABookingSave(BookingRequestDTO dto) {
         /*Customer Requesting a Booking = Pending*/
         if (repo.existsById(dto.getBoId())) {
+            /*When request failed the loss waiver payments should be return to customer by delete the records of the payments request table*/
+            paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
             throw new RuntimeException("Booking a Car Request failed");
         }
         System.out.println("Booking Request= " + dto.toString());
@@ -69,10 +91,14 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
         repo.save(mapper.map(dto, BookingRequest.class));
         List<BookingRequestDetailsDTO> bookingList = dto.getBookingDetails();
+
+        paymentsRepo.save(mapper.map(dto.getRequestPaymentsDTO(), BookingRequestPayments.class));
+
         for (BookingRequestDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
             if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
+                paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
                 throw new RuntimeException("Booking a Car failed");
             }
             if (b.getDriverNic() == "") {
@@ -82,11 +108,11 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
                 if (driver.getAvailableStatus().equals("Available")) {
 
                 } else {
+                    paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
                     throw new RuntimeException("Booking a Car failed");
                 }
             }
         }
-
     }
 
     @Override
@@ -96,10 +122,18 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public void deleteABookingRequest(String boId) {
+        /*This invokes when admin decline the booking request or when admin accepts*/
+        /*For decline = this invokes because the relevant request should by deleted from the entity and payments of loss damage should be returned by deleting the relevant record */
+        /*For accepts = this invokes because the relevant booking request entity should be deleted as that entity should be saved in the booking entity and request payment should be deleted*/
         if (!repo.existsById(boId)) {
             throw new RuntimeException("Deleting Booking Request failed");
         }
         repo.deleteById(boId);
+        BookingRequestDTO bookingRequestDTO = searchRequestBooking(boId);
+        if (!paymentsRepo.existsById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId())) {
+            throw new RuntimeException("Deleting Booking Request failed");
+        }
+        paymentsRepo.deleteById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId());
 
     }
 

@@ -33,7 +33,9 @@ public class BookingDetails implements Serializable {
     private LocalDate returnedDate;
     private String returnedTime;
     private String returnedVenue;
+    private String damageStatus;
     private double lossDamage;
+    private String lossDamagePaymentsSlip;
     private double cost;
 
     @ManyToOne

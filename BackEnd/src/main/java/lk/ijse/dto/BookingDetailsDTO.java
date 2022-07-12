@@ -26,8 +26,9 @@ public class BookingDetailsDTO {
     private LocalDate returnedDate;
     private String returnedTime;
     private String returnedVenue;
+    private String damageStatus;
     private double lossDamage;
-    private String lossDamageWaiverPaymentSlip;
+    private String lossDamagePaymentsSlip;
     private double cost;
 
     private Object lossDamageWaiverSlipFile;

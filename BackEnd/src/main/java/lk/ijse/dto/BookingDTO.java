@@ -2,6 +2,7 @@ package lk.ijse.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import lk.ijse.entity.BookingPayments;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class BookingDTO {
     private String time;
     private double cost;
     private List<BookingDetailsDTO> bookingDetails;
+    private BookingPayments payments;
 
 }

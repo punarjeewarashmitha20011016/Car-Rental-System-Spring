@@ -18,6 +18,9 @@ import java.net.URISyntaxException;
 @RestController
 @CrossOrigin
 public class BookingCarController {
+
+    /*Comes here when a request is accepted*/
+
     /*Test image file process in sanu sirs project*/
     @Autowired
     private BookingCarService bookingCarService;

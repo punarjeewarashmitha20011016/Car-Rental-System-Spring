@@ -12,6 +12,8 @@ import java.util.List;
 public interface BookingCarRequestService {
     String generateBookingRequestId();
 
+    String generateBookingRequestPaymentsId();
+
     void requestingABookingSave(BookingRequestDTO dto);
 
     void requestingABookingUpdate(BookingRequestDTO dto);

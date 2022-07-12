@@ -4,7 +4,6 @@ import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.service.BookingCarRequestService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class BookingCarRequestController {
     /*Test image file process in sanu sirs project*/
-    @Qualifier("bookingCarRequestService")
     @Autowired
     private BookingCarRequestService bookingCarService;
 
@@ -50,6 +48,11 @@ public class BookingCarRequestController {
     @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking Request Id generated Successfully", bookingCarService.generateBookingRequestId());
+    }
+
+    @GetMapping(path = "generatePaymentsRequestId", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil generatePaymentsRequestId() {
+        return new ResponseUtil(200, "Payments Request Id generated Successfully", bookingCarService.generateBookingRequestPaymentsId());
     }
 
     @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)

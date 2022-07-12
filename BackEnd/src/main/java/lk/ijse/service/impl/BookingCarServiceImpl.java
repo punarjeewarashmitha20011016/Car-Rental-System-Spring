@@ -3,14 +3,8 @@ package lk.ijse.service.impl;
 import lk.ijse.dto.BookingDTO;
 import lk.ijse.dto.BookingDetailsDTO;
 import lk.ijse.dto.DriverDTO;
-import lk.ijse.entity.Booking;
-import lk.ijse.entity.BookingDetails;
-import lk.ijse.entity.Car;
-import lk.ijse.entity.Driver;
-import lk.ijse.repo.BookingCarDetailsRepo;
-import lk.ijse.repo.BookingCarRepo;
-import lk.ijse.repo.CarRepo;
-import lk.ijse.repo.DriverRepo;
+import lk.ijse.entity.*;
+import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -40,6 +34,12 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Autowired
     private DriverRepo driverRepo;
 
+    @Autowired
+    private BookingCarRequestRepo bookingRequestRepo;
+
+    @Autowired
+    private BookingPaymentsRepo paymentsRepo;
+
     @Override
     public String generateBookingId() {
         PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
@@ -68,6 +68,11 @@ public class BookingCarServiceImpl implements BookingCarService {
         System.out.println("Booking Details = " + dto.getBookingDetails().toString());
 
         repo.save(mapper.map(dto, Booking.class));
+        if (dto.getPayments().getPaymentsId() == null) {
+            throw new RuntimeException("Booking a Car failed");
+        }
+        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
+
         for (BookingDetailsDTO b : dto.getBookingDetails()
         ) {
             bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));
@@ -90,14 +95,26 @@ public class BookingCarServiceImpl implements BookingCarService {
             }
         }
 
+        if (repo.existsById(dto.getBoId())) {
+            /*Deleting the requested booking entity*/
+            bookingRequestRepo.deleteById(dto.getBoId());
+        }
+
     }
 
     @Override
     public void updateBookingForFinal(BookingDTO dto) {
+        /*This will finalize the payment by updating the records*/
         if (!repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Booking Update failed");
         }
         repo.save(mapper.map(dto, Booking.class));
+
+        if (dto.getPayments().getPaymentsId() == null) {
+            throw new RuntimeException("Booking a Car failed");
+        }
+        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
+
         List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
         for (BookingDetailsDTO b : bookingList
         ) {
@@ -154,5 +171,10 @@ public class BookingCarServiceImpl implements BookingCarService {
             return dto;
         }
         throw new RuntimeException("No driver available for booking");
+    }
+
+    @Override
+    public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingDTO dto) {
+        
     }
 }
