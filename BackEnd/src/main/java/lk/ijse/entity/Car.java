@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @Entity
 public class Car {
-    @OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     List<BookingDetails> carList;
     @Id
     private String c_RegNo;
@@ -25,7 +25,8 @@ public class Car {
     @Embedded
     private CarImages images;
     private int noOfPassengers;
-    private String freeMileage;
+    private double mileageInKm;
+    private double freeMileage;
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;

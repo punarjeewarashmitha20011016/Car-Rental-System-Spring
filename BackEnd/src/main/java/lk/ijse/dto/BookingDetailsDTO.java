@@ -19,6 +19,8 @@ public class BookingDetailsDTO {
     private String driverNic;
     private String carType;
     @JsonDeserialize(using = LocalDateDeserializer.class)
+    private double tripInKm;
+    private double extraKmDriven;
     private LocalDate dateOfPickup;
     private String timeOfPickup;
     private String pickupVenue;

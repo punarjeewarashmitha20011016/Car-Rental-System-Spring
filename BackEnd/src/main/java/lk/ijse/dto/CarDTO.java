@@ -19,7 +19,8 @@ public class CarDTO {
     private String fuelType;
     private CarImagesDTO images;
     private int noOfPassengers;
-    private String freeMileage;
+    private double mileageInKm;
+    private double freeMileage;
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;

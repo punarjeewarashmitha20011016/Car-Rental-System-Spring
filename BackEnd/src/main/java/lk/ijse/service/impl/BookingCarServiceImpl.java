@@ -86,6 +86,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
                 throw new RuntimeException("Booking a Car failed");
             }
+
             car.setCarBookedOrNotStatus("Booked");
             carRepo.save(car);
             if (b.getDriverNic() == "") {
@@ -130,6 +131,8 @@ public class BookingCarServiceImpl implements BookingCarService {
                 throw new RuntimeException("Booking a Car failed");
             }
             car.setCarBookedOrNotStatus("Not Booked");
+            /*Updating the mileage of the car*/
+            car = updateMileageOfTheCarAccordingToTheTrip(car, b.getTripInKm(), b.getExtraKmDriven());
             if (b.getDriverNic() == "") {
 
             } else {
@@ -195,5 +198,17 @@ public class BookingCarServiceImpl implements BookingCarService {
             throw new RuntimeException("Updating Payments Entity by returning loss damage when no damage occurred in the car");
         }
         paymentsRepo.save(mapper.map(dto, BookingPayments.class));
+    }
+
+    Car updateMileageOfTheCarAccordingToTheTrip(Car c, double tripInKm, double extraKmDriven) {
+        Car car = c;
+        double totalTripToUpdate = 0.0;
+        if (extraKmDriven > c.getFreeMileage()) {
+            totalTripToUpdate = tripInKm + extraKmDriven;
+        } else {
+            totalTripToUpdate = tripInKm;
+        }
+        car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
+        return car;
     }
 }
