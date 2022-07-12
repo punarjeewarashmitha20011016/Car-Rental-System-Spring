@@ -2,6 +2,7 @@ package lk.ijse.service.impl;
 
 import lk.ijse.dto.BookingDTO;
 import lk.ijse.dto.BookingDetailsDTO;
+import lk.ijse.dto.BookingPaymentsDTO;
 import lk.ijse.dto.DriverDTO;
 import lk.ijse.entity.*;
 import lk.ijse.repo.*;
@@ -135,6 +136,14 @@ public class BookingCarServiceImpl implements BookingCarService {
                     throw new RuntimeException("Booking a Car failed");
                 }
             }
+            if (b.getDamageStatus().equals("Damaged")) {
+
+            } else {
+                dto.setCost(dto.getCost() - b.getLossDamage());
+                dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
+                repo.save(mapper.map(dto, Booking.class));
+                updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
+            }
             carRepo.save(car);
         }
     }
@@ -162,19 +171,10 @@ public class BookingCarServiceImpl implements BookingCarService {
         }.getType());
     }
 
-    @Override
-    public DriverDTO getAvailableDriver() {
-        List<DriverDTO> driverDTOList = mapper.map(driverRepo.findAllByAvailableStatus("available"), new TypeToken<List<DriverDTO>>() {
-        }.getType());
-        for (DriverDTO dto : driverDTOList
-        ) {
-            return dto;
+    public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingPaymentsDTO dto) {
+        if (dto.getPaymentsId() == null) {
+            throw new RuntimeException("Updating Payments Entity by returning loss damage when no damage occurred in the car");
         }
-        throw new RuntimeException("No driver available for booking");
-    }
-
-    @Override
-    public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingDTO dto) {
-        
+        paymentsRepo.save(mapper.map(dto, BookingPayments.class));
     }
 }

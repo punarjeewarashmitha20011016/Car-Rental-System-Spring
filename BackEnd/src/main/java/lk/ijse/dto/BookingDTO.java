@@ -23,6 +23,6 @@ public class BookingDTO {
     private String time;
     private double cost;
     private List<BookingDetailsDTO> bookingDetails;
-    private BookingPayments payments;
+    private BookingPaymentsDTO payments;
 
 }
