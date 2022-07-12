@@ -30,5 +30,5 @@ public class Car {
     private double dailyRate;
     private double monthlyRate;
     private String carBookedOrNotStatus;
-
+    private String maintenanceStatus;
 }

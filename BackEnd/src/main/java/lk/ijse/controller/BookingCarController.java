@@ -74,4 +74,9 @@ public class BookingCarController {
         }
         return file;
     }
+
+    @GetMapping(path = "getCountOfTodayBookings", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getCountOfTodayBookings() {
+        return new ResponseUtil(200, "Today Booking Count generated Successfully", bookingCarService.getCountOfTotalBookingsOfTheDay());
+    }
 }

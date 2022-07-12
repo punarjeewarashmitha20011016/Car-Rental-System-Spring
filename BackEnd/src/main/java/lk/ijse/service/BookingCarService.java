@@ -1,7 +1,6 @@
 package lk.ijse.service;
 
 import lk.ijse.dto.BookingDTO;
-import lk.ijse.dto.DriverDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,4 +21,5 @@ public interface BookingCarService {
 
     List<BookingDTO> getAll();
 
+    int getCountOfTotalBookingsOfTheDay();
 }

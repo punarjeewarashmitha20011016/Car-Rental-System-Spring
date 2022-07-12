@@ -24,6 +24,7 @@ public class CarDTO {
     private double dailyRate;
     private double monthlyRate;
     private String carBookedOrNotStatus;
+    private String maintenanceStatus;
 
     private List carImagesFiles;
 }

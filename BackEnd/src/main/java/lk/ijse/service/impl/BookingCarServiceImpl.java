@@ -15,6 +15,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -138,8 +142,9 @@ public class BookingCarServiceImpl implements BookingCarService {
                 }
             }
             if (b.getDamageStatus().equals("Damaged")) {
-
+                car.setMaintenanceStatus("Under Maintenance");
             } else {
+                car.setMaintenanceStatus("No Maintenance Required");
                 dto.setCost(dto.getCost() - b.getLossDamage());
                 dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
                 repo.save(mapper.map(dto, Booking.class));
@@ -170,6 +175,19 @@ public class BookingCarServiceImpl implements BookingCarService {
     public List<BookingDTO> getAll() {
         return mapper.map(repo.findAll(), new TypeToken<List<BookingDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public int getCountOfTotalBookingsOfTheDay() {
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        List<BookingDTO> dtoList = mapper.map(repo.getAllByDate(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date))), new TypeToken<List<BookingDTO>>() {
+        }.getType());
+        int count = 0;
+        for (int i = 0; i < dtoList.size(); i++) {
+            count++;
+        }
+        return count;
     }
 
     public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingPaymentsDTO dto) {

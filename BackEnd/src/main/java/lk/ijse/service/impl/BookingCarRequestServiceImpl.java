@@ -97,9 +97,9 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         for (BookingRequestDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")||car.getMaintenanceStatus().equals("Under Maintenance")) {
                 paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
-                throw new RuntimeException("Booking a Car failed");
+                throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
             }
             if (b.getDriverNic() == "") {
 
