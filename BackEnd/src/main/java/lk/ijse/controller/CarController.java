@@ -88,7 +88,7 @@ public class CarController {
 
     /*Car Schedule*/
     @GetMapping(path = "getCarSchedule", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil getAllBookedCars(@RequestParam String status) {
+    ResponseUtil getAllBookedCars() {
         return new ResponseUtil(200, "Data Fetched Successfully", carService.carScheduleList());
     }
 }

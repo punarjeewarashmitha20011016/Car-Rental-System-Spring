@@ -58,6 +58,11 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Searched Successfully", driverService.search(nic));
     }
 
+    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getDriverSchedule() {
+        return new ResponseUtil(200, "Data Fetched Successfully", driverService.getDriverScheduleList());
+    }
+
     private MultipartFile saveAnUpdateFileForLicense(DriverDTO dto) {
         MultipartFile file = (MultipartFile) dto.getLicensePhotoFile();
         try {

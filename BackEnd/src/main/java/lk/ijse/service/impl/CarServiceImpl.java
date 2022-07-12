@@ -68,7 +68,7 @@ public class CarServiceImpl implements CarService {
         }.getType());
         for (int i = 0; i < cars.size(); i++) {
             for (int j = 0; j < details.size(); j++) {
-                if (cars.get(i).getC_RegNo() == details.get(i).getCar_RegNo()) {
+                if (cars.get(i).getC_RegNo().equals(details.get(i).getCar_RegNo())) {
                     /*Booked Cars*/
                     scheduleDTOList.add(new CarScheduleDTO(details.get(i).getCar_RegNo(), "Rented", details.get(i).getDateOfPickup(), details.get(i).getTimeOfPickup(), details.get(i).getReturnedDate(), details.get(i).getReturnedTime()));
                 } else {
