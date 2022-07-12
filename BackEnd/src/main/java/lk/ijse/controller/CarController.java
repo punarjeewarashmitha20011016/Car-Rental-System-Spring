@@ -23,16 +23,16 @@ public class CarController {
     private CarService carService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil save(@RequestBody CarDTO dto) {
-        /*CarImagesDTO carImages = saveAnUpdateFileForCarImages(dto.getCarImagesFiles());
-        dto.setImages(carImages);*/
+    ResponseUtil save(@ModelAttribute CarDTO dto, @RequestPart("files") MultipartFile[] files) {
+        CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
+        dto.setImages(carImages);
         carService.save(dto);
         return new ResponseUtil(200, "Car Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@RequestBody CarDTO dto) {
-        CarImagesDTO carImages = saveAnUpdateFileForCarImages(dto.getCarImagesFiles());
+    ResponseUtil update(@ModelAttribute CarDTO dto, @RequestPart("files") MultipartFile[] files) {
+        CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
         carService.update(dto);
         return new ResponseUtil(200, "Car Updated Successfully", dto);
@@ -60,26 +60,25 @@ public class CarController {
         return new ResponseUtil(200, "Data Fetched Successfully", carService.carScheduleList());
     }
 
-    private CarImagesDTO saveAnUpdateFileForCarImages(List carImagesFiles) {
-        List carImagesFile = carImagesFiles;
-        List<MultipartFile> files = new ArrayList<>();
-        MultipartFile file1 = (MultipartFile) carImagesFile.get(0);
-        files.add(file1);
-        MultipartFile file2 = (MultipartFile) carImagesFile.get(1);
-        files.add(file2);
-        MultipartFile file3 = (MultipartFile) carImagesFile.get(2);
-        files.add(file3);
-        MultipartFile file4 = (MultipartFile) carImagesFile.get(3);
-        files.add(file4);
+    private CarImagesDTO saveAnUpdateFileForCarImages(MultipartFile[] files) {
+        MultipartFile file1 = files[0];
+        MultipartFile file2 = files[1];
+        MultipartFile file3 = files[2];
+        MultipartFile file4 = files[3];
+        List<MultipartFile> list = new ArrayList<>();
+        list.add(file1);
+        list.add(file2);
+        list.add(file3);
+        list.add(file4);
 
-        for (int i = 0; i < files.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
                 File uploadsDir = new File(projectPath + "/uploads");
                 System.out.println(projectPath);
                 uploadsDir.mkdir();
 
-                files.get(i).transferTo(new File(uploadsDir.getAbsolutePath() + "/" + files.get(i).getOriginalFilename()));
+                list.get(i).transferTo(new File(uploadsDir.getAbsolutePath() + "/" + list.get(i).getOriginalFilename()));
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }

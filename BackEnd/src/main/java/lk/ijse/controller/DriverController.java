@@ -19,7 +19,7 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@ModelAttribute DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
@@ -29,7 +29,7 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Saved Successfully", dto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@ModelAttribute DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
