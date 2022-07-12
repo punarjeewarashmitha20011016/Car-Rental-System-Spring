@@ -54,6 +54,12 @@ public class CarController {
         return new ResponseUtil(200, "Car Searched Successfully", carService.search(regNo));
     }
 
+    /*Car Schedule*/
+    @GetMapping(path = "getCarSchedule", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getAllBookedCars() {
+        return new ResponseUtil(200, "Data Fetched Successfully", carService.carScheduleList());
+    }
+
     private CarImagesDTO saveAnUpdateFileForCarImages(List carImagesFiles) {
         List carImagesFile = carImagesFiles;
         List<MultipartFile> files = new ArrayList<>();
@@ -86,9 +92,4 @@ public class CarController {
         return dto1;
     }
 
-    /*Car Schedule*/
-    @GetMapping(path = "getCarSchedule", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil getAllBookedCars() {
-        return new ResponseUtil(200, "Data Fetched Successfully", carService.carScheduleList());
-    }
 }

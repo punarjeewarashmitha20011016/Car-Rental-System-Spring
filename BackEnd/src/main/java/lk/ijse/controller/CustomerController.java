@@ -20,25 +20,28 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil save(@RequestBody CustomerDTO dto) {
-        /*======================================*//*
-        MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
-        MultipartFile nicFile = saveAnUpdateFileForNic(dto);
-        *//*======================================*//*
-        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
-        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());*/
+        /*============
+         * var formData = new FormData();
+         * var dtp = {customerDetailsObj}
+         * formData.append("dto",dto)
+         * formData.append("nicPhoto",file,fileName)
+         * formData.append("licensePhoto",file,fileName)
+         * ===========*/
+    ResponseUtil save(@ModelAttribute CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+        MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
+        MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
+        dto.setNicPhoto(nicFile.getOriginalFilename());
+        dto.setLicensePhoto(licenseFile.getOriginalFilename());
         customerService.save(dto);
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@RequestBody CustomerDTO dto) {
-        /*======================================*/
-        MultipartFile licenseFile = saveAnUpdateFileForLicense(dto);
-        MultipartFile nicFile = saveAnUpdateFileForNic(dto);
-        /*======================================*/
-        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
-        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
+    ResponseUtil update(@ModelAttribute CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+        MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
+        MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
+        dto.setNicPhoto(nicFile.getOriginalFilename());
+        dto.setLicensePhoto(licenseFile.getOriginalFilename());
         customerService.update(dto);
         return new ResponseUtil(200, "Customer Updated Successfully", dto);
     }
@@ -59,38 +62,23 @@ public class CustomerController {
         return new ResponseUtil(200, "Customer Searched Successfully", customerService.search(nic));
     }
 
-    private MultipartFile saveAnUpdateFileForLicense(CustomerDTO dto) {
-        MultipartFile file = (MultipartFile) dto.getLicensePhotoFile();
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            uploadsDir.mkdir();
-
-            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
-
-    private MultipartFile saveAnUpdateFileForNic(CustomerDTO dto) {
-        MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            uploadsDir.mkdir();
-
-            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
-
     @GetMapping(path = "loginCheckCustomer", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAdminLogin(@RequestParam String email, @RequestParam String password) {
         return new ResponseUtil(200, "Customer Login Successful", customerService.checkCustomerLogin(email, password));
+    }
+
+    private MultipartFile saveAnUpdateFile(MultipartFile file1) {
+        MultipartFile file = file1;
+        try {
+            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+            File uploadsDir = new File(projectPath + "/uploads");
+            System.out.println(projectPath);
+            uploadsDir.mkdir();
+
+            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 }

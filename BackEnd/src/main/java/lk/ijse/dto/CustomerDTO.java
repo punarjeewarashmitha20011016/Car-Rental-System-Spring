@@ -18,6 +18,4 @@ public class CustomerDTO {
     private int contactNo;
     private String email;
     private String password;
-    private Object licensePhotoFile;
-    private Object nicPhotoFile;
 }
