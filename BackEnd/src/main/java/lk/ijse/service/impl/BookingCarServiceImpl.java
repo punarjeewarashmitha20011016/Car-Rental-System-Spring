@@ -62,6 +62,7 @@ public class BookingCarServiceImpl implements BookingCarService {
 
     @Override
     public void bookingACar(BookingDTO dto) {
+        /*If admin accept the customer request this method invokes..And admin should send an email to the customer by informing that his/her request in confirmed*/
         if (repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Booking a Car failed");
         }

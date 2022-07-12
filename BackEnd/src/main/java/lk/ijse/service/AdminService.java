@@ -18,4 +18,6 @@ public interface AdminService {
     List<AdminDTO> getAll();
 
     AdminDTO search(String nic);
+
+    boolean checkAdminLogin(String email, String password);
 }

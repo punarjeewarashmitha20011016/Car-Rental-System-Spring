@@ -54,4 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
         }
         throw new RuntimeException("Customer Search Failed");
     }
+
+    @Override
+    public boolean checkCustomerLogin(String email, String password) {
+        if (!repo.existsCustomerByEmailAndPassword(email, password)) {
+            throw new RuntimeException("Customer Login Failed");
+        }
+        return true;
+    }
 }

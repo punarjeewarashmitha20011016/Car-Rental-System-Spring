@@ -59,11 +59,6 @@ public class BookingCarController {
         return new ResponseUtil(200, "Booking Id generated Successfully", bookingCarService.generateBookingId());
     }
 
-    @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil checkAvailableDriverForBooking() {
-        return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.generateBookingId());
-    }
-
     private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
         /*Put an alert in front end to */
         MultipartFile file = (MultipartFile) dto.getNicPhotoFile();

@@ -18,4 +18,6 @@ public interface CustomerService {
     List<CustomerDTO> getAll();
 
     CustomerDTO search(String nic);
+
+    boolean checkCustomerLogin(String email,String password);
 }

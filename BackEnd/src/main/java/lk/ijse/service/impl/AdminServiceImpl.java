@@ -52,4 +52,12 @@ public class AdminServiceImpl implements AdminService {
         }
         throw new RuntimeException("Admin Search Failed");
     }
+
+    @Override
+    public boolean checkAdminLogin(String email, String password) {
+        if (!repo.existsAdminByEmailAndPassword(email, password)) {
+            throw new RuntimeException("Admin Login Failed");
+        }
+        return true;
+    }
 }

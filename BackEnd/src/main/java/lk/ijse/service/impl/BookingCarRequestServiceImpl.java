@@ -125,16 +125,19 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         /*This invokes when admin decline the booking request or when admin accepts*/
         /*For decline = this invokes because the relevant request should by deleted from the entity and payments of loss damage should be returned by deleting the relevant record */
         /*For accepts = this invokes because the relevant booking request entity should be deleted as that entity should be saved in the booking entity and request payment should be deleted*/
+
+        /*After declining admin should notify customer with an email with the fact that leads to decline*/
+
         if (!repo.existsById(boId)) {
             throw new RuntimeException("Deleting Booking Request failed");
         }
-        repo.deleteById(boId);
+
         BookingRequestDTO bookingRequestDTO = searchRequestBooking(boId);
         if (!paymentsRepo.existsById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId())) {
             throw new RuntimeException("Deleting Booking Request failed");
         }
         paymentsRepo.deleteById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId());
-
+        repo.deleteById(boId);
     }
 
     @Override

@@ -88,4 +88,9 @@ public class CustomerController {
         }
         return file;
     }
+
+    @GetMapping(path = "loginCheckCustomer", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil checkAdminLogin(@RequestParam String email, @RequestParam String password) {
+        return new ResponseUtil(200, "Customer Login Successful", customerService.checkCustomerLogin(email, password));
+    }
 }
