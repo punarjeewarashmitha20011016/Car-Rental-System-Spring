@@ -28,4 +28,7 @@ public class Driver {
 
     @OneToMany(mappedBy = "driverNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<BookingDetails> bookingDetails;
+
+    @OneToMany(mappedBy = "driverNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<BookingDetails> bookingRequestDetails;
 }
