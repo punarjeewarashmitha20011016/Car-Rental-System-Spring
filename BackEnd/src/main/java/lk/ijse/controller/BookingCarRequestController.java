@@ -1,12 +1,19 @@
 package lk.ijse.controller;
 
 import lk.ijse.dto.BookingRequestDTO;
+import lk.ijse.dto.BookingRequestDetailsDTO;
 import lk.ijse.service.BookingCarRequestService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 @RequestMapping(path = "bookingCarRequestController")
 @RestController
@@ -19,6 +26,12 @@ public class BookingCarRequestController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil saveBooking(@ModelAttribute BookingRequestDTO dto) {
+        List<BookingRequestDetailsDTO> bookingDetails = dto.getBookingDetails();
+        for (int i = 0; i < bookingDetails.size(); i++) {
+            MultipartFile file = saveAnUpdateFile(bookingDetails.get(i).getSlipFile());
+            bookingDetails.get(i).setLossDamageWaiverPaymentSlip(file.getOriginalFilename());
+        }
+        dto.setBookingDetails(bookingDetails);
         bookingCarService.requestingABookingSave(dto);
         return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
     }
@@ -58,5 +71,20 @@ public class BookingCarRequestController {
     @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
+    }
+
+    private MultipartFile saveAnUpdateFile(MultipartFile file1) {
+        MultipartFile file = file1;
+        try {
+            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+            File uploadsDir = new File(projectPath + "/uploads");
+            System.out.println(projectPath);
+            uploadsDir.mkdir();
+
+            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 }

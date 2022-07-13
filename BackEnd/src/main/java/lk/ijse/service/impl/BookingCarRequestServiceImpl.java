@@ -80,7 +80,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         /*Customer Requesting a Booking = Pending*/
         if (repo.existsById(dto.getBoId())) {
             /*When request failed the loss waiver payments should be return to customer by delete the records of the payments request table*/
-            paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
+            paymentsRepo.deleteById(dto.getPayments().getPaymentsId());
             throw new RuntimeException("Booking a Car Request failed");
         }
         System.out.println("Booking Request= " + dto.toString());
@@ -89,13 +89,13 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         repo.save(mapper.map(dto, BookingRequest.class));
         List<BookingRequestDetailsDTO> bookingList = dto.getBookingDetails();
 
-        paymentsRepo.save(mapper.map(dto.getRequestPaymentsDTO(), BookingRequestPayments.class));
+        paymentsRepo.save(mapper.map(dto.getPayments(), BookingRequestPayments.class));
 
         for (BookingRequestDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
             if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked") || car.getMaintenanceStatus().equals("Under Maintenance")) {
-                paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
+                paymentsRepo.deleteById(dto.getPayments().getPaymentsId());
                 throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
             }
             if (b.getDriverNic() == null) {
@@ -105,7 +105,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
                 if (driver.getAvailableStatus().equals("Available")) {
 
                 } else {
-                    paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
+                    paymentsRepo.deleteById(dto.getPayments().getPaymentsId());
                     throw new RuntimeException("Booking a Car failed");
                 }
             }
@@ -115,7 +115,35 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public void requestingABookingUpdate(BookingRequestDTO dto) {
-        requestingABookingSave(dto);
+        if (!repo.existsById(dto.getBoId())) {
+            throw new RuntimeException("Updating a Booking Request failed");
+        }
+        System.out.println("Booking Request= " + dto.toString());
+        System.out.println("Booking Request Details = " + dto.getBookingDetails().toString());
+
+        repo.save(mapper.map(dto, BookingRequest.class));
+        List<BookingRequestDetailsDTO> bookingList = dto.getBookingDetails();
+
+        paymentsRepo.save(mapper.map(dto.getPayments(), BookingRequestPayments.class));
+
+        for (BookingRequestDetailsDTO b : bookingList
+        ) {
+            Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked") || car.getMaintenanceStatus().equals("Under Maintenance")) {
+                throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
+            }
+            if (b.getDriverNic() == null) {
+
+            } else {
+                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
+                if (driver.getAvailableStatus().equals("Available")) {
+
+                } else {
+                    throw new RuntimeException("Booking a Car failed");
+                }
+            }
+            bookingCarDetailsRepo.save(mapper.map(b, BookingRequestDetails.class));
+        }
     }
 
     @Override
@@ -131,10 +159,10 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         }
 
         BookingRequestDTO bookingRequestDTO = searchRequestBooking(boId);
-        if (!paymentsRepo.existsById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId())) {
+        if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
             throw new RuntimeException("Deleting Booking Request failed");
         }
-        paymentsRepo.deleteById(bookingRequestDTO.getRequestPaymentsDTO().getPaymentsId());
+        paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
         repo.deleteById(boId);
     }
 

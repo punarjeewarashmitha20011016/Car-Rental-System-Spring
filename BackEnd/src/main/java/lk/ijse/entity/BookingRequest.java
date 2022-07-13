@@ -19,13 +19,16 @@ import java.util.List;
 public class BookingRequest {
     @Id
     private String boId;
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(referencedColumnName = "nic", name = "cusNic")
     private Customer cusNic;
     private LocalDate date;
     private String time;
     private double cost;
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, mappedBy = "bookingEntity")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "bookingEntity")
     @NotFound(action = NotFoundAction.IGNORE)
     private List<BookingRequestDetails> bookingDetails;
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(referencedColumnName = "paymentsId")
+    private BookingRequestPayments payments;
 }
