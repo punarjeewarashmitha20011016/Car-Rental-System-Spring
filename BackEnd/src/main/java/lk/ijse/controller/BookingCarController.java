@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class BookingCarController {
 
     /*Comes here when a request is accepted*/
-
-    /*Test image file process in sanu sirs project*/
     @Autowired
     private BookingCarService bookingCarService;
 
@@ -52,22 +50,6 @@ public class BookingCarController {
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking Id generated Successfully", bookingCarService.generateBookingId());
     }
-
-    /*private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
-     *//*Put an alert in front end to *//*
-        MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            uploadsDir.mkdir();
-
-            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }*/
 
     @GetMapping(path = "getCountOfTodayBookings", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getCountOfTodayBookings() {
