@@ -3,10 +3,7 @@ package lk.ijse.service.impl;
 import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.dto.BookingRequestDetailsDTO;
 import lk.ijse.dto.DriverDTO;
-import lk.ijse.entity.Booking;
-import lk.ijse.entity.BookingRequest;
-import lk.ijse.entity.BookingRequestPayments;
-import lk.ijse.entity.Car;
+import lk.ijse.entity.*;
 import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarRequestService;
 import org.modelmapper.ModelMapper;
@@ -97,7 +94,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         for (BookingRequestDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")||car.getMaintenanceStatus().equals("Under Maintenance")) {
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked") || car.getMaintenanceStatus().equals("Under Maintenance")) {
                 paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
                 throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
             }
@@ -112,6 +109,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
                     throw new RuntimeException("Booking a Car failed");
                 }
             }
+            bookingCarDetailsRepo.save(mapper.map(b, BookingRequestDetails.class));
         }
     }
 

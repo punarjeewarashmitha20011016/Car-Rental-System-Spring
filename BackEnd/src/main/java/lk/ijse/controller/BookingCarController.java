@@ -1,18 +1,12 @@
 package lk.ijse.controller;
 
 import lk.ijse.dto.BookingDTO;
-import lk.ijse.dto.DriverDTO;
 import lk.ijse.service.BookingCarService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 @RequestMapping(path = "bookingCarController")
 @RestController
@@ -59,8 +53,8 @@ public class BookingCarController {
         return new ResponseUtil(200, "Booking Id generated Successfully", bookingCarService.generateBookingId());
     }
 
-    private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
-        /*Put an alert in front end to */
+    /*private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
+     *//*Put an alert in front end to *//*
         MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
         try {
             String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -73,7 +67,7 @@ public class BookingCarController {
             e.printStackTrace();
         }
         return file;
-    }
+    }*/
 
     @GetMapping(path = "getCountOfTodayBookings", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getCountOfTodayBookings() {

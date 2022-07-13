@@ -16,11 +16,11 @@ import java.time.LocalDate;
 public class BookingRequestPaymentsDTO {
     private String paymentsId;
     private String boId;
-    private String cusId;
+    private String cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPayment;
     private String timeOfPayment;
     private double lossDamageWaiver;
-    private Object lossDamageWaiverPaymentSlip;
+    private String lossDamageWaiverPaymentSlip;
     private double cost;
 }
