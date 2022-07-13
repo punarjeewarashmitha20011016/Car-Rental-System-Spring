@@ -50,4 +50,9 @@ public class BookingCarController {
     ResponseUtil getCountOfTodayBookings() {
         return new ResponseUtil(200, "Today Booking Count generated Successfully", bookingCarService.getCountOfTotalBookingsOfTheDay());
     }
+
+    @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil generateBookingId() {
+        return new ResponseUtil(200, "Booking ID generated Successfully", bookingCarService.generateBookingId());
+    }
 }

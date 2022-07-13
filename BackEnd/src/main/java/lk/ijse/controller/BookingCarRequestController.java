@@ -18,7 +18,7 @@ public class BookingCarRequestController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseUtil saveBooking(@RequestBody BookingRequestDTO dto) {
+    ResponseUtil saveBooking(@ModelAttribute BookingRequestDTO dto) {
         bookingCarService.requestingABookingSave(dto);
         return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
     }
@@ -59,20 +59,4 @@ public class BookingCarRequestController {
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
     }
-
-    /*private MultipartFile saveAnUpdateLossWaiverPaymentSlip(DriverDTO dto) {
-     *//*Put an alert in front end to *//*
-        MultipartFile file = (MultipartFile) dto.getNicPhotoFile();
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            uploadsDir.mkdir();
-
-            file.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }*/
 }

@@ -20,4 +20,6 @@ public interface BookingCarService {
     List<BookingDTO> getAll();
 
     int getCountOfTotalBookingsOfTheDay();
+
+    String generateBookingId();
 }

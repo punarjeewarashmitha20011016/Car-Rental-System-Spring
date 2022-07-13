@@ -10,6 +10,8 @@ import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -175,6 +177,25 @@ public class BookingCarServiceImpl implements BookingCarService {
             count++;
         }
         return count;
+    }
+
+    @Override
+    public String generateBookingId() {
+        PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
+        Booking map = mapper.map(repo.findAll(request), Booking.class);
+        if (map.getBoId() != null) {
+            int temp = Integer.parseInt(map.getBoId().split("-")[1]);
+            temp = temp + 1;
+            if (temp <= 9) {
+                return "BO-00" + temp;
+            } else if (temp <= 99) {
+                return "BO-0" + temp;
+            } else {
+                return "BO-" + temp;
+            }
+        } else {
+            return "BO-001";
+        }
     }
 
     public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingPaymentsDTO dto) {
