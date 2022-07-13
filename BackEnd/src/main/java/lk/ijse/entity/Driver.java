@@ -26,6 +26,6 @@ public class Driver {
     private String address;
     private String availableStatus;
 
-    @OneToMany(mappedBy = "driverNic",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    List<BookingDetails>bookingDetails;
+    @OneToMany(mappedBy = "driverNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<BookingDetails> bookingDetails;
 }

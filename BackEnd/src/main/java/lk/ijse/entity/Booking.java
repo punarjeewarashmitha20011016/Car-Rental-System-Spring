@@ -30,5 +30,6 @@ public class Booking {
     private List<BookingDetails> bookingDetails;
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(referencedColumnName = "paymentsId")
+    @NotFound(action = NotFoundAction.IGNORE)
     private BookingPayments payments;
 }

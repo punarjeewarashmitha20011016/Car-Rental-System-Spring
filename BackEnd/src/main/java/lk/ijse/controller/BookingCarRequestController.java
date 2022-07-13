@@ -25,7 +25,7 @@ public class BookingCarRequestController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseUtil saveBooking(@ModelAttribute BookingRequestDTO dto) {
+    ResponseUtil saveBooking(@RequestBody BookingRequestDTO dto) {
         List<BookingRequestDetailsDTO> bookingDetails = dto.getBookingDetails();
         for (int i = 0; i < bookingDetails.size(); i++) {
             MultipartFile file = saveAnUpdateFile(bookingDetails.get(i).getSlipFile());

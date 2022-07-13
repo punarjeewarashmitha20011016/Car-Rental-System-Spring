@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Car {
     @OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    List<BookingDetails> carList;
+    private List<BookingDetails> carList;
     @Id
     private String c_RegNo;
     private String brand;
