@@ -30,5 +30,5 @@ public class Driver {
     private List<BookingDetails> bookingDetails;
 
     @OneToMany(mappedBy = "driverNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<BookingDetails> bookingRequestDetails;
+    private List<BookingRequestDetails> bookingRequestDetails;
 }
