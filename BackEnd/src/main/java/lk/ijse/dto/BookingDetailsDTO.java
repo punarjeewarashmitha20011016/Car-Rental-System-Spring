@@ -18,9 +18,9 @@ public class BookingDetailsDTO {
     private String car_RegNo;
     private String driverNic;
     private String carType;
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     private double tripInKm;
     private double extraKmDriven;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPickup;
     private String timeOfPickup;
     private String pickupVenue;
@@ -32,6 +32,4 @@ public class BookingDetailsDTO {
     private double lossDamage;
     private String lossDamagePaymentsSlip;
     private double cost;
-
-    private Object lossDamageWaiverSlipFile;
 }

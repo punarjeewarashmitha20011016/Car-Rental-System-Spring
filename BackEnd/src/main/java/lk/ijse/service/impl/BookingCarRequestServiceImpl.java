@@ -45,14 +45,14 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             int temp = Integer.parseInt(map.getBoId().split("-")[1]);
             temp = temp + 1;
             if (temp <= 9) {
-                return "BOR-00" + temp;
+                return "BO-00" + temp;
             } else if (temp <= 99) {
-                return "BOR-0" + temp;
+                return "BO-0" + temp;
             } else {
-                return "BOR-" + temp;
+                return "BO-" + temp;
             }
         } else {
-            return "BOR-001";
+            return "BO-001";
         }
     }
 
@@ -98,7 +98,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
                 paymentsRepo.deleteById(dto.getRequestPaymentsDTO().getPaymentsId());
                 throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
             }
-            if (b.getDriverNic() == "") {
+            if (b.getDriverNic() == null) {
 
             } else {
                 DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);

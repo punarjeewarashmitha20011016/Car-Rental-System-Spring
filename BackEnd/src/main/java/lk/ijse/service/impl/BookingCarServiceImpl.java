@@ -10,8 +10,6 @@ import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,24 +43,8 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Autowired
     private BookingPaymentsRepo paymentsRepo;
 
-    @Override
-    public String generateBookingId() {
-        PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
-        Booking map = mapper.map(repo.findAll(request), Booking.class);
-        if (map.getBoId() != null) {
-            int temp = Integer.parseInt(map.getBoId().split("-")[1]);
-            temp = temp + 1;
-            if (temp <= 9) {
-                return "BO-00" + temp;
-            } else if (temp <= 99) {
-                return "BO-0" + temp;
-            } else {
-                return "BO-" + temp;
-            }
-        } else {
-            return "BO-001";
-        }
-    }
+    @Autowired
+    private BookingRequestPaymentsRepo requestPaymentsRepo;
 
     @Override
     public void bookingACar(BookingDTO dto) {
@@ -78,6 +60,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             throw new RuntimeException("Booking a Car failed");
         }
         paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
+        requestPaymentsRepo.deleteById(dto.getPayments().getPaymentsId());
 
         for (BookingDetailsDTO b : dto.getBookingDetails()
         ) {
@@ -89,7 +72,7 @@ public class BookingCarServiceImpl implements BookingCarService {
 
             car.setCarBookedOrNotStatus("Booked");
             carRepo.save(car);
-            if (b.getDriverNic() == "") {
+            if (b.getDriverNic() == null) {
 
             } else {
                 DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
@@ -130,6 +113,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked")) {
                 throw new RuntimeException("Booking a Car failed");
             }
+            /*Updating the car booked status to Not booked after returning the car*/
             car.setCarBookedOrNotStatus("Not Booked");
             /*Updating the mileage of the car*/
             car = updateMileageOfTheCarAccordingToTheTrip(car, b.getTripInKm(), b.getExtraKmDriven());

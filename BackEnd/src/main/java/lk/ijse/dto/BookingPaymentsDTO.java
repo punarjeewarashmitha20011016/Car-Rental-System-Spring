@@ -21,6 +21,6 @@ public class BookingPaymentsDTO {
     private LocalDate dateOfPayment;
     private String timeOfPayment;
     private double lossDamageWaiver;
-    private Object lossDamageWaiverPaymentSlip;
+    private String lossDamageWaiverPaymentSlip;
     private double cost;
 }
