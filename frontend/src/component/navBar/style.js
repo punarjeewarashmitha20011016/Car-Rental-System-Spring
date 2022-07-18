@@ -1,14 +1,14 @@
 export const styleSheet={
-    navBarContainer:{
-        display:'flex',
-        flexDirection:"row",
-        width:"100%",
-        height:"8%",
-        backgroundColor:"#ECEAE9",
-        alignItems:"center",
-        justifyContent:"center",
-        position:"absolute",
-    },
+    // navBarContainer:{
+    //     display:'flex',
+    //     flexDirection:"row",
+    //     width:"100%",
+    //     height:"100%",
+    //     backgroundColor:"#ECEAE9",
+    //     alignItems:"center",
+    //     justifyContent:"center",
+    //     position:"absolute",
+    // },
     navTitle:{
         position:'absolute',
         left:"1%",

@@ -1,0 +1,45 @@
+export const styleSheet={
+    loginContainer:{
+        position:'absolute',
+        display:'flex',
+        width:"100%",
+        height:"100%",
+        alignItems:'center',
+        justifyContent:"center",
+        backgroundColor:"#E8E1DE"
+    },
+    loginContent:{
+        display:'flex',
+        width:"30%",
+        height:"70%",
+        boxShadow:"10px 10px 10px 10px #888888",
+        alignItems:'center',
+        justifyContent:"center",
+    },
+    formContainer:{
+        display:'flex',
+        width:"80%",
+        height:"80%",
+        alignItems:'center',
+        justifyContent:"center",
+        position:"relative"
+    },
+    formValidatorContainer:{
+        position:"absolute",
+        top:"0",
+        display:'flex',
+        width:"100%",
+        height:"70%",
+        alignItems:'center',
+        justifyContent:"center",
+    },
+    btnContainer:{
+        position:"absolute",
+        bottom:"0",
+        display:'flex',
+        width:"100%",
+        height:"30%",
+        alignItems:'center',
+        justifyContent:"center",
+    }
+}

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, Fragment } from "react";
 import {styleSheet} from '../navBar/style'
 import {Typography} from '@material-ui/core';
 import { withStyles } from "@mui/styles";
@@ -11,7 +11,7 @@ class NavBar extends Component{
     render() {
         const {classes,setBtnsList}=this.props;
         return(
-                <div className={classes.navBarContainer}>
+                <Fragment>
                     <Typography 
                         className={classes.navTitle}
                         gutterBottom variant="h5" 
@@ -24,7 +24,7 @@ class NavBar extends Component{
                             setBtnsList = {setBtnsList}
                         />
                     </ul>
-                </div>
+                </Fragment>
         )
     }
 }

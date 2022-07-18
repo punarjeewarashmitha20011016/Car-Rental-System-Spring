@@ -3,6 +3,7 @@ import {styleSheet} from './style'
 import {Link} from 'react-router-dom'
 import { withStyles } from "@mui/styles";
 import { FaSignInAlt } from "react-icons/fa";
+import { useEffect } from "react";
 class NavBtns extends Component{
     constructor(props){
         super(props);
@@ -20,11 +21,14 @@ class NavBtns extends Component{
     }
     setBtns=()=>{
         const {setBtnsList,classes} = this.props;
+        
+        
         for(let i =0;i<setBtnsList.length;i++){
             if(setBtnsList[i] === 'signIn'){
+                console.log('signin');
                 return (
-                    <Link 
-                            to='/' 
+
+                    <Link to="/login"
                             className={classes.setAdminBtn}
                             onMouseOver={(e)=>{
                                 let checkMouseAway = true
@@ -36,10 +40,11 @@ class NavBtns extends Component{
                             }}
                             style={{ textDecoration: 'none' }}
                             >
-                            <FaSignInAlt/>
-                        </Link>
+                                <FaSignInAlt/>
+                    </Link>
                 )
             }else{
+                // content.style={display:"block"};
                 return(
                     <div>
                         <Link 
@@ -52,6 +57,12 @@ class NavBtns extends Component{
                             onMouseLeave={(e)=>{
                                 let checkMouseAway = false
                                 this.changeBackground(e,checkMouseAway)
+                            }}
+                            onMouseDown={(e)=>{
+                                // navBarContainer = document.getElementById('navBarContainer');
+                                // content = document.getElementById('content');
+                                // navBarContainer.style.display="block";
+                                // content.style.display="block";
                             }}
                             style={{ textDecoration: 'none' }}
                             >

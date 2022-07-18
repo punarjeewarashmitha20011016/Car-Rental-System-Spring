@@ -52,3 +52,22 @@
   height:92%;
   top: 8%;
 }
+.navBarContainer{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    height:8%;
+    background-color:#ECEAE9;
+    align-items:center;
+    justify-content:center;
+    position:absolute;
+}
+.loginContainer{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
+  background-color:#E8E1DE;
+}
