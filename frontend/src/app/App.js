@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from '../component/navBar';
+import Home from "../component/home/index"
 function App() {
   return (
     <div className='container'>
@@ -8,7 +9,9 @@ function App() {
             setBtnsList = {['signIn']}
           />
         </div>
-        <div className="content"></div>
+        <div className="content">
+          <Home/>
+        </div>
     </div>
   );
 }

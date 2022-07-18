@@ -4,7 +4,7 @@ export const styleSheet={
         flexDirection:"row",
         width:"100%",
         height:"8%",
-        backgroundColor:"#B6AFAD",
+        backgroundColor:"#ECEAE9",
         alignItems:"center",
         justifyContent:"center",
         position:"absolute",
