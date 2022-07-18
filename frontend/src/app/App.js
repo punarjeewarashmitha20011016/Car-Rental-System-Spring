@@ -1,7 +1,14 @@
+import './App.css';
+import NavBar from '../component/navBar';
 function App() {
   return (
-    <div>
-      <h1>Hi there</h1>
+    <div className='container'>
+        <div className="navBarContainer">
+          <NavBar
+            setBtnsList = {['signIn']}
+          />
+        </div>
+        <div className="content"></div>
     </div>
   );
 }
