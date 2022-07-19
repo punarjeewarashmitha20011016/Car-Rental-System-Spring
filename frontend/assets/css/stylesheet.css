@@ -130,3 +130,163 @@ body > main > #homeSection .textAndBtnContainer > .btnContainer:hover{
     border: 1px solid yellow;
     transition: all 0.5s;
 }
+
+/* Login Section Start*/
+body>main>.login>div img {
+    width: 60%;
+}
+
+body>main>.login>div:nth-child(1) {
+    position: absolute;
+    top: 0;
+    bottom: unset;
+    left: 0;
+    right: unset;
+    margin: unset;
+    width: unset;
+    height: unset;
+    background-color: unset !important;
+    border-radius: unset;
+}
+
+body>main>.login>div:nth-child(2) {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+body>main>.login>div:nth-child(3) {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+body>main>.login>div:nth-child(4) {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+}
+
+body>main>.login>div:nth-child(5) {
+    position: absolute;
+    top: 60%;
+    left: 2%;
+}
+
+body>main>.login>div:nth-child(6) {
+    position: absolute;
+    top: 70%;
+    left: 15%;
+}
+
+body>main>.login>div:nth-child(7) {
+    position: absolute;
+    top: 85%;
+    left: 5%;
+}
+
+body>main>.login>div:nth-child(8) {
+    position: absolute;
+    top: 0%;
+    left: 25%;
+}
+
+body>main>.login>div:nth-child(9) {
+    position: absolute;
+    top: 2%;
+    left: 75%;
+}
+
+body>main>.login>div:nth-child(10) {
+    position: absolute;
+    top: 1%;
+    left: 45%;
+}
+
+body>main>.login>div:nth-child(11) {
+    position: absolute;
+    top: 2%;
+    left: 60%;
+}
+
+body>main>.login>div:nth-child(12) {
+    position: absolute;
+    top: 2%;
+    left: 90%;
+}
+
+body>main>.login>div:nth-child(13) {
+    position: absolute;
+    top: 20%;
+    left: 80%;
+}
+
+body>main>.login>div:nth-child(14) {
+    position: absolute;
+    top: 40%;
+    left: 92%;
+}
+
+body>main>.login>div:nth-child(15) {
+    position: absolute;
+    top: 60%;
+    left: 85%;
+}
+
+body>main>.login>div:nth-child(16) {
+    position: absolute;
+    top: 85%;
+    left: 77%;
+}
+
+body>main>.login>div:nth-child(17) {
+    position: absolute;
+    top: 80%;
+    left: 90%;
+}
+
+body>main>.login>div:nth-child(18) {
+    position: absolute;
+    top: 40%;
+    left: 78%;
+}
+
+body>main>.login>div:nth-child(19) {
+    position: absolute;
+    top: 85%;
+    left: 65%;
+}
+
+body>main>.login>div:nth-child(20) {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+}
+
+body>main>.login>div:nth-child(21) {
+    position: absolute;
+    top: 85%;
+    left: 35%;
+}
+
+body>main>.login>div:nth-child(22) {
+    position: absolute;
+    top: 85%;
+    left: 22%;
+}
+
+body>main>.login>.container-fluid>.row>.col>div>input:focus {
+    border: 2px solid black;
+    box-shadow: none;
+}
+
+body>main>.login>.container-fluid>.row>.col>div>label>span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    height: 30px;
+}
+
+/* Login Section End */
