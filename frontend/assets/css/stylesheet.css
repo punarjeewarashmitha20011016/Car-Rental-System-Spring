@@ -1,0 +1,132 @@
+#signupBtn {
+    position: absolute;
+    right: 70px;
+    width: 35px;
+    height: 35px;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+#signupBtn div {
+    width: 100%;
+    height: 100%;
+}
+
+#signupBtn div:nth-child(1) i {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: max-content;
+}
+
+#signupBtn div:nth-child(1) h3 {
+    width: 70px;
+    left: 45px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: max-content;
+}
+
+#signupBtn:hover {
+    width: 110px;
+    right: 70px;
+    transition: all 1s;
+}
+
+#logoutBtn {
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 35px;
+    top: 2px;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+#logoutBtn div {
+    width: 100%;
+    height: 100%;
+}
+
+#logoutBtn div:nth-child(1) i {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: max-content;
+}
+
+#logoutBtn div:nth-child(1) h3 {
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: max-content;
+}
+
+#logoutBtn:hover {
+    width: 100px;
+    right: 20px;
+    transition: all 1s;
+}
+
+body>main>section {
+    width: 100%;
+    height: 92.5vh;
+    background-color: rgb(233, 233, 233) !important;
+}
+
+body > main > #homeSection .textAndBtnContainer{
+    position: absolute;
+    inset:  0 0 0 0;
+    margin: auto;
+    width: 80%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+body > main > #homeSection .textAndBtnContainer > .mainTopContainer{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:50%;
+    position: relative;
+}
+body > main > #homeSection .textAndBtnContainer > .mainTopContainer > h1 > .mainTopicSpan{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+body > main > #homeSection .textAndBtnContainer > .btnContainer{
+    position: absolute;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width: 10%;
+    height: 17%;
+    bottom: 0;
+}
+body > main > #homeSection .textAndBtnContainer > .btnContainer{
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+body > main > #homeSection .textAndBtnContainer > .btnContainer:hover{
+    border: 1px solid yellow;
+    transition: all 0.5s;
+}
