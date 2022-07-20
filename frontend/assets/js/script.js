@@ -4,7 +4,7 @@ var signupBtn =$('#signupBtn');
 var loginBtn =$("#loginBtn");
 var signupBtnInLogin =$("#signupBtnInLogin");
 var logoutBtn =$('#logoutBtn');
-var homeBtnSection = $('#homeBtnSection');
+var homeSection = $('#homeSection');
 var loginSection = $('#loginSection');
 var customerSection = $('#customerSection');
 var logoutBtnInCustomerForm = $('#logoutBtnInCustomerForm');
@@ -15,7 +15,7 @@ var passwordLoginId = $("#passwordLoginId");
 // $(document).ready(function(){
 //     console.log('window');
 //     $(headerNav).css('display','block');
-//     $(homeBtnSection).css('display','block');
+//     $(homeSection).css('display','block');
 //     $(customerSection).css('display','none');
 //     $(loginSection).css('display','none');
 //     $(adminSection).css('display','none');
@@ -23,7 +23,7 @@ var passwordLoginId = $("#passwordLoginId");
 // $(document).on('ready', function(){
 //     console.log('window');
 //     $(headerNav).css('display','block');
-//     $(homeBtnSection).css('display','block');
+//     $(homeSection).css('display','block');
 //     $(customerSection).css('display','none');
 //     $(loginSection).css('display','none');
 //     $(adminSection).css('display','none');
@@ -82,21 +82,54 @@ $(loginBtn).click(function(){
         aforIncomeBtn.className="text-black text-decoration-none";
         incomeBtn.append(aforIncomeBtn);
 
+        let bookingRequestBtn = document.createElement("li");
+        bookingRequestBtn.className='nav-nav-item d-flex flex-column align-items-center justify-content-center ms-2 me-2';
+        let aforBookingRequestBtn = document.createElement('a');
+        aforBookingRequestBtn.className='nav-link active';
+        aforBookingRequestBtn.ariaCurrent='page';
+        aforBookingRequestBtn.href="#";
+        aforBookingRequestBtn.innerHTML="Booking Request";
+        aforBookingRequestBtn.className="text-black text-decoration-none";
+        bookingRequestBtn.append(aforBookingRequestBtn);
+
+        let bookingBtn = document.createElement("li");
+        bookingBtn.className='nav-nav-item d-flex flex-column align-items-center justify-content-center ms-2 me-2';
+        let aforBookingBtn = document.createElement('a');
+        aforBookingBtn.className='nav-link active';
+        aforBookingBtn.ariaCurrent='page';
+        aforBookingBtn.href="#";
+        aforBookingBtn.innerHTML="Booking";
+        aforBookingBtn.className="text-black text-decoration-none";
+        bookingBtn.append(aforBookingBtn);
+
+        let viewAllBookingsBtn = document.createElement("li");
+        viewAllBookingsBtn.className='nav-nav-item d-flex flex-column align-items-center justify-content-center ms-2 me-2';
+        let aforViewBookingBtn = document.createElement('a');
+        aforViewBookingBtn.className='nav-link active';
+        aforViewBookingBtn.ariaCurrent='page';
+        aforViewBookingBtn.href="#";
+        aforViewBookingBtn.innerHTML="View All Bookings";
+        aforViewBookingBtn.className="text-black text-decoration-none";
+        viewAllBookingsBtn.append(aforViewBookingBtn);
+
         console.log('admin');
         $(navBarItems).children('div:nth-child(2)').children('ul').append(homeBtn);
         $(navBarItems).children('div:nth-child(2)').children('ul').append(carBtn);
         $(navBarItems).children('div:nth-child(2)').children('ul').append(customerBtn);
         $(navBarItems).children('div:nth-child(2)').children('ul').append(driverBtn);
         $(navBarItems).children('div:nth-child(2)').children('ul').append(incomeBtn);
+        $(navBarItems).children('div:nth-child(2)').children('ul').append(bookingRequestBtn);
+        $(navBarItems).children('div:nth-child(2)').children('ul').append(bookingBtn);
+        $(navBarItems).children('div:nth-child(2)').children('ul').append(viewAllBookingsBtn);
 
         $(headerNav).css('display','block');
-        $(homeBtnSection).css('display','none');
+        $(homeSection).css('display','none');
         $(customerSection).css('display','none');
         $(loginSection).css('display','none');
         $(adminSection).css('display','flex');
     }else{
         $(headerNav).css('display','block');
-        $(homeBtnSection).css('display','flex');
+        $(homeSection).css('display','flex');
         $(customerSection).css('display','none');
         $(loginSection).css('display','none');
         $(adminSection).css('display','none');
@@ -105,19 +138,19 @@ $(loginBtn).click(function(){
 
 $(signupBtnInLogin).click(function(){
     // $(headerNav).css('display','none');
-    // $(homeBtnSection).css('display','none');
+    // $(homeSection).css('display','none');
     // $(customerSection).css('display','block');
     // $(loginSection).css('display','none');
     $(adminSection).css('display','flex');
     $(headerNav).css('display','block');
-    $(homeBtnSection).css('display','none');
+    $(homeSection).css('display','none');
     $(customerSection).css('display','none');
     $(loginSection).css('display','none');
 })
 
 $(logoutBtn).click(function(){
     $(headerNav).css('display','none');
-    $(homeBtnSection).css('display','none');
+    $(homeSection).css('display','none');
     $(customerSection).css('display','none');
     $(loginSection).css('display','block');
     $(adminSection).css('display','none');
@@ -125,7 +158,7 @@ $(logoutBtn).click(function(){
 
 $(signupBtn).click(function(){
     $(headerNav).css('display','none');
-    $(homeBtnSection).css('display','none');
+    $(homeSection).css('display','none');
     $(customerSection).css('display','flex');
     $(loginSection).css('display','none');
     $(adminSection).css('display','none');
@@ -133,7 +166,7 @@ $(signupBtn).click(function(){
 
 $(logoutBtnInCustomerForm).click(function(){
     $(headerNav).css('display','none');
-    $(homeBtnSection).css('display','none');
+    $(homeSection).css('display','none');
     $(customerSection).css('display','none');
     $(loginSection).css('display','block');
     $(adminSection).css('display','none');
