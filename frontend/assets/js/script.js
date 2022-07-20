@@ -13,6 +13,7 @@ var userNameLoginId =$("#userNameLoginId");
 var passwordLoginId = $("#passwordLoginId");
 
 var carSection = $("#carSection");
+var customerDetailsSection =$("#customerDetailsSection");
 
 // $(document).ready(function(){
 //     console.log('window');
@@ -51,6 +52,7 @@ $(loginBtn).click(function(){
                 $(loginSection).css('display','none');
                 $(adminSection).css('display','flex');
                 $(carSection).css('display','none');
+                $(customerDetailsSection).css('display','none');
             })
     
     
@@ -70,6 +72,7 @@ $(loginBtn).click(function(){
                 $(loginSection).css('display','none');
                 $(adminSection).css('display','none');
                 $(carSection).css('display','none');
+                $(customerDetailsSection).css('display','flex');
             })
     
             let driverBtn = document.createElement("li");
@@ -88,6 +91,7 @@ $(loginBtn).click(function(){
                 $(loginSection).css('display','none');
                 $(adminSection).css('display','none');
                 $(carSection).css('display','none');
+                $(customerDetailsSection).css('display','none');
             })
     
     
@@ -107,6 +111,7 @@ $(loginBtn).click(function(){
                 $(loginSection).css('display','none');
                 $(adminSection).css('display','none');
                 $(carSection).css('display','flex');
+                $(customerDetailsSection).css('display','none');
             })
     
             let incomeBtn = document.createElement("li");
@@ -166,13 +171,17 @@ $(loginBtn).click(function(){
         $(homeSection).css('display','none');
         $(customerSection).css('display','none');
         $(loginSection).css('display','none');
-        $(adminSection).css('display','flex');
+        $(adminSection).css('display','flex')
+        $(carSection).css('display','none');;
+        $(customerDetailsSection).css('display','none');
     }else{
         $(headerNav).css('display','block');
         $(homeSection).css('display','flex');
         $(customerSection).css('display','none');
         $(loginSection).css('display','none');
         $(adminSection).css('display','none');
+        $(carSection).css('display','none');
+        $(customerDetailsSection).css('display','none');
     }
 })
 
@@ -186,6 +195,8 @@ $(signupBtnInLogin).click(function(){
     $(homeSection).css('display','none');
     $(customerSection).css('display','none');
     $(loginSection).css('display','none');
+    $(carSection).css('display','none');
+    $(customerDetailsSection).css('display','none');
 })
 
 $(logoutBtn).click(function(){
@@ -194,6 +205,8 @@ $(logoutBtn).click(function(){
     $(customerSection).css('display','none');
     $(loginSection).css('display','block');
     $(adminSection).css('display','none');
+    $(carSection).css('display','none');
+    $(customerDetailsSection).css('display','none');
 })
 
 $(signupBtn).click(function(){
@@ -202,6 +215,8 @@ $(signupBtn).click(function(){
     $(customerSection).css('display','flex');
     $(loginSection).css('display','none');
     $(adminSection).css('display','none');
+    $(carSection).css('display','none');
+    $(customerDetailsSection).css('display','none');
 })
 
 $(logoutBtnInCustomerForm).click(function(){
@@ -210,4 +225,6 @@ $(logoutBtnInCustomerForm).click(function(){
     $(customerSection).css('display','none');
     $(loginSection).css('display','block');
     $(adminSection).css('display','none');
+    $(carSection).css('display','none');
+    $(customerDetailsSection).css('display','none');
 })
