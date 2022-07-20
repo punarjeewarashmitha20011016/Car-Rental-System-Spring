@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../frontend/assets/css/stylesheet.css">
 </head>
 <body class="overflow-hidden">
-    <header class="position-relative" style="width: 100%;">
+    <header id="headerNav" class="position-relative" style="width: 100%;">
         <nav class="navbar navbar-expand-lg d-flex" style="background-color:#DCD4D3">
             <div class="position-relative container-fluid d-flex flex-row  align-items-center">
               <a class="navbar-brand d-flex text-black" href="#">Easy Car Rentals</a>
@@ -25,7 +25,7 @@
                 </ul>
               </a>
               </div> -->
-              <a href="#" id="signupBtn" class="d-none d-lg-block">
+              <a href="#customerSection" id="signupBtn" class="d-none d-lg-block">
                 <div class="logout position-absolute">
                     <i class="fas fa-user-plus text-white fs-3 position-absolute"></i>
                     <h3 class="position-absolute text-white fs-6">Sign Up</h3>
@@ -123,9 +123,78 @@
             </div>
         </div>
         </section>
+        <section id="customerSection" class="customer container-fluid position-relative d-flex flex-column justify-content-center align-items-center" style="width: 100%;height: 100vh;background-color: rgb(231, 231, 231);">
+          <div class="row d-flex flex-column justify-content-center align-items-center" style="width: 100%;height: 8%;">
+            <div class="col d-flex flex-column justify-content-center align-items-end">
+              <a href="#loginSection" id="logoutBtnInCustomerForm" class="d-flex flex-column justify-content-center align-items-center" style="width: 10%;height:100%;">
+                <div class="logout position-absolute d-flex flex-row justify-content-center align-items-center">
+                    <i class="fas fa-sign-out-alt text-black fs-3 position-absolute"></i>
+                </div>
+            </a>
+            </div>
+          </div>
+          <div class="row d-flex flex-column justify-content-center align-items-center"  style="width: 100%;height: 92%;">
+            <div class="col d-flex flex-column justify-content-center align-items-center">
+              <div class="d-flex flex-column shadow-lg justify-content-center align-items-center" style="border-radius: 2%;width: 85%;height: 85%;">
+                <div class="row d-flex flex-column justify-content-center align-items-center" style="width: 90%;height: 92%;">
+                  <div class="col" style="width: 100%;height: 100%;">
+                    <form class="position-relative d-flex flex-row w-100 h-100 flex-wrap">
+                      <div class="cusTextFiledContainer position-relative d-flex flex-row flex-wrap justify-content-center" style="width: 100%;height: 80%;">
+                        <div class="mb-1 ms-4 me-4 col-5 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusNicField" class="form-label d-flex">Nic</label>
+                          <input placeholder="Enter Your Nic Number" type="text" class="form-control d-flex" id="cusNicField" aria-describedby="Nic">
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusNameField" class="form-label d-flex">Name</label>
+                          <input placeholder="Enter Your Full Name" type="text" class="form-control d-flex" id="cusNameField" aria-describedby="Name">
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*3);">
+                          <label for="nicfile">Nic Picture</label>
+                          <input id="nicfile" name="nicPhoto" type="file" class="form-control">
+                          <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*3);">
+                          <label for="licensefile">License Picture</label>
+                          <input id="licensefile" name="licensePhoto" type="file" class="form-control">
+                          <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusLicenseField" class="form-label">License No</label>
+                          <input placeholder="Enter Your License Number" type="text" class="form-control" id="cusLicenseField" aria-describedby="License No">
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusContactNoField" class="form-label">Contact No</label>
+                          <input placeholder="Enter Your Contact Number" type="text" class="form-control" id="cusContactNoField" aria-describedby="License No">
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusEmailField" class="form-label">Email address</label>
+                          <input placeholder="Enter Your Email" type="email" class="form-control" id="cusEmailField" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
+                          <label for="cusPasswordField" class="form-label">Password</label>
+                          <input type="password" placeholder="Enter Your Password" class="form-control" id="cusPasswordField">
+                        </div>
+                      </div>
+                      <div class="btnContainer d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: 20%;">
+                        <div class="row d-flex flex-row justify-content-center align-items-center" style="width: 100%;height: 100%;">
+                          <div class="col-10 d-flex flex-row h-50 justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary ms-2 me-2 col-4">Save</button>
+                            <button type="submit" class="btn btn-secondary ms-2 me-2 col-4">Update</button>
+                            <button type="submit" class="btn btn-danger ms-2 me-2  col-4">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
     </main>    
     <script src="../frontend//assets/jQuery/jquery-3.6.0.min.js"></script>
     <script src="../frontend/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../frontend/assets/js/loginLogout.js"></script>
+    <script src="../frontend/assets/js/script.js"></script>
 </body>
 </html>
