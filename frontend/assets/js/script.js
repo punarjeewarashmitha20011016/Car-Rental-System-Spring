@@ -17,6 +17,8 @@ var customerDetailsSection =$("#customerDetailsSection");
 var carViewAllBtn = $("#carViewAllBtn");
 var carViewAllSection =$("#carViewAllSection");
 var driverSection = $("#driverSection");
+var driverViewAllBtn = $("#driverViewAllBtn");
+var viewDriverDetailsSection = $("#viewDriverDetailsSection");
 
 // $(document).ready(function(){
 //     console.log('window');
@@ -58,6 +60,7 @@ $(loginBtn).click(function(){
                 $(customerDetailsSection).css('display','none');
                 $(carViewAllSection).css('display','none');
                 $(driverSection).css('display','none');
+                $(viewDriverDetailsSection).css('display','none');
             })
     
     
@@ -80,6 +83,7 @@ $(loginBtn).click(function(){
                 $(customerDetailsSection).css('display','flex');
                 $(carViewAllSection).css('display','none');
                 $(driverSection).css('display','none');
+                $(viewDriverDetailsSection).css('display','none');
             })
     
             let driverBtn = document.createElement("li");
@@ -101,6 +105,19 @@ $(loginBtn).click(function(){
                 $(customerDetailsSection).css('display','none');
                 $(carViewAllSection).css('display','none');
                 $(driverSection).css('display','flex');
+                $(viewDriverDetailsSection).css('display','none');
+            })
+            $(driverViewAllBtn).click(function(){
+                $(headerNav).css('display','block');
+                $(homeSection).css('display','none');
+                $(customerSection).css('display','none');
+                $(loginSection).css('display','none');
+                $(adminSection).css('display','none');
+                $(carSection).css('display','none');
+                $(customerDetailsSection).css('display','none');
+                $(carViewAllSection).css('display','none');
+                $(driverSection).css('display','none');
+                $(viewDriverDetailsSection).css('display','flex');
             })
     
     
@@ -123,6 +140,7 @@ $(loginBtn).click(function(){
                 $(customerDetailsSection).css('display','none');
                 $(carViewAllSection).css('display','none');
                 $(driverSection).css('display','none');
+                $(viewDriverDetailsSection).css('display','none');
             })
 
             $(carViewAllBtn).click(function(){
@@ -135,6 +153,7 @@ $(loginBtn).click(function(){
                 $(customerDetailsSection).css('display','none');
                 $(carViewAllSection).css('display','flex');
                 $(driverSection).css('display','none');
+                $(viewDriverDetailsSection).css('display','none');
             })
     
             let incomeBtn = document.createElement("li");
@@ -199,6 +218,7 @@ $(loginBtn).click(function(){
         $(customerDetailsSection).css('display','none');
         $(carViewAllSection).css('display','none');
         $(driverSection).css('display','none');
+        $(viewDriverDetailsSection).css('display','none');
     }else{
         $(headerNav).css('display','block');
         $(homeSection).css('display','flex');
@@ -209,6 +229,7 @@ $(loginBtn).click(function(){
         $(customerDetailsSection).css('display','none');
         $(carViewAllSection).css('display','none');
         $(driverSection).css('display','none');
+        $(viewDriverDetailsSection).css('display','none');
     }
 })
 
@@ -226,6 +247,7 @@ $(signupBtnInLogin).click(function(){
     $(customerDetailsSection).css('display','none');
     $(carViewAllSection).css('display','none');
     $(driverSection).css('display','none');
+    $(viewDriverDetailsSection).css('display','none');
 })
 
 $(logoutBtn).click(function(){
@@ -238,6 +260,7 @@ $(logoutBtn).click(function(){
     $(customerDetailsSection).css('display','none');
     $(carViewAllSection).css('display','none');
     $(driverSection).css('display','none');
+    $(viewDriverDetailsSection).css('display','none');
 })
 
 $(signupBtn).click(function(){
@@ -250,6 +273,7 @@ $(signupBtn).click(function(){
     $(customerDetailsSection).css('display','none');
     $(carViewAllSection).css('display','none');
     $(driverSection).css('display','none');
+    $(viewDriverDetailsSection).css('display','none');
 })
 
 $(logoutBtnInCustomerForm).click(function(){
@@ -262,4 +286,5 @@ $(logoutBtnInCustomerForm).click(function(){
     $(customerDetailsSection).css('display','none');
     $(carViewAllSection).css('display','none');
     $(driverSection).css('display','none');
+    $(viewDriverDetailsSection).css('display','none');
 })
