@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Data
 public class DriverScheduleDTO {
     private String nic;
+    private String name;
     private String boId;
     private String availableStatus;
     private LocalDate pickupDate;

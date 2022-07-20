@@ -69,9 +69,9 @@ public class DriverServiceImpl implements DriverService {
         for (int i = 0; i < drivers.size(); i++) {
             for (int j = 0; j < details.size(); j++) {
                 if (drivers.get(i).getNic().equals(details.get(j).getDriverNic())) {
-                    dtos.add(new DriverScheduleDTO(drivers.get(i).getNic(), details.get(i).getBookingId(), "Not Available", details.get(i).getDateOfPickup(), details.get(i).getTimeOfPickup(), details.get(i).getReturnedDate(), details.get(i).getReturnedTime()));
+                    dtos.add(new DriverScheduleDTO(drivers.get(i).getNic(), drivers.get(i).getName() ,details.get(i).getBookingId(), "Not Available", details.get(i).getDateOfPickup(), details.get(i).getTimeOfPickup(), details.get(i).getReturnedDate(), details.get(i).getReturnedTime()));
                 } else {
-                    dtos.add(new DriverScheduleDTO(drivers.get(i).getNic(), null, "Available", null, null, null, null));
+                    dtos.add(new DriverScheduleDTO(drivers.get(i).getNic(),drivers.get(i).getName() , null, "Available", null, null, null, null));
                 }
             }
         }

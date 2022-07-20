@@ -19,12 +19,15 @@ import java.util.List;
 public class Driver {
     @Id
     private String nic;
+    private String name;
     private String licenseNo;
     private String licensePhoto;
     private String nicPhoto;
     private int contactNo;
     private String address;
     private String availableStatus;
+    private String email;
+    private String password;
 
     @OneToMany(mappedBy = "driverNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<BookingDetails> bookingDetails;
