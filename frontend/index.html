@@ -976,6 +976,140 @@
 
             <div class="row d-flex flex-row align-items-center justify-content-center shadow-lg"
                  style="width: 100%;height: 90%;">
+                 <!-- Placing Booking Section -->
+                <div id="placingBookingSection" class="col-11 flex-column align-items-center justify-content-center" style="height: 90%;">
+                    <form class="position-relative d-flex flex-column justify-content-center align-items-center"
+                          style="width: 100%;height: 100%;">
+                        <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: calc(100%/4*1);">
+                            <div class="col d-flex">
+                                <!-- <div class="form-floating position-relative d-flex align-items-center justify-content-center" style="border: 1px solid green;width: 100%;">
+                                    <select class="form-select bg-transparent" id="carRegNoInBooking"
+                                            aria-label="Floating label select example" style="height: 40px; width: 100%;">
+    
+                                    </select>
+                                    <label for="carRegNoInBooking">Car_RegNo</label>
+                                </div> -->
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="carRegNoInBooking" class="form-label">Car Reg No</label>
+                                    <input placeholder="Enter Car Reg No" type="text" class="form-control"
+                                           id="carRegNoInBooking" aria-describedby="carRegNoInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="cusIdInBooking" class="form-label">Customer Id</label>
+                                    <input placeholder="Enter Customer ID" type="text" class="form-control"
+                                        id="cusIdInBooking" aria-describedby="cusIdInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="driverNicInBooking" class="form-label">Driver Nic</label>
+                                    <input placeholder="Enter Driver Nic" type="text" class="form-control"
+                                        id="driverNicInBooking" aria-describedby="driverNicInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="carTypeInBooking" class="form-label">Car Type</label>
+                                    <input placeholder="Enter Car Type" type="text" class="form-control"
+                                        id="carTypeInBooking" aria-describedby="carTypeInBooking">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: calc(100%/4*1);">
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="tripInKMInBooking" class="form-label">Trip In KM</label>
+                                    <input placeholder="Enter Trip In KM" type="number" class="form-control"
+                                           id="tripInKMInBooking" aria-describedby="tripInKMInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="exraKmDrivenInBooking" class="form-label">Extra KM Driven</label>
+                                    <input placeholder="Enter Extra KM Driven" type="number" class="form-control"
+                                        id="exraKmDrivenInBooking" aria-describedby="exraKmDrivenInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="dateOfPickupInBooking" class="form-label">Date Of Pickup</label>
+                                    <input placeholder="Enter Date OF Pickup" type="date" class="form-control"
+                                        id="dateOfPickupInBooking" aria-describedby="dateOfPickupInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="timeOfPickupInBooking" class="form-label">Time Of Pickup</label>
+                                    <input placeholder="Enter Time Of Pickup" type="time" class="form-control"
+                                        id="timeOfPickupInBooking" aria-describedby="timeOfPickupInBooking">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: calc(100%/4*1);">
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="pickupVenueInBooking" class="form-label">Pickup Venue</label>
+                                    <input placeholder="Enter Pickup Venue" type="text" class="form-control"
+                                           id="pickupVenueInBooking" aria-describedby="pickupVenueInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="returnedDateInBooking" class="form-label">Return Date</label>
+                                    <input placeholder="Enter Returned Date" type="date" class="form-control"
+                                        id="returnedDateInBooking" aria-describedby="returnedDateInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="returnedTimeInBooking" class="form-label">Return Time</label>
+                                    <input placeholder="Enter Returned Time" type="time" class="form-control"
+                                        id="returnedTimeInBooking" aria-describedby="returnedTimeInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="returnVenueInBooking" class="form-label">Return Venue</label>
+                                    <input placeholder="EnterReturn Venue" type="text" class="form-control"
+                                        id="returnVenueInBooking" aria-describedby="returnVenueInBooking">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: calc(100%/4*1);">
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="damageStatusInBooking" class="form-label">Damage Status</label>
+                                    <input placeholder="Enter Damage Status" type="text" class="form-control"
+                                           id="damageStatusInBooking" aria-describedby="damageStatusInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="lossDamageWaiverInBooking" class="form-label">Loss Damage Waiver</label>
+                                    <input placeholder="Enter Loss Damage Waiver" type="number" class="form-control"
+                                        id="lossDamageWaiverInBooking" aria-describedby="lossDamageWaiverInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="lossDamageWaiverSlipInBooking" class="form-label">Loss Damage Waiver Slip Path</label>
+                                    <input placeholder="Enter Loss Damage Waiver Slip Path" type="text" class="form-control"
+                                        id="lossDamageWaiverSlipInBooking" aria-describedby="lossDamageWaiverSlipInBooking">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label for="costInBooking" class="form-label">Cost</label>
+                                    <input placeholder="Enter Booking Cost" type="text" class="form-control"
+                                        id="costInBooking" aria-describedby="costInBooking">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                 <!-- Placing Booking End -->
                 <div id="viewCurrentBookingsSection"
                      class="col-11 flex-column align-items-center justify-content-center" style="height: 90%;">
                     <div class="row d-flex flex-row align-items-center justify-content-center "

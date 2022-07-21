@@ -34,6 +34,8 @@ var viewCurrentBookingDetailsSection = $("#viewAllCurrentBookingDetailsSection")
 var viewAllBookingDetailsSection = $("#viewAllBookingDetailsSection");
 var viewAllBookingDetailsBtn = $("#viewAllBookingDetailsBtn");
 
+var placingBookingSection = $("#placingBookingSection");
+
 // $(document).ready(function(){
 //     console.log('window');
 //     $(headerNav).css('display','block');
@@ -267,6 +269,7 @@ $(loginBtn).click(function () {
                 $(viewAllBookingsSection).css('display', 'none');
                 $(viewCurrentBookingDetailsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
             })
 
             $(bookingRequestDetailsBtn).click(function () {
@@ -286,6 +289,7 @@ $(loginBtn).click(function () {
                 $(viewAllBookingsSection).css('display', 'none');
                 $(viewCurrentBookingDetailsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
             })
 
 
@@ -317,12 +321,16 @@ $(loginBtn).click(function () {
                 $(viewAllBookingsSection).css('display', 'none');
                 $(viewCurrentBookingDetailsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
+                $(placingBookingSection).css('display', 'flex');
 
                 $(viewCurrentBookingsBtn).click(function () {
+                    $(placingBookingSection).css('display', 'none');
                     $(viewCurrentBookingsSection).css('display', 'flex');
                 })
                 $(viewCurrentBookingsBtn).dblclick(function () {
                     $(viewCurrentBookingsSection).css('display', 'none');
+                    $(placingBookingSection).css('display', 'flex');
                 })
             })
 
@@ -344,6 +352,7 @@ $(loginBtn).click(function () {
                 $(viewCurrentBookingDetailsSection).css('display', 'flex');
                 $(viewAllBookingsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
             })
 
             let viewAllBookingsBtn = document.createElement("li");
@@ -373,6 +382,7 @@ $(loginBtn).click(function () {
                 $(viewCurrentBookingsSection).css('display', 'none');
                 $(viewAllBookingsSection).css('display', 'flex');
                 $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
             })
 
             $(viewAllBookingDetailsBtn).click(function () {
@@ -392,6 +402,7 @@ $(loginBtn).click(function () {
                 $(viewCurrentBookingsSection).css('display', 'none');
                 $(viewAllBookingsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'flex');
+                $(incomeSection).css('display', 'none');
             })
 
             console.log('admin');
@@ -421,6 +432,11 @@ $(loginBtn).click(function () {
         $(bookingRequestSection).css('display', 'none');
         $(bookingRequestDetailsSection).css('display', 'none');
         $(bookingSection).css('display', 'none');
+        $(viewCurrentBookingsSection).css('display', 'none');
+        $(viewAllBookingsSection).css('display', 'none');
+        $(viewAllBookingDetailsSection).css('display', 'none');
+        $(incomeSection).css('display', 'none')
+
     } else {
         $(headerNav).css('display', 'block');
         $(homeSection).css('display', 'flex');
@@ -435,6 +451,10 @@ $(loginBtn).click(function () {
         $(bookingRequestSection).css('display', 'none');
         $(bookingRequestDetailsSection).css('display', 'none');
         $(bookingSection).css('display', 'none');
+        $(viewCurrentBookingsSection).css('display', 'none');
+        $(viewAllBookingsSection).css('display', 'none');
+        $(viewAllBookingDetailsSection).css('display', 'none');
+        $(incomeSection).css('display', 'none')
     }
 })
 
@@ -456,6 +476,10 @@ $(signupBtnInLogin).click(function () {
     $(bookingRequestSection).css('display', 'none');
     $(bookingRequestDetailsSection).css('display', 'none');
     $(bookingSection).css('display', 'none');
+    $(viewCurrentBookingsSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none')
 })
 
 $(logoutBtn).click(function () {
@@ -472,6 +496,10 @@ $(logoutBtn).click(function () {
     $(bookingRequestSection).css('display', 'none');
     $(bookingRequestDetailsSection).css('display', 'none');
     $(bookingSection).css('display', 'none');
+    $(viewCurrentBookingsSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none')
 })
 
 $(signupBtn).click(function () {
@@ -488,6 +516,10 @@ $(signupBtn).click(function () {
     $(bookingRequestSection).css('display', 'none');
     $(bookingRequestDetailsSection).css('display', 'none');
     $(bookingSection).css('display', 'none');
+    $(viewCurrentBookingsSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none')
 })
 
 $(logoutBtnInCustomerForm).click(function () {
@@ -504,4 +536,8 @@ $(logoutBtnInCustomerForm).click(function () {
     $(bookingRequestSection).css('display', 'none');
     $(bookingRequestDetailsSection).css('display', 'none');
     $(bookingSection).css('display', 'none');
+    $(viewCurrentBookingsSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none')
 })
