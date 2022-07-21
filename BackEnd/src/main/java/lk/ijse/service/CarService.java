@@ -20,6 +20,6 @@ public interface CarService {
 
     CarDTO search(String nic);
 
-    List<CarScheduleDTO>carScheduleList();
+    List<CarScheduleDTO> carScheduleList();
 
 }

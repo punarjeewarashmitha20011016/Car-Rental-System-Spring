@@ -20,5 +20,5 @@ public interface DriverService {
 
     DriverDTO search(String nic);
 
-    List<DriverScheduleDTO>getDriverScheduleList();
+    List<DriverScheduleDTO> getDriverScheduleList();
 }

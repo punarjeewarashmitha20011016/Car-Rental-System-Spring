@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BackEnd/BackEnd.iml" filepath="$PROJECT_DIR$/BackEnd/BackEnd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Car Rental System - Spring Coursework.iml" filepath="$PROJECT_DIR$/.idea/Car Rental System - Spring Coursework.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
     </modules>
   </component>

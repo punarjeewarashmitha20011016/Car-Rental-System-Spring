@@ -26,6 +26,6 @@ public class Customer {
     private int contactNo;
     private String email;
     private String password;
-    @OneToMany(mappedBy = "cusNic",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    private List<Booking>bookings;
+    @OneToMany(mappedBy = "cusNic", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Booking> bookings;
 }
