@@ -141,15 +141,15 @@
                           <label for="cusNameField" class="form-label d-flex">Name</label>
                           <input placeholder="Enter Your Full Name" type="text" class="form-control d-flex" id="cusNameField" aria-describedby="Name">
                         </div>
-                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*3);">
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*2);">
                           <label for="nicfile">Nic Picture</label>
                           <input id="nicfile" name="nicPhoto" type="file" class="form-control">
-                          <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                          <!-- <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                         </div>
-                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*3);">
+                        <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*2);">
                           <label for="licensefile">License Picture</label>
                           <input id="licensefile" name="licensePhoto" type="file" class="form-control">
-                          <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                          <!-- <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                         </div>
                         <div class="mb-1 col-5 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*1);">
                           <label for="cusLicenseField" class="form-label">License No</label>
@@ -301,7 +301,7 @@
                         <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start" style="height: calc(100%/8*2);">
                           <label for="carImgfile">Car Images</label>
                           <input id="carImgfile" name="carImgfile" type="file" class="form-control" multiple>
-                          <button type="button" id="btnUploadCarImg" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                          <!-- <button type="button" id="btnUploadCarImg" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                         </div>
                       </div>
                       <div class="btnContainer d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: 20%;">
@@ -521,14 +521,14 @@
                           <div class="w-75 d-flex flex-column justify-content-center align-items-center">
                             <label for="nicfile">Nic Picture</label>
                             <input id="nicfile" name="nicPhoto" type="file" class="form-control">
-                            <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                            <!-- <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                           </div>
                         </div>
                         <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center" style="height: calc(100%/4*1);">
                           <div class="w-75 d-flex flex-column justify-content-center align-items-center">
                             <label for="licensefile">License Picture</label>
                             <input id="licensefile" name="licensePhoto" type="file" class="form-control">
-                            <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button>
+                            <!-- <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                           </div>
                         </div>
                       </div>
@@ -808,6 +808,106 @@
               </div>
             </div>
           </div>
+        </section>
+        <section id="bookingSection" class="bookingSection container-fluid position-relative flex-column justify-content-center align-items-center" style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
+            <div class="container-fluid shadow-lg d-flex flex-column align-items-center justify-content-center" style="width: 90%;height: 90%;">
+                
+                <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 100%;height: 10%;">
+                  <div class="col-3 d-flex flex-column align-items-center justify-content-center" style="height: 80%;">
+                      <button type="submit" id="placeBookingBtn" class="btn btn-primary ms-2 me-2 col-3" style="width: 70%;height: 100%;">Place Booking</button>
+                  </div>
+                  <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
+                      <button type="submit" id="updateBookingBtn" class="btn btn-secondary ms-2 me-2 col-3" style="width: 70%;height: 100%;">Update Booking</button>
+                  </div>
+                  <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
+                      <button type="submit" id="deleteBookingBtn" class="btn btn-danger ms-2 me-2 col-3" style="width: 70%;height: 100%;">Delete Booking</button>
+                  </div>
+                  <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
+                    <a href="#viewCurrentBookingsSection" id="viewCurrentBookingsBtn" class="ms-2 me-2 col-3 d-flex text-decoration-none"  style="width: 70%;height: 100%;">
+                      <button type="submit" class="btn btn-success w-100 h-100">View Current Bookings</button>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="row d-flex flex-row align-items-center justify-content-center shadow-lg" style="width: 100%;height: 90%;">
+                  <div id="viewCurrentBookingsSection" class="col-11 flex-column align-items-center justify-content-center shadow-lg" style="height: 90%;overflow: auto;display: none;border: 1px solid black;">
+                    <table class="table table-hover" style="width: 100%;height: 100%;">
+                      <thead>
+                        <tr>
+                          <th scope="col">Row No</th>
+                          <th scope="col">Booking ID</th>
+                          <th scope="col">Car_RegNo</th>
+                          <th scope="col">Driver Nic</th>
+                          <th scope="col">Car Type</th>
+                          <th scope="col">Trip In KM</th>
+                          <th scope="col">Date Of Pickup</th>
+                          <th scope="col">Time Of Pickup</th>
+                          <th scope="col">Pickup Venue</th>
+                          <th scope="col">Returned Date</th>
+                          <th scope="col">Returned Time</th>
+                          <th scope="col">Returned Venue</th>
+                          <th scope="col">Loss Damage</th>
+                          <th scope="col">Loss Damage Slip</th>
+                          <th scope="col">Cost</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td>Mark</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                  </div>
+                </div>
+            </div>
         </section>
     </main>    
     <script src="../frontend//assets/jQuery/jquery-3.6.0.min.js"></script>
