@@ -63,6 +63,7 @@ $(document).ready(function(){
         aforhomeBtn.innerHTML = "Home";
         aforhomeBtn.className = "text-black text-decoration-none";
         homeBtn.append(aforhomeBtn);
+
         $(navBarItems).children('div:nth-child(2)').children('ul').append(homeBtn);
         $(homeBtn).click(function () {
             $(headerNav).css('display', 'block');
