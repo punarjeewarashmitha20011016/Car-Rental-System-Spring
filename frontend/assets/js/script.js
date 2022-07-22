@@ -85,6 +85,21 @@ $(document).ready(function(){
         })
 
         $(viewAllCarsForUserBtn).click(function(){
+            $(leftNavBtnForCarView).css('cursor','pointer')
+            $(rightNavBtnForCarView).css('cursor','pointer')
+            let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
+            let count = 4;
+            $(leftNavBtnForCarView).click(function(){
+            console.log('invoked');
+            $(cardsContainingContainerInCustomerSection).css('right',count+"%");
+                count+=4;
+            })
+            $(rightNavBtnForCarView).click(function(){
+            console.log('invoked');
+            $(cardsContainingContainerInCustomerSection).css('right',count+"%");
+                count-=4;
+            })
+
             $(headerNav).css('display', 'block');
             $(homeSection).css('display', 'none');
             $(customerSection).css('display', 'none');
