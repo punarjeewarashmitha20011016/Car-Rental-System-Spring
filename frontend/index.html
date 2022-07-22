@@ -281,7 +281,7 @@
             </div>
         </div>
     </section>
-    <section class="admin container-fluid position-relative flex-column justify-content-center align-items-center"
+    <section class="carSection container-fluid position-relative flex-column justify-content-center align-items-center"
              id="carSection"
              style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
         <div class="row d-flex flex-column justify-content-center align-items-center" style="width: 100%;height: 100%;">
@@ -370,11 +370,10 @@
                                                type="text">
                                     </div>
                                     <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*2);">
+                                         style="height: calc(100%/8*1);">
                                         <label for="carImgfile">Car Images</label>
                                         <input class="form-control" id="carImgfile" multiple name="carImgfile"
                                                type="file">
-                                        <!-- <button type="button" id="btnUploadCarImg" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                                     </div>
                                 </div>
                                 <div class="btnContainer d-flex flex-row align-items-center justify-content-center"
@@ -388,7 +387,7 @@
                                             <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete
                                             </button>
                                             <a class="ms-2 me-2 col-3" href="#carViewAllSection" id="carViewAllBtn">
-                                                <button class="btn btn-info w-100 h-100" type="submit">View All</button>
+                                                <button class="btn btn-info w-100 h-100">View All</button>
                                             </a>
                                         </div>
                                     </div>
@@ -627,7 +626,6 @@
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
                                     <label for="nicfile">Nic Picture</label>
                                     <input class="form-control" id="nicfile" name="nicPhoto" type="file">
-                                    <!-- <button type="button" id="btnUploadNic" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                                 </div>
                             </div>
                             <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
@@ -635,7 +633,6 @@
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
                                     <label for="licensefile">License Picture</label>
                                     <input class="form-control" id="licensefile" name="licensePhoto" type="file">
-                                    <!-- <button type="button" id="btnUploadLicense" class="btn-sm btn-danger mt-3 d-flex flex-column justify-content-center align-items-center" style="height: 25%"><span class="d-flex">Upload File</span></button> -->
                                 </div>
                             </div>
                         </div>
@@ -647,8 +644,8 @@
                                     <button class="btn btn-primary ms-2 me-2 col-3" type="submit">Save</button>
                                     <button class="btn btn-secondary ms-2 me-2 col-3" type="submit">Update</button>
                                     <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete</button>
-                                    <a class="ms-2 me-2 col-3" href="#viewDriverDetailsSection" id="driverViewAllBtn">
-                                        <button class="btn btn-info w-100 h-100" type="submit">View All</button>
+                                    <a class="ms-2 me-2 col-3" href="#viewDriverDetailsSection" target="_blank" id="driverViewAllBtn">
+                                        <button class="btn btn-info w-100 h-100">View All</button>
                                     </a>
                                 </div>
                             </div>
@@ -850,8 +847,8 @@
                                     <button class="btn btn-secondary ms-2 me-2 col-3" type="submit">Update</button>
                                     <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete</button>
                                     <a class="ms-2 me-2 col-3" href="#bookingRequestDetailsSection"
-                                       id="bookingRequestDetailsBtn">
-                                        <button class="btn btn-info w-100 h-100" type="submit">View All</button>
+                                       id="bookingRequestDetailsBtn" target="_blank">
+                                        <button class="btn btn-info w-100 h-100">View All</button>
                                     </a>
                                 </div>
                             </div>
@@ -971,7 +968,7 @@
                 <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
                     <a class="ms-2 me-2 col-3 d-flex text-decoration-none" href="#viewCurrentBookingsSection"
                        id="viewCurrentBookingsBtn" style="width: 70%;height: 100%;">
-                        <button class="btn btn-success w-100 h-100" type="submit">View Current Bookings</button>
+                        <button class="btn btn-success w-100 h-100">View Current Bookings</button>
                     </a>
                 </div>
             </div>
@@ -1144,7 +1141,7 @@
                                     <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column" href="#viewAllCurrentBookingDetailsSection"
                                        id="viewCurrentBookingDetailsBtn"
                                        target="_blank">
-                                        <button class="btn btn-success w-100 h-100" type="submit">View Booking Details
+                                        <button class="btn btn-success w-100 h-100">View Booking Details
                                         </button>
                                     </a>
                                 </div>
@@ -1308,12 +1305,12 @@
                                        placeholder="Search Booking" type="text">
                             </div>
                             <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                                <button class="btn btn-primary ms-2 me-2 col-10" type="submit">Search</button>
+                                <button class="btn btn-primary ms-2 me-2 col-10">Search</button>
                             </div>
                             <div class="col-4 d-flex flex-row align-items-center justify-content-center">
                                 <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column" href="#viewAllBookingDetailsSection" id="viewAllBookingDetailsBtn"
                                    target="_blank">
-                                    <button class="btn btn-success w-100 h-100" type="submit">View Booking Details
+                                    <button class="btn btn-success w-100 h-100">View Booking Details
                                     </button>
                                 </a>
                             </div>
@@ -1723,13 +1720,13 @@
                                            placeholder="Search Booking Request" type="text">
                                 </div>
                                 <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-10" type="submit">Search</button>
+                                    <button class="btn btn-primary ms-2 me-2 col-10">Search</button>
                                 </div>
                                 <div class="col-4 d-flex flex-row align-items-center justify-content-center">
                                     <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column" href="#viewAllCurrentBookingDetailsSection"
                                        id="viewCurrentBookingDetailsBtn"
                                        target="_blank">
-                                        <button class="btn btn-success w-100 h-100" type="submit">View Booking Details
+                                        <button class="btn btn-success w-100 h-100">View Booking Details
                                         </button>
                                     </a>
                                 </div>
@@ -2083,8 +2080,8 @@
                 <button class="btn btn-primary ms-2 me-2 col-2" type="submit">Request Booking</button>
                 <button class="btn btn-secondary ms-2 me-2 col-2" type="submit">Update Booking</button>
                 <button class="btn btn-danger ms-2 me-2  col-2" type="submit">Delete Booking</button>
-                <button class="btn btn-outline-success ms-2 me-2  col-2" type="submit">Add To List</button>
-                <button class="btn btn-outline-danger ms-2 me-2  col-2" type="submit">Clear From List</button>
+                <button class="btn btn-outline-success ms-2 me-2  col-2">Add To List</button>
+                <button class="btn btn-outline-danger ms-2 me-2  col-2">Clear From List</button>
             </div>
         </div>
     </section>
