@@ -54,8 +54,10 @@ var viewAllCarsInCustomerSection = $("#viewAllCarsInCustomerSection");
 //     $(loginSection).css('display','none');
 //     $(adminSection).css('display','none');
 // });
-
+$(loginBtn).off();
 $(loginBtn).click(function () {
+    let arr = $(navBarItems).children('div:nth-child(2)').children('ul').children();
+    $(arr).remove();
     if (userNameLoginId.val() == 'admin' && passwordLoginId.val() == 'admin') {
         $(signupBtn).css('display', 'none!important');
         if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
@@ -544,7 +546,7 @@ $(loginBtn).click(function () {
             aForViewMyBookingsBtn.className = 'nav-link active';
             aForViewMyBookingsBtn.ariaCurrent = 'page';
             aForViewMyBookingsBtn.href = "#adminSection";
-            aForViewMyBookingsBtn.innerHTML = "View Bookings";
+            aForViewMyBookingsBtn.innerHTML = "View My Bookings";
             aForViewMyBookingsBtn.className = "text-black text-decoration-none";
             viewMyBookingsBtn.append(aForViewMyBookingsBtn);
             $(navBarItems).children('div:nth-child(2)').children('ul').append(viewMyBookingsBtn);
@@ -620,7 +622,7 @@ $(signupBtnInLogin).click(function () {
 
 $(logoutBtn).click(function () {
 
-    $(navBarItems).children('div:nth-child(2)').children('ul').children().splice(0,$(navBarItems).children('div:nth-child(2)').children('ul').children().length)
+    // $(navBarItems).children('div:nth-child(2)').children('ul').children().splice(0,$(navBarItems).children('div:nth-child(2)').children('ul').children().length)
 
     $(headerNav).css('display', 'none');
     $(homeSection).css('display', 'none');
