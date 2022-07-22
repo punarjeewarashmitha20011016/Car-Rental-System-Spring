@@ -17,6 +17,8 @@ var passwordLoginId = $("#passwordLoginId");
 var carSection = $("#carSection");
 var customerDetailsSection = $("#customerDetailsSection");
 var carViewAllBtn = $("#carViewAllBtn");
+var viewCarScheduleBtn = $("#viewCarScheduleBtn");
+var viewCarScheduleSection = $("#viewCarScheduleSection");
 var carViewAllSection = $("#carViewAllSection");
 var driverSection = $("#driverSection");
 var driverViewAllBtn = $("#driverViewAllBtn");
@@ -71,6 +73,7 @@ $(document).ready(function(){
             $(carSection).css('display', 'none');
             $(customerDetailsSection).css('display', 'none');
             $(carViewAllSection).css('display', 'none');
+            $(viewCarScheduleSection).css('display', 'none');
             $(driverSection).css('display', 'none');
             $(viewDriverDetailsSection).css('display', 'none');
             $(bookingRequestSection).css('display', 'none');
@@ -85,6 +88,7 @@ $(document).ready(function(){
             $(viewMyAccountForCustomerSection).css('display', 'none');
             $(placingBookingRequestInCustomer).css('display', 'none');
             $(viewDriverScheduleInDriverSection).css('display', 'none');
+            $(viewCarScheduleSection).css('display', 'none');
         })
 
         $(viewAllCarsForUserBtn).click(function(){
@@ -111,6 +115,7 @@ $(document).ready(function(){
             $(carSection).css('display', 'none');
             $(customerDetailsSection).css('display', 'none');
             $(carViewAllSection).css('display', 'none');
+            $(viewCarScheduleSection).css('display', 'none');
             $(driverSection).css('display', 'none');
             $(viewDriverDetailsSection).css('display', 'none');
             $(bookingRequestSection).css('display', 'none');
@@ -125,6 +130,7 @@ $(document).ready(function(){
             $(viewMyAccountForCustomerSection).css('display', 'none');
             $(placingBookingRequestInCustomer).css('display', 'none');
             $(viewDriverScheduleInDriverSection).css('display', 'none');
+            $(viewCarScheduleSection).css('display', 'none');
         })
     }
 })
@@ -155,6 +161,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -169,6 +176,7 @@ $(loginBtn).click(function () {
                 $(viewMyAccountForCustomerSection).css('display', 'none');
                 $(placingBookingRequestInCustomer).css('display', 'none');
                 $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
             })
 
 
@@ -190,6 +198,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'flex');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -204,6 +213,7 @@ $(loginBtn).click(function () {
                 $(viewMyAccountForCustomerSection).css('display', 'none');
                 $(placingBookingRequestInCustomer).css('display', 'none');
                 $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
             })
 
             let driverBtn = document.createElement("li");
@@ -224,6 +234,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'flex');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -238,6 +249,7 @@ $(loginBtn).click(function () {
                 $(viewMyAccountForCustomerSection).css('display', 'none');
                 $(placingBookingRequestInCustomer).css('display', 'none');
                 $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
             })
             $(driverViewAllBtn).click(function () {
                 $(headerNav).css('display', 'block');
@@ -248,6 +260,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'flex');
                 $(bookingRequestSection).css('display', 'none');
@@ -262,6 +275,7 @@ $(loginBtn).click(function () {
                 $(viewMyAccountForCustomerSection).css('display', 'none');
                 $(placingBookingRequestInCustomer).css('display', 'none');
                 $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
             })
 
 
@@ -283,6 +297,34 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'flex');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
+                $(driverSection).css('display', 'none');
+                $(viewDriverDetailsSection).css('display', 'none');
+                $(bookingRequestSection).css('display', 'none');
+                $(bookingRequestDetailsSection).css('display', 'none');
+                $(bookingSection).css('display', 'none');
+                $(viewAllBookingsSection).css('display', 'none');
+                $(viewCurrentBookingDetailsSection).css('display', 'none');
+                $(viewAllBookingDetailsSection).css('display', 'none');
+                $(incomeSection).css('display', 'none');
+                $(viewAllCarsInCustomerSection).css('display', 'none');
+                $(viewAllBookingsForCustomerSection).css('display', 'none');
+                $(viewMyAccountForCustomerSection).css('display', 'none');
+                $(placingBookingRequestInCustomer).css('display', 'none');
+                $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
+            })
+
+            $(carViewAllBtn).click(function () {
+                $(headerNav).css('display', 'block');
+                $(homeSection).css('display', 'none');
+                $(customerSection).css('display', 'none');
+                $(loginSection).css('display', 'none');
+                $(adminSection).css('display', 'none');
+                $(carSection).css('display', 'none');
+                $(customerDetailsSection).css('display', 'none');
+                $(carViewAllSection).css('display', 'flex');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -299,7 +341,7 @@ $(loginBtn).click(function () {
                 $(viewDriverScheduleInDriverSection).css('display', 'none');
             })
 
-            $(carViewAllBtn).click(function () {
+            $(viewCarScheduleBtn).click(function(){
                 $(headerNav).css('display', 'block');
                 $(homeSection).css('display', 'none');
                 $(customerSection).css('display', 'none');
@@ -307,7 +349,8 @@ $(loginBtn).click(function () {
                 $(adminSection).css('display', 'none');
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
-                $(carViewAllSection).css('display', 'flex');
+                $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'flex');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -342,6 +385,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -376,6 +420,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'flex');
@@ -401,6 +446,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -437,6 +483,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -473,6 +520,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -509,6 +557,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -534,6 +583,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -570,6 +620,7 @@ $(loginBtn).click(function () {
         ;
         $(customerDetailsSection).css('display', 'none');
         $(carViewAllSection).css('display', 'none');
+        $(viewCarScheduleSection).css('display', 'none');
         $(driverSection).css('display', 'none');
         $(viewDriverDetailsSection).css('display', 'none');
         $(bookingRequestSection).css('display', 'none');
@@ -594,6 +645,7 @@ $(loginBtn).click(function () {
             $(carSection).css('display', 'none');
             $(customerDetailsSection).css('display', 'none');
             $(carViewAllSection).css('display', 'none');
+            $(viewCarScheduleSection).css('display', 'none');
             $(driverSection).css('display', 'none');
             $(viewDriverDetailsSection).css('display', 'none');
             $(bookingRequestSection).css('display', 'none');
@@ -630,6 +682,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -668,6 +721,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -718,6 +772,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -753,6 +808,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -788,6 +844,7 @@ $(loginBtn).click(function () {
                 $(carSection).css('display', 'none');
                 $(customerDetailsSection).css('display', 'none');
                 $(carViewAllSection).css('display', 'none');
+                $(viewCarScheduleSection).css('display', 'none');
                 $(driverSection).css('display', 'none');
                 $(viewDriverDetailsSection).css('display', 'none');
                 $(bookingRequestSection).css('display', 'none');
@@ -813,6 +870,7 @@ $(loginBtn).click(function () {
         $(carSection).css('display', 'none');
         $(customerDetailsSection).css('display', 'none');
         $(carViewAllSection).css('display', 'none');
+        $(viewCarScheduleSection).css('display', 'none');
         $(driverSection).css('display', 'none');
         $(viewDriverDetailsSection).css('display', 'none');
         $(bookingRequestSection).css('display', 'none');
@@ -831,10 +889,6 @@ $(loginBtn).click(function () {
 })
 
 $(signupBtnInLogin).click(function () {
-    // $(headerNav).css('display','none');
-    // $(homeSection).css('display','none');
-    // $(customerSection).css('display','block');
-    // $(loginSection).css('display','none');
     $(adminSection).css('display', 'flex');
     $(headerNav).css('display', 'block');
     $(homeSection).css('display', 'none');
@@ -843,6 +897,7 @@ $(signupBtnInLogin).click(function () {
     $(carSection).css('display', 'none');
     $(customerDetailsSection).css('display', 'none');
     $(carViewAllSection).css('display', 'none');
+    $(viewCarScheduleSection).css('display', 'none');
     $(driverSection).css('display', 'none');
     $(viewDriverDetailsSection).css('display', 'none');
     $(bookingRequestSection).css('display', 'none');
@@ -868,6 +923,7 @@ $(logoutBtn).click(function () {
     $(carSection).css('display', 'none');
     $(customerDetailsSection).css('display', 'none');
     $(carViewAllSection).css('display', 'none');
+    $(viewCarScheduleSection).css('display', 'none');
     $(driverSection).css('display', 'none');
     $(viewDriverDetailsSection).css('display', 'none');
     $(bookingRequestSection).css('display', 'none');
@@ -893,6 +949,7 @@ $(signupBtn).click(function () {
     $(carSection).css('display', 'none');
     $(customerDetailsSection).css('display', 'none');
     $(carViewAllSection).css('display', 'none');
+    $(viewCarScheduleSection).css('display', 'none');
     $(driverSection).css('display', 'none');
     $(viewDriverDetailsSection).css('display', 'none');
     $(bookingRequestSection).css('display', 'none');
@@ -918,6 +975,7 @@ $(logoutBtnInCustomerForm).click(function () {
     $(carSection).css('display', 'none');
     $(customerDetailsSection).css('display', 'none');
     $(carViewAllSection).css('display', 'none');
+    $(viewCarScheduleSection).css('display', 'none');
     $(driverSection).css('display', 'none');
     $(viewDriverDetailsSection).css('display', 'none');
     $(bookingRequestSection).css('display', 'none');

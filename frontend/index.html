@@ -294,100 +294,105 @@
                             <form class="position-relative d-flex flex-row w-100 h-100 flex-wrap">
                                 <div class="carTextFiledContainer position-relative d-flex flex-row flex-wrap justify-content-center"
                                      style="width: 100%;height: 80%;">
-                                    <div class="mb-5 ms-4 me-4 col-3 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label d-flex" for="carRegNoField">Registration No</label>
-                                        <input aria-describedby="carRegNoField" class="form-control d-flex"
-                                               id="carRegNoField" placeholder="Enter Car Reg Number"
-                                               type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label d-flex" for="carBrandField">Brand</label>
-                                        <input aria-describedby="carBrandField" class="form-control d-flex" id="carBrandField"
-                                               placeholder="Enter Car Brand" type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carTransmissionTypeField">Transmission
-                                            Type</label>
-                                        <input aria-describedby="carTransmissionTypeField" class="form-control"
-                                               id="carTransmissionTypeField" placeholder="Enter Car Transmission Type"
-                                               type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carFuelTypeField">Fuel Type</label>
-                                        <input aria-describedby="carFuelTypeField" class="form-control" id="carFuelTypeField"
-                                               placeholder="Enter Car Fuel Type" type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carPassengersField">No of Passengers</label>
-                                        <input aria-describedby="carPassengersField" class="form-control" id="carPassengersField"
-                                               placeholder="Enter No of Passengers" type="number">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carMileageInKmField">Mileage In KM</label>
-                                        <input aria-describedby="carMileageInKmField" class="form-control" id="carMileageInKmField"
-                                               placeholder="Enter Car Mileage" type="number">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carPriceForExtraKmField">Price For Extra
-                                            KM</label>
-                                        <input aria-describedby="carPriceForExtraKmField" class="form-control"
-                                               id="carPriceForExtraKmField" placeholder="Enter Car Price For Extra KM"
-                                               type="number">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carDailyRateField">Daily Rate</label>
-                                        <input aria-describedby="carDailyRateField" class="form-control" id="carDailyRateField"
-                                               placeholder="Enter Car Daily Rate" type="number">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carMonthlyRateField">Monthly Rate</label>
-                                        <input aria-describedby="carMonthlyRateField" class="form-control" id="carMonthlyRateField"
-                                               placeholder="Enter Car Monthly Rate" type="number">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label" for="carBookedOrNotStatusField">Booked Or Not
-                                            Status</label>
-                                        <input aria-describedby="carBookedOrNotStatusField" class="form-control"
-                                               id="carBookedOrNotStatusField" placeholder="Enter Car Booked Or Not Status"
-                                               type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label class="form-label"
-                                               for="carMaintenanceStatusField">MaintenanceStatus</label>
-                                        <input aria-describedby="carMaintenanceStatusField" class="form-control"
-                                               id="carMaintenanceStatusField" placeholder="Enter Car Maintenance Status"
-                                               type="text">
-                                    </div>
-                                    <div class="mb-5 col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                         style="height: calc(100%/8*1);">
-                                        <label for="carImgfile">Car Images</label>
-                                        <input class="form-control" id="carImgfile" multiple name="carImgfile"
-                                               type="file">
-                                    </div>
+                                    <div class="container-fluid d-flex flex-row flex-wrap justify-content-center" style="width: 100%;height: 100%;">
+                                        <div class="ms-4 me-4 col-3 d-flex flex-column justify-content-center align-items-start"
+                                         style="height: calc(100%/4*1);">
+                                                <label class="form-label d-flex" for="carRegNoField">Registration No</label>
+                                                <input aria-describedby="carRegNoField" class="form-control d-flex"
+                                                id="carRegNoField" placeholder="Enter Car Reg Number"
+                                                type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label d-flex" for="carBrandField">Brand</label>
+                                            <input aria-describedby="carBrandField" class="form-control d-flex" id="carBrandField"
+                                                    placeholder="Enter Car Brand" type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carTransmissionTypeField">Transmission
+                                                Type</label>
+                                            <input aria-describedby="carTransmissionTypeField" class="form-control"
+                                                    id="carTransmissionTypeField" placeholder="Enter Car Transmission Type"
+                                                    type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carFuelTypeField">Fuel Type</label>
+                                            <input aria-describedby="carFuelTypeField" class="form-control" id="carFuelTypeField"
+                                                    placeholder="Enter Car Fuel Type" type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carPassengersField">No of Passengers</label>
+                                            <input aria-describedby="carPassengersField" class="form-control" id="carPassengersField"
+                                                    placeholder="Enter No of Passengers" type="number">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carMileageInKmField">Mileage In KM</label>
+                                            <input aria-describedby="carMileageInKmField" class="form-control" id="carMileageInKmField"
+                                                    placeholder="Enter Car Mileage" type="number">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carPriceForExtraKmField">Price For Extra
+                                                KM</label>
+                                            <input aria-describedby="carPriceForExtraKmField" class="form-control"
+                                                    id="carPriceForExtraKmField" placeholder="Enter Car Price For Extra KM"
+                                                    type="number">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carDailyRateField">Daily Rate</label>
+                                            <input aria-describedby="carDailyRateField" class="form-control" id="carDailyRateField"
+                                                    placeholder="Enter Car Daily Rate" type="number">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carMonthlyRateField">Monthly Rate</label>
+                                            <input aria-describedby="carMonthlyRateField" class="form-control" id="carMonthlyRateField"
+                                                    placeholder="Enter Car Monthly Rate" type="number">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label" for="carBookedOrNotStatusField">Booked Or Not
+                                                Status</label>
+                                            <input aria-describedby="carBookedOrNotStatusField" class="form-control"
+                                                    id="carBookedOrNotStatusField" placeholder="Enter Car Booked Or Not Status"
+                                                    type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                            <label class="form-label"
+                                                    for="carMaintenanceStatusField">MaintenanceStatus</label>
+                                            <input aria-describedby="carMaintenanceStatusField" class="form-control"
+                                                    id="carMaintenanceStatusField" placeholder="Enter Car Maintenance Status"
+                                                    type="text">
+                                        </div>
+                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                            style="height: calc(100%/4*1);">
+                                            <label for="carImgfile" class="form-label">Car Images</label>
+                                            <input class="form-control" class="d-flex" id="carImgfile" multiple name="carImgfile"
+                                                type="file">
+                                        </div>
+                                     </div>
                                 </div>
-                                <div class="btnContainer d-flex flex-row align-items-center justify-content-center"
+                                <div class="btnContainer d-flex flex-row align-items-center justify-content-end"
                                      style="width: 100%;height: 20%;">
                                     <div class="row d-flex flex-row justify-content-center align-items-center"
                                          style="width: 100%;height: 100%;">
-                                        <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                            <button class="btn btn-primary ms-2 me-2 col-3" type="submit">Save</button>
-                                            <button class="btn btn-secondary ms-2 me-2 col-3" type="submit">Update
+                                        <div class="col-12 d-flex flex-row justify-content-center align-items-center" style="height: 80%;">
+                                            <button class="btn btn-primary ms-3 me-3 col-2" type="submit">Save</button>
+                                            <button class="btn btn-secondary ms-3 me-3 col-2" type="submit">Update
                                             </button>
-                                            <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete
+                                            <button class="btn btn-danger ms-3 me-3 col-2" type="submit">Delete
                                             </button>
-                                            <a class="ms-2 me-2 col-3" href="#carViewAllSection" id="carViewAllBtn">
-                                                <button class="btn btn-info w-100 h-100">View All</button>
+                                            <a class="ms-3 me-3 col-2" href="#carViewAllSection" id="carViewAllBtn">
+                                                <button class="col-12 btn btn-info">View All</button>
+                                            </a>
+                                            <a class="ms-3 me-3 col-2" href="#viewCarScheduleSection" id="viewCarScheduleBtn">
+                                                <button class="col-12 btn btn-outline-success">View Schedule</button>
                                             </a>
                                         </div>
                                     </div>
@@ -396,6 +401,56 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="viewCarScheduleSection container-fluid position-relative flex-column justify-content-center align-items-center"
+    id="viewCarScheduleSection"
+    style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
+        <div class="container-fluid shadow-lg d-flex flex-column align-items-center justify-content-center" style="width: 80%;height: 80%;">
+            <div class="tableContainer d-flex flex-column align-items-center justify-content-center" style="width: 80%;height: 80%;overflow: auto;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Row No</th>
+                        <th scope="col">Car Reg No</th>
+                        <th scope="col">Booked Status</th>
+                        <th scope="col">Booked Date</th>
+                        <th scope="col">Booked Time</th>
+                        <th scope="col">Return Date</th>
+                        <th scope="col">Return Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

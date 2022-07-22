@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf8e228c-ced7-44b1-8766-067604c053bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +130,7 @@
       <workItem from="1658408426786" duration="260000" />
       <workItem from="1658408709476" duration="783000" />
       <workItem from="1658425130674" duration="2110000" />
-      <workItem from="1658482965600" duration="1213000" />
+      <workItem from="1658482965600" duration="1811000" />
     </task>
     <servers />
   </component>
