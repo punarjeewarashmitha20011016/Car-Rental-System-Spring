@@ -38,6 +38,9 @@ var placingBookingInAdminBookingSection = $("#placingBookingInAdminBookingSectio
 
 var viewAllCarsInCustomerSection = $("#viewAllCarsInCustomerSection");
 
+var leftNavBtnForCarView =$("#leftNavBtnForCarView");
+var rightNavBtnForCarView =$("#rightNavBtnForCarView");
+
 // $(document).ready(function(){
 //     console.log('window');
 //     $(headerNav).css('display','block');
@@ -540,6 +543,21 @@ $(loginBtn).click(function () {
                 $(viewAllCarsInCustomerSection).css('display', 'flex');
             })
 
+            $(leftNavBtnForCarView).css('cursor','pointer')
+            $(rightNavBtnForCarView).css('cursor','pointer')
+            let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
+            let count = 4;
+            $(leftNavBtnForCarView).click(function(){
+            console.log('invoked');
+            $(cardsContainingContainerInCustomerSection).css('right',count+"%");
+                count+=4;
+            })
+            $(rightNavBtnForCarView).click(function(){
+            console.log('invoked');
+            $(cardsContainingContainerInCustomerSection).css('right',count+"%");
+                count-=4;
+            })
+
             let viewMyBookingsBtn = document.createElement("li");
             viewMyBookingsBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
             let aForViewMyBookingsBtn = document.createElement('a');
@@ -621,8 +639,6 @@ $(signupBtnInLogin).click(function () {
 })
 
 $(logoutBtn).click(function () {
-
-    // $(navBarItems).children('div:nth-child(2)').children('ul').children().splice(0,$(navBarItems).children('div:nth-child(2)').children('ul').children().length)
 
     $(headerNav).css('display', 'none');
     $(homeSection).css('display', 'none');
