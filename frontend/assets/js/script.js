@@ -30,6 +30,7 @@ var bookingSection = $("#bookingSection");
 var viewCurrentBookingsBtn = $("#viewCurrentBookingsBtn");
 var viewCurrentBookingsSection = $("#viewCurrentBookingsSection");
 var viewAllBookingsSection = $("#viewAllBookingsSection");
+// var viewForBothBookingAndDetailsTableInAdmin = $("#viewForBothBookingAndDetailsTableInAdmin");
 var incomeSection = $("#incomeSection");
 
 var viewCurrentBookingDetailsBtn = $("#viewCurrentBookingDetailsBtn");
@@ -548,7 +549,7 @@ $(loginBtn).click(function () {
             aforViewBookingBtn.innerHTML = "View All Bookings";
             aforViewBookingBtn.className = "text-black text-decoration-none";
             viewAllBookingsBtn.append(aforViewBookingBtn);
-
+            let viewAllBookingInViewAllBookingSection = $("#viewAllBookingInViewAllBookingSection");
             $(viewAllBookingsBtn).click(function () {
                 $(headerNav).css('display', 'block');
                 $(homeSection).css('display', 'none');
@@ -576,29 +577,14 @@ $(loginBtn).click(function () {
             })
 
             $(viewAllBookingDetailsBtn).click(function () {
-                $(headerNav).css('display', 'block');
-                $(homeSection).css('display', 'none');
-                $(customerSection).css('display', 'none');
-                $(loginSection).css('display', 'none');
-                $(adminSection).css('display', 'none');
-                $(carSection).css('display', 'none');
-                $(customerDetailsSection).css('display', 'none');
-                $(carViewAllSection).css('display', 'none');
-                $(viewCarScheduleSection).css('display', 'none');
-                $(driverSection).css('display', 'none');
-                $(viewDriverDetailsSection).css('display', 'none');
-                $(bookingRequestSection).css('display', 'none');
-                $(bookingRequestDetailsSection).css('display', 'none');
-                $(bookingSection).css('display', 'none');
-                $(viewCurrentBookingsSection).css('display', 'none');
-                $(viewAllBookingsSection).css('display', 'none');
                 $(viewAllBookingDetailsSection).css('display', 'flex');
-                $(incomeSection).css('display', 'none');
-                $(viewAllCarsInCustomerSection).css('display', 'none');
-                $(viewAllBookingsForCustomerSection).css('display', 'none');
-                $(viewMyAccountForCustomerSection).css('display', 'none');
-                $(placingBookingRequestInCustomer).css('display', 'none');
-                $(viewDriverScheduleInDriverSection).css('display', 'none');
+                $(viewAllBookingInViewAllBookingSection).css('display','none');
+                
+            })
+            $(viewAllBookingDetailsBtn).dblclick(function () {
+                $(viewAllBookingDetailsSection).css('display', 'none');
+                $(viewAllBookingInViewAllBookingSection).css('display','flex');
+                
             })
 
             console.log('admin');
