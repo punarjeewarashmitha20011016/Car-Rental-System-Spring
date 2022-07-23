@@ -220,10 +220,10 @@
                                     <div class="row d-flex flex-row justify-content-center align-items-center"
                                          style="width: 100%;height: 100%;">
                                         <div class="col-10 d-flex flex-row h-50 justify-content-center align-items-center">
-                                            <button class="btn btn-primary ms-2 me-2 col-4" type="submit">Save</button>
-                                            <button class="btn btn-secondary ms-2 me-2 col-4" type="submit">Update
+                                            <button class="btn btn-primary ms-2 me-2 col-4">Save</button>
+                                            <button class="btn btn-secondary ms-2 me-2 col-4">Update
                                             </button>
-                                            <button class="btn btn-danger ms-2 me-2  col-4" type="submit">Delete
+                                            <button class="btn btn-danger ms-2 me-2  col-4">Delete
                                             </button>
                                         </div>
                                     </div>
@@ -406,183 +406,259 @@
                     <div class="row d-flex flex-column justify-content-center align-items-center"
                          style="width: 90%;height: 92%;">
                         <div class="col" style="width: 100%;height: 100%;">
-                            <form class="position-relative d-flex flex-row w-100 h-100 flex-wrap">
-                                <div class="carTextFiledContainer position-relative d-flex flex-row flex-wrap justify-content-center"
-                                     style="width: 100%;height: 80%;">
-                                    <div class="container-fluid d-flex flex-row flex-wrap justify-content-center"
-                                         style="width: 100%;height: 100%;">
-                                        <div class="ms-4 me-4 col-3 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label d-flex" for="carRegNoField">Registration No</label>
-                                            <input aria-describedby="carRegNoField" class="form-control d-flex"
-                                                   id="carRegNoField" placeholder="Enter Car Reg Number"
-                                                   type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label d-flex" for="carBrandField">Brand</label>
-                                            <input aria-describedby="carBrandField" class="form-control d-flex"
-                                                   id="carBrandField"
-                                                   placeholder="Enter Car Brand" type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carTransmissionTypeField">Transmission
-                                                Type</label>
-                                            <input aria-describedby="carTransmissionTypeField" class="form-control"
-                                                   id="carTransmissionTypeField"
-                                                   placeholder="Enter Car Transmission Type"
-                                                   type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carFuelTypeField">Fuel Type</label>
-                                            <input aria-describedby="carFuelTypeField" class="form-control"
-                                                   id="carFuelTypeField"
-                                                   placeholder="Enter Car Fuel Type" type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carPassengersField">No of Passengers</label>
-                                            <input aria-describedby="carPassengersField" class="form-control"
-                                                   id="carPassengersField"
-                                                   placeholder="Enter No of Passengers" type="number">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carMileageInKmField">Mileage In KM</label>
-                                            <input aria-describedby="carMileageInKmField" class="form-control"
-                                                   id="carMileageInKmField"
-                                                   placeholder="Enter Car Mileage" type="number">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carPriceForExtraKmField">Price For Extra
-                                                KM</label>
-                                            <input aria-describedby="carPriceForExtraKmField" class="form-control"
-                                                   id="carPriceForExtraKmField"
-                                                   placeholder="Enter Car Price For Extra KM"
-                                                   type="number">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carDailyRateField">Daily Rate</label>
-                                            <input aria-describedby="carDailyRateField" class="form-control"
-                                                   id="carDailyRateField"
-                                                   placeholder="Enter Car Daily Rate" type="number">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carMonthlyRateField">Monthly Rate</label>
-                                            <input aria-describedby="carMonthlyRateField" class="form-control"
-                                                   id="carMonthlyRateField"
-                                                   placeholder="Enter Car Monthly Rate" type="number">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label" for="carBookedOrNotStatusField">Booked Or Not
-                                                Status</label>
-                                            <input aria-describedby="carBookedOrNotStatusField" class="form-control"
-                                                   id="carBookedOrNotStatusField"
-                                                   placeholder="Enter Car Booked Or Not Status"
-                                                   type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label class="form-label"
-                                                   for="carMaintenanceStatusField">MaintenanceStatus</label>
-                                            <input aria-describedby="carMaintenanceStatusField" class="form-control"
-                                                   id="carMaintenanceStatusField"
-                                                   placeholder="Enter Car Maintenance Status"
-                                                   type="text">
-                                        </div>
-                                        <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
-                                             style="height: calc(100%/4*1);">
-                                            <label for="carImgfile" class="form-label">Car Images</label>
-                                            <input class="form-control" class="d-flex" id="carImgfile" multiple
-                                                   name="carImgfile"
-                                                   type="file">
+                            <div class="position-relative d-flex flex-row w-100 h-100 flex-wrap">
+                                <div class="container position-relative d-flex flex-row flex-wrap justify-content-center"
+                                    style="width: 100%;height: 80%;">
+                                    
+                                    <div id="carTextFieldContainer" class="carTextFieldContainer position-relative flex-row flex-wrap justify-content-center"
+                                     style="width: 100%;height: 100%;">
+                                        <div class="container-fluid d-flex flex-row flex-wrap justify-content-center"
+                                            style="width: 100%;height: 100%;">
+                                            <div class="ms-4 me-4 col-3 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label d-flex" for="carRegNoField">Registration No</label>
+                                                <input aria-describedby="carRegNoField" class="form-control d-flex"
+                                                    id="carRegNoField" placeholder="Enter Car Reg Number"
+                                                    type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label d-flex" for="carBrandField">Brand</label>
+                                                <input aria-describedby="carBrandField" class="form-control d-flex"
+                                                    id="carBrandField"
+                                                    placeholder="Enter Car Brand" type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carTransmissionTypeField">Transmission
+                                                    Type</label>
+                                                <input aria-describedby="carTransmissionTypeField" class="form-control"
+                                                    id="carTransmissionTypeField"
+                                                    placeholder="Enter Car Transmission Type"
+                                                    type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carFuelTypeField">Fuel Type</label>
+                                                <input aria-describedby="carFuelTypeField" class="form-control"
+                                                    id="carFuelTypeField"
+                                                    placeholder="Enter Car Fuel Type" type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carPassengersField">No of Passengers</label>
+                                                <input aria-describedby="carPassengersField" class="form-control"
+                                                    id="carPassengersField"
+                                                    placeholder="Enter No of Passengers" type="number">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carMileageInKmField">Mileage In KM</label>
+                                                <input aria-describedby="carMileageInKmField" class="form-control"
+                                                    id="carMileageInKmField"
+                                                    placeholder="Enter Car Mileage" type="number">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carPriceForExtraKmField">Price For Extra
+                                                    KM</label>
+                                                <input aria-describedby="carPriceForExtraKmField" class="form-control"
+                                                    id="carPriceForExtraKmField"
+                                                    placeholder="Enter Car Price For Extra KM"
+                                                    type="number">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carDailyRateField">Daily Rate</label>
+                                                <input aria-describedby="carDailyRateField" class="form-control"
+                                                    id="carDailyRateField"
+                                                    placeholder="Enter Car Daily Rate" type="number">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carMonthlyRateField">Monthly Rate</label>
+                                                <input aria-describedby="carMonthlyRateField" class="form-control"
+                                                    id="carMonthlyRateField"
+                                                    placeholder="Enter Car Monthly Rate" type="number">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label" for="carBookedOrNotStatusField">Booked Or Not
+                                                    Status</label>
+                                                <input aria-describedby="carBookedOrNotStatusField" class="form-control"
+                                                    id="carBookedOrNotStatusField"
+                                                    placeholder="Enter Car Booked Or Not Status"
+                                                    type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label class="form-label"
+                                                    for="carMaintenanceStatusField">MaintenanceStatus</label>
+                                                <input aria-describedby="carMaintenanceStatusField" class="form-control"
+                                                    id="carMaintenanceStatusField"
+                                                    placeholder="Enter Car Maintenance Status"
+                                                    type="text">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 d-flex flex-column justify-content-center align-items-start"
+                                                style="height: calc(100%/4*1);">
+                                                <label for="carImgfile" class="form-label">Car Images</label>
+                                                <input class="form-control" class="d-flex" id="carImgfile" multiple
+                                                    name="carImgfile"
+                                                    type="file">
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div id="carScheduleTableContainer" class="carScheduleTableContainer position-relative flex-row flex-wrap justify-content-center"
+                                    style="width: 100%;height: 100%;overflow: auto;display: none;">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Row No</th>
+                                                <th scope="col">Car Reg No</th>
+                                                <th scope="col">Booked Status</th>
+                                                <th scope="col">Booked Date</th>
+                                                <th scope="col">Booked Time</th>
+                                                <th scope="col">Return Date</th>
+                                                <th scope="col">Return Time</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="carViewAllTableContainer" class="carViewAllTableContainer position-relative flex-row flex-wrap justify-content-center"style="width: 100%;height: 100%;overflow: auto;display: none;">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Row No</th>
+                                                <th scope="col">Reg No</th>
+                                                <th scope="col">Brand</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Transmission Type</th>
+                                                <th scope="col">Fuel Type</th>
+                                                <th scope="col">No Of Passengers</th>
+                                                <th scope="col">Mileage In KM</th>
+                                                <th scope="col">Free Mileage</th>
+                                                <th scope="col">Price For Extra KM</th>
+                                                <th scope="col">Daily Rate</th>
+                                                <th scope="col">Monthly Rate</th>
+                                                <th scope="col">Booked Status</th>
+                                                <th scope="col">Maintenance Status</th>
+                                                <th scope="col">Car Image</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
+                                
                                 <div class="btnContainer d-flex flex-row align-items-center justify-content-end"
                                      style="width: 100%;height: 20%;">
                                     <div class="row d-flex flex-row justify-content-center align-items-center"
                                          style="width: 100%;height: 100%;">
                                         <div class="col-12 d-flex flex-row justify-content-center align-items-center"
                                              style="height: 80%;">
-                                            <button class="btn btn-primary ms-3 me-3 col-2" type="submit">Save</button>
-                                            <button class="btn btn-secondary ms-3 me-3 col-2" type="submit">Update
+                                            <button class="btn btn-primary ms-3 me-3 col-2">Save</button>
+                                            <button class="btn btn-secondary ms-3 me-3 col-2">Update
                                             </button>
-                                            <button class="btn btn-danger ms-3 me-3 col-2" type="submit">Delete
+                                            <button class="btn btn-danger ms-3 me-3 col-2">Delete
                                             </button>
-                                            <a class="ms-3 me-3 col-2" href="#carViewAllSection" id="carViewAllBtn">
+                                            <a class="ms-3 me-3 col-2" id="carViewAllBtn">
                                                 <button class="col-12 btn btn-info">View All</button>
                                             </a>
-                                            <a class="ms-3 me-3 col-2" href="#viewCarScheduleSection"
+                                            <a class="ms-3 me-3 col-2"
                                                id="viewCarScheduleBtn">
                                                 <button class="col-12 btn btn-outline-success">View Schedule</button>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section
-            class="viewCarScheduleSection container-fluid position-relative flex-column justify-content-center align-items-center"
-            id="viewCarScheduleSection"
-            style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
-        <div class="container-fluid shadow-lg d-flex flex-column align-items-center justify-content-center"
-             style="width: 80%;height: 80%;">
-            <div class="tableContainer d-flex flex-column align-items-center justify-content-center"
-                 style="width: 80%;height: 80%;overflow: auto;">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Row No</th>
-                        <th scope="col">Car Reg No</th>
-                        <th scope="col">Booked Status</th>
-                        <th scope="col">Booked Date</th>
-                        <th scope="col">Booked Time</th>
-                        <th scope="col">Return Date</th>
-                        <th scope="col">Return Time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </section>
@@ -649,92 +725,6 @@
         </div>
     </section>
     <section
-            class="carViewlAllSection container-fluid position-relative flex-column justify-content-center align-items-center"
-            id="carViewAllSection"
-            style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
-        <div class="container-fluid d-flex flex-column justify-content-center align-items-center shadow-lg"
-             style="width: 80%;height: 80%;">
-            <div class="row position-relative d-flex" style="height: 90%;width: 90%;">
-                <div class="col shadow position-relative d-flex" style="height: 100%;overflow: auto">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Row No</th>
-                            <th scope="col">Reg No</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Transmission Type</th>
-                            <th scope="col">Fuel Type</th>
-                            <th scope="col">No Of Passengers</th>
-                            <th scope="col">Mileage In KM</th>
-                            <th scope="col">Free Mileage</th>
-                            <th scope="col">Price For Extra KM</th>
-                            <th scope="col">Daily Rate</th>
-                            <th scope="col">Monthly Rate</th>
-                            <th scope="col">Booked Status</th>
-                            <th scope="col">Maintenance Status</th>
-                            <th scope="col">Car Image</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section
             class="driverSection container-fluid position-relative flex-column justify-content-center align-items-center"
             id="driverSection"
             style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
@@ -742,178 +732,173 @@
              style="width: 80%;height: 95%;">
             <div class="row d-flex" style="width: 100%;height: 100%;">
                 <div class="col d-flex" style="width: 100%;height: 100%;">
-                    <form class="position-relative d-flex flex-column justify-content-center align-items-center"
+                    <div class="position-relative d-flex flex-column justify-content-center align-items-center"
                           style="width: 100%;height: 100%;">
-                        <div class="driverTextFiledContainer d-flex flex-row flex-wrap justify-content-center"
-                             style="width: 90%;height: 80%;">
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="driverNicField">Nic</label>
-                                    <input aria-describedby="Nic" class="form-control d-flex" id="driverNicField"
-                                           placeholder="Enter Your Nic Number" type="text">
+
+                        <div class="container d-flex flex-row flex-wrap justify-content-center" style="width: 90%;height: 80%;">
+                            <div id="driverTextFieldContainer" class="driverTextFieldContainer flex-row flex-wrap justify-content-center"
+                                style="width: 100%;height: 100%;">
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label d-flex" for="driverNicField">Nic</label>
+                                        <input aria-describedby="Nic" class="form-control d-flex" id="driverNicField"
+                                                placeholder="Enter Your Nic Number" type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label d-flex" for="driverNameField">Name</label>
+                                        <input aria-describedby="Name" class="form-control d-flex" id="driverNameField"
+                                                placeholder="Enter Your Full Name" type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverLicenseField">License No</label>
+                                        <input aria-describedby="License No" class="form-control" id="driverLicenseField"
+                                                placeholder="Enter Your License Number" type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverContactNoField">Contact No</label>
+                                        <input aria-describedby="Contact No" class="form-control" id="driverContactNoField"
+                                                placeholder="Enter Your Contact Number" type="number">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverEmailField">Email address</label>
+                                        <input aria-describedby="emailHelp" class="form-control" id="driverEmailField"
+                                                placeholder="Enter Your Email" type="email">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverPasswordField">Password</label>
+                                        <input class="form-control" id="driverPasswordField"
+                                                placeholder="Enter Your Password"
+                                                type="password">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverAvailableStatusField">Availability
+                                            Status</label>
+                                        <input class="form-control" id="driverAvailableStatusField"
+                                                placeholder="Enter Availability Status"
+                                                type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label class="form-label" for="driverAddressField">Address</label>
+                                        <input class="form-control" id="driverAddressField" placeholder="Enter Your Address"
+                                                type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label for="nicfile">Nic Picture</label>
+                                        <input class="form-control" id="nicfile" name="nicPhoto" type="file">
+                                    </div>
+                                </div>
+                                <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                        style="height: calc(100%/4*1);">
+                                    <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                        <label for="licensefile">License Picture</label>
+                                        <input class="form-control" id="licensefile" name="licensePhoto" type="file">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="driverNameField">Name</label>
-                                    <input aria-describedby="Name" class="form-control d-flex" id="driverNameField"
-                                           placeholder="Enter Your Full Name" type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverLicenseField">License No</label>
-                                    <input aria-describedby="License No" class="form-control" id="driverLicenseField"
-                                           placeholder="Enter Your License Number" type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverContactNoField">Contact No</label>
-                                    <input aria-describedby="Contact No" class="form-control" id="driverContactNoField"
-                                           placeholder="Enter Your Contact Number" type="number">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverEmailField">Email address</label>
-                                    <input aria-describedby="emailHelp" class="form-control" id="driverEmailField"
-                                           placeholder="Enter Your Email" type="email">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverPasswordField">Password</label>
-                                    <input class="form-control" id="driverPasswordField"
-                                           placeholder="Enter Your Password"
-                                           type="password">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverAvailableStatusField">Availability
-                                        Status</label>
-                                    <input class="form-control" id="driverAvailableStatusField"
-                                           placeholder="Enter Availability Status"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="driverAddressField">Address</label>
-                                    <input class="form-control" id="driverAddressField" placeholder="Enter Your Address"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label for="nicfile">Nic Picture</label>
-                                    <input class="form-control" id="nicfile" name="nicPhoto" type="file">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label for="licensefile">License Picture</label>
-                                    <input class="form-control" id="licensefile" name="licensePhoto" type="file">
-                                </div>
+                            <div id="driverViewlAllTableContainer" class="driverViewlAllTableContainer flex-row flex-wrap justify-content-center"
+                            style="width: 100%;height: 100%;overflow: auto;display: none;">
+                               <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Row No</th>
+                                        <th scope="col">Nic No</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">License No</th>
+                                        <th scope="col">License Photo</th>
+                                        <th scope="col">Nic Photo</th>
+                                        <th scope="col">Contact No</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Available Status</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+
                         <div class="btnContainer d-flex flex-row align-items-center justify-content-center"
                              style="width: 100%;height: 20%;">
                             <div class="row d-flex flex-row justify-content-center align-items-center"
                                  style="width: 100%;height: 100%;">
                                 <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-3" type="submit">Save</button>
-                                    <button class="btn btn-secondary ms-2 me-2 col-3" type="submit">Update</button>
-                                    <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete</button>
-                                    <a class="ms-2 me-2 col-3" href="#viewDriverDetailsSection" target="_blank"
+                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
+                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
+                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
+                                    <a class="ms-2 me-2 col-3"
                                        id="driverViewAllBtn">
                                         <button class="btn btn-info w-100 h-100">View All</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section
-            class="viewDriverDetailsSection container-fluid position-relative flex-column justify-content-center align-items-center"
-            id="viewDriverDetailsSection"
-            style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
-        <div class="container-fluid d-flex flex-column justify-content-center align-items-center shadow-lg"
-             style="width: 80%;height: 80%;">
-            <div class="row position-relative d-flex" style="height: 90%;width: 90%;">
-                <div class="col shadow position-relative d-flex" style="height: 100%;overflow: auto">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Row No</th>
-                            <th scope="col">Nic No</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">License No</th>
-                            <th scope="col">License Photo</th>
-                            <th scope="col">Nic Photo</th>
-                            <th scope="col">Contact No</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Available Status</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Password</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -931,7 +916,7 @@
                            placeholder="Search Booking Request" type="text">
                 </div>
                 <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                    <button class="btn btn-primary ms-2 me-2 col-10" type="submit">Search</button>
+                    <button class="btn btn-primary ms-2 me-2 col-10">Search</button>
                 </div>
             </div>
             <div class="row d-flex" style="width: 90%;height:40%;">
@@ -1043,9 +1028,9 @@
                             <div class="row d-flex flex-row justify-content-center align-items-center"
                                  style="width: 100%;height: 100%;">
                                 <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-3" type="submit">Save</button>
-                                    <button class="btn btn-secondary ms-2 me-2 col-3" type="submit">Update</button>
-                                    <button class="btn btn-danger ms-2 me-2  col-3" type="submit">Delete</button>
+                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
+                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
+                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
                                     <a class="ms-2 me-2 col-3" href="#bookingRequestDetailsSection"
                                        id="bookingRequestDetailsBtn" target="_blank">
                                         <button class="btn btn-info w-100 h-100">View All</button>
@@ -1155,19 +1140,19 @@
                 <div class="col-3 d-flex flex-column align-items-center justify-content-center" style="height: 80%;">
                     <button class="btn btn-primary ms-2 me-2 col-3" id="placeBookingBtn"
                             style="width: 70%;height: 100%;"
-                            type="submit">Place Booking
+                           >Place Booking
                     </button>
                 </div>
                 <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
                     <button class="btn btn-secondary ms-2 me-2 col-3" id="updateBookingBtn"
                             style="width: 70%;height: 100%;"
-                            type="submit">Update Booking
+                           >Update Booking
                     </button>
                 </div>
                 <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
                     <button class="btn btn-danger ms-2 me-2 col-3" id="deleteBookingBtn"
                             style="width: 70%;height: 100%;"
-                            type="submit">Delete Booking
+                           >Delete Booking
                     </button>
                 </div>
                 <div class="col-3 d-flex align-items-center justify-content-center" style="height: 80%;">
@@ -1369,7 +1354,7 @@
                                            placeholder="Search Booking Request" type="text">
                                 </div>
                                 <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-10" type="submit">Search</button>
+                                    <button class="btn btn-primary ms-2 me-2 col-10">Search</button>
                                 </div>
                                 <div class="col-4 d-flex flex-row align-items-center justify-content-center">
                                     <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column"
@@ -2135,9 +2120,7 @@
                             </div>
                             <div class="col-4 d-flex flex-row align-items-center justify-content-center">
                                 <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column"
-                                   href="#viewAllCurrentBookingDetailsSection"
-                                   id="viewCurrentBookingDetailsBtn"
-                                   target="_blank">
+                                   id="viewtBookingDetailsBtnInCustomer">
                                     <button class="btn btn-success w-100 h-100">View Booking Details
                                     </button>
                                 </a>
@@ -2148,53 +2131,131 @@
                 <div class="row d-flex flex-row  align-items-center justify-content-center "
                      style="width: 100%;height: 90%;">
                     <div class="col-12 flex-column align-items-center justify-content-center shadow-lg"
-                         style="height: 90%;overflow: auto;border: 1px solid black;">
-                        <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
-                            <thead>
-                            <tr>
-                                <th scope="col">Row No</th>
-                                <th scope="col">Booking ID</th>
-                                <th scope="col">Customer Nic</th>
-                                <th scope="col">Booked Date</th>
-                                <th scope="col">Booked Time</th>
-                                <th scope="col">Cost</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                         style="height: 90%;overflow: auto;">
+                         <div id="viewAllBookingInViewAllCustomerSection" class="col-12 shadow-lg" style="height: 100%;display: flex;">
+                            <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Row No</th>
+                                    <th scope="col">Booking ID</th>
+                                    <th scope="col">Customer Nic</th>
+                                    <th scope="col">Booked Date</th>
+                                    <th scope="col">Booked Time</th>
+                                    <th scope="col">Cost</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="viewAllBookingDetailsInCustomerSection" class="col-12 shadow-lg" style="height: 100%;display: none;">
+                            <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Row No</th>
+                                        <th scope="col">Booking ID</th>
+                                        <th scope="col">Car_RegNo</th>
+                                        <th scope="col">Driver Nic</th>
+                                        <th scope="col">Car Type</th>
+                                        <th scope="col">Trip In KM</th>
+                                        <th scope="col">Date Of Pickup</th>
+                                        <th scope="col">Time Of Pickup</th>
+                                        <th scope="col">Pickup Venue</th>
+                                        <th scope="col">Returned Date</th>
+                                        <th scope="col">Returned Time</th>
+                                        <th scope="col">Returned Venue</th>
+                                        <th scope="col">Loss Damage</th>
+                                        <th scope="col">Loss Damage Slip</th>
+                                        <th scope="col">Cost</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2508,9 +2569,9 @@
                 </table>
             </div>
             <div class="row d-flex justify-content-center align-items-center" style="width: 90%;height: 10%;">
-                <button class="btn btn-primary ms-2 me-2 col-2" type="submit">Request Booking</button>
-                <button class="btn btn-secondary ms-2 me-2 col-2" type="submit">Update Booking</button>
-                <button class="btn btn-danger ms-2 me-2  col-2" type="submit">Delete Booking</button>
+                <button class="btn btn-primary ms-2 me-2 col-2">Request Booking</button>
+                <button class="btn btn-secondary ms-2 me-2 col-2">Update Booking</button>
+                <button class="btn btn-danger ms-2 me-2  col-2">Delete Booking</button>
                 <button class="btn btn-outline-success ms-2 me-2  col-2">Add To List</button>
                 <button class="btn btn-outline-danger ms-2 me-2  col-2">Clear From List</button>
             </div>
