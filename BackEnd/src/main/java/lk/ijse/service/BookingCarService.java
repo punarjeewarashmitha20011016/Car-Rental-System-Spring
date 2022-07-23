@@ -11,7 +11,7 @@ import java.util.List;
 public interface BookingCarService {
     void bookingACar(BookingDTO dto);
 
-    void updateBookingForFinal(BookingDTO dto);
+    void updateBooking(BookingDTO dto);
 
     void deleteABooking(String boId);
 

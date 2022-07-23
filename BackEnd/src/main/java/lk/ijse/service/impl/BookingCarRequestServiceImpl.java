@@ -1,8 +1,6 @@
 package lk.ijse.service.impl;
 
-import lk.ijse.dto.BookingRequestDTO;
-import lk.ijse.dto.BookingRequestDetailsDTO;
-import lk.ijse.dto.DriverDTO;
+import lk.ijse.dto.*;
 import lk.ijse.entity.*;
 import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarRequestService;
@@ -24,6 +22,15 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Autowired
     private BookingCarRequestDetailsRepo bookingCarDetailsRepo;
+
+    @Autowired
+    private PendingBookingRepo pendingBookingRepo;
+
+    @Autowired
+    private PendingBookingDetailsRepo pendingBookingDetailsRepo;
+
+    @Autowired
+    private PendingBookingPaymentsRepo pendingBookingPaymentsRepo;
 
     @Autowired
     private CarRepo carRepo;
@@ -116,6 +123,51 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void requestingAPendingBookingSave(PendingBookingsDTO dto) {
+        /*If admin accept the customer request this method invokes..And admin should send an email to the customer by informing that his/her request in confirmed*/
+        if (repo.existsById(dto.getBoId())) {
+            throw new RuntimeException("Booking a Car failed");
+        }
+        System.out.println("Pending Booking = " + dto.toString());
+        System.out.println("Pending Booking Details = " + dto.getBookingDetails().toString());
+
+        pendingBookingRepo.save(mapper.map(dto, PendingBooking.class));
+        if (dto.getPayments().getPaymentsId() == null) {
+            throw new RuntimeException("Booking a Car failed");
+        }
+        pendingBookingPaymentsRepo.save(mapper.map(dto.getPayments(), PendingBookingPayments.class));
+        repo.deleteById(dto.getPayments().getPaymentsId());
+
+        for (PendingBookingDetailsDTO b : dto.getBookingDetails()
+        ) {
+            pendingBookingDetailsRepo.save(mapper.map(b, PendingBookingDetails.class));
+            Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
+            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
+                throw new RuntimeException("Booking a Car failed");
+            }
+
+            car.setCarBookedOrNotStatus("Booked");
+            carRepo.save(car);
+            if (b.getDriverNic() == null) {
+
+            } else {
+                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
+                if (driver.getAvailableStatus().equals("Available")) {
+                    driver.setAvailableStatus("Not Available");
+                    driverRepo.save(mapper.map(driver, Driver.class));
+                } else {
+                    throw new RuntimeException("Booking a Car failed");
+                }
+            }
+        }
+
+        if (pendingBookingRepo.existsById(dto.getBoId())) {
+            /*Deleting the requested booking entity*/
+            repo.deleteById(dto.getBoId());
         }
     }
 

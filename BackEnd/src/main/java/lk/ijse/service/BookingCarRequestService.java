@@ -2,6 +2,7 @@ package lk.ijse.service;
 
 import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.dto.DriverDTO;
+import lk.ijse.dto.PendingBookingsDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,8 @@ public interface BookingCarRequestService {
     String generateBookingRequestPaymentsId();
 
     void requestingABookingSave(BookingRequestDTO dto);
+
+    void requestingAPendingBookingSave(PendingBookingsDTO dto);
 
     void requestingABookingUpdate(BookingRequestDTO dto);
 

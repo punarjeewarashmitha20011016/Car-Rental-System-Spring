@@ -40,62 +40,10 @@ public class BookingCarServiceImpl implements BookingCarService {
     private DriverRepo driverRepo;
 
     @Autowired
-    private BookingCarRequestRepo bookingRequestRepo;
-
-    @Autowired
     private BookingPaymentsRepo paymentsRepo;
-
-    @Autowired
-    private BookingRequestPaymentsRepo requestPaymentsRepo;
 
     @Override
     public void bookingACar(BookingDTO dto) {
-        /*If admin accept the customer request this method invokes..And admin should send an email to the customer by informing that his/her request in confirmed*/
-        if (repo.existsById(dto.getBoId())) {
-            throw new RuntimeException("Booking a Car failed");
-        }
-        System.out.println("Booking = " + dto.toString());
-        System.out.println("Booking Details = " + dto.getBookingDetails().toString());
-
-        repo.save(mapper.map(dto, Booking.class));
-        if (dto.getPayments().getPaymentsId() == null) {
-            throw new RuntimeException("Booking a Car failed");
-        }
-        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
-        requestPaymentsRepo.deleteById(dto.getPayments().getPaymentsId());
-
-        for (BookingDetailsDTO b : dto.getBookingDetails()
-        ) {
-            bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));
-            Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
-                throw new RuntimeException("Booking a Car failed");
-            }
-
-            car.setCarBookedOrNotStatus("Booked");
-            carRepo.save(car);
-            if (b.getDriverNic() == null) {
-
-            } else {
-                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
-                if (driver.getAvailableStatus().equals("Available")) {
-                    driver.setAvailableStatus("Not Available");
-                    driverRepo.save(mapper.map(driver, Driver.class));
-                } else {
-                    throw new RuntimeException("Booking a Car failed");
-                }
-            }
-        }
-
-        if (repo.existsById(dto.getBoId())) {
-            /*Deleting the requested booking entity*/
-            bookingRequestRepo.deleteById(dto.getBoId());
-        }
-
-    }
-
-    @Override
-    public void updateBookingForFinal(BookingDTO dto) {
         /*This will finalize the payment by updating the records*/
         if (!repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Booking Update failed");
@@ -141,6 +89,11 @@ public class BookingCarServiceImpl implements BookingCarService {
             }
             carRepo.save(car);
         }
+    }
+
+    @Override
+    public void updateBooking(BookingDTO dto) {
+        System.out.println("Update Booking");
     }
 
     @Override

@@ -2,6 +2,8 @@ package lk.ijse.controller;
 
 import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.dto.BookingRequestDetailsDTO;
+import lk.ijse.dto.PendingBookingDetailsDTO;
+import lk.ijse.dto.PendingBookingsDTO;
 import lk.ijse.service.BookingCarRequestService;
 import lk.ijse.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class BookingCarRequestController {
-    /*Test image file process in sanu sirs project*/
     @Autowired
     private BookingCarRequestService bookingCarService;
 
@@ -34,6 +35,13 @@ public class BookingCarRequestController {
         dto.setBookingDetails(bookingDetails);
         bookingCarService.requestingABookingSave(dto);
         return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
+    }
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "pendingBookingRequestSave")
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseUtil savePendingBooking(@RequestBody PendingBookingsDTO dto) {
+        bookingCarService.requestingAPendingBookingSave(dto);
+        return new ResponseUtil(200, "Pending Booking Saved Successfully", dto);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)

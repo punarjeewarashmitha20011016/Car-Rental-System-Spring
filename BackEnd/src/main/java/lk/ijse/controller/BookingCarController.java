@@ -26,7 +26,7 @@ public class BookingCarController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestBody BookingDTO dto) {
-        bookingCarService.updateBookingForFinal(dto);
+        bookingCarService.updateBooking(dto);
         return new ResponseUtil(200, "Booking Updated Successfully", dto);
     }
 
