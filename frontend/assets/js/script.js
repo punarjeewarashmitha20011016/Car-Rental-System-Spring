@@ -52,6 +52,7 @@ var viewDriverAccountSection = $("#viewDriverAccountSection");
 
 $(document).ready(function(){
     $(arr).remove();
+    $(signupBtn).css('display', 'block');
     if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
         let homeBtn = document.createElement("li");
         homeBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
@@ -133,7 +134,7 @@ $(loginBtn).click(function () {
     $(arr).remove();
     console.log($(navBarItems).children('div:nth-child(2)').children('ul').children());
     if (userNameLoginId.val() == 'admin' && passwordLoginId.val() == 'admin') {
-        $(signupBtn).css('display', 'none!important');
+        $(signupBtn).css('display', 'none');
         if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
             let homeBtn = document.createElement("li");
             homeBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
@@ -461,6 +462,7 @@ $(loginBtn).click(function () {
                 $(bookingRequestSection).css('display', 'none');
                 $(bookingSection).css('display', 'none');
                 $(viewAllBookingsSection).css('display', 'flex');
+                $(viewAllBookingInViewAllBookingSection).css('display','flex');
                 $(viewAllBookingDetailsSection).css('display', 'none');
                 $(incomeSection).css('display', 'none');
                 $(viewAllCarsInCustomerSection).css('display', 'none');
@@ -515,6 +517,7 @@ $(loginBtn).click(function () {
         $(viewDriverAccountSection).css('display', 'none');
 
     } else if(userNameLoginId.val() == 'customer' && passwordLoginId.val() == 'customer'){
+            $(signupBtn).css('display','block')
             $(headerNav).css('display', 'block');
             $(homeSection).css('display', 'flex');
             $(customerSection).css('display', 'none');
@@ -728,6 +731,7 @@ $(loginBtn).click(function () {
         }
     }else if(userNameLoginId.val() == 'driver' && passwordLoginId.val() == 'driver'){
         console.log('driver');
+        $(signupBtn).css('display','none')
         $(headerNav).css('display', 'block');
         $(homeSection).css('display', 'none');
         $(customerSection).css('display', 'none');
@@ -819,10 +823,10 @@ $(loginBtn).click(function () {
 })
 
 $(signupBtnInLogin).click(function () {
-    $(adminSection).css('display', 'flex');
-    $(headerNav).css('display', 'block');
+    $(adminSection).css('display', 'none');
+    $(headerNav).css('display', 'none');
     $(homeSection).css('display', 'none');
-    $(customerSection).css('display', 'none');
+    $(customerSection).css('display', 'flex');
     $(loginSection).css('display', 'none');
     $(carSection).css('display', 'none');
     $(customerDetailsSection).css('display', 'none');

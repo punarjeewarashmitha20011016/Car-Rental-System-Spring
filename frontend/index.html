@@ -22,7 +22,7 @@
 
                 </ul>
             </div>
-            <a class="d-lg-block" href="#customerSection" id="signupBtn">
+            <a style="display: none;" href="#customerSection" id="signupBtn">
                 <div class="logout position-absolute">
                     <i class="fas fa-user-plus text-white fs-3 position-absolute"></i>
                     <h3 class="position-absolute text-white fs-6">Sign Up</h3>
@@ -55,7 +55,7 @@
                          style="width: 50%;height: 25%;">
                         <div class="btnContainer d-flex flex-column align-items-center justify-content-center"
                              style="width: 45%;height: 70%;">
-                            <a id="viewAllCarsForUserBtn" href="#viewAllCarsInCustomerSection"
+                            <a id="viewAllCarsForUserBtn"
                                class="d-flex text-decoration-none w-100 h-100">
                                 <Button class="btn text-white w-100 h-100" style="border: 0;">View Cars</Button>
                             </a>
@@ -1521,7 +1521,7 @@
                 </div>
                 <div id="viewForBothBookingAndDetailsTableInAdmin" class="row d-flex flex-row justify-content-center align-items-center"
                      style="width: 100%;height: 90%;">
-                    <div id="viewAllBookingInViewAllBookingSection" class="col-12 shadow-lg" style="height: 90%;display: flex;">
+                    <div id="viewAllBookingInViewAllBookingSection" class="col-12 shadow-lg" style="height: 90%;display: flex;overflow: auto;">
                         <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
                             <thead>
                             <tr>
@@ -1569,7 +1569,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="viewAllBookingDetailsSection" class="col-12 shadow-lg" style="height: 90%;display: none;">
+                    <div id="viewAllBookingDetailsSection" class="col-12 shadow-lg" style="height: 90%;display: none;overflow: auto;">
                         <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
                             <thead>
                                 <tr>
