@@ -920,7 +920,7 @@
                 </div>
             </div>
             <div class="row d-flex" style="width: 90%;height:40%;">
-                <div class="col d-flex" style="width: 100%;height: 100%;overflow: auto;">
+                <div id="bookingRequestTableContainer" class="col" style="width: 100%;height: 100%;overflow: auto;">
                     <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
@@ -968,89 +968,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="row d-flex flex-column align-items-center justify-content-center"
-                 style="width: 90%;height:50%;">
-                <div class="col d-flex flex-column align-items-center justify-content-center"
-                     style="width: 100%;height: 100%;">
-                    <form class="position-relative d-flex flex-column justify-content-center align-items-center"
-                          style="width: 90%;height: 90%;">
-                        <div class="bookingRequestTextFiledContainer d-flex flex-row flex-wrap justify-content-center"
-                             style="width: 90%;height: 70%;">
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="bookingRequestId">Booking Request ID</label>
-                                    <input aria-describedby="bookingRequestId" class="form-control d-flex"
-                                           id="bookingRequestId" placeholder="Enter Booking Request Id"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="bookingRequestCusNic">Customer Nic</label>
-                                    <input aria-describedby="bookingRequestCusNic" class="form-control d-flex"
-                                           id="bookingRequestCusNic"
-                                           placeholder="Enter Customer Nic" type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestDate">Booking Request Date</label>
-                                    <input aria-describedby="bookingRequestDate" class="form-control"
-                                           id="bookingRequestDate"
-                                           placeholder="Enter Booking Request Date" type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestTime">Booking Request Time</label>
-                                    <input aria-describedby="bookingRequestTime" class="form-control"
-                                           id="bookingRequestTime"
-                                           placeholder="Enter  Booking Request Time" type="text">
-                                </div>
-                            </div>
-                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
-                                 style="height: calc(100%/4*1);">
-                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestCost">Booking Request Cost</label>
-                                    <input aria-describedby="bookingRequestCost" class="form-control"
-                                           id="bookingRequestCost"
-                                           placeholder="Enter Booking Request Cost" type="number">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="btnContainer d-flex flex-row align-items-center justify-content-center"
-                             style="width: 100%;height: 30%;">
-                            <div class="row d-flex flex-row justify-content-center align-items-center"
-                                 style="width: 100%;height: 100%;">
-                                <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
-                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
-                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
-                                    <a class="ms-2 me-2 col-3" href="#bookingRequestDetailsSection"
-                                       id="bookingRequestDetailsBtn" target="_blank">
-                                        <button class="btn btn-info w-100 h-100">View All</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section
-            class="bookingRequestDetailsSection container-fluid position-relative flex-column justify-content-center align-items-center"
-            id="bookingRequestDetailsSection"
-            style="width: 100%;height: 92.5vh;background-color: rgb(231, 231, 231);display: none">
-        <div class="container-fluid d-flex flex-column justify-content-center align-items-center shadow-lg"
-             style="width: 90%;height: 90%;">
-            <div class="row position-relative d-flex" style="height: 95%;width: 95%;">
-                <div class="col shadow position-relative d-flex" style="height: 100%;overflow: auto">
+                <div id="bookingRequestDetailsTableContainer" class="col" style="width: 100%;height: 100%;overflow: auto;display: none;">
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -1125,6 +1043,78 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row d-flex flex-column align-items-center justify-content-center"
+                 style="width: 90%;height:50%;">
+                <div class="col d-flex flex-column align-items-center justify-content-center"
+                     style="width: 100%;height: 100%;">
+                    <div class="position-relative d-flex flex-column justify-content-center align-items-center"
+                          style="width: 90%;height: 90%;">
+                        <div class="bookingRequestTextFiledContainer d-flex flex-row flex-wrap justify-content-center"
+                             style="width: 90%;height: 70%;">
+                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                 style="height: calc(100%/4*1);">
+                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                    <label class="form-label d-flex" for="bookingRequestId">Booking Request ID</label>
+                                    <input aria-describedby="bookingRequestId" class="form-control d-flex"
+                                           id="bookingRequestId" placeholder="Enter Booking Request Id"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                 style="height: calc(100%/4*1);">
+                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                    <label class="form-label d-flex" for="bookingRequestCusNic">Customer Nic</label>
+                                    <input aria-describedby="bookingRequestCusNic" class="form-control d-flex"
+                                           id="bookingRequestCusNic"
+                                           placeholder="Enter Customer Nic" type="text">
+                                </div>
+                            </div>
+                            <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
+                                 style="height: calc(100%/4*1);">
+                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                    <label class="form-label" for="bookingRequestDate">Booking Request Date</label>
+                                    <input aria-describedby="bookingRequestDate" class="form-control"
+                                           id="bookingRequestDate"
+                                           placeholder="Enter Booking Request Date" type="text">
+                                </div>
+                            </div>
+                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                 style="height: calc(100%/4*1);">
+                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                    <label class="form-label" for="bookingRequestTime">Booking Request Time</label>
+                                    <input aria-describedby="bookingRequestTime" class="form-control"
+                                           id="bookingRequestTime"
+                                           placeholder="Enter  Booking Request Time" type="text">
+                                </div>
+                            </div>
+                            <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
+                                 style="height: calc(100%/4*1);">
+                                <div class="w-75 d-flex flex-column justify-content-center align-items-center">
+                                    <label class="form-label" for="bookingRequestCost">Booking Request Cost</label>
+                                    <input aria-describedby="bookingRequestCost" class="form-control"
+                                           id="bookingRequestCost"
+                                           placeholder="Enter Booking Request Cost" type="number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btnContainer d-flex flex-row align-items-center justify-content-center"
+                             style="width: 100%;height: 30%;">
+                            <div class="row d-flex flex-row justify-content-center align-items-center"
+                                 style="width: 100%;height: 100%;">
+                                <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
+                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
+                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
+                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
+                                    <a class="ms-2 me-2 col-3"
+                                       id="bookingRequestDetailsBtn">
+                                        <button class="btn btn-info w-100 h-100">View All</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
