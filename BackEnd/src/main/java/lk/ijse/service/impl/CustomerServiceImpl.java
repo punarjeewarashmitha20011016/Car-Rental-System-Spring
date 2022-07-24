@@ -32,15 +32,17 @@ public class CustomerServiceImpl implements CustomerService {
     public void update(CustomerDTO dto) {
         if (repo.existsById(dto.getNic())) {
             repo.save(mapper.map(dto, Customer.class));
+        }else {
+            throw new RuntimeException("Customer Update Failed");
         }
-        throw new RuntimeException("Customer Update Failed");
     }
 
     public void delete(String nic) {
         if (repo.existsById(nic)) {
             repo.deleteById(nic);
+        }else {
+            throw new RuntimeException("Customer Delete Failed");
         }
-        throw new RuntimeException("Customer Delete Failed");
     }
 
     public List<CustomerDTO> getAll() {
@@ -51,8 +53,9 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO search(String nic) {
         if (repo.existsById(nic)) {
             return mapper.map(repo.findById(nic), CustomerDTO.class);
+        }else {
+            throw new RuntimeException("Customer Search Failed");
         }
-        throw new RuntimeException("Customer Search Failed");
     }
 
     @Override

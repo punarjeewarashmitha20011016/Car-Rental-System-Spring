@@ -30,15 +30,18 @@ public class AdminServiceImpl implements AdminService {
     public void update(AdminDTO dto) {
         if (repo.existsById(dto.getNic())) {
             repo.save(mapper.map(dto, Admin.class));
+        }else {
+            throw new RuntimeException("Admin Update Failed");
         }
-        throw new RuntimeException("Admin Update Failed");
     }
 
     public void delete(String nic) {
+        System.out.println(nic);
         if (repo.existsById(nic)) {
             repo.deleteById(nic);
+        }else {
+            throw new RuntimeException("Admin Delete Failed");
         }
-        throw new RuntimeException("Admin Delete Failed");
     }
 
     public List<AdminDTO> getAll() {
@@ -49,8 +52,9 @@ public class AdminServiceImpl implements AdminService {
     public AdminDTO search(String nic) {
         if (repo.existsById(nic)) {
             return mapper.map(repo.findById(nic), AdminDTO.class);
+        }else {
+            throw new RuntimeException("Admin Search Failed");
         }
-        throw new RuntimeException("Admin Search Failed");
     }
 
     @Override

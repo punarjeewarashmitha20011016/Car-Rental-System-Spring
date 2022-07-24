@@ -27,13 +27,13 @@ public class AdminController {
         return new ResponseUtil(200, "Admin Updated Successfully", dto);
     }
 
-    @DeleteMapping(params = {"nic"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(params = {"nic"},produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil delete(@RequestParam String nic) {
         adminService.delete(nic);
         return new ResponseUtil(200, "Admin delete Successfully", null);
     }
 
-    @GetMapping(path = "getAll", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAll() {
         return new ResponseUtil(200, "Data Fetched Successfully", adminService.getAll());
     }
