@@ -172,11 +172,19 @@ $(cusDeleteBtnInCustomer).click(function () {
 
 function clearAllFields() {
     cusNicField.val("");
+    $(cusNicField).css("border", "1px solid #ced4da");
     cusNameField.val("");
+    $(cusNameField).css("border", "1px solid #ced4da");
     cusLicenseField.val("");
+    $(cusLicenseField).css("border", "1px solid #ced4da");
     cusLicenseFile.val("");
+    $(cusLicenseFile).css("border", "1px solid #ced4da");
     cusNicFile.val("");
+    $(cusNicFile).css("border", "1px solid #ced4da");
     cusContactNoField.val("");
+    $(cusContactNoField).css("border", "1px solid #ced4da");
     cusEmailField.val("");
+    $(cusEmailField).css("border", "1px solid #ced4da");
     cusPasswordField.val("");
+    $(cusPasswordField).css("border", "1px solid #ced4da");
 }

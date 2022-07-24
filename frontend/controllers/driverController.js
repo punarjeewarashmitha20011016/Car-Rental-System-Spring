@@ -13,7 +13,7 @@ var driverPasswordFieldPattern = /^[A-z.!@#$%&() ]{2,}$/;
 var driverAvailableStatusField = $("#driverAvailableStatusField");
 var driverAvailableStatusFieldPattern = /^(Available||Not Available)$/
 var driverAddressField = $("#driverAddressField");
-var driverAddressFieldPattern = /^[A-z0-9,.  ]*[/][0-9]*[ ]?[A-z,. ]*/
+var driverAddressFieldPattern = /^[A-z0-9,.  ]*[/]?[0-9]*[ ]?[A-z,. ]*/
 var nicFileInDriver = $("#nicFileInDriver");
 var licenseFileInDriver = $("#licenseFileInDriver");
 var driverViewAllTableContainer = $("#driverViewAllTableContainer");
@@ -103,7 +103,7 @@ $(driverSaveBtn).click(function () {
 
     if (confirm('Do you want to save this driver') == true) {
         $.ajax({
-            url: baseUrlCustomer + "driver",
+            url: baseUrlDriver + "driver",
             method: "POST",
             async: true,
             data: data,
@@ -146,7 +146,7 @@ $(driverUpdateBtn).click(function () {
 
     if (confirm('Do you want to update this driver details') == true) {
         $.ajax({
-            url: baseUrlCustomer + "driver",
+            url: baseUrlDriver + "driver",
             method: "PUT",
             async: true,
             data: data,
@@ -168,7 +168,7 @@ $(driverDeleteBtn).off('click');
 $(driverDeleteBtn).click(function () {
     if (confirm('Do you want to delete this driver') == true) {
         $.ajax({
-            url: baseUrlCustomer + "driver?nic=" + driverNicField.val(),
+            url: baseUrlDriver + "driver?nic=" + driverNicField.val(),
             method: "DELETE",
             success: function (resp) {
                 clearAllFields();
@@ -184,13 +184,23 @@ $(driverDeleteBtn).click(function () {
 
 function clearAllFields() {
     driverNicField.val("");
+    $(driverNicField).css("border", "1px solid #ced4da");
     driverNameField.val("");
+    $(driverNameField).css("border", "1px solid #ced4da");
     driverLicenseField.val("");
+    $(driverLicenseField).css("border", "1px solid #ced4da");
     driverContactNoField.val("");
+    $(driverContactNoField).css("border", "1px solid #ced4da");
     driverEmailField.val("");
+    $(driverEmailField).css("border", "1px solid #ced4da");
     driverPasswordField.val("");
+    $(driverPasswordField).css("border", "1px solid #ced4da");
     driverAddressField.val("");
+    $(driverAddressField).css("border", "1px solid #ced4da");
     driverAvailableStatusField.val("");
+    $(driverAvailableStatusField).css("border", "1px solid #ced4da");
     licenseFileInDriver.val("");
+    $(licenseFileInDriver).css("border", "1px solid #ced4da");
     nicFileInDriver.val("");
+    $(nicFileInDriver).css("border", "1px solid #ced4da");
 }

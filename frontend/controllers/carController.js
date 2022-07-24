@@ -279,17 +279,31 @@ function getAllCars() {
 
 function clearFields() {
     carRegNoFieldInCar.val("");
+    $(carRegNoFieldInCar).css("border", "1px solid #ced4da");
     carBrandFieldInCar.val("");
+    $(carBrandFieldInCar).css("border", "1px solid #ced4da");
     carTypeFieldInCar.val("");
+    $(carTypeFieldInCar).css("border", "1px solid #ced4da");
     carTransmissionTypeFieldInCar.val("");
+    $(carTransmissionTypeFieldInCar).css("border", "1px solid #ced4da");
     carFuelTypeFieldInCar.val("");
+    $(carFuelTypeFieldInCar).css("border", "1px solid #ced4da");
     carPassengersFieldInCar.val("");
+    $(carPassengersFieldInCar).css("border", "1px solid #ced4da");
     carMileageInKmFieldInCar.val("");
+    $(carMileageInKmFieldInCar).css("border", "1px solid #ced4da");
     freeMileageFieldInCar.val("");
+    $(freeMileageFieldInCar).css("border", "1px solid #ced4da");
     carPriceForExtraKmFieldInCar.val("");
+    $(carPriceForExtraKmFieldInCar).css("border", "1px solid #ced4da");
     carDailyRateFieldInCar.val("");
+    $(carDailyRateFieldInCar).css("border", "1px solid #ced4da");
     carMonthlyRateFieldInCar.val("");
+    $(carMonthlyRateFieldInCar).css("border", "1px solid #ced4da");
     carBookedOrNotStatusFieldInCar.val("");
+    $(carBookedOrNotStatusFieldInCar).css("border", "1px solid #ced4da");
     carMaintenanceStatusFieldInCar.val("");
+    $(carMaintenanceStatusFieldInCar).css("border", "1px solid #ced4da");
     carImgFile.val("");
+    $(carImgFile).css("border", "1px solid #ced4da");
 }
