@@ -20,10 +20,8 @@ var carViewAllBtn = $("#carViewAllBtn");
 var viewCarScheduleBtn = $("#viewCarScheduleBtn");
 var driverSection = $("#driverSection");
 var driverViewAllBtn = $("#driverViewAllBtn");
-var viewDriverDetailsSection = $("#viewDriverDetailsSection");
 var bookingRequestSection = $("#bookingRequestSection");
 var bookingRequestDetailsBtn = $("#bookingRequestDetailsBtn");
-var bookingRequestDetailsSection = $("#bookingRequestDetailsSection");
 var bookingSection = $("#bookingSection");
 var viewCurrentBookingsBtn = $("#viewCurrentBookingsBtn");
 var viewCurrentBookingsSection = $("#viewCurrentBookingsSection");
@@ -31,7 +29,6 @@ var viewAllBookingsSection = $("#viewAllBookingsSection");
 var incomeSection = $("#incomeSection");
 
 var viewCurrentBookingDetailsBtn = $("#viewCurrentBookingDetailsBtn");
-var viewCurrentBookingDetailsSection = $("#viewAllCurrentBookingDetailsSection");
 
 var viewAllBookingDetailsSection = $("#viewAllBookingDetailsSection");
 var viewAllBookingDetailsBtn = $("#viewAllBookingDetailsBtn");
@@ -215,7 +212,7 @@ $(loginBtn).click(function () {
                         driverBtn.append(aforDriverBtn);
 
                         let driverTextFieldContainer = $("#driverTextFieldContainer");
-                        let driverViewlAllTableContainer = $("#driverViewlAllTableContainer");
+                        let driverViewAllTableContainer = $("#driverViewAllTableContainer");
 
                         $(driverBtn).click(function () {
                             $(headerNav).css('display', 'block');
@@ -241,11 +238,11 @@ $(loginBtn).click(function () {
                         })
                         $(driverViewAllBtn).click(function () {
                             $(driverTextFieldContainer).css('display', 'none')
-                            $(driverViewlAllTableContainer).css('display', 'flex')
+                            $(driverViewAllTableContainer).css('display', 'flex')
                         })
                         $(driverViewAllBtn).dblclick(function () {
                             $(driverTextFieldContainer).css('display', 'flex')
-                            $(driverViewlAllTableContainer).css('display', 'none')
+                            $(driverViewAllTableContainer).css('display', 'none')
                         })
 
 

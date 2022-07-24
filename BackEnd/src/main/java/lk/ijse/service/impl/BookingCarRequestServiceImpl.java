@@ -240,7 +240,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public DriverDTO getAvailableDriver() {
-        List<DriverDTO> driverDTOList = mapper.map(driverRepo.findAllByAvailableStatus("available"), new TypeToken<List<DriverDTO>>() {
+        List<DriverDTO> driverDTOList = mapper.map(driverRepo.findAllByAvailableStatus("Available"), new TypeToken<List<DriverDTO>>() {
         }.getType());
         for (DriverDTO dto : driverDTOList
         ) {

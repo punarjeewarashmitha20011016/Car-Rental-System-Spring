@@ -523,7 +523,7 @@
                                                        placeholder="Enter Car Booked Or Not Status"
                                                        type="text">
                                             </div>
-                                            <div class="col-3 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
+                                            <div class="col-4 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
                                                 <label class="form-label"
                                                        for="carMaintenanceStatusFieldInCar">MaintenanceStatus</label>
@@ -533,7 +533,7 @@
                                                        placeholder="Enter Car Maintenance Status"
                                                        type="text">
                                             </div>
-                                            <div class="col-3 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-center"
+                                            <div class="col-4 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-center"
                                                  style="height: calc(100%/5*1);">
                                                 <label for="carImgFile" class="form-label">Car Images</label>
                                                 <input class="form-control" class="d-flex" id="carImgFile" multiple
@@ -805,20 +805,21 @@
                                 <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
                                      style="height: calc(100%/4*1);">
                                     <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                        <label for="nicfile">Nic Picture</label>
-                                        <input class="form-control" id="nicfile" name="nicPhoto" type="file">
+                                        <label for="nicFileInDriver">Nic Picture</label>
+                                        <input class="form-control" id="nicFileInDriver" name="nicPhoto" type="file">
                                     </div>
                                 </div>
                                 <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
                                      style="height: calc(100%/4*1);">
                                     <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                        <label for="licensefile">License Picture</label>
-                                        <input class="form-control" id="licensefile" name="licensePhoto" type="file">
+                                        <label for="licenseFileInDriver">License Picture</label>
+                                        <input class="form-control" id="licenseFileInDriver" name="licensePhoto"
+                                               type="file">
                                     </div>
                                 </div>
                             </div>
-                            <div id="driverViewlAllTableContainer"
-                                 class="driverViewlAllTableContainer flex-row flex-wrap justify-content-center"
+                            <div id="driverViewAllTableContainer"
+                                 class="driverViewAllTableContainer flex-row"
                                  style="width: 100%;height: 100%;overflow: auto;display: none;">
                                 <table class="table table-hover">
                                     <thead>
@@ -837,45 +838,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -886,9 +848,10 @@
                             <div class="row d-flex flex-row justify-content-center align-items-center"
                                  style="width: 100%;height: 100%;">
                                 <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
-                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
-                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
+                                    <button id="driverSaveBtn" class="btn btn-primary ms-2 me-2 col-3">Save</button>
+                                    <button id="driverUpdateBtn" class="btn btn-secondary ms-2 me-2 col-3">Update
+                                    </button>
+                                    <button id="driverDeleteBtn" class="btn btn-danger ms-2 me-2  col-3">Delete</button>
                                     <a class="ms-2 me-2 col-3"
                                        id="driverViewAllBtn">
                                         <button class="btn btn-info w-100 h-100">View All</button>
@@ -2727,5 +2690,6 @@
 <script src="../frontend/util/Validator.js"></script>
 <script src="../frontend/controllers/customerController.js"></script>
 <script src="../frontend/controllers/carController.js"></script>
+<script src="../frontend/controllers/driverController.js"></script>
 </body>
 </html>
