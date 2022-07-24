@@ -86,7 +86,7 @@ $(cusSaveBtnInCustomer).click(function () {
     let licensePhotoFileName = $("#cusLicenseFile")[0].files[0].name;
     data.append("nicPhoto", nicPhotoFile, nicPhotoFileName);
     data.append("licensePhoto", licensePhotoFile, licensePhotoFileName);
-    data.append("dto", new Blob([JSON.stringify(dto)],{type:"application/json"}));
+    data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
 
     $.ajax({
         url: "http://localhost:8080/BackEnd_war_exploded/customer",
@@ -96,10 +96,92 @@ $(cusSaveBtnInCustomer).click(function () {
         processData: false,
         contentType: false,
         success: function (resp) {
+            clearAllFields();
             alert(resp.message)
         },
         error: function (ob) {
+            clearAllFields();
             alert(ob.message);
         }
     })
 })
+
+$(cusUpdateBtnInCustomer).off('click');
+$(cusUpdateBtnInCustomer).click(function () {
+    console.log("Cus Update Btn")
+    let data = new FormData();
+    let dto = {
+        nic: cusNicField.val(),
+        name: cusNameField.val(),
+        nicPhoto: "",
+        licenseNo: cusLicenseField.val(),
+        licensePhoto: "",
+        contactNo: parseInt(cusContactNoField.val()),
+        email: cusEmailField.val(),
+        password: cusPasswordField.val()
+    }
+    let nicPhotoFile = $("#cusNicFile")[0].files[0];
+    let nicPhotoFileName = $("#cusNicFile")[0].files[0].name;
+    let licensePhotoFile = $("#cusLicenseFile")[0].files[0];
+    let licensePhotoFileName = $("#cusLicenseFile")[0].files[0].name;
+    data.append("nicPhoto", nicPhotoFile, nicPhotoFileName);
+    data.append("licensePhoto", licensePhotoFile, licensePhotoFileName);
+    data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
+
+    $.ajax({
+        url: "http://localhost:8080/BackEnd_war_exploded/customer",
+        method: "PUT",
+        async: true,
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function (resp) {
+            clearAllFields();
+            alert(resp.message)
+        },
+        error: function (ob) {
+            clearAllFields();
+            alert(ob.message);
+        }
+    })
+})
+
+$(cusDeleteBtnInCustomer).off('click');
+$(cusDeleteBtnInCustomer).click(function () {
+    $.ajax({
+        url: "http://localhost:8080/BackEnd_war_exploded/customer",
+        method: "DELETE",
+        success: function (resp) {
+            clearAllFields();
+            alert(resp.message);
+        },
+        error: function (error) {
+            clearAllFields();
+            alert(error.message)
+        }
+    })
+})
+
+function searchCustomer(cusNic) {
+    $.ajax({
+        url: "http://localhost:8080/BackEnd_war_exploded/customer/search?nic=" + cusNic,
+        method: "GET",
+        success: function (resp) {
+
+        },
+        error: function (error) {
+
+        }
+    })
+}
+
+function clearAllFields() {
+    cusNicField.val("");
+    cusNameField.val("");
+    cusLicenseField.val("");
+    cusLicenseFile.val("");
+    cusNicFile.val("");
+    cusContactNoField.val("");
+    cusEmailField.val("");
+    cusPasswordField.val("");
+}

@@ -20,13 +20,6 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-        /*============
-         * var formData = new FormData();
-         * var dtp = {customerDetailsObj}
-         * formData.append("dto",dto)
-         * formData.append("nicPhoto",file,fileName)
-         * formData.append("licensePhoto",file,fileName)
-         * ===========*/
     ResponseUtil save(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         System.out.println("Post Request");
         System.out.println(dto.toString());
@@ -39,7 +32,7 @@ public class CustomerController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@ModelAttribute CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+    ResponseUtil update(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
         dto.setNicPhoto(nicFile.getOriginalFilename());
