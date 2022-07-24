@@ -38,12 +38,12 @@ public class AdminController {
         return new ResponseUtil(200, "Data Fetched Successfully", adminService.getAll());
     }
 
-    @GetMapping(path = "search", params = {"nic"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "search", params = {"nic"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil search(@RequestParam String nic) {
         return new ResponseUtil(200, "Admin Searched Successfully", adminService.search(nic));
     }
 
-    @GetMapping(path = "loginCheckAdmin", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "loginCheckAdmin", params = {"email", "password"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAdminLogin(@RequestParam String email, @RequestParam String password) {
         return new ResponseUtil(200, "Admin Login Successful", adminService.checkAdminLogin(email, password));
     }
