@@ -22,16 +22,19 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil save(@ModelAttribute CarDTO dto, @RequestPart("files") MultipartFile[] files) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil save(@RequestPart("dto") CarDTO dto, @RequestPart("carImgFile") MultipartFile[] files) {
+        System.out.println("POST");
+        System.out.println(dto.toString());
+        System.out.println(files.toString());
         CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
         carService.save(dto);
         return new ResponseUtil(200, "Car Saved Successfully", dto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@ModelAttribute CarDTO dto, @RequestPart("files") MultipartFile[] files) {
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil update(@RequestPart("dto") CarDTO dto, @RequestPart("files") MultipartFile[] files) {
         CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
         carService.update(dto);

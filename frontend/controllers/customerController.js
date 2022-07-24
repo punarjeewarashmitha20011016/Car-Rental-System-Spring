@@ -24,6 +24,8 @@ var cusDeleteBtnInCustomer = $("#cusDeleteBtnInCustomer");
 
 var cusInputsArr = [cusNicField, cusNameField, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField];
 
+let baseUrlCustomer = "http://localhost:8080/BackEnd_war_exploded/";
+
 $(cusNicField, cusNameField, cusNicFile, cusLicenseFile, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField).off('keydown');
 $(cusNicField, cusNameField, cusNicFile, cusLicenseFile, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField).keydown(function (e) {
     if (e.key == 'Tab') {
@@ -88,22 +90,24 @@ $(cusSaveBtnInCustomer).click(function () {
     data.append("licensePhoto", licensePhotoFile, licensePhotoFileName);
     data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
 
-    $.ajax({
-        url: "http://localhost:8080/BackEnd_war_exploded/customer",
-        method: "POST",
-        async: true,
-        data: data,
-        processData: false,
-        contentType: false,
-        success: function (resp) {
-            clearAllFields();
-            alert(resp.message)
-        },
-        error: function (ob) {
-            clearAllFields();
-            alert(ob.message);
-        }
-    })
+    if (confirm('Do you want to save this customer') == true) {
+        $.ajax({
+            url: baseUrlCustomer + "customer",
+            method: "POST",
+            async: true,
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                clearAllFields();
+                alert(resp.message)
+            },
+            error: function (ob) {
+                clearAllFields();
+                alert(ob.message);
+            }
+        })
+    }
 })
 
 $(cusUpdateBtnInCustomer).off('click');
@@ -128,52 +132,43 @@ $(cusUpdateBtnInCustomer).click(function () {
     data.append("licensePhoto", licensePhotoFile, licensePhotoFileName);
     data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
 
-    $.ajax({
-        url: "http://localhost:8080/BackEnd_war_exploded/customer",
-        method: "PUT",
-        async: true,
-        data: data,
-        processData: false,
-        contentType: false,
-        success: function (resp) {
-            clearAllFields();
-            alert(resp.message)
-        },
-        error: function (ob) {
-            clearAllFields();
-            alert(ob.message);
-        }
-    })
+    if (confirm('Do you want to update this customer details') == true) {
+        $.ajax({
+            url: baseUrlCustomer + "customer",
+            method: "PUT",
+            async: true,
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function (resp) {
+                clearAllFields();
+                alert(resp.message)
+            },
+            error: function (ob) {
+                clearAllFields();
+                alert(ob.message);
+            }
+        })
+    }
 })
 
 $(cusDeleteBtnInCustomer).off('click');
 $(cusDeleteBtnInCustomer).click(function () {
-    $.ajax({
-        url: "http://localhost:8080/BackEnd_war_exploded/customer",
-        method: "DELETE",
-        success: function (resp) {
-            clearAllFields();
-            alert(resp.message);
-        },
-        error: function (error) {
-            clearAllFields();
-            alert(error.message)
-        }
-    })
+    if (confirm('Do you want to delete this customer') == true) {
+        $.ajax({
+            url: baseUrlCustomer + "customer?nic=" + cusNicField.val(),
+            method: "DELETE",
+            success: function (resp) {
+                clearAllFields();
+                alert(resp.message);
+            },
+            error: function (error) {
+                clearAllFields();
+                alert(error.message)
+            }
+        })
+    }
 })
-
-function searchCustomer(cusNic) {
-    $.ajax({
-        url: "http://localhost:8080/BackEnd_war_exploded/customer/search?nic=" + cusNic,
-        method: "GET",
-        success: function (resp) {
-
-        },
-        error: function (error) {
-
-        }
-    })
-}
 
 function clearAllFields() {
     cusNicField.val("");
