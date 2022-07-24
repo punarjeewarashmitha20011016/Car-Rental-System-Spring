@@ -19,7 +19,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
         /*============
          * var formData = new FormData();
          * var dtp = {customerDetailsObj}
@@ -27,7 +27,9 @@ public class CustomerController {
          * formData.append("nicPhoto",file,fileName)
          * formData.append("licensePhoto",file,fileName)
          * ===========*/
-    ResponseUtil save(@ModelAttribute CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+    ResponseUtil save(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+        System.out.println("Post Request");
+        System.out.println(dto.toString());
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
         dto.setNicPhoto(nicFile.getOriginalFilename());
