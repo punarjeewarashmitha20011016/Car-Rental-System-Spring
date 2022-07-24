@@ -60,7 +60,7 @@ public class BookingCarServiceImpl implements BookingCarService {
         ) {
             bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked")) {
+            if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked") || car.getCarBookedOrNotStatus().equals("NOT BOOKED"))) {
                 throw new RuntimeException("Booking a Car failed");
             }
             /*Updating the car booked status to Not booked after returning the car*/

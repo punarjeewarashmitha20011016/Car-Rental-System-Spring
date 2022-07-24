@@ -19,8 +19,8 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil save(@ModelAttribute DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil save(@RequestPart("dto") DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
         dto.setNicPhoto(nicFile.getOriginalFilename());
@@ -29,8 +29,8 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Saved Successfully", dto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@ModelAttribute DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil update(@RequestPart("dto") DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
         dto.setNicPhoto(nicFile.getOriginalFilename());
@@ -39,27 +39,28 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Updated Successfully", dto);
     }
 
-    @DeleteMapping(params = {"nic"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(params = {"nic"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil delete(@RequestParam String nic) {
         driverService.delete(nic);
         return new ResponseUtil(200, "Driver delete Successfully", null);
     }
 
-    @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAll() {
         return new ResponseUtil(200, "Data Fetched Successfully", driverService.getAll());
     }
 
-    @GetMapping(path = "search", params = {"nic"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "search", params = {"nic"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil search(@RequestParam String nic) {
         return new ResponseUtil(200, "Driver Searched Successfully", driverService.search(nic));
     }
 
-    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getDriverSchedule() {
         return new ResponseUtil(200, "Data Fetched Successfully", driverService.getDriverScheduleList());
     }
-    @GetMapping(path = "loginCheckDriver", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(path = "loginCheckDriver", params = {"email", "password"})
     ResponseUtil checkDriverLogin(@RequestParam String email, @RequestParam String password) {
         return new ResponseUtil(200, "Admin Login Successful", driverService.checkDriverLogin(email, password));
     }

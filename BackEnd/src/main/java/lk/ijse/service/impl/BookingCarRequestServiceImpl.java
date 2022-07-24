@@ -104,7 +104,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             for (BookingRequestDetailsDTO b : bookingList
             ) {
                 Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-                if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked") || car.getMaintenanceStatus().equals("Under Maintenance")) {
+                if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Booked")||car.getCarBookedOrNotStatus().equals("BOOKED"))|| car.getMaintenanceStatus().equals("Under Maintenance")) {
                     paymentsRepo.deleteById(dto.getPayments().getPaymentsId());
                     throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
                 }
@@ -146,7 +146,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         ) {
             pendingBookingDetailsRepo.save(mapper.map(b, PendingBookingDetails.class));
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Booked")) {
+            if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Booked")||car.getCarBookedOrNotStatus().equals("BOOKED"))) {
                 throw new RuntimeException("Booking a Car failed");
             }
 
@@ -187,7 +187,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         for (BookingRequestDetailsDTO b : bookingList
         ) {
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked") || car.getMaintenanceStatus().equals("Under Maintenance")) {
+            if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked")||car.getCarBookedOrNotStatus().equals("NOT BOOKED")) || car.getMaintenanceStatus().equals("Under Maintenance")) {
                 throw new RuntimeException("Booking a Car failed Because this Car iss already booked or in Under Maintenance state");
             }
             if (b.getDriverNic() == null) {

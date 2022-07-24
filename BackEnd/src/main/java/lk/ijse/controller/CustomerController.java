@@ -31,7 +31,7 @@ public class CustomerController {
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
@@ -57,7 +57,7 @@ public class CustomerController {
         return new ResponseUtil(200, "Customer Searched Successfully", customerService.search(nic));
     }
 
-    @GetMapping(path = "loginCheckCustomer", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "loginCheckCustomer", params = {"email", "password"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAdminLogin(@RequestParam String email, @RequestParam String password) {
         return new ResponseUtil(200, "Customer Login Successful", customerService.checkCustomerLogin(email, password));
     }
