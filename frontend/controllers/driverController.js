@@ -110,11 +110,11 @@ $(driverSaveBtn).click(function () {
             processData: false,
             contentType: false,
             success: function (resp) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(resp.message)
             },
             error: function (ob) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(ob.message);
             }
         })
@@ -153,11 +153,11 @@ $(driverUpdateBtn).click(function () {
             processData: false,
             contentType: false,
             success: function (resp) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(resp.message)
             },
             error: function (ob) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(ob.message);
             }
         })
@@ -171,18 +171,18 @@ $(driverDeleteBtn).click(function () {
             url: baseUrlDriver + "driver?nic=" + driverNicField.val(),
             method: "DELETE",
             success: function (resp) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(resp.message);
             },
             error: function (error) {
-                clearAllFields();
+                clearAllDriverFields();
                 alert(error.message)
             }
         })
     }
 })
 
-function clearAllFields() {
+function clearAllDriverFields() {
     driverNicField.val("");
     $(driverNicField).css("border", "1px solid #ced4da");
     driverNameField.val("");

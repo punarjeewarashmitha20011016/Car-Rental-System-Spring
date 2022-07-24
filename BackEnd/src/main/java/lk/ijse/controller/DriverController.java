@@ -23,8 +23,8 @@ public class DriverController {
     ResponseUtil save(@RequestPart("dto") DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
-        dto.setNicPhoto(nicFile.getOriginalFilename());
-        dto.setLicensePhoto(licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" +nicFile.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" +licenseFile.getOriginalFilename());
         driverService.save(dto);
         return new ResponseUtil(200, "Driver Saved Successfully", dto);
     }

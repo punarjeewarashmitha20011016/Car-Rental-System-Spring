@@ -99,11 +99,11 @@ $(cusSaveBtnInCustomer).click(function () {
             processData: false,
             contentType: false,
             success: function (resp) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(resp.message)
             },
             error: function (ob) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(ob.message);
             }
         })
@@ -141,11 +141,11 @@ $(cusUpdateBtnInCustomer).click(function () {
             processData: false,
             contentType: false,
             success: function (resp) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(resp.message)
             },
             error: function (ob) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(ob.message);
             }
         })
@@ -159,18 +159,18 @@ $(cusDeleteBtnInCustomer).click(function () {
             url: baseUrlCustomer + "customer?nic=" + cusNicField.val(),
             method: "DELETE",
             success: function (resp) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(resp.message);
             },
             error: function (error) {
-                clearAllFields();
+                clearAllCustomerFields();
                 alert(error.message)
             }
         })
     }
 })
 
-function clearAllFields() {
+function clearAllCustomerFields() {
     cusNicField.val("");
     $(cusNicField).css("border", "1px solid #ced4da");
     cusNameField.val("");
@@ -187,4 +187,34 @@ function clearAllFields() {
     $(cusEmailField).css("border", "1px solid #ced4da");
     cusPasswordField.val("");
     $(cusPasswordField).css("border", "1px solid #ced4da");
+}
+
+function getAllCustomers() {
+    $.ajax({
+        url: baseUrlCustomer + "customer/getAll",
+        method: "GET",
+        success: function (resp) {
+            if (resp.status = 200) {
+                let data = resp.data;
+                console.log(resp.data);
+                let tbody = $("#customerDetailsTableContainer").children('table').children('tbody');
+                $(tbody).empty();
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].nicPhoto);
+                    let row = `<tr>
+                                    <td>` + (i + 1) + `</td>
+                                     <td>` + data[i].nic + `</td>
+                                     <td>` + data[i].name + `</td>
+                                     <td>` + data[i].licenseNo + `</td>
+                                     <td>` + data[i].contactNo + `</td>
+                                     <td>` + data[i].email + `</td>
+                                     <td>` + data[i].password + `</td>
+                                     <td><img src="${baseUrlCustomer + "/" + data[i].nicPhoto}" width="100px"></td>
+                                     <td><img src="${baseUrlCustomer + "/" + data[i].licensePhoto}" width="100px"></td>             
+                               </tr>`;
+                    tbody.append(row);
+                }
+            }
+        }
+    })
 }

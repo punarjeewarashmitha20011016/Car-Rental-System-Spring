@@ -180,6 +180,7 @@ $(loginBtn).click(function () {
                         aforCustomerBtn.className = "text-black text-decoration-none";
                         customerBtn.append(aforCustomerBtn);
                         $(customerBtn).click(function () {
+                            getAllCustomers();
                             $(headerNav).css('display', 'block');
                             $(homeSection).css('display', 'none');
                             $(customerSection).css('display', 'none');

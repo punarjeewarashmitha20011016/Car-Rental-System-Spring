@@ -25,8 +25,8 @@ public class CustomerController {
         System.out.println(dto.toString());
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
-        dto.setNicPhoto(nicFile.getOriginalFilename());
-        dto.setLicensePhoto(licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" +nicFile.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" +licenseFile.getOriginalFilename());
         customerService.save(dto);
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }

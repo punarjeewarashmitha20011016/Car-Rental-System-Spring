@@ -159,13 +159,13 @@ $(carSaveBtnInCar).click(function () {
         processData: false,
         success: function (resp) {
             if (resp.status == 200) {
-                clearFields();
+                clearCarFields();
                 alert(resp.message);
                 getAllCars();
             }
         },
         error: function (error) {
-            clearFields();
+            clearCarFields();
             alert(error.message);
         }
     })
@@ -204,13 +204,13 @@ $(carUpdateBtnInCar).click(function () {
         processData: false,
         success: function (resp) {
             if (resp.status == 200) {
-                clearFields();
+                clearCarFields();
                 alert(resp.message);
                 getAllCars();
             }
         },
         error: function (error) {
-            clearFields();
+            clearCarFields();
             alert(error.message);
         }
     })
@@ -222,12 +222,12 @@ $(carDeleteBtnInCar).click(function () {
         url: baseUrlCar + "car?regNo=" + carRegNoFieldInCar.val(),
         method: "DELETE",
         success: function (resp) {
-            clearFields();
+            clearCarFields();
             alert(resp.message);
             getAllCars();
         },
         error: function (error) {
-            clearFields();
+            clearCarFields();
             alert(error.message);
         }
     })
@@ -277,7 +277,7 @@ function getAllCars() {
     })
 }
 
-function clearFields() {
+function clearCarFields() {
     carRegNoFieldInCar.val("");
     $(carRegNoFieldInCar).css("border", "1px solid #ced4da");
     carBrandFieldInCar.val("");
