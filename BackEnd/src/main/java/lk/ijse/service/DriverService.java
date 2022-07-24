@@ -21,4 +21,6 @@ public interface DriverService {
     DriverDTO search(String nic);
 
     List<DriverScheduleDTO> getDriverScheduleList();
+
+    boolean checkDriverLogin(String email, String password);
 }

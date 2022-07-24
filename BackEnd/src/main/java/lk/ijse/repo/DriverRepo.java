@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DriverRepo extends JpaRepository<Driver, String> {
     Driver findAllByAvailableStatus(String status);
+    boolean existsDriverByEmailAndPassword(String email, String password);
 }

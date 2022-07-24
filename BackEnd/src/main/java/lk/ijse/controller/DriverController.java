@@ -59,6 +59,10 @@ public class DriverController {
     ResponseUtil getDriverSchedule() {
         return new ResponseUtil(200, "Data Fetched Successfully", driverService.getDriverScheduleList());
     }
+    @GetMapping(path = "loginCheckDriver", params = {"email", "password"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil checkDriverLogin(@RequestParam String email, @RequestParam String password) {
+        return new ResponseUtil(200, "Admin Login Successful", driverService.checkDriverLogin(email, password));
+    }
 
     private MultipartFile saveAnUpdateFile(MultipartFile file1) {
         MultipartFile file = file1;

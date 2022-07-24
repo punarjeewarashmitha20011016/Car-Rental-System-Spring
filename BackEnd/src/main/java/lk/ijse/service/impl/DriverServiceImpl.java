@@ -77,4 +77,12 @@ public class DriverServiceImpl implements DriverService {
         }
         return dtos;
     }
+
+    @Override
+    public boolean checkDriverLogin(String email, String password) {
+        if (!repo.existsDriverByEmailAndPassword(email, password)) {
+            throw new RuntimeException("Driver Login Failed");
+        }
+        return true;
+    }
 }
