@@ -101,7 +101,6 @@ totalCostInPlacingBookingRequest.keyup(function (e) {
 $(document).ready(function () {
     setBookingIdToField();
     assignDriverToField();
-    setCarRegNoToFieldWhenSpecificCarIsChosen();
     totalCostInPlacingBookingRequest.prop('disabled', true);
     placeBookingRequestBtn.prop('disabled', true);
     updateBookingRequestBtn.prop('disabled', true);
@@ -234,10 +233,12 @@ function setBookingIdToField() {
 }
 
 function setCarRegNoToFieldWhenSpecificCarIsChosen() {
+    console.log('setCarRegNoToFieldWhenSpecificCarIsChosen')
     for (let i = 0; i < carBookingChooserBtnArr.length; i++) {
+        console.log(carBookingChooserBtnArr[i].btn);
         carBookingChooserBtnArr[i].btn.click(function () {
-
-            carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].c_RegNo);
+            console.log('clicked')
+            carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].carRegNo);
         })
     }
 }

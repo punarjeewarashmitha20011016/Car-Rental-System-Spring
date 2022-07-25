@@ -50,6 +50,7 @@ var viewDriverAccountSection = $("#viewDriverAccountSection");
 $(document).ready(function () {
     $(arr).remove();
     $(signupBtn).css('display', 'block');
+    getAllCars();
     if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
         let homeBtn = document.createElement("li");
         homeBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
@@ -83,9 +84,10 @@ $(document).ready(function () {
             $(viewDriverScheduleInDriverSection).css('display', 'none');
             $(viewDriverAccountSection).css('display', 'none');
         })
-
+        getAllCars();
+        setViewAllCarsBookingBtnsDisableAndEnable(false);
+        $(viewAllCarsForUserBtn).off('click');
         $(viewAllCarsForUserBtn).click(function () {
-            getAllCars();
             $(leftNavBtnForCarView).css('cursor', 'pointer')
             $(rightNavBtnForCarView).css('cursor', 'pointer')
             let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
@@ -535,7 +537,9 @@ $(loginBtn).click(function () {
             success: function (resp) {
                 if (resp.status = 200) {
                     if (resp.data == true) {
+                        setViewAllCarsBookingBtnsDisableAndEnable(true);
                         searchCustomerForAccountTableDataLoading();
+                        setCarRegNoToFieldWhenSpecificCarIsChosen();
                         $(signupBtn).css('display', 'block')
                         $(headerNav).css('display', 'block');
                         $(homeSection).css('display', 'flex');
@@ -603,7 +607,9 @@ $(loginBtn).click(function () {
                             viewCarsBtn.append(aForViewCarsBtn);
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(viewCarsBtn);
 
+                            $(viewCarsBtn).off('click')
                             $(viewCarsBtn).click(function () {
+                                setViewAllCarsBookingBtnsDisableAndEnable(true);
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -945,3 +951,158 @@ $(logoutBtnInCustomerForm).click(function () {
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 })
+
+
+function getAllCars() {
+    console.log('getAllCars Invoked')
+    $.ajax({
+        url: baseUrl + "car/getAll",
+        method: "GET",
+        success: function (resp) {
+            if (resp.status = 200) {
+                let data = resp.data;
+                addCarsToViewInTheHome(data);
+                console.log(resp.data);
+                let tbody = $(carViewAllTableContainer).children('table').children('tbody');
+                $(tbody).empty();
+                for (let i = 0; i < data.length; i++) {
+                    let row = `<tr>
+                                    <td>` + (i + 1) + `</td>
+                                     <td>` + data[i].c_RegNo + `</td>
+                                     <td>` + data[i].brand + `</td>
+                                     <td>` + data[i].type + `</td>
+                                     <td>` + data[i].transmissionType + `</td>
+                                     <td>` + data[i].fuelType + `</td>
+                                     <td>` + data[i].noOfPassengers + `</td>
+                                     <td>` + data[i].mileageInKm + `</td>
+                                     <td>` + data[i].freeMileage + `</td>
+                                     <td>` + data[i].priceForExtraKm + `</td>
+                                     <td>` + data[i].dailyRate + `</td>
+                                     <td>` + data[i].monthlyRate + `</td>
+                                     <td>` + data[i].carBookedOrNotStatus + `</td>
+                                     <td>` + data[i].maintenanceStatus + `</td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.firstImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.secondImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.thirdImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.fourthImage}" width="100px"></td>
+                                     
+                               </tr>`;
+                    tbody.append(row);
+                }
+            }
+        }
+    })
+}
+
+function addCarsToViewInTheHome(arr) {
+    carBookingChooserBtnArr.splice(0, carBookingChooserBtnArr.length);
+    let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
+    $(cardsContainingContainerInCustomerSection).empty();
+    for (let i = 0; i < arr.length; i++) {
+        let rootContainerDiv = document.createElement("div");
+        rootContainerDiv.className = 'col-1 card d-flex ms-3 me-3 align-items-center justify-content-center shadow-lg';
+        rootContainerDiv.style.height = '100%';
+
+        let rootContainerDivFirstChildDiv = document.createElement("div");
+        rootContainerDivFirstChildDiv.className = 'row d-flex align-items-center justify-content-center';
+        rootContainerDivFirstChildDiv.style.width = '100%';
+        rootContainerDivFirstChildDiv.style.height = '100%';
+
+        let rootContainerDivFirstChildDivFirstChildDiv = document.createElement("div");
+        rootContainerDivFirstChildDivFirstChildDiv.className = 'col-12 d-flex ps-0 pe-0 flex-wrap';
+        rootContainerDivFirstChildDivFirstChildDiv.style.height = '65%';
+
+        let firstImgDiv = document.createElement("div");
+        firstImgDiv.className = 'col-6';
+
+        let firstImg = document.createElement('img');
+        firstImg.className = 'w-100 h-100';
+        firstImg.alt = "";
+        firstImg.src = baseUrl + "/" + arr[i].images.firstImage;
+
+        firstImgDiv.append(firstImg);
+
+        let secondImgDiv = document.createElement("div");
+        secondImgDiv.className = 'col-6';
+
+        let secondImg = document.createElement('img');
+        secondImg.className = 'w-100 h-100';
+        secondImg.alt = "";
+        secondImg.src = baseUrl + "/" + arr[i].images.secondImage;
+
+        secondImgDiv.append(secondImg);
+
+        let thirdImgDiv = document.createElement("div");
+        thirdImgDiv.className = 'col-6';
+
+        let thirdImg = document.createElement('img');
+        thirdImg.className = 'w-100 h-100';
+        thirdImg.alt = "";
+        thirdImg.src = baseUrl + "/" + arr[i].images.thirdImage;
+
+        thirdImgDiv.append(thirdImg);
+
+        let fourthImgDiv = document.createElement("div");
+        fourthImgDiv.className = 'col-6';
+
+        let fourthImg = document.createElement('img');
+        fourthImg.className = 'w-100 h-100';
+        fourthImg.alt = "";
+        fourthImg.src = baseUrl + "/" + arr[i].images.fourthImage;
+
+        fourthImgDiv.append(fourthImg);
+
+        rootContainerDivFirstChildDivFirstChildDiv.append(firstImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(secondImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(thirdImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(fourthImgDiv);
+
+        let btnContainer = document.createElement("div");
+        btnContainer.className = 'col-12 flex-wrap d-flex align-items-center justify-content-center';
+        btnContainer.style.height = '35%';
+
+        let firstChildDivInBtnContainer = document.createElement('div');
+        firstChildDivInBtnContainer.className = 'col-12 text-center justify-content-center align-items-center d-flex';
+        firstChildDivInBtnContainer.style.height = '60%';
+
+        let h5InFirstChildDivInBtnContainer = document.createElement('h5');
+        h5InFirstChildDivInBtnContainer.innerHTML = arr[i].images.firstImage.split("/")[1];
+
+        let secondChildDivInBtnContainer = document.createElement('div');
+        secondChildDivInBtnContainer.className = 'col-12 d-flex align-items-center justify-content-center';
+        secondChildDivInBtnContainer.style.height = '40%';
+
+        /*let btnWrapperATag = document.createElement('a');
+        btnWrapperATag.style.textDecoration = 'none';
+        btnWrapperATag.href = "#placingBookingRequestInCustomer"*/
+        let btn = document.createElement('button');
+        btn.className = 'btn btn-primary';
+        btn.innerHTML = 'Book Now';
+        btn.id = (i + 1) + "carBookBtn";
+        $(btn).prop('disabled', true);
+        let btnWithCarRegNo = {
+            carRegNo: arr[i].c_RegNo,
+            btn: btn,
+        }
+        carBookingChooserBtnArr.push(btnWithCarRegNo);
+        firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
+        secondChildDivInBtnContainer.append(btn);
+        btnContainer.append(firstChildDivInBtnContainer);
+        btnContainer.append(secondChildDivInBtnContainer);
+        rootContainerDivFirstChildDiv.append(rootContainerDivFirstChildDivFirstChildDiv);
+        rootContainerDivFirstChildDiv.append(btnContainer);
+        rootContainerDiv.append(rootContainerDivFirstChildDiv);
+        cardsContainingContainerInCustomerSection.append(rootContainerDiv);
+    }
+}
+
+function setViewAllCarsBookingBtnsDisableAndEnable(bool) {
+    for (let i = 0; i < carBookingChooserBtnArr.length; i++) {
+        if (bool == true) {
+            console.log('false')
+            $(carBookingChooserBtnArr[i].btn).prop('disabled', false);
+        } else {
+            $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
+        }
+    }
+}
