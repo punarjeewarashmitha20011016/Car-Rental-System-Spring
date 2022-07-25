@@ -124,7 +124,6 @@ carMaintenanceStatusFieldInCar.keyup(function (e) {
     validate(carMaintenanceStatusFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
-let baseUrlCar = "http://localhost:8080/BackEnd_war_exploded/";
 
 $(carSaveBtnInCar).off('click');
 $(carSaveBtnInCar).click(function () {
@@ -152,7 +151,7 @@ $(carSaveBtnInCar).click(function () {
     }
 
     $.ajax({
-        url: baseUrlCar + "car",
+        url: baseUrl + "car",
         method: "POST",
         data: data,
         contentType: false,
@@ -197,7 +196,7 @@ $(carUpdateBtnInCar).click(function () {
     }
 
     $.ajax({
-        url: baseUrlCar + "car",
+        url: baseUrl + "car",
         method: "PUT",
         data: data,
         contentType: false,
@@ -219,7 +218,7 @@ $(carUpdateBtnInCar).click(function () {
 $(carDeleteBtnInCar).off('click');
 $(carDeleteBtnInCar).click(function () {
     $.ajax({
-        url: baseUrlCar + "car?regNo=" + carRegNoFieldInCar.val(),
+        url: baseUrl + "car?regNo=" + carRegNoFieldInCar.val(),
         method: "DELETE",
         success: function (resp) {
             clearCarFields();
@@ -241,7 +240,7 @@ $(carViewAllBtn).click(function () {
 function getAllCars() {
     console.log('getAllCars Invoked')
     $.ajax({
-        url: baseUrlCar + "car/getAll",
+        url: baseUrl + "car/getAll",
         method: "GET",
         success: function (resp) {
             if (resp.status = 200) {
@@ -266,10 +265,10 @@ function getAllCars() {
                                      <td>` + data[i].monthlyRate + `</td>
                                      <td>` + data[i].carBookedOrNotStatus + `</td>
                                      <td>` + data[i].maintenanceStatus + `</td>
-                                     <td><img src="${baseUrlCar + "/" + data[i].images.firstImage}" width="100px"></td>
-                                     <td><img src="${baseUrlCar + "/" + data[i].images.secondImage}" width="100px"></td>
-                                     <td><img src="${baseUrlCar + "/" + data[i].images.thirdImage}" width="100px"></td>
-                                     <td><img src="${baseUrlCar + "/" + data[i].images.fourthImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.firstImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.secondImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.thirdImage}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].images.fourthImage}" width="100px"></td>
                                      
                                </tr>`;
                     tbody.append(row);

@@ -132,7 +132,7 @@ $(loginBtn).click(function () {
     $(arr).remove();
     try {
         $.ajax({
-            url: "http://localhost:8080/BackEnd_war_exploded/admin/loginCheckAdmin?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl+"admin/loginCheckAdmin?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status == 200) {
@@ -529,7 +529,7 @@ $(loginBtn).click(function () {
         })
 
         $.ajax({
-            url: "http://localhost:8080/BackEnd_war_exploded/customer/loginCheckCustomer?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl+"customer/loginCheckCustomer?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status = 200) {
@@ -753,7 +753,7 @@ $(loginBtn).click(function () {
         })
 
         $.ajax({
-            url: "http://localhost:8080/BackEnd_war_exploded/customer/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl+"customer/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status = 200) {

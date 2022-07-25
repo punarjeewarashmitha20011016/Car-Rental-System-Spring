@@ -40,6 +40,7 @@ var bookingReqFieldArr = [bookingReqIdInPlacingBookingRequest, carRegNoInPlacing
 ]
 
 $(document).ready(function () {
+    assignDriverToField();
     placeBookingRequestBtn.prop('disabled', true);
     updateBookingRequestBtn.prop('disabled', true);
     deleteBookingRequestBtn.prop('disabled', true);
@@ -49,6 +50,11 @@ $(document).ready(function () {
 
 bookingReqIdInPlacingBookingRequest.off('keyup');
 bookingReqIdInPlacingBookingRequest.keyup(function (e) {
+    if (e.key == 'Enter') {
+        disableOrEnablePlaceBookingRequestBtns(placeBookingRequestBtn, false);
+        disableOrEnablePlaceBookingRequestBtns(updateBookingRequestBtn, false);
+        disableOrEnablePlaceBookingRequestBtns(deleteBookingRequestBtn, false);
+    }
     let index = 0;
     validate(bookingReqIdInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
@@ -100,5 +106,49 @@ costInPlacingBookingRequest.keyup(function (e) {
 })
 
 if ($(lossDamageWaiverSlipInPlacingBookingRequest)[0].files.length != 0) {
-    placeBookingRequestBtn.prop('disabled', false);
+    disableOrEnablePlaceBookingRequestBtns(placeBookingRequestBtn, false);
 }
+
+function disableOrEnablePlaceBookingRequestBtns(btn, check) {
+    btn.prop('disabled', check);
+}
+
+function assignDriverToField() {
+    $.ajax({
+        url: baseUrl + "bookingCarRequestController/checkAvailableDriver",
+        method: "GET",
+        success: function (resp) {
+            let data = resp.data;
+            if (resp.status == 200) {
+                driverNicInPlacingBookingRequest.val(data.nic);
+            }
+        },
+        error: function (error) {
+
+        }
+    })
+}
+
+$(addToCartInBookingRequestBtn).click(function () {
+    let lossDamageFile = {
+        file: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0],
+        fileName: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0].name
+    }
+    let addToCartList = {
+        bookingId: bookingReqIdInPlacingBookingRequest.val(),
+        carRegNo: carRegNoInPlacingBookingRequest.val(),
+        cusNic: cusNicInPlacingBookingRequest.val(),
+        driverNic: driverNicInPlacingBookingRequest.val(),
+        carType: carTypeInPlacingBookingRequest.val(),
+        tripInKm: tripInKMInPlacingBookingRequest.val(),
+        dateOfPickup: dateOfPickupInPlacingBookingRequest.val(),
+        timeOfPickup: timeOfPickupInPlacingBookingRequest.val(),
+        pickupVenue: pickupVenueInPlacingBookingRequest.val(),
+        returnDate: returnedDateInPlacingBookingRequest.val(),
+        returnTime: returnedTimeInPlacingBookingRequest.val(),
+        returnVenue: returnVenueInPlacingBookingRequest.val(),
+        lossDamageWaiver: lossDamageWaiverInPlacingBookingRequest.val(),
+        lossDamageFile: lossDamageFile
+    }
+})
+

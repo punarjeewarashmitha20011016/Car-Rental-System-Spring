@@ -24,8 +24,6 @@ var cusDeleteBtnInCustomer = $("#cusDeleteBtnInCustomer");
 
 var cusInputsArr = [cusNicField, cusNameField, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField];
 
-let baseUrlCustomer = "http://localhost:8080/BackEnd_war_exploded/";
-
 $(cusNicField, cusNameField, cusNicFile, cusLicenseFile, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField).off('keydown');
 $(cusNicField, cusNameField, cusNicFile, cusLicenseFile, cusLicenseField, cusContactNoField, cusEmailField, cusPasswordField).keydown(function (e) {
     if (e.key == 'Tab') {
@@ -92,7 +90,7 @@ $(cusSaveBtnInCustomer).click(function () {
 
     if (confirm('Do you want to save this customer') == true) {
         $.ajax({
-            url: baseUrlCustomer + "customer",
+            url: baseUrl + "customer",
             method: "POST",
             async: true,
             data: data,
@@ -134,7 +132,7 @@ $(cusUpdateBtnInCustomer).click(function () {
 
     if (confirm('Do you want to update this customer details') == true) {
         $.ajax({
-            url: baseUrlCustomer + "customer",
+            url: baseUrl + "customer",
             method: "PUT",
             async: true,
             data: data,
@@ -156,7 +154,7 @@ $(cusDeleteBtnInCustomer).off('click');
 $(cusDeleteBtnInCustomer).click(function () {
     if (confirm('Do you want to delete this customer') == true) {
         $.ajax({
-            url: baseUrlCustomer + "customer?nic=" + cusNicField.val(),
+            url: baseUrl + "customer?nic=" + cusNicField.val(),
             method: "DELETE",
             success: function (resp) {
                 clearAllCustomerFields();
@@ -191,7 +189,7 @@ function clearAllCustomerFields() {
 
 function getAllCustomers() {
     $.ajax({
-        url: baseUrlCustomer + "customer/getAll",
+        url: baseUrl + "customer/getAll",
         method: "GET",
         success: function (resp) {
             if (resp.status = 200) {
@@ -209,8 +207,8 @@ function getAllCustomers() {
                                      <td>` + data[i].contactNo + `</td>
                                      <td>` + data[i].email + `</td>
                                      <td>` + data[i].password + `</td>
-                                     <td><img src="${baseUrlCustomer + "/" + data[i].nicPhoto}" width="100px"></td>
-                                     <td><img src="${baseUrlCustomer + "/" + data[i].licensePhoto}" width="100px"></td>             
+                                     <td><img src="${baseUrl + "/" + data[i].nicPhoto}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].licensePhoto}" width="100px"></td>             
                                </tr>`;
                     tbody.append(row);
                 }
@@ -221,10 +219,11 @@ function getAllCustomers() {
 
 function searchCustomerForAccountTableDataLoading() {
     $.ajax({
-        url: baseUrlCustomer + "customer/searchCustomerByEmailAndPassword?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+        url: baseUrl + "customer/searchCustomerByEmailAndPassword?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
         method: "GET",
         success: function (resp) {
             let customer = resp.data;
+            cusNicInPlacingBookingRequest.val(customer.nic);
             let table = $("#customerAccountDetailsTable > tbody");
             $(table).empty();
             let row = `<tr>

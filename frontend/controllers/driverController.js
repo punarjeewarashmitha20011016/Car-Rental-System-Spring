@@ -25,7 +25,6 @@ var driverViewAllBtn = $("#driverViewAllBtn");
 
 var driverInputsArr = [driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField];
 
-let baseUrlDriver = "http://localhost:8080/BackEnd_war_exploded/";
 
 $(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField).off('keydown');
 $(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField).keydown(function (e) {
@@ -103,7 +102,7 @@ $(driverSaveBtn).click(function () {
 
     if (confirm('Do you want to save this driver') == true) {
         $.ajax({
-            url: baseUrlDriver + "driver",
+            url: baseUrl + "driver",
             method: "POST",
             async: true,
             data: data,
@@ -148,7 +147,7 @@ $(driverUpdateBtn).click(function () {
 
     if (confirm('Do you want to update this driver details') == true) {
         $.ajax({
-            url: baseUrlDriver + "driver",
+            url: baseUrl + "driver",
             method: "PUT",
             async: true,
             data: data,
@@ -172,7 +171,7 @@ $(driverDeleteBtn).off('click');
 $(driverDeleteBtn).click(function () {
     if (confirm('Do you want to delete this driver') == true) {
         $.ajax({
-            url: baseUrlDriver + "driver?nic=" + driverNicField.val(),
+            url: baseUrl + "driver?nic=" + driverNicField.val(),
             method: "DELETE",
             success: function (resp) {
                 clearAllDriverFields();
@@ -190,7 +189,7 @@ $(driverDeleteBtn).click(function () {
 
 function getAllDrivers() {
     $.ajax({
-        url: baseUrlCustomer + "driver/getAll",
+        url: baseUrl + "driver/getAll",
         method: "GET",
         success: function (resp) {
             if (resp.status = 200) {
