@@ -20,4 +20,6 @@ public interface CustomerService {
     CustomerDTO search(String nic);
 
     boolean checkCustomerLogin(String email, String password);
+
+    CustomerDTO searchCustomerByEmailAndPassword(String email,String password);
 }

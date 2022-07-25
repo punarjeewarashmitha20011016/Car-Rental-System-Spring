@@ -112,10 +112,12 @@ $(driverSaveBtn).click(function () {
             success: function (resp) {
                 clearAllDriverFields();
                 alert(resp.message)
+                getAllDrivers();
             },
             error: function (ob) {
                 clearAllDriverFields();
                 alert(ob.message);
+                getAllDrivers();
             }
         })
     }
@@ -155,10 +157,12 @@ $(driverUpdateBtn).click(function () {
             success: function (resp) {
                 clearAllDriverFields();
                 alert(resp.message)
+                getAllDrivers();
             },
             error: function (ob) {
                 clearAllDriverFields();
                 alert(ob.message);
+                getAllDrivers();
             }
         })
     }
@@ -173,14 +177,48 @@ $(driverDeleteBtn).click(function () {
             success: function (resp) {
                 clearAllDriverFields();
                 alert(resp.message);
+                getAllDrivers();
             },
             error: function (error) {
                 clearAllDriverFields();
                 alert(error.message)
+                getAllDrivers();
             }
         })
     }
 })
+
+function getAllDrivers() {
+    $.ajax({
+        url: baseUrlCustomer + "driver/getAll",
+        method: "GET",
+        success: function (resp) {
+            if (resp.status = 200) {
+                let data = resp.data;
+                console.log(resp.data);
+                let tbody = $("#driverViewAllTableContainer").children('table').children('tbody');
+                $(tbody).empty();
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].nicPhoto);
+                    let row = `<tr>
+                                    <td>` + (i + 1) + `</td>
+                                     <td>` + data[i].nic + `</td>
+                                     <td>` + data[i].name + `</td>
+                                     <td>` + data[i].licenseNo + `</td>
+                                     <td>` + data[i].contactNo + `</td>
+                                     <td>` + data[i].address + `</td>
+                                     <td>` + data[i].availableStatus + `</td>
+                                     <td>` + data[i].email + `</td>
+                                     <td>` + data[i].password + `</td>
+                                     <td><img src="${baseUrlDriver + "/" + data[i].nicPhoto}" width="100px"></td>
+                                     <td><img src="${baseUrlDriver + "/" + data[i].licensePhoto}" width="100px"></td>             
+                               </tr>`;
+                    tbody.append(row);
+                }
+            }
+        }
+    })
+}
 
 function clearAllDriverFields() {
     driverNicField.val("");

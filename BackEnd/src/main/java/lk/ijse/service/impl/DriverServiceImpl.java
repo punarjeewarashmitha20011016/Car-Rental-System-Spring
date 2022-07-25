@@ -80,8 +80,13 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean checkDriverLogin(String email, String password) {
-        if (!repo.existsDriverByEmailAndPassword(email, password)) {
-            return false;
+        try {
+            if (!repo.existsDriverByEmailAndPassword(email, password)) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return true;
     }

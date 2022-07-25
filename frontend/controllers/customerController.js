@@ -218,3 +218,32 @@ function getAllCustomers() {
         }
     })
 }
+
+function searchCustomerForAccountTableDataLoading() {
+    $.ajax({
+        url: baseUrlCustomer + "customer/searchCustomerByEmailAndPassword?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+        method: "GET",
+        success: function (resp) {
+            let customer = resp.data;
+            let table = $("#customerAccountDetailsTable > tbody");
+            $(table).empty();
+            let row = `<tr>
+                        <td>1</td>
+                        <td>customer.nic</td>
+                        <td>customer.name</td>
+                        <td>customer.nicNo</td>
+                        <td>customer.licenseNo</td>
+                        <td>customer.contactNo</td>
+                        <td>customer.email</td>
+                        <td>customer.password</td>
+                        <td>customer.nicPhoto</td>
+                        <td><img src="${baseUrlCustomer + "/" + customer.nicPhoto}" width="100px"></td>
+                        <td><img src="${baseUrlCustomer + "/" + customer.licensePhoto}" width="100px"></td>
+                       </tr>`
+            $(table).append(row);
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    })
+}

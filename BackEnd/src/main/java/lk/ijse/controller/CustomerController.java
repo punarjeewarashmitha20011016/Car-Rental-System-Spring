@@ -19,19 +19,19 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         System.out.println("Post Request");
         System.out.println(dto.toString());
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
-        dto.setNicPhoto("uploads/" +nicFile.getOriginalFilename());
-        dto.setLicensePhoto("uploads/" +licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
         customerService.save(dto);
         return new ResponseUtil(200, "Customer Saved Successfully", dto);
     }
 
-    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil update(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
@@ -60,6 +60,11 @@ public class CustomerController {
     @GetMapping(path = "loginCheckCustomer", params = {"email", "password"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAdminLogin(@RequestParam String email, @RequestParam String password) {
         return new ResponseUtil(200, "Customer Login Successful", customerService.checkCustomerLogin(email, password));
+    }
+
+    @GetMapping(path = "searchCustomerByEmailAndPassword", params = {"email", "password"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil searchCustomerByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
+        return new ResponseUtil(200, "Customer Search Successful", customerService.searchCustomerByEmailAndPassword(email, password));
     }
 
     private MultipartFile saveAnUpdateFile(MultipartFile file1) {

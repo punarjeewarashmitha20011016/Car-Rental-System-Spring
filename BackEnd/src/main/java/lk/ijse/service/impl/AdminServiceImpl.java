@@ -59,8 +59,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean checkAdminLogin(String email, String password) {
-        if (!repo.existsAdminByEmailAndPassword(email, password)) {
-            return false;
+        try{
+            if (!repo.existsAdminByEmailAndPassword(email, password)) {
+                return false;
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return true;
     }

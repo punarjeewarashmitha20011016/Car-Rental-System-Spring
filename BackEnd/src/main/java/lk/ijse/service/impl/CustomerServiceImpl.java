@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void update(CustomerDTO dto) {
         if (repo.existsById(dto.getNic())) {
             repo.save(mapper.map(dto, Customer.class));
-        }else {
+        } else {
             throw new RuntimeException("Customer Update Failed");
         }
     }
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void delete(String nic) {
         if (repo.existsById(nic)) {
             repo.deleteById(nic);
-        }else {
+        } else {
             throw new RuntimeException("Customer Delete Failed");
         }
     }
@@ -53,16 +53,31 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO search(String nic) {
         if (repo.existsById(nic)) {
             return mapper.map(repo.findById(nic), CustomerDTO.class);
-        }else {
+        } else {
             throw new RuntimeException("Customer Search Failed");
         }
     }
 
     @Override
     public boolean checkCustomerLogin(String email, String password) {
-        if (!repo.existsCustomerByEmailAndPassword(email, password)) {
-            return false;
+        try {
+            if (!repo.existsCustomerByEmailAndPassword(email, password)) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return true;
+    }
+
+    @Override
+    public CustomerDTO searchCustomerByEmailAndPassword(String email, String password) {
+        CustomerDTO map = mapper.map(repo.findCustomerByEmailAndPassword(email, password), CustomerDTO.class);
+        if (map != null) {
+            return map;
+        } else {
+            throw new RuntimeException("Customer Doesn't Exists");
+        }
     }
 }
