@@ -85,6 +85,7 @@ $(document).ready(function () {
         })
 
         $(viewAllCarsForUserBtn).click(function () {
+            getAllCars();
             $(leftNavBtnForCarView).css('cursor', 'pointer')
             $(rightNavBtnForCarView).css('cursor', 'pointer')
             let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");

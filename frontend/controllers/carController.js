@@ -239,12 +239,14 @@ $(carViewAllBtn).click(function () {
 })
 
 function getAllCars() {
+    console.log('getAllCars Invoked')
     $.ajax({
         url: baseUrlCar + "car/getAll",
         method: "GET",
         success: function (resp) {
             if (resp.status = 200) {
                 let data = resp.data;
+                addCarsToViewInTheHome(data);
                 console.log(resp.data);
                 let tbody = $(carViewAllTableContainer).children('table').children('tbody');
                 $(tbody).empty();
@@ -306,4 +308,95 @@ function clearCarFields() {
     $(carMaintenanceStatusFieldInCar).css("border", "1px solid #ced4da");
     carImgFile.val("");
     $(carImgFile).css("border", "1px solid #ced4da");
+}
+
+function addCarsToViewInTheHome(arr) {
+    let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
+    for (let i = 0; i < arr.length; i++) {
+        let rootContainerDiv = document.createElement("div");
+        rootContainerDiv.className = 'col-1 card d-flex ms-3 me-3 align-items-center justify-content-center shadow-lg';
+        rootContainerDiv.style.height = '100%';
+
+        let rootContainerDivFirstChildDiv = document.createElement("div");
+        rootContainerDivFirstChildDiv.className = 'row d-flex align-items-center justify-content-center';
+        rootContainerDivFirstChildDiv.style.width = '100%';
+        rootContainerDivFirstChildDiv.style.height = '100%';
+
+        let rootContainerDivFirstChildDivFirstChildDiv = document.createElement("div");
+        rootContainerDivFirstChildDivFirstChildDiv.className = 'col-12 d-flex ps-0 pe-0 flex-wrap';
+        rootContainerDivFirstChildDivFirstChildDiv.style.height = '65%';
+
+        let firstImgDiv = document.createElement("div");
+        firstImgDiv.className = 'col-6';
+
+        let firstImg = document.createElement('img');
+        firstImg.className = 'w-100 h-100';
+        firstImg.alt = "";
+        firstImg.src = baseUrlCar + "/" + arr[i].images.firstImage;
+
+        firstImgDiv.append(firstImg);
+
+        let secondImgDiv = document.createElement("div");
+        secondImgDiv.className = 'col-6';
+
+        let secondImg = document.createElement('img');
+        secondImg.className = 'w-100 h-100';
+        secondImg.alt = "";
+        secondImg.src = baseUrlCar + "/" + arr[i].images.secondImage;
+
+        secondImgDiv.append(secondImg);
+
+        let thirdImgDiv = document.createElement("div");
+        thirdImgDiv.className = 'col-6';
+
+        let thirdImg = document.createElement('img');
+        thirdImg.className = 'w-100 h-100';
+        thirdImg.alt = "";
+        thirdImg.src = baseUrlCar + "/" + arr[i].images.thirdImage;
+
+        thirdImgDiv.append(thirdImg);
+
+        let fourthImgDiv = document.createElement("div");
+        fourthImgDiv.className = 'col-6';
+
+        let fourthImg = document.createElement('img');
+        fourthImg.className = 'w-100 h-100';
+        fourthImg.alt = "";
+        fourthImg.src = baseUrlCar + "/" + arr[i].images.fourthImage;
+
+        fourthImgDiv.append(fourthImg);
+
+        rootContainerDivFirstChildDivFirstChildDiv.append(firstImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(secondImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(thirdImgDiv);
+        rootContainerDivFirstChildDivFirstChildDiv.append(fourthImgDiv);
+
+        let btnContainer = document.createElement("div");
+        btnContainer.className = 'col-12 flex-wrap d-flex align-items-center justify-content-center';
+        btnContainer.style.height = '35%';
+
+        let firstChildDivInBtnContainer = document.createElement('div');
+        firstChildDivInBtnContainer.className = 'col-12 text-center justify-content-center align-items-center d-flex';
+        firstChildDivInBtnContainer.style.height = '60%';
+
+        let h5InFirstChildDivInBtnContainer = document.createElement('h5');
+        h5InFirstChildDivInBtnContainer.innerHTML = arr[i].images.firstImage.split("/")[1];
+
+        let secondChildDivInBtnContainer = document.createElement('div');
+        secondChildDivInBtnContainer.className = 'col-12 d-flex align-items-center justify-content-center';
+        secondChildDivInBtnContainer.style.height = '40%';
+
+        let btn = document.createElement('button');
+        btn.className = 'btn btn-primary';
+        btn.innerHTML = 'Book Now';
+
+        firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
+        secondChildDivInBtnContainer.append(btn);
+        btnContainer.append(firstChildDivInBtnContainer);
+        btnContainer.append(secondChildDivInBtnContainer);
+        rootContainerDivFirstChildDiv.append(rootContainerDivFirstChildDivFirstChildDiv);
+        rootContainerDivFirstChildDiv.append(btnContainer);
+        rootContainerDiv.append(rootContainerDivFirstChildDiv);
+        cardsContainingContainerInCustomerSection.append(rootContainerDiv);
+    }
 }
