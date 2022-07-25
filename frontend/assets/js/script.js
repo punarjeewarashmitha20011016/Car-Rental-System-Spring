@@ -733,25 +733,7 @@ $(loginBtn).click(function () {
                             placeBookingRequestBtn.append(aForPlaceBookingRequestBtn);
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(placeBookingRequestBtn);
                             $(placeBookingRequestBtn).click(function () {
-                                $(headerNav).css('display', 'block');
-                                $(homeSection).css('display', 'none');
-                                $(customerSection).css('display', 'none');
-                                $(loginSection).css('display', 'none');
-                                $(adminSection).css('display', 'none');
-                                $(carSection).css('display', 'none');
-                                $(customerDetailsSection).css('display', 'none');
-                                $(driverSection).css('display', 'none');
-                                $(bookingRequestSection).css('display', 'none');
-                                $(bookingSection).css('display', 'none');
-                                $(viewAllBookingsSection).css('display', 'none');
-                                $(viewAllBookingDetailsSection).css('display', 'none');
-                                $(incomeSection).css('display', 'none');
-                                $(viewAllCarsInCustomerSection).css('display', 'none');
-                                $(viewAllBookingsForCustomerSection).css('display', 'none');
-                                $(viewMyAccountForCustomerSection).css('display', 'none');
-                                $(placingBookingRequestInCustomer).css('display', 'flex');
-                                $(viewDriverScheduleInDriverSection).css('display', 'none');
-                                $(viewDriverAccountSection).css('display', 'none');
+                                setBookingRequestView();
                             })
                         }
                     }
@@ -1080,6 +1062,9 @@ function addCarsToViewInTheHome(arr) {
         btn.innerHTML = 'Book Now';
         btn.id = (i + 1) + "carBookBtn";
         $(btn).prop('disabled', true);
+        $(btn).click(function () {
+            setBookingRequestView();
+        })
         let btnWithCarRegNo = {
             carRegNo: arr[i].c_RegNo,
             btn: btn,
@@ -1105,4 +1090,26 @@ function setViewAllCarsBookingBtnsDisableAndEnable(bool) {
             $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
         }
     }
+}
+
+function setBookingRequestView() {
+    $(headerNav).css('display', 'block');
+    $(homeSection).css('display', 'none');
+    $(customerSection).css('display', 'none');
+    $(loginSection).css('display', 'none');
+    $(adminSection).css('display', 'none');
+    $(carSection).css('display', 'none');
+    $(customerDetailsSection).css('display', 'none');
+    $(driverSection).css('display', 'none');
+    $(bookingRequestSection).css('display', 'none');
+    $(bookingSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none');
+    $(viewAllCarsInCustomerSection).css('display', 'none');
+    $(viewAllBookingsForCustomerSection).css('display', 'none');
+    $(viewMyAccountForCustomerSection).css('display', 'none');
+    $(placingBookingRequestInCustomer).css('display', 'flex');
+    $(viewDriverScheduleInDriverSection).css('display', 'none');
+    $(viewDriverAccountSection).css('display', 'none');
 }
