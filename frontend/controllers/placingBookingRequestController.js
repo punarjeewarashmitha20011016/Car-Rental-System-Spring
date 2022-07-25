@@ -231,14 +231,3 @@ function setBookingIdToField() {
         }
     })
 }
-
-function setCarRegNoToFieldWhenSpecificCarIsChosen() {
-    console.log('setCarRegNoToFieldWhenSpecificCarIsChosen')
-    for (let i = 0; i < carBookingChooserBtnArr.length; i++) {
-        console.log(carBookingChooserBtnArr[i].btn);
-        carBookingChooserBtnArr[i].btn.click(function () {
-            console.log('clicked')
-            carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].carRegNo);
-        })
-    }
-}

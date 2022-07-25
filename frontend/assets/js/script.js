@@ -539,7 +539,6 @@ $(loginBtn).click(function () {
                     if (resp.data == true) {
                         setViewAllCarsBookingBtnsDisableAndEnable(true);
                         searchCustomerForAccountTableDataLoading();
-                        setCarRegNoToFieldWhenSpecificCarIsChosen();
                         $(signupBtn).css('display', 'block')
                         $(headerNav).css('display', 'block');
                         $(homeSection).css('display', 'flex');
@@ -1062,14 +1061,15 @@ function addCarsToViewInTheHome(arr) {
         btn.innerHTML = 'Book Now';
         btn.id = (i + 1) + "carBookBtn";
         $(btn).prop('disabled', true);
-        $(btn).click(function () {
-            setBookingRequestView();
-        })
         let btnWithCarRegNo = {
             carRegNo: arr[i].c_RegNo,
             btn: btn,
         }
         carBookingChooserBtnArr.push(btnWithCarRegNo);
+        $(btn).click(function () {
+            setBookingRequestView();
+            carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].carRegNo);
+        })
         firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
         secondChildDivInBtnContainer.append(btn);
         btnContainer.append(firstChildDivInBtnContainer);
