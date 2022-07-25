@@ -1888,11 +1888,11 @@
              class="placingBookingRequestInCustomer container-fluid position-relative flex-column justify-content-center align-items-center">
         <div class="container-fluid shadow-lg d-flex flex-column align-items-center justify-content-center"
              style="width: 90%;height: 95%;">
-            <div class="row d-flex justify-content-center align-items-center" style="width: 90%;height: 70%;">
+            <div class="row d-flex justify-content-center align-items-center" style="width: 90%;height: 60%;">
                 <div class="col-11 flex-column align-items-center justify-content-center"
                      style="height: 100%;">
                     <form class="position-relative d-flex flex-column justify-content-center align-items-center"
-                          style="width: 100%;height: 80%;">
+                          style="width: 100%;height: 95%;">
                         <div class="row d-flex flex-row align-items-center justify-content-center"
                              style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
@@ -1924,12 +1924,10 @@
                                 <div class="d-flex flex-column shadow-lg text-center align-items-center justify-content-center"
                                      style="width: 100%;height: 50%;">
                                     <label class="col form-label text-center d-flex"
-                                           for="ifDriverNeedsForBookingRequest"
-                                           style="border: 1px solid black">Tick If You Need
-                                        A
+                                           for="ifDriverNeedsForBookingRequestCheckBox">Tick If You Need A
                                         Driver</label>
                                     <input type="checkbox" class="col form-check d-flex"
-                                           id="ifDriverNeedsForBookingRequest"
+                                           id="ifDriverNeedsForBookingRequestCheckBox"
                                            name="accept"
                                            value="yes"
                                            style="width: 20%">
@@ -1954,7 +1952,6 @@
                                            placeholder="Enter Trip In KM" type="number">
                                 </div>
                             </div>
-
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="dateOfPickupInPlacingBookingRequest">Date Of
@@ -1964,9 +1961,6 @@
                                            placeholder="Enter Date OF Pickup" type="date">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row d-flex flex-row align-items-center justify-content-center"
-                             style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="timeOfPickupInPlacingBookingRequest">Time Of
@@ -1976,6 +1970,9 @@
                                            placeholder="Enter Time Of Pickup" type="time">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row d-flex flex-row align-items-center justify-content-center"
+                             style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="pickupVenueInPlacingBookingRequest">Pickup
@@ -2003,9 +2000,6 @@
                                            placeholder="Enter Returned Time" type="time">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row d-flex flex-row align-items-center justify-content-center"
-                             style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="returnVenueInPlacingBookingRequest">Return
@@ -2015,6 +2009,9 @@
                                            placeholder="EnterReturn Venue" type="text">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row d-flex flex-row align-items-center justify-content-center"
+                             style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="lossDamageWaiverInPlacingBookingRequest">Loss Damage
@@ -2027,14 +2024,6 @@
                             </div>
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
-                                    <label class="form-label" for="costInPlacingBookingRequest">Cost</label>
-                                    <input aria-describedby="costInPlacingBookingRequest" class="form-control"
-                                           id="costInPlacingBookingRequest"
-                                           placeholder="Enter Booking Cost" type="text">
-                                </div>
-                            </div>
-                            <div class="col-12 d-flex">
-                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
                                     <label class="form-label" for="lossDamageWaiverSlipInPlacingBookingRequest">Loss
                                         Damage Waiver
                                         Slip Path</label>
@@ -2046,12 +2035,29 @@
                                            name="lossDamageWaiverSlipInPlacingBookingRequest">
                                 </div>
                             </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label class="form-label" for="costInPlacingBookingRequest">Cost Per One Car
+                                        Booking</label>
+                                    <input aria-describedby="costInPlacingBookingRequest" class="form-control"
+                                           id="costInPlacingBookingRequest"
+                                           placeholder="Enter Cost Per One Car Booking" type="number">
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label class="form-label" for="totalCostInPlacingBookingRequest">Cost</label>
+                                    <input aria-describedby="totalCostInPlacingBookingRequest" class="form-control"
+                                           id="totalCostInPlacingBookingRequest"
+                                           placeholder="Enter Total For Booking Request" type="text">
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center shadow-lg"
-                 style="width: 90%;height: 30%;overflow: auto;">
+                 style="width: 90%;height: 40%;overflow: auto;">
                 <table id="addToCartTableInBookingRequest" class="table table-hover table-bordered">
                     <thead>
                     <tr>
@@ -2254,6 +2260,7 @@
 <script src="../frontend/util/Validator.js"></script>
 <script src="../frontend/controllers/customerController.js"></script>
 <script src="../frontend/controllers/carController.js"></script>
+<script src="../frontend/util/carBookingChooserBtn.js"></script>
 <script src="../frontend/controllers/driverController.js"></script>
 <script src="../frontend/controllers/placingBookingRequestController.js"></script>
 </body>

@@ -129,10 +129,11 @@ $(loginBtn).click(function () {
     let arr = $(navBarItems).children('div:nth-child(2)').children('ul').children();
     console.log($(navBarItems).children('div:nth-child(2)').children('ul').children());
     console.log(arr.length)
+    getAllCars();
     $(arr).remove();
     try {
         $.ajax({
-            url: baseUrl+"admin/loginCheckAdmin?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl + "admin/loginCheckAdmin?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status == 200) {
@@ -529,7 +530,7 @@ $(loginBtn).click(function () {
         })
 
         $.ajax({
-            url: baseUrl+"customer/loginCheckCustomer?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl + "customer/loginCheckCustomer?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status = 200) {
@@ -644,7 +645,7 @@ $(loginBtn).click(function () {
                             let aForViewMyBookingsBtn = document.createElement('a');
                             aForViewMyBookingsBtn.className = 'nav-link active';
                             aForViewMyBookingsBtn.ariaCurrent = 'page';
-                            aForViewMyBookingsBtn.href = "#adminSection";
+                            aForViewMyBookingsBtn.href = "#viewAllBookingsForCustomerSection";
                             aForViewMyBookingsBtn.innerHTML = "View My Bookings";
                             aForViewMyBookingsBtn.className = "text-black text-decoration-none";
                             viewMyBookingsBtn.append(aForViewMyBookingsBtn);
@@ -688,7 +689,7 @@ $(loginBtn).click(function () {
                             let aForMyAccountBtn = document.createElement('a');
                             aForMyAccountBtn.className = 'nav-link active';
                             aForMyAccountBtn.ariaCurrent = 'page';
-                            aForMyAccountBtn.href = "#adminSection";
+                            aForMyAccountBtn.href = "#viewMyAccountForCustomerSection";
                             aForMyAccountBtn.innerHTML = "My Account";
                             aForMyAccountBtn.className = "text-black text-decoration-none";
                             myAccountBtn.append(aForMyAccountBtn);
@@ -720,7 +721,7 @@ $(loginBtn).click(function () {
                             let aForPlaceBookingRequestBtn = document.createElement('a');
                             aForPlaceBookingRequestBtn.className = 'nav-link active';
                             aForPlaceBookingRequestBtn.ariaCurrent = 'page';
-                            aForPlaceBookingRequestBtn.href = "#adminSection";
+                            aForPlaceBookingRequestBtn.href = "#placingBookingRequestInCustomer";
                             aForPlaceBookingRequestBtn.innerHTML = "Place Booking Request";
                             aForPlaceBookingRequestBtn.className = "text-black text-decoration-none";
                             placeBookingRequestBtn.append(aForPlaceBookingRequestBtn);
@@ -753,7 +754,7 @@ $(loginBtn).click(function () {
         })
 
         $.ajax({
-            url: baseUrl+"customer/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl + "customer/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status = 200) {

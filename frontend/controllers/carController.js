@@ -311,6 +311,7 @@ function clearCarFields() {
 
 function addCarsToViewInTheHome(arr) {
     let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
+    $(cardsContainingContainerInCustomerSection).empty();
     for (let i = 0; i < arr.length; i++) {
         let rootContainerDiv = document.createElement("div");
         rootContainerDiv.className = 'col-1 card d-flex ms-3 me-3 align-items-center justify-content-center shadow-lg';
@@ -331,7 +332,7 @@ function addCarsToViewInTheHome(arr) {
         let firstImg = document.createElement('img');
         firstImg.className = 'w-100 h-100';
         firstImg.alt = "";
-        firstImg.src = baseUrlCar + "/" + arr[i].images.firstImage;
+        firstImg.src = baseUrl + "/" + arr[i].images.firstImage;
 
         firstImgDiv.append(firstImg);
 
@@ -341,7 +342,7 @@ function addCarsToViewInTheHome(arr) {
         let secondImg = document.createElement('img');
         secondImg.className = 'w-100 h-100';
         secondImg.alt = "";
-        secondImg.src = baseUrlCar + "/" + arr[i].images.secondImage;
+        secondImg.src = baseUrl + "/" + arr[i].images.secondImage;
 
         secondImgDiv.append(secondImg);
 
@@ -351,7 +352,7 @@ function addCarsToViewInTheHome(arr) {
         let thirdImg = document.createElement('img');
         thirdImg.className = 'w-100 h-100';
         thirdImg.alt = "";
-        thirdImg.src = baseUrlCar + "/" + arr[i].images.thirdImage;
+        thirdImg.src = baseUrl + "/" + arr[i].images.thirdImage;
 
         thirdImgDiv.append(thirdImg);
 
@@ -361,7 +362,7 @@ function addCarsToViewInTheHome(arr) {
         let fourthImg = document.createElement('img');
         fourthImg.className = 'w-100 h-100';
         fourthImg.alt = "";
-        fourthImg.src = baseUrlCar + "/" + arr[i].images.fourthImage;
+        fourthImg.src = baseUrl + "/" + arr[i].images.fourthImage;
 
         fourthImgDiv.append(fourthImg);
 
@@ -385,10 +386,19 @@ function addCarsToViewInTheHome(arr) {
         secondChildDivInBtnContainer.className = 'col-12 d-flex align-items-center justify-content-center';
         secondChildDivInBtnContainer.style.height = '40%';
 
+        let btnWrapperATag = document.createElement('a');
+        btnWrapperATag.style.textDecoration = 'none';
+        btnWrapperATag.id = i + "carBookBtn";
+        btnWrapperATag.href = "#placingBookingRequestInCustomer"
         let btn = document.createElement('button');
         btn.className = 'btn btn-primary';
         btn.innerHTML = 'Book Now';
-
+        btnWrapperATag.append(btn);
+        let btnWithCarRegNo = {
+            carRegNo: arr[i].c_RegNo,
+            btn: btnWrapperATag
+        }
+        carBookingChooserBtnArr.push(btnWithCarRegNo);
         firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
         secondChildDivInBtnContainer.append(btn);
         btnContainer.append(firstChildDivInBtnContainer);

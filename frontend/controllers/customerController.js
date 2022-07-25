@@ -236,8 +236,8 @@ function searchCustomerForAccountTableDataLoading() {
                         <td>customer.email</td>
                         <td>customer.password</td>
                         <td>customer.nicPhoto</td>
-                        <td><img src="${baseUrlCustomer + "/" + customer.nicPhoto}" width="100px"></td>
-                        <td><img src="${baseUrlCustomer + "/" + customer.licensePhoto}" width="100px"></td>
+                        <td><img src="${baseUrl + "/" + customer.nicPhoto}" width="100px"></td>
+                        <td><img src="${baseUrl + "/" + customer.licensePhoto}" width="100px"></td>
                        </tr>`
             $(table).append(row);
         },

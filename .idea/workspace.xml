@@ -29,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/frontend/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/controllers/carController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controllers/carController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/controllers/customerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controllers/customerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/controllers/driverController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controllers/driverController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/controllers/placingBookingRequestController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controllers/placingBookingRequestController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
     </list>
@@ -182,7 +181,7 @@
       <workItem from="1658673017331" duration="55000" />
       <workItem from="1658673167964" duration="5287000" />
       <workItem from="1658678926214" duration="1805000" />
-      <workItem from="1658721401448" duration="16799000" />
+      <workItem from="1658721401448" duration="21516000" />
     </task>
     <servers />
   </component>
