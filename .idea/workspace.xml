@@ -27,6 +27,41 @@
     <list default="true" id="cf8e228c-ced7-44b1-8766-067604c053bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Audi A3 E-tron 1.4 TFSI Plug-in/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Audi A3 E-tron 1.4 TFSI Plug-in/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Audi A3 E-tron 1.4 TFSI Plug-in/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Audi A3 E-tron 1.4 TFSI Plug-in/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW 5 530e PHEV/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW 5 530e PHEV/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW 5 530e PHEV/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW 5 530e PHEV/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW X5 40e (F15) xDrive PHEV/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW X5 40e (F15) xDrive PHEV/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW X5 40e (F15) xDrive PHEV/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/BMW X5 40e (F15) xDrive PHEV/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Ford Fusion 2.0 Plug-in Hybrid/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Ford Fusion 2.0 Plug-in Hybrid/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Ford Fusion 2.0 Plug-in Hybrid/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Ford Fusion 2.0 Plug-in Hybrid/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mercedes E-class E 350e Plug-In/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mercedes E-class E 350e Plug-In/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mercedes E-class E 350e Plug-In/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mercedes E-class E 350e Plug-In/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mitsubishi Outlander 2.0 PHEV 4WD/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mitsubishi Outlander 2.0 PHEV 4WD/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mitsubishi Outlander 2.0 PHEV 4WD/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Mitsubishi Outlander 2.0 PHEV 4WD/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Porsche Panamera S 3.0 V6 Plug-in/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Porsche Panamera S 3.0 V6 Plug-in/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Porsche Panamera S 3.0 V6 Plug-in/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Porsche Panamera S 3.0 V6 Plug-in/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius (35) 1.8 plug-in hybrid/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius (35) 1.8 plug-in hybrid/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius (35) 1.8 plug-in hybrid/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius (35) 1.8 plug-in hybrid/4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius Prime 1.8 plug-in hybrid/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius Prime 1.8 plug-in hybrid/2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius Prime 1.8 plug-in hybrid/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/carImages/Toyota Prius Prime 1.8 plug-in hybrid/4.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/controllers/carController.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/controllers/carController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
@@ -180,7 +215,7 @@
       <workItem from="1658673017331" duration="55000" />
       <workItem from="1658673167964" duration="5287000" />
       <workItem from="1658678926214" duration="1805000" />
-      <workItem from="1658721401448" duration="4977000" />
+      <workItem from="1658721401448" duration="5421000" />
     </task>
     <servers />
   </component>
@@ -216,22 +251,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="462" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1658408269180" />
-    <state width="905" height="150" key="GridCell.Tab.0.bottom" timestamp="1658723333596">
+    <state width="905" height="295" key="GridCell.Tab.0.bottom" timestamp="1658726882481">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="905" height="150" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658723333596" />
-    <state width="905" height="150" key="GridCell.Tab.0.center" timestamp="1658723333596">
+    <state width="905" height="295" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658726882481" />
+    <state width="905" height="295" key="GridCell.Tab.0.center" timestamp="1658726882481">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="905" height="150" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658723333596" />
-    <state width="905" height="150" key="GridCell.Tab.0.left" timestamp="1658723333596">
+    <state width="905" height="295" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658726882481" />
+    <state width="905" height="295" key="GridCell.Tab.0.left" timestamp="1658726882481">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="905" height="150" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658723333596" />
-    <state width="905" height="150" key="GridCell.Tab.0.right" timestamp="1658723333596">
+    <state width="905" height="295" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658726882481" />
+    <state width="905" height="295" key="GridCell.Tab.0.right" timestamp="1658726882481">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="905" height="150" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658723333596" />
+    <state width="905" height="295" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658726882481" />
     <state x="549" y="251" width="316" height="244" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1658649502651">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
