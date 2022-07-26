@@ -312,6 +312,8 @@ function placeBookingRequest(formData) {
             if (resp.status == 200) {
                 alert(resp.message);
                 totalCostInBookingRequest = 0;
+                clearBookingRequestFields();
+                setBookingIdToField();
             }
         },
         error: function (error) {
@@ -352,3 +354,23 @@ function searchCarDetails() {
         }
     })
 }
+
+function clearBookingRequestFields() {
+    bookingReqIdInPlacingBookingRequest.val("");
+    cusNicInPlacingBookingRequest.val("");
+    carRegNoInPlacingBookingRequest.val("");
+    ifDriverNeedsForBookingRequestCheckBox.checked = false;
+    carTypeInPlacingBookingRequest.val("");
+    tripInKMInPlacingBookingRequest.val("");
+    dateOfPickupInPlacingBookingRequest.val("");
+    timeOfPickupInPlacingBookingRequest.val("");
+    pickupVenueInPlacingBookingRequest.val("");
+    returnedDateInPlacingBookingRequest.val("");
+    returnedTimeInPlacingBookingRequest.val("");
+    returnVenueInPlacingBookingRequest.val("");
+    lossDamageWaiverInPlacingBookingRequest.val("");
+    costInPlacingBookingRequest.val("");
+    totalCostInPlacingBookingRequest.val("");
+    lossDamageWaiverSlipInPlacingBookingRequest.val("");
+}
+

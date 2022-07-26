@@ -852,11 +852,11 @@
             <div class="row d-flex flex-row align-items-center justify-content-center" style="width: 90%;height:10%;">
                 <div class="col-10 d-flex">
                     <input aria-describedby="bookingRequestSearchField" class="form-control d-flex"
-                           id="bookingRequestSearchField"
+                           id="bookingRequestSearchFieldInAcceptRequest"
                            placeholder="Search Booking Request" type="text">
                 </div>
                 <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                    <button class="btn btn-primary ms-2 me-2 col-10">Search</button>
+                    <button id="bookingRequestSearchFieldInAcceptRequestBtn" class="btn btn-primary ms-2 me-2 col-10">Search</button>
                 </div>
             </div>
             <div class="row d-flex" style="width: 90%;height:40%;">
@@ -914,45 +914,45 @@
                             <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
                                  style="height: calc(100%/4*1);">
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="bookingRequestId">Booking Request ID</label>
-                                    <input aria-describedby="bookingRequestId" class="form-control d-flex"
-                                           id="bookingRequestId" placeholder="Enter Booking Request Id"
+                                    <label class="form-label d-flex" for="bookingRequestIdInAcceptAdmin">Booking Request ID</label>
+                                    <input aria-describedby="bookingRequestIdInAcceptAdmin" class="form-control d-flex"
+                                           id="bookingRequestIdInAcceptAdmin" placeholder="Enter Booking Request Id"
                                            type="text">
                                 </div>
                             </div>
                             <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
                                  style="height: calc(100%/4*1);">
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label d-flex" for="bookingRequestCusNic">Customer Nic</label>
-                                    <input aria-describedby="bookingRequestCusNic" class="form-control d-flex"
-                                           id="bookingRequestCusNic"
+                                    <label class="form-label d-flex" for="bookingRequestCusNicInAcceptAdmin">Customer Nic</label>
+                                    <input aria-describedby="bookingRequestCusNicInAcceptAdmin" class="form-control d-flex"
+                                           id="bookingRequestCusNicInAcceptAdmin"
                                            placeholder="Enter Customer Nic" type="text">
                                 </div>
                             </div>
                             <div class="mb-1 col-4 d-flex flex-column justify-content-center align-items-center"
                                  style="height: calc(100%/4*1);">
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestDate">Booking Request Date</label>
-                                    <input aria-describedby="bookingRequestDate" class="form-control"
-                                           id="bookingRequestDate"
+                                    <label class="form-label" for="bookingRequestDateInAcceptAdmin">Booking Request Date</label>
+                                    <input aria-describedby="bookingRequestDateInAcceptAdmin" class="form-control"
+                                           id="bookingRequestDateInAcceptAdmin"
                                            placeholder="Enter Booking Request Date" type="text">
                                 </div>
                             </div>
                             <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
                                  style="height: calc(100%/4*1);">
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestTime">Booking Request Time</label>
-                                    <input aria-describedby="bookingRequestTime" class="form-control"
-                                           id="bookingRequestTime"
+                                    <label class="form-label" for="bookingRequestTimeInAcceptAdmin">Booking Request Time</label>
+                                    <input aria-describedby="bookingRequestTimeInAcceptAdmin" class="form-control"
+                                           id="bookingRequestTimeInAcceptAdmin"
                                            placeholder="Enter  Booking Request Time" type="text">
                                 </div>
                             </div>
                             <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
                                  style="height: calc(100%/4*1);">
                                 <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                    <label class="form-label" for="bookingRequestCost">Booking Request Cost</label>
-                                    <input aria-describedby="bookingRequestCost" class="form-control"
-                                           id="bookingRequestCost"
+                                    <label class="form-label" for="bookingRequestCostInAcceptAdmin">Booking Request Cost</label>
+                                    <input aria-describedby="bookingRequestCostInAcceptAdmin" class="form-control"
+                                           id="bookingRequestCostInAcceptAdmin"
                                            placeholder="Enter Booking Request Cost" type="number">
                                 </div>
                             </div>
@@ -962,9 +962,9 @@
                             <div class="row d-flex flex-row justify-content-center align-items-center"
                                  style="width: 100%;height: 100%;">
                                 <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button class="btn btn-primary ms-2 me-2 col-3">Save</button>
-                                    <button class="btn btn-secondary ms-2 me-2 col-3">Update</button>
-                                    <button class="btn btn-danger ms-2 me-2  col-3">Delete</button>
+                                    <button id="bookingRequestSaveBtnInAcceptAdmin" class="btn btn-primary ms-2 me-2 col-3">Save</button>
+                                    <button id="bookingRequestUpdateBtnInAcceptAdmin" class="btn btn-secondary ms-2 me-2 col-3">Update</button>
+                                    <button id="bookingRequestDeleteBtnInAcceptAdmin" class="btn btn-danger ms-2 me-2  col-3">Delete</button>
                                     <a class="ms-2 me-2 col-3"
                                        id="bookingRequestDetailsBtn">
                                         <button class="btn btn-info w-100 h-100">View All</button>
@@ -2271,5 +2271,6 @@
 <script src="../frontend/controllers/carController.js"></script>
 <script src="../frontend/controllers/driverController.js"></script>
 <script src="../frontend/controllers/placingBookingRequestController.js"></script>
+<script src="../frontend/controllers/bookingRequestAcceptController.js"></script>
 </body>
 </html>

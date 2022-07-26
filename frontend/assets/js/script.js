@@ -370,7 +370,7 @@ $(loginBtn).click(function () {
                             let aforBookingRequestBtn = document.createElement('a');
                             aforBookingRequestBtn.className = 'nav-link active';
                             aforBookingRequestBtn.ariaCurrent = 'page';
-                            aforBookingRequestBtn.href = "#";
+                            aforBookingRequestBtn.href = "#bookingRequestSection";
                             aforBookingRequestBtn.innerHTML = "Booking Request";
                             aforBookingRequestBtn.className = "text-black text-decoration-none";
 
@@ -379,6 +379,7 @@ $(loginBtn).click(function () {
 
                             bookingRequestBtn.append(aforBookingRequestBtn);
                             $(bookingRequestBtn).click(function () {
+                                setRequestsDataToTable();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -409,6 +410,7 @@ $(loginBtn).click(function () {
                             $(bookingRequestDetailsBtn).dblclick(function () {
                                 $(bookingRequestTableContainer).css('display', 'flex');
                                 $(bookingRequestDetailsTableContainer).css('display', 'none');
+                                $(bookingRequestDetailsTableContainer).children('table').children('tbody').empty();
                             })
 
 
