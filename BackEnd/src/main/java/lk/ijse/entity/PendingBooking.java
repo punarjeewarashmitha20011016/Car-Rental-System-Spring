@@ -28,7 +28,7 @@ public class PendingBooking {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "bookingEntity")
     @NotFound(action = NotFoundAction.IGNORE)
     private List<PendingBookingDetails> bookingDetails;
-    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "paymentsId")
     @NotFound(action = NotFoundAction.IGNORE)
     private PendingBookingPayments payments;

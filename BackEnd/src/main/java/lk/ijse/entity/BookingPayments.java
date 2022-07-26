@@ -30,4 +30,7 @@ public class BookingPayments {
     private double lossDamageWaiver;
     private String lossDamageWaiverPaymentSlip;
     private double cost;
+
+    @OneToOne(mappedBy = "payments")
+    private Booking booking;
 }

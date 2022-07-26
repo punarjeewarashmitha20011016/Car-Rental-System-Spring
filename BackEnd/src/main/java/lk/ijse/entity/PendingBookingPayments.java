@@ -30,4 +30,7 @@ public class PendingBookingPayments {
     private double lossDamageWaiver;
     private String lossDamageWaiverPaymentSlip;
     private double cost;
+
+    @OneToOne(cascade = {CascadeType.ALL},mappedBy = "payments")
+    private PendingBooking booking;
 }

@@ -2,7 +2,7 @@ package lk.ijse.controller;
 
 import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.dto.BookingRequestDetailsDTO;
-import lk.ijse.dto.PendingBookingDetailsDTO;
+import lk.ijse.dto.BookingRequestPaymentsDTO;
 import lk.ijse.dto.PendingBookingsDTO;
 import lk.ijse.service.BookingCarRequestService;
 import lk.ijse.util.ResponseUtil;
@@ -24,20 +24,19 @@ public class BookingCarRequestController {
     @Autowired
     private BookingCarRequestService bookingCarService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "placeBookingRequest")
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseUtil saveBooking(@ModelAttribute BookingRequestDTO dto) {
+    ResponseUtil saveBooking(@RequestPart("dto") BookingRequestDTO dto, @RequestPart("lossDamageWaiverSlip") MultipartFile lossDamageWaiver) {
         List<BookingRequestDetailsDTO> bookingDetails = dto.getBookingDetails();
-        for (int i = 0; i < bookingDetails.size(); i++) {
-            MultipartFile file = saveAnUpdateFile(bookingDetails.get(i).getSlipFile());
-            bookingDetails.get(i).setLossDamageWaiverPaymentSlip(file.getOriginalFilename());
-        }
+        BookingRequestPaymentsDTO payments = dto.getPayments();
+        MultipartFile file = saveAnUpdateFile(lossDamageWaiver);
+        payments.setLossDamageWaiverPaymentSlip(file.getOriginalFilename());
         dto.setBookingDetails(bookingDetails);
         bookingCarService.requestingABookingSave(dto);
         return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "pendingBookingRequestSave")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "pendingBookingRequestSave")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil savePendingBooking(@RequestBody PendingBookingsDTO dto) {
         bookingCarService.requestingAPendingBookingSave(dto);

@@ -18,18 +18,15 @@ import java.util.List;
 @Entity
 public class BookingRequest {
     @Id
+    @Column(name = "boId", unique = true, nullable = false)
     private String boId;
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(referencedColumnName = "nic", name = "cusNic")
-    private Customer cusNic;
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(referencedColumnName = "nic")
+    private Customer cusNic;// mekata data ewanawada front end eken.? ow sir
     private LocalDate date;
     private String time;
     private double cost;
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "bookingEntity")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookingEntity")
     @NotFound(action = NotFoundAction.IGNORE)
     private List<BookingRequestDetails> bookingDetails;
-    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(referencedColumnName = "paymentsId")
-    @NotFound(action = NotFoundAction.IGNORE)
-    private BookingRequestPayments payments;
 }

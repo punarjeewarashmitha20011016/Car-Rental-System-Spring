@@ -37,7 +37,6 @@ public class PendingBookingDetails implements Serializable {
     private String returnedVenue;
     private String damageStatus;
     private double lossDamage;
-    private String lossDamagePaymentsSlip;
     private double cost;
 
     @ManyToOne

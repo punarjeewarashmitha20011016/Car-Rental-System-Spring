@@ -51,6 +51,25 @@ $(document).ready(function () {
     $(arr).remove();
     $(signupBtn).css('display', 'block');
     getAllCars();
+    $(headerNav).css('display', 'block');
+    $(homeSection).css('display', 'flex');
+    $(customerSection).css('display', 'none');
+    $(loginSection).css('display', 'none');
+    $(adminSection).css('display', 'none');
+    $(carSection).css('display', 'none');
+    $(customerDetailsSection).css('display', 'none');
+    $(driverSection).css('display', 'none');
+    $(bookingRequestSection).css('display', 'none');
+    $(bookingSection).css('display', 'none');
+    $(viewAllBookingsSection).css('display', 'none');
+    $(viewAllBookingDetailsSection).css('display', 'none');
+    $(incomeSection).css('display', 'none');
+    $(viewAllCarsInCustomerSection).css('display', 'none');
+    $(viewAllBookingsForCustomerSection).css('display', 'none');
+    $(viewMyAccountForCustomerSection).css('display', 'none');
+    $(placingBookingRequestInCustomer).css('display', 'none');
+    $(viewDriverScheduleInDriverSection).css('display', 'none');
+    $(viewDriverAccountSection).css('display', 'none');
     if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
         let homeBtn = document.createElement("li");
         homeBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
@@ -733,6 +752,7 @@ $(loginBtn).click(function () {
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(placeBookingRequestBtn);
                             $(placeBookingRequestBtn).click(function () {
                                 setBookingRequestView();
+                                searchCarDetails();
                             })
                         }
                     }
@@ -741,7 +761,7 @@ $(loginBtn).click(function () {
         })
 
         $.ajax({
-            url: baseUrl + "customer/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+            url: baseUrl + "driver/loginCheckDriver?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
             method: "GET",
             success: function (resp) {
                 if (resp.status = 200) {
@@ -962,6 +982,7 @@ function getAllCars() {
                                      <td>` + data[i].monthlyRate + `</td>
                                      <td>` + data[i].carBookedOrNotStatus + `</td>
                                      <td>` + data[i].maintenanceStatus + `</td>
+                                     <td>` + data[i].lossDamageWaiver + `</td>
                                      <td><img src="${baseUrl + "/" + data[i].images.firstImage}" width="100px"></td>
                                      <td><img src="${baseUrl + "/" + data[i].images.secondImage}" width="100px"></td>
                                      <td><img src="${baseUrl + "/" + data[i].images.thirdImage}" width="100px"></td>
@@ -1047,7 +1068,8 @@ function addCarsToViewInTheHome(arr) {
         firstChildDivInBtnContainer.style.height = '60%';
 
         let h5InFirstChildDivInBtnContainer = document.createElement('h5');
-        h5InFirstChildDivInBtnContainer.innerHTML = arr[i].images.firstImage.split("/")[1];
+        let topic = arr[i].images.firstImage.split("/")[1];
+        h5InFirstChildDivInBtnContainer.innerHTML = topic.split("(")[0];
 
         let secondChildDivInBtnContainer = document.createElement('div');
         secondChildDivInBtnContainer.className = 'col-12 d-flex align-items-center justify-content-center';
@@ -1069,6 +1091,7 @@ function addCarsToViewInTheHome(arr) {
         $(btn).click(function () {
             setBookingRequestView();
             carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].carRegNo);
+            searchCarDetails();
         })
         firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
         secondChildDivInBtnContainer.append(btn);

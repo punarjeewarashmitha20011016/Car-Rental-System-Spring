@@ -523,7 +523,7 @@
                                                        placeholder="Enter Car Booked Or Not Status"
                                                        type="text">
                                             </div>
-                                            <div class="col-4 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
+                                            <div class="col-3 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
                                                 <label class="form-label"
                                                        for="carMaintenanceStatusFieldInCar">Maintenance Status</label>
@@ -533,12 +533,22 @@
                                                        placeholder="Enter Car Maintenance Status"
                                                        type="text">
                                             </div>
-                                            <div class="col-4 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-center"
+                                            <div class="col-3 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
                                                 <label for="carImgFile" class="form-label">Car Images</label>
                                                 <input class="form-control" class="d-flex" id="carImgFile" multiple
                                                        name="carImgFile"
                                                        type="file">
+                                            </div>
+                                            <div class="col-3 ms-4 me-4 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
+                                                 style="height: calc(100%/5*1);">
+                                                 <label class="form-label"
+                                                       for="carLossDamageWaiverFieldInCar">Loss Damage Waiver</label>
+                                                <input aria-describedby="carLossDamageWaiverFieldInCar"
+                                                       class="form-control"
+                                                       id="carLossDamageWaiverFieldInCar"
+                                                       placeholder="Enter Car Loss Damage Waiver"
+                                                       type="number">
                                             </div>
                                         </div>
                                     </form>
@@ -610,6 +620,7 @@
                                                 <th scope="col">Monthly Rate</th>
                                                 <th scope="col">Booked Status</th>
                                                 <th scope="col">Maintenance Status</th>
+                                                <th scope="col">Loss Damage Waiver</th>
                                                 <th scope="col">Car Image 1</th>
                                                 <th scope="col">Car Image 2</th>
                                                 <th scope="col">Car Image 3</th>
@@ -1928,8 +1939,6 @@
                                         Driver</label>
                                     <input type="checkbox" class="col form-check d-flex"
                                            id="ifDriverNeedsForBookingRequestCheckBox"
-                                           name="accept"
-                                           value="yes"
                                            style="width: 20%">
                                 </div>
                             </div>
@@ -2032,7 +2041,7 @@
                                            id="lossDamageWaiverSlipInPlacingBookingRequest"
                                            placeholder="Upload Loss Damage Waiver Slip"
                                            type="file"
-                                           name="lossDamageWaiverSlipInPlacingBookingRequest">
+                                           name="lossDamageWaiverSlip">
                                 </div>
                             </div>
                             <div class="col d-flex">
@@ -2074,7 +2083,6 @@
                         <th scope="col">Returned Time</th>
                         <th scope="col">Returned Venue</th>
                         <th scope="col">Loss Damage</th>
-                        <th scope="col">Loss Damage Slip</th>
                         <th scope="col">Cost</th>
                     </tr>
                     </thead>

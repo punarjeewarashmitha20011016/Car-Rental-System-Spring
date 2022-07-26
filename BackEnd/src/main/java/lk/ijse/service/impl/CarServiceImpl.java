@@ -36,15 +36,17 @@ public class CarServiceImpl implements CarService {
     public void update(CarDTO dto) {
         if (repo.existsById(dto.getC_RegNo())) {
             repo.save(mapper.map(dto, Car.class));
+        } else {
+            throw new RuntimeException("Car Update Failed");
         }
-        throw new RuntimeException("Car Update Failed");
     }
 
     public void delete(String regNo) {
         if (repo.existsById(regNo)) {
             repo.deleteById(regNo);
+        } else {
+            throw new RuntimeException("Car Delete Failed");
         }
-        throw new RuntimeException("Car Delete Failed");
     }
 
     public List<CarDTO> getAll() {
@@ -55,8 +57,9 @@ public class CarServiceImpl implements CarService {
     public CarDTO search(String regNo) {
         if (repo.existsById(regNo)) {
             return mapper.map(repo.findById(regNo), CarDTO.class);
+        } else {
+            throw new RuntimeException("Car Search Failed");
         }
-        throw new RuntimeException("Car Search Failed");
     }
 
     @Override
