@@ -129,24 +129,26 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     @Override
     public void requestingAPendingBookingSave(PendingBookingsDTO dto) {
         /*If admin accept the customer request this method invokes..And admin should send an email to the customer by informing that his/her request in confirmed*/
-        if (repo.existsById(dto.getBoId())) {
+        if (!repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Booking a Car failed");
         }
         System.out.println("Pending Booking = " + dto.toString());
         System.out.println("Pending Booking Details = " + dto.getBookingDetails().toString());
 
-        pendingBookingRepo.save(mapper.map(dto, PendingBooking.class));
+        PendingBooking map = mapper.map(dto, PendingBooking.class);
+        System.out.println("Pending Booking Entity = " + map.toString());
+        pendingBookingRepo.save(map);
         if (dto.getPayments().getPaymentsId() == null) {
             throw new RuntimeException("Booking a Car failed");
         }
         pendingBookingPaymentsRepo.save(mapper.map(dto.getPayments(), PendingBookingPayments.class));
-        repo.deleteById(dto.getPayments().getPaymentsId());
+        paymentsRepo.deleteById(dto.getPayments().getPaymentsId());
 
         for (PendingBookingDetailsDTO b : dto.getBookingDetails()
         ) {
             pendingBookingDetailsRepo.save(mapper.map(b, PendingBookingDetails.class));
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Booked") || car.getCarBookedOrNotStatus().equals("BOOKED"))) {
+            if (car.getC_RegNo() == null || ((car.getCarBookedOrNotStatus().equals("Booked") || car.getCarBookedOrNotStatus().equals("BOOKED")))) {
                 throw new RuntimeException("Booking a Car failed");
             }
 

@@ -22,7 +22,7 @@ public class BookingRequestDetails implements Serializable {
     private String bookingId;
     @Id
     private String car_RegNo;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(referencedColumnName = "nic", nullable = true)
     private Driver driverNic;

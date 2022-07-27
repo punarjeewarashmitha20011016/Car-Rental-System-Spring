@@ -237,13 +237,12 @@ $(addToCartInBookingRequestBtn).click(function () {
     disableOrEnablePlaceBookingRequestBtns(deleteBookingRequestBtn, false);
     disableOrEnablePlaceBookingRequestBtns(clearCartBtnInBookingRequest, false);
 
-    $(placeBookingRequestBtn).off('click');
-    $(placeBookingRequestBtn).click(function () {
-        for (const value of formData.values()) {
-            console.log(value);
-        }
-        placeBookingRequest(formData);
-    })
+    if (confirm("Do you want to place this booking..?" == true)) {
+        $(placeBookingRequestBtn).off('click');
+        $(placeBookingRequestBtn).click(function () {
+            placeBookingRequest(formData);
+        })
+    }
 })
 
 function checkIfAlreadySameCarExists(carRegNo) {

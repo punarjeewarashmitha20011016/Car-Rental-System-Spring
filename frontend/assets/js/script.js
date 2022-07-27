@@ -43,6 +43,7 @@ var rightNavBtnForCarView = $("#rightNavBtnForCarView");
 var viewAllBookingsForCustomerSection = $("#viewAllBookingsForCustomerSection");
 var viewMyAccountForCustomerSection = $("#viewMyAccountForCustomerSection");
 var placingBookingRequestInCustomer = $("#placingBookingRequestInCustomer");
+var notificationsForCustomer = $("#notificationsForCustomer");
 
 var viewDriverScheduleInDriverSection = $("#viewDriverScheduleInDriverSection");
 var viewDriverAccountSection = $("#viewDriverAccountSection");
@@ -68,6 +69,7 @@ $(document).ready(function () {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'none');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
     if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
@@ -100,6 +102,7 @@ $(document).ready(function () {
             $(viewAllBookingsForCustomerSection).css('display', 'none');
             $(viewMyAccountForCustomerSection).css('display', 'none');
             $(placingBookingRequestInCustomer).css('display', 'none');
+            $(notificationsForCustomer).css('display', 'none');
             $(viewDriverScheduleInDriverSection).css('display', 'none');
             $(viewDriverAccountSection).css('display', 'none');
         })
@@ -139,6 +142,7 @@ $(document).ready(function () {
             $(viewAllBookingsForCustomerSection).css('display', 'none');
             $(viewMyAccountForCustomerSection).css('display', 'none');
             $(placingBookingRequestInCustomer).css('display', 'none');
+            $(notificationsForCustomer).css('display', 'none');
             $(viewDriverScheduleInDriverSection).css('display', 'none');
             $(viewDriverAccountSection).css('display', 'none');
         })
@@ -189,6 +193,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -222,6 +227,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -259,6 +265,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -308,6 +315,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -361,6 +369,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -399,6 +408,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -448,6 +458,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
 
@@ -501,6 +512,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -545,6 +557,7 @@ $(loginBtn).click(function () {
                         $(viewAllBookingsForCustomerSection).css('display', 'none');
                         $(viewMyAccountForCustomerSection).css('display', 'none');
                         $(placingBookingRequestInCustomer).css('display', 'none');
+                        $(notificationsForCustomer).css('display', 'none');
                         $(viewDriverScheduleInDriverSection).css('display', 'none');
                         $(viewDriverAccountSection).css('display', 'none');
                     }
@@ -578,6 +591,7 @@ $(loginBtn).click(function () {
                         $(viewAllBookingsForCustomerSection).css('display', 'none');
                         $(viewMyAccountForCustomerSection).css('display', 'none');
                         $(placingBookingRequestInCustomer).css('display', 'none');
+                        $(notificationsForCustomer).css('display', 'none');
                         $(viewDriverScheduleInDriverSection).css('display', 'none');
                         $(viewDriverAccountSection).css('display', 'none');
 
@@ -611,6 +625,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -647,6 +662,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -698,6 +714,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingDetailsInCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -738,6 +755,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'flex');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -755,6 +773,54 @@ $(loginBtn).click(function () {
                             $(placeBookingRequestBtn).click(function () {
                                 setBookingRequestView();
                                 searchCarDetails();
+                            })
+
+                            let notificationsBtn = document.createElement("li");
+                            notificationsBtn.className = 'nav-nav-item d-flex flex-row ms-3 me-3';
+
+                            let div1 = document.createElement("div");
+                            div1.className = 'd-flex col align-items-center justify-content-center';
+
+                            let aforNotificationsBtn = document.createElement('a');
+                            aforNotificationsBtn.className = 'nav-link active d-flex flex-column col';
+                            aforNotificationsBtn.ariaCurrent = 'page';
+                            aforNotificationsBtn.href = "#notificationsForCustomer";
+                            aforNotificationsBtn.innerHTML = "Notifications";
+                            aforNotificationsBtn.className = "text-black text-decoration-none";
+
+                            div1.append(aforNotificationsBtn);
+
+                            let notification = document.createElement('div');
+                            notification.className = 'd-flex col align-items-center justify-content-center ms-1'
+                            let iTag = document.createElement('i');
+                            iTag.className = 'fa-solid fa-bell';
+                            notification.append(iTag);
+                            notificationsBtn.append(div1);
+                            notificationsBtn.append(notification);
+
+                            $(navBarItems).children('div:nth-child(2)').children('ul').append(notificationsBtn);
+
+                            $(notificationsBtn).click(function () {
+                                $(headerNav).css('display', 'block');
+                                $(homeSection).css('display', 'none');
+                                $(customerSection).css('display', 'none');
+                                $(loginSection).css('display', 'none');
+                                $(adminSection).css('display', 'none');
+                                $(carSection).css('display', 'none');
+                                $(customerDetailsSection).css('display', 'none');
+                                $(driverSection).css('display', 'none');
+                                $(bookingRequestSection).css('display', 'none');
+                                $(bookingSection).css('display', 'none');
+                                $(viewAllBookingsSection).css('display', 'none');
+                                $(viewAllBookingDetailsSection).css('display', 'none');
+                                $(incomeSection).css('display', 'none');
+                                $(viewAllCarsInCustomerSection).css('display', 'none');
+                                $(viewAllBookingsForCustomerSection).css('display', 'none');
+                                $(viewMyAccountForCustomerSection).css('display', 'none');
+                                $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'flex');
+                                $(viewDriverScheduleInDriverSection).css('display', 'none');
+                                $(viewDriverAccountSection).css('display', 'none');
                             })
                         }
                     }
@@ -787,6 +853,7 @@ $(loginBtn).click(function () {
                         $(viewAllBookingsForCustomerSection).css('display', 'none');
                         $(viewMyAccountForCustomerSection).css('display', 'none');
                         $(placingBookingRequestInCustomer).css('display', 'none');
+                        $(notificationsForCustomer).css('display', 'none');
                         $(viewDriverScheduleInDriverSection).css('display', 'flex');
                         $(viewDriverAccountSection).css('display', 'none');
 
@@ -820,6 +887,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'flex');
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
@@ -853,6 +921,7 @@ $(loginBtn).click(function () {
                                 $(viewAllBookingsForCustomerSection).css('display', 'none');
                                 $(viewMyAccountForCustomerSection).css('display', 'none');
                                 $(placingBookingRequestInCustomer).css('display', 'none');
+                                $(notificationsForCustomer).css('display', 'none');
                                 $(viewDriverScheduleInDriverSection).css('display', 'none');
                                 $(viewDriverAccountSection).css('display', 'flex');
                             })
@@ -885,6 +954,7 @@ $(signupBtnInLogin).click(function () {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'none');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 })
@@ -907,6 +977,7 @@ $(logoutBtn).click(function () {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'none');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 })
@@ -929,6 +1000,7 @@ $(signupBtn).click(function () {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'none');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 })
@@ -951,6 +1023,7 @@ $(logoutBtnInCustomerForm).click(function () {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'none');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 })
@@ -1135,6 +1208,7 @@ function setBookingRequestView() {
     $(viewAllBookingsForCustomerSection).css('display', 'none');
     $(viewMyAccountForCustomerSection).css('display', 'none');
     $(placingBookingRequestInCustomer).css('display', 'flex');
+    $(notificationsForCustomer).css('display', 'none');
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
 }

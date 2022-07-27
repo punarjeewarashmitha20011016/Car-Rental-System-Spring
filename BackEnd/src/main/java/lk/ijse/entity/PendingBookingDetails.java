@@ -35,7 +35,6 @@ public class PendingBookingDetails implements Serializable {
     private LocalDate returnedDate;
     private String returnedTime;
     private String returnedVenue;
-    private String damageStatus;
     private double lossDamage;
     private double cost;
 

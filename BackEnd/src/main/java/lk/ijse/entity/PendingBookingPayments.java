@@ -20,7 +20,7 @@ public class PendingBookingPayments {
     private String paymentsId;
     @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(referencedColumnName = "boId", name = "boId")
-    private BookingRequest boId;
+    private PendingBooking boId;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(referencedColumnName = "nic", name = "cusNic")
     private Customer cusNic;
@@ -30,7 +30,4 @@ public class PendingBookingPayments {
     private double lossDamageWaiver;
     private String lossDamageWaiverPaymentSlip;
     private double cost;
-
-    @OneToOne(cascade = {CascadeType.ALL},mappedBy = "payments")
-    private PendingBooking booking;
 }

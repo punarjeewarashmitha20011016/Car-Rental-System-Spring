@@ -18,10 +18,10 @@ import java.time.LocalDate;
 public class BookingRequestPayments {
     @Id
     private String paymentsId;
-    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})//mehema daala baluwada.? nh sir poddk ek explain krnnko ai ehm wenne oken  mkkd wenne kiyl
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(referencedColumnName = "boId")
     private BookingRequest boId;
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH})//menna meken yanne update eka. meka balala hadanna sir ek tm aul ynne ok ain krhm hriynw eunt othnt oka ywnnonine// methana reqqirements monawada..?  payment entity ekt cusNic ek save krnn
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(referencedColumnName = "nic")
     private Customer cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)

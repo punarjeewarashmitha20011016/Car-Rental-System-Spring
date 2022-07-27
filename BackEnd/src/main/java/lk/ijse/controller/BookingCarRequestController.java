@@ -1,7 +1,6 @@
 package lk.ijse.controller;
 
 import lk.ijse.dto.BookingRequestDTO;
-import lk.ijse.dto.BookingRequestDetailsDTO;
 import lk.ijse.dto.BookingRequestPaymentsDTO;
 import lk.ijse.dto.PendingBookingsDTO;
 import lk.ijse.service.BookingCarRequestService;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RequestMapping(path = "bookingCarRequestController")
 @RestController
@@ -27,16 +25,15 @@ public class BookingCarRequestController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "placeBookingRequest")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil saveBooking(@RequestPart("dto") BookingRequestDTO dto, @RequestPart("lossDamageWaiverSlip") MultipartFile lossDamageWaiver) {
-        List<BookingRequestDetailsDTO> bookingDetails = dto.getBookingDetails();
         BookingRequestPaymentsDTO payments = dto.getPayments();
         MultipartFile file = saveAnUpdateFile(lossDamageWaiver);
         payments.setLossDamageWaiverPaymentSlip(file.getOriginalFilename());
-        dto.setBookingDetails(bookingDetails);
+        dto.setBookingDetails(dto.getBookingDetails());
         bookingCarService.requestingABookingSave(dto);
         return new ResponseUtil(200, "Booking Request Saved Successfully", dto);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "pendingBookingRequestSave")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "pendingBookingRequestSave")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil savePendingBooking(@RequestBody PendingBookingsDTO dto) {
         bookingCarService.requestingAPendingBookingSave(dto);
@@ -49,7 +46,13 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Booking Request Updated Successfully", dto);
     }
 
-    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "updatePendingBooking")
+    ResponseUtil updatePendingBooking(@RequestBody PendingBookingsDTO dto) {
+        /*bookingCarService.*/
+        return new ResponseUtil(200, "Pending Booking Updated Successfully", dto);
+    }
+
+    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE,path = "deleteBookingRequest")
     ResponseUtil delete(@RequestParam String boId) {
         bookingCarService.deleteABookingRequest(boId);
         return new ResponseUtil(200, "Booking Request deleted Successfully", null);
