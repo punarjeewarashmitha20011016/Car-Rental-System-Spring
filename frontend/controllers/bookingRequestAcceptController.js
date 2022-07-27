@@ -95,50 +95,23 @@ $(bookingRequestSaveBtnInAcceptAdmin).click(function () {
     if (bookingRequestIdInAcceptAdmin.val() == bookingRequestSearchedObj.boId) {
         if (confirm("Do You Want To Accept This Booking Request..?") == true) {
             $.ajax({
-                url: baseUrl + "bookingCarRequestController/pendingBookingRequestSave",
-                method: "POST",
-                data: JSON.stringify(bookingRequestSearchedObj),
-                contentType: "application/json",
-                success: function (resp) {
-                    if (resp.status == 200) {
-                        alert(resp.message);
-                        let notificationRow = document.createElement("div");
-                        notificationRow.className = 'd-flex row flex-row justify-content-center align-items-center';
-                        notificationRow.style.width = '100%';
-                        notificationRow.style.height = 'calc(100%/5)';
-
-                        let notification = document.createElement('div');
-                        notification.className = 'd-flex col-12 flex-column justify-content-center align-items-center';
-                        notification.style.height = '100%';
-
-                        let message = document.createElement('div');
-                        message.className = 'd-flex col-8 justify-content-center align-items-center';
-                        message.style.height = '100%';
-
-                        let msgTxt = document.createElement('h5');
-                        msgTxt.className = 'd-flex text-center text-white';
-                        msgTxt.innerHTML = bookingRequestSearchedObj.boId + ' Is Accepted. Collect Your Rental Car On Pickup Date'
-
-                        message.append(msgTxt);
-
-                        let clearBtn = document.createElement('div');
-                        clearBtn.className = 'd-flex col-4 justify-content-center align-items-center text-center';
-                        clearBtn.style.height = '100%';
-
-                        let closeBtn = document.createElement('i');
-                        closeBtn.className = 'fa-solid fa-xmark d-flex text-black';
-
-                        clearBtn.append(closeBtn);
-                        notification.append(message);
-                        notification.append(closeBtn);
-                        notificationRow.append(notification);
-                        $(notificationsForCustomerSection).append(notificationRow);
+                    url: baseUrl + "bookingCarRequestController/pendingBookingRequestSave",
+                    method: "POST",
+                    data: JSON.stringify(bookingRequestSearchedObj),
+                    contentType: "application/json",
+                    success: function (resp) {
+                        if (resp.status == 200) {
+                            alert(resp.message);
+                            setNotificationsToDisplay();
+                            setRequestsDataToTable();
+                            clearFieldsInRequestAcceptInAdmin();
+                        }
+                    },
+                    error: function (error) {
+                        alert(error.message);
                     }
-                },
-                error: function (error) {
-                    alert(error.message);
                 }
-            })
+            )
         }
     }
 })
@@ -222,4 +195,72 @@ function searchBookingRequestById(id) {
             alert(error.message);
         }
     })
+}
+
+function clearFieldsInRequestAcceptInAdmin() {
+    $(bookingRequestIdInAcceptAdmin).val("");
+    $(bookingRequestCusNicInAcceptAdmin).val("");
+    $(bookingRequestDateInAcceptAdmin).val("");
+    $(bookingRequestTimeInAcceptAdmin).val("");
+    $(bookingRequestCostInAcceptAdmin).val("");
+}
+
+function setNotificationsToDisplay() {
+    $(notificationsForCustomerSection).children('div:nth-child(1)').children('div:nth-child(1)').empty();
+    let notificationsArr = getAllNotifications();
+    for (let i = 0; i < notificationsArr.length; i++) {
+        let notificationRow = document.createElement("div");
+        notificationRow.className = 'd-flex row flex-row justify-content-center align-items-center mt-2 mb-2';
+        notificationRow.style.width = '100%';
+        notificationRow.style.height = 'calc(100%/5)';
+        notificationRow.style.backgroundColor = 'rgb(142 201 181)';
+        notificationRow.style.borderRadius = '3%'
+
+        let notification = document.createElement('div');
+        notification.className = 'd-flex col-12 flex-row justify-content-center align-items-center';
+        notification.style.height = '100%';
+
+        let message = document.createElement('div');
+        message.className = 'd-flex col-8 justify-content-start align-items-center';
+        message.style.height = '100%';
+
+        let msgTxt = document.createElement('h5');
+        msgTxt.className = 'd-flex text-center text-white';
+        msgTxt.innerHTML = notificationsArr[i].boId + ' Is Accepted. Collect Your Rental Car On Pickup Date'
+
+        message.append(msgTxt);
+
+        let clearBtn = document.createElement('div');
+        clearBtn.className = 'd-flex col-4 justify-content-center align-items-center text-center';
+        clearBtn.style.height = '100%';
+
+        let closeBtn = document.createElement('i');
+        closeBtn.className = 'fa-solid fa-xmark d-flex text-black fa-2x';
+        closeBtn.style.cursor = 'pointer';
+
+        $(closeBtn).click(function () {
+            $(notificationRow).remove();
+        })
+
+        clearBtn.append(closeBtn);
+        notification.append(message);
+        notification.append(closeBtn);
+        notificationRow.append(notification);
+        $(notificationsForCustomerSection).children('div:nth-child(1)').children('div:nth-child(1)').append(notificationRow);
+    }
+}
+
+function getAllNotifications() {
+    let notifications = undefined;
+    $.ajax({
+        url: baseUrl + "bookingCarRequestController/getAllNotifications",
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                notifications = resp.data;
+            }
+        }
+    })
+    return notifications;
 }

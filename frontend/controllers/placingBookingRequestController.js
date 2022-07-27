@@ -154,11 +154,19 @@ $(addToCartInBookingRequestBtn).click(function () {
         file: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0],
         fileName: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0].name
     }
+    let driver = assignDriverToField();
+    let driverNic = undefined;
+    if (driver != undefined) {
+        driverNic = driver;
+    } else {
+        driverNic = null;
+    }
+
     let addToCartList = {
         bookingId: bookingReqIdInPlacingBookingRequest.val(),
         carRegNo: carRegNoInPlacingBookingRequest.val(),
         cusNic: cusNicInPlacingBookingRequest.val(),
-        driverNic: assignDriverToField(),
+        driverNic: driverNic,
         carType: carTypeInPlacingBookingRequest.val(),
         tripInKm: parseFloat(tripInKMInPlacingBookingRequest.val()),
         dateOfPickup: dateOfPickupInPlacingBookingRequest.val(),
@@ -237,12 +245,13 @@ $(addToCartInBookingRequestBtn).click(function () {
     disableOrEnablePlaceBookingRequestBtns(deleteBookingRequestBtn, false);
     disableOrEnablePlaceBookingRequestBtns(clearCartBtnInBookingRequest, false);
 
-    if (confirm("Do you want to place this booking..?" == true)) {
-        $(placeBookingRequestBtn).off('click');
-        $(placeBookingRequestBtn).click(function () {
+
+    $(placeBookingRequestBtn).off('click');
+    $(placeBookingRequestBtn).click(function () {
+        if (confirm("Do you want to place this booking..?") == true) {
             placeBookingRequest(formData);
-        })
-    }
+        }
+    })
 })
 
 function checkIfAlreadySameCarExists(carRegNo) {

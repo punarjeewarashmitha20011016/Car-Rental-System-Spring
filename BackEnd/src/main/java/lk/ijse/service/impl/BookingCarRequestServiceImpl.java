@@ -44,10 +44,13 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     @Autowired
     private BookingRequestPaymentsRepo paymentsRepo;
 
+    @Autowired
+    private NotificationsRepo notificationsRepo;
+
     @Override
     public String generateBookingRequestId() {
         PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
-        Booking map = mapper.map(repo.findAll(request), Booking.class);
+        PendingBooking map = mapper.map(pendingBookingRepo.findAll(request), PendingBooking.class);
         if (map.getBoId() != null) {
             int temp = Integer.parseInt(map.getBoId().split("-")[1]);
             temp = temp + 1;
@@ -169,6 +172,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
         if (pendingBookingRepo.existsById(dto.getBoId())) {
             /*Deleting the requested booking entity*/
+            notificationsRepo.save(new Notifications(dto.getBoId(), dto.getBoId() + " Is Accepted. Collect Your Rental Car On Pickup Date"));
             repo.deleteById(dto.getBoId());
         }
     }
@@ -222,6 +226,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
             throw new RuntimeException("Deleting Booking Request failed");
         }
+        notificationsRepo.save(new Notifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
         paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
         repo.deleteById(boId);
     }
@@ -248,5 +253,12 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         } else {
             throw new RuntimeException("No driver available for booking");
         }
+    }
+
+    @Override
+    public List<NotificationsDTO> getAllNotifications() {
+        List<NotificationsDTO> map = mapper.map(notificationsRepo.findAll(), new TypeToken<List<NotificationsDTO>>() {
+        }.getType());
+        return map;
     }
 }

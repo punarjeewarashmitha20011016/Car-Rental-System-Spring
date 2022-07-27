@@ -82,6 +82,11 @@ public class BookingCarRequestController {
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
     }
+    @GetMapping(path = "getAllNotifications", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getAllNotifications() {
+        return new ResponseUtil(200, "Notifications Fetched Successfully", bookingCarService.getAllNotifications());
+    }
+
 
     private MultipartFile saveAnUpdateFile(MultipartFile file1) {
         MultipartFile file = file1;

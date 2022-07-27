@@ -2,6 +2,7 @@ package lk.ijse.service;
 
 import lk.ijse.dto.BookingRequestDTO;
 import lk.ijse.dto.DriverDTO;
+import lk.ijse.dto.NotificationsDTO;
 import lk.ijse.dto.PendingBookingsDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,4 +29,6 @@ public interface BookingCarRequestService {
     List<BookingRequestDTO> getAll();
 
     DriverDTO getAvailableDriver();
+
+    List<NotificationsDTO> getAllNotifications();
 }

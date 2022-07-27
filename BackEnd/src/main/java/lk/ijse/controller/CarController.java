@@ -34,7 +34,7 @@ public class CarController {
     }
 
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@RequestPart("dto") CarDTO dto, @RequestPart("files") MultipartFile[] files) {
+    ResponseUtil update(@RequestPart("dto") CarDTO dto, @RequestPart("carImgFile") MultipartFile[] files) {
         CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
         carService.update(dto);

@@ -801,6 +801,7 @@ $(loginBtn).click(function () {
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(notificationsBtn);
 
                             $(notificationsBtn).click(function () {
+                                setNotificationsToDisplay();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
