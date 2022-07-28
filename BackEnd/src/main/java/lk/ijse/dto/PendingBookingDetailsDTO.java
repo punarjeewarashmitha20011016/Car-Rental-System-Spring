@@ -18,8 +18,7 @@ public class PendingBookingDetailsDTO {
     private String car_RegNo;
     private String driverNic;
     private String carType;
-    private double tripInKm;
-    private double extraKmDriven;
+    private String rentalType;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPickup;
     private String timeOfPickup;

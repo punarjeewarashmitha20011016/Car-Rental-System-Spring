@@ -45,9 +45,10 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Override
     public void bookingACar(BookingDTO dto) {
         /*This will finalize the payment by updating the records*/
-        if (!repo.existsById(dto.getBoId())) {
+        if (repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Booking Update failed");
         }
+
         repo.save(mapper.map(dto, Booking.class));
 
         if (dto.getPayments().getPaymentsId() == null) {
@@ -85,6 +86,7 @@ public class BookingCarServiceImpl implements BookingCarService {
                 dto.setCost(dto.getCost() - b.getLossDamage());
                 dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
                 repo.save(mapper.map(dto, Booking.class));
+
                 updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
             }
             carRepo.save(car);
@@ -161,11 +163,14 @@ public class BookingCarServiceImpl implements BookingCarService {
     Car updateMileageOfTheCarAccordingToTheTrip(Car c, double tripInKm, double extraKmDriven) {
         Car car = c;
         double totalTripToUpdate = 0.0;
-        if (extraKmDriven > c.getFreeMileage()) {
+        /*if (extraKmDriven > c.getFreeMileage()) {
             totalTripToUpdate = tripInKm + extraKmDriven;
         } else {
             totalTripToUpdate = tripInKm;
         }
+        car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
+        return car;*/
+        totalTripToUpdate = tripInKm + extraKmDriven;
         car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
         return car;
     }

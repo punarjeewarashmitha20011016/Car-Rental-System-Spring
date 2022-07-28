@@ -26,7 +26,8 @@ public class Car {
     private CarImages images;
     private int noOfPassengers;
     private double mileageInKm;
-    private double freeMileage;
+    private double freeKmPerDay;
+    private double freeKmPerMonth;
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;

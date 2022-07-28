@@ -1,9 +1,6 @@
 package lk.ijse.service;
 
-import lk.ijse.dto.BookingRequestDTO;
-import lk.ijse.dto.DriverDTO;
-import lk.ijse.dto.NotificationsDTO;
-import lk.ijse.dto.PendingBookingsDTO;
+import lk.ijse.dto.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +23,13 @@ public interface BookingCarRequestService {
 
     BookingRequestDTO searchRequestBooking(String boId);
 
+    PendingBookingsDTO searchPendingBooking(String boId);
+
+    CarDTO searchCarsForBooking(String regNo);
+
     List<BookingRequestDTO> getAll();
+
+    List<PendingBookingsDTO> getAllPendingBookings();
 
     DriverDTO getAvailableDriver();
 

@@ -52,7 +52,7 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Pending Booking Updated Successfully", dto);
     }
 
-    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE,path = "deleteBookingRequest")
+    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE, path = "deleteBookingRequest")
     ResponseUtil delete(@RequestParam String boId) {
         bookingCarService.deleteABookingRequest(boId);
         return new ResponseUtil(200, "Booking Request deleted Successfully", null);
@@ -63,9 +63,24 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Data Fetched Successfully", bookingCarService.getAll());
     }
 
+    @GetMapping(path = "getAllPendingBookings", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getAllPendingBookings() {
+        return new ResponseUtil(200, "Data Fetched Successfully", bookingCarService.getAllPendingBookings());
+    }
+
     @GetMapping(path = "search", params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil search(@RequestParam String boId) {
         return new ResponseUtil(200, "Booking Request Searched Successfully", bookingCarService.searchRequestBooking(boId));
+    }
+
+    @GetMapping(path = "searchPendingBooking", params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil searchPendingBooking(@RequestParam String boId) {
+        return new ResponseUtil(200, "Booking Request Searched Successfully", bookingCarService.searchPendingBooking(boId));
+    }
+
+    @GetMapping(path = "searchCarsInBooking", params = {"regNo"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil searchCarsInBooking(@RequestParam String regNo) {
+        return new ResponseUtil(200, "Car Searched Successfully", bookingCarService.searchCarsForBooking(regNo));
     }
 
     @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,6 +97,7 @@ public class BookingCarRequestController {
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
     }
+
     @GetMapping(path = "getAllNotifications", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAllNotifications() {
         return new ResponseUtil(200, "Notifications Fetched Successfully", bookingCarService.getAllNotifications());

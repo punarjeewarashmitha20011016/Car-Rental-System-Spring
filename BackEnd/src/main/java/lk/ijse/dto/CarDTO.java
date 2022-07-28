@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -20,7 +18,8 @@ public class CarDTO {
     private CarImagesDTO images;
     private int noOfPassengers;
     private double mileageInKm;
-    private double freeMileage;
+    private double freeKmPerDay;
+    private double freeKmPerMonth;
     private double priceForExtraKm;
     private double dailyRate;
     private double monthlyRate;

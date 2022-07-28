@@ -438,6 +438,7 @@ $(loginBtn).click(function () {
                             let currentBookingsDetailsTableContainer = $("#currentBookingsDetailsTableContainer");
 
                             $(bookingBtn).click(function () {
+                                setDisabledRequiredFieldsInBookingInAdmin();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -449,6 +450,7 @@ $(loginBtn).click(function () {
                                 $(bookingRequestSection).css('display', 'none');
                                 $(bookingSection).css('display', 'flex');
                                 $(viewCurrentBookingsSection).css('display', 'none');
+                                $('#viewAddToListBookingsSectionInAdmin').css('display', 'none');
                                 $(viewAllBookingsSection).css('display', 'none');
                                 $(viewAllBookingDetailsSection).css('display', 'none');
                                 $(incomeSection).css('display', 'none');
@@ -463,12 +465,16 @@ $(loginBtn).click(function () {
                                 $(viewDriverAccountSection).css('display', 'none');
 
                                 $(viewCurrentBookingsBtn).click(function () {
+                                    let arr = getAllPendingBookings();
+                                    setDataToPendingBookingTable(arr)
                                     $(placingBookingInAdminBookingSection).css('display', 'none');
                                     $(viewCurrentBookingsSection).css('display', 'flex');
+                                    $('#viewAddToListBookingsSectionInAdmin').css('display', 'none');
                                 })
                                 $(viewCurrentBookingsBtn).dblclick(function () {
                                     $(placingBookingInAdminBookingSection).css('display', 'flex');
                                     $(viewCurrentBookingsSection).css('display', 'none');
+                                    $('#viewAddToListBookingsSectionInAdmin').css('display', 'none');
                                 })
                             })
 

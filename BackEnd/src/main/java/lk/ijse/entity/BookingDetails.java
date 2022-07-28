@@ -27,6 +27,7 @@ public class BookingDetails implements Serializable {
     @JoinColumn(referencedColumnName = "nic", nullable = true)
     private Driver driverNic;
     private String carType;
+    private String rentalType;
     private double tripInKm;
     private double extraKmDriven;
     private LocalDate dateOfPickup;
@@ -37,7 +38,6 @@ public class BookingDetails implements Serializable {
     private String returnedVenue;
     private String damageStatus;
     private double lossDamage;
-    private String lossDamagePaymentsSlip;
     private double cost;
 
     @ManyToOne

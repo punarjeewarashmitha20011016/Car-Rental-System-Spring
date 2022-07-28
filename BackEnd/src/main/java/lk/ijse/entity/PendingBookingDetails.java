@@ -27,8 +27,7 @@ public class PendingBookingDetails implements Serializable {
     @JoinColumn(referencedColumnName = "nic", nullable = true)
     private Driver driverNic;
     private String carType;
-    private double tripInKm;
-    private double extraKmDriven;
+    private String rentalType;
     private LocalDate dateOfPickup;
     private String timeOfPickup;
     private String pickupVenue;

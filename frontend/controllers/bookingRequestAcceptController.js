@@ -177,7 +177,7 @@ function searchBookingRequestById(id) {
                            <td>` + bookingDetails[i].car_RegNo + `</td>
                            <td>` + bookingDetails[i].driverNic + `</td>
                            <td>` + bookingDetails[i].carType + `</td>
-                           <td>` + bookingDetails[i].tripInKm + `</td>
+                           <td>` + bookingDetails[i].rentalType + `</td>
                            <td>` + bookingDetails[i].dateOfPickup + `</td>
                            <td>` + bookingDetails[i].timeOfPickup + `</td>
                            <td>` + bookingDetails[i].pickupVenue + `</td>

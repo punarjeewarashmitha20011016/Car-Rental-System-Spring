@@ -240,9 +240,34 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     }
 
     @Override
+    public PendingBookingsDTO searchPendingBooking(String boId) {
+        if (pendingBookingRepo.existsById(boId)) {
+            return mapper.map(pendingBookingRepo.findById(boId), PendingBookingsDTO.class);
+        } else {
+            throw new RuntimeException("Pending Booking Search Unsuccessful");
+        }
+    }
+
+    @Override
+    public CarDTO searchCarsForBooking(String regNo) {
+        if (carRepo.existsById(regNo)) {
+            return mapper.map(carRepo.findById(regNo), CarDTO.class);
+        } else {
+            throw new RuntimeException("Car Search Failed");
+        }
+    }
+
+    @Override
     public List<BookingRequestDTO> getAll() {
-        return mapper.map(repo.findAll(), new TypeToken<List<BookingRequestDTO>>() {
+        List<BookingRequestDTO> list = mapper.map(repo.findAll(), new TypeToken<List<BookingRequestDTO>>() {
         }.getType());
+        return list;
+    }
+
+    public List<PendingBookingsDTO> getAllPendingBookings() {
+        List<PendingBookingsDTO> list = mapper.map(pendingBookingRepo.findAll(), new TypeToken<List<PendingBookingsDTO>>() {
+        }.getType());
+        return list;
     }
 
     @Override

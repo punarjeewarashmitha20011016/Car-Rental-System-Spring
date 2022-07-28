@@ -7,8 +7,14 @@ var cusNicInPlacingBookingRequestPattern = /^(([0-9]{9}[Vv]{1})||([0-9]{12}))$/
 var ifDriverNeedsForBookingRequestCheckBox = $("#ifDriverNeedsForBookingRequestCheckBox");
 var carTypeInPlacingBookingRequest = $("#carTypeInPlacingBookingRequest");
 var carTypeInPlacingBookingRequestPattern = /^[A-z ]{2,}$/
+
+/*
 var tripInKMInPlacingBookingRequest = $("#tripInKMInPlacingBookingRequest");
 var tripInKMInPlacingBookingRequestPattern = /^[0-9]{1,}$/
+*/
+var rentalTypeInPlacingBookingRequestDropdownBtn = $("#rentalTypeInPlacingBookingRequestDropdownBtn");
+var rentalTypeInPlacingBookingRequestDropdownMenu = $("#rentalTypeInPlacingBookingRequestDropdownMenu");
+
 var dateOfPickupInPlacingBookingRequest = $("#dateOfPickupInPlacingBookingRequest");
 var timeOfPickupInPlacingBookingRequest = $("#timeOfPickupInPlacingBookingRequest");
 var pickupVenueInPlacingBookingRequest = $("#pickupVenueInPlacingBookingRequest");
@@ -35,7 +41,7 @@ var addToCartTableInBookingRequest = $("#addToCartTableInBookingRequest");
 
 var bookingReqFieldArr = [bookingReqIdInPlacingBookingRequest, carRegNoInPlacingBookingRequest,
     cusNicInPlacingBookingRequest,
-    carTypeInPlacingBookingRequest, tripInKMInPlacingBookingRequest,
+    carTypeInPlacingBookingRequest,
     pickupVenueInPlacingBookingRequest, returnVenueInPlacingBookingRequest,
     lossDamageWaiverInPlacingBookingRequest, costInPlacingBookingRequest,
     totalCostInPlacingBookingRequest
@@ -66,34 +72,29 @@ carTypeInPlacingBookingRequest.keyup(function (e) {
     validate(carTypeInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 
-tripInKMInPlacingBookingRequest.off('keyup');
-tripInKMInPlacingBookingRequest.keyup(function (e) {
-    let index = 4;
-    validate(tripInKMInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
-})
 pickupVenueInPlacingBookingRequest.off('keyup');
 pickupVenueInPlacingBookingRequest.keyup(function (e) {
-    let index = 5;
+    let index = 4;
     validate(pickupVenueInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 returnVenueInPlacingBookingRequest.off('keyup');
 returnVenueInPlacingBookingRequest.keyup(function (e) {
-    let index = 6;
+    let index = 5;
     validate(returnVenueInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 lossDamageWaiverInPlacingBookingRequest.off('keyup');
 lossDamageWaiverInPlacingBookingRequest.keyup(function (e) {
-    let index = 7;
+    let index = 6;
     validate(lossDamageWaiverInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 costInPlacingBookingRequest.off('keyup');
 costInPlacingBookingRequest.keyup(function (e) {
-    let index = 8;
+    let index = 7;
     validate(costInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 totalCostInPlacingBookingRequest.off('keyup');
 totalCostInPlacingBookingRequest.keyup(function (e) {
-    let index = 9;
+    let index = 8;
     validate(totalCostInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 
@@ -149,6 +150,14 @@ function assignDriverToField() {
 
 var addToListArr = new Array();
 var totalCostInBookingRequest = 0;
+let rowNoCart = 1;
+let rentalType = undefined;
+$(rentalTypeInPlacingBookingRequestDropdownMenu).children('li').off('click');
+$(rentalTypeInPlacingBookingRequestDropdownMenu).children('li').click(function () {
+    rentalType = $(this).text().trim();
+})
+
+$(addToCartInBookingRequestBtn).off('click');
 $(addToCartInBookingRequestBtn).click(function () {
     let lossDamageFile = {
         file: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0],
@@ -162,65 +171,127 @@ $(addToCartInBookingRequestBtn).click(function () {
         driverNic = null;
     }
 
-    let addToCartList = {
-        bookingId: bookingReqIdInPlacingBookingRequest.val(),
-        carRegNo: carRegNoInPlacingBookingRequest.val(),
-        cusNic: cusNicInPlacingBookingRequest.val(),
-        driverNic: driverNic,
-        carType: carTypeInPlacingBookingRequest.val(),
-        tripInKm: parseFloat(tripInKMInPlacingBookingRequest.val()),
-        dateOfPickup: dateOfPickupInPlacingBookingRequest.val(),
-        timeOfPickup: timeOfPickupInPlacingBookingRequest.val(),
-        pickupVenue: pickupVenueInPlacingBookingRequest.val(),
-        returnDate: returnedDateInPlacingBookingRequest.val(),
-        returnTime: returnedTimeInPlacingBookingRequest.val(),
-        returnVenue: returnVenueInPlacingBookingRequest.val(),
-        lossDamageWaiver: parseFloat(lossDamageWaiverInPlacingBookingRequest.val()),
-        cost: parseFloat(lossDamageWaiverInPlacingBookingRequest.val())
-    }
+    let addToCartList = new AddToCart(
+        bookingReqIdInPlacingBookingRequest.val(),
+        carRegNoInPlacingBookingRequest.val(),
+        cusNicInPlacingBookingRequest.val(),
+        driverNic,
+        carTypeInPlacingBookingRequest.val(),
+        rentalType,
+        dateOfPickupInPlacingBookingRequest.val(),
+        timeOfPickupInPlacingBookingRequest.val(),
+        pickupVenueInPlacingBookingRequest.val(),
+        returnedDateInPlacingBookingRequest.val(),
+        returnedTimeInPlacingBookingRequest.val(),
+        returnVenueInPlacingBookingRequest.val(),
+        parseFloat(lossDamageWaiverInPlacingBookingRequest.val()),
+        parseFloat(lossDamageWaiverInPlacingBookingRequest.val())
+    )
+
 
     if (checkIfAlreadySameCarExists(carRegNoInPlacingBookingRequest.val()) == true) {
         for (let i = 0; i < addToListArr.length; i++) {
-            if (addToListArr[i].carRegNo == addToCartList.carRegNo) {
-                addToListArr[i] = addToCartList;
-                addDataToCartTable();
+            if (addToListArr[i].getCarRegNo() == addToCartList.getCarRegNo()) {
+                let costPerCar = (addToListArr[i].getCost() - addToListArr[i].getLossDamageWaiver()) + totalCostPerCarInRequest(addToCartList.getCarRegNo());
+                console.log(costPerCar);
+                addToListArr[i].setCost(costPerCar);
+                addToListArr[i].setDateOfPickup(dateOfPickupInPlacingBookingRequest.val());
+                addToListArr[i].setTimeOfPickup(timeOfPickupInPlacingBookingRequest.val());
+                addToListArr[i].setPickupVenue(pickupVenueInPlacingBookingRequest.val());
+                addToListArr[i].setReturnDate(returnedDateInPlacingBookingRequest.val());
+                addToListArr[i].setReturnTime(returnedTimeInPlacingBookingRequest.val());
+                addToListArr[i].setPickupVenue(pickupVenueInPlacingBookingRequest.val());
+                addToListArr[i].setReturnVenue(returnVenueInPlacingBookingRequest.val());
+                addToListArr[i].setRentalType(rentalType);
+                console.log(addToListArr[i].getCost())
+                $("#addToCartTableInBookingRequest > tbody tr").filter(function () {
+                    if ($(this).children("td:nth-child(3)").text() == addToListArr[i].getCarRegNo()) {
+                        $(this).replaceWith(`<tr>
+                            <td>` + (i + 1) + `</td>
+                            <td>` + addToListArr[i].getBookingId() + `</td>
+                            <td>` + addToListArr[i].getCarRegNo() + `</td>
+                            <td>` + addToListArr[i].getDriverNic() + `</td>
+                            <td>` + addToListArr[i].getCarType() + `</td>
+                            <td>` + addToListArr[i].getRentalType() + `</td>
+                            <td>` + addToListArr[i].getDateOfPickup() + `</td>
+                            <td>` + addToListArr[i].getTimeOfPickup() + `</td>
+                            <td>` + addToListArr[i].getPickupVenue() + `</td>
+                            <td>` + addToListArr[i].getReturnDate() + `</td>
+                            <td>` + addToListArr[i].getReturnTime() + `</td>
+                            <td>` + addToListArr[i].getReturnVenue() + `</td>
+                            <td>` + addToListArr[i].getLossDamageWaiver() + `</td>
+                            <td>` + addToListArr[i].getCost() + `</td></tr>`);
+                    }
+                })
             }
         }
     } else {
         addToListArr.push(addToCartList);
-        addDataToCartTable();
+        for (let i = 0; i < addToListArr.length; i++) {
+            if (addToListArr[i].getCarRegNo() == addToCartList.getCarRegNo()) {
+                console.log(totalCostPerCarInRequest(addToListArr[i].getCarRegNo()))
+                addToListArr[i].setCost(totalCostPerCarInRequest(addToListArr[i].getCarRegNo()));
+            }
+        }
+
+        let row = (`<tr>
+                            <td>` + (rowNoCart) + `</td>
+                            <td>` + addToCartList.getBookingId() + `</td>
+                            <td>` + addToCartList.getCarRegNo() + `</td>
+                            <td>` + addToCartList.getDriverNic() + `</td>
+                            <td>` + addToCartList.getCarType() + `</td>
+                            <td>` + addToCartList.getRentalType() + `</td>
+                            <td>` + addToCartList.getDateOfPickup() + `</td>
+                            <td>` + addToCartList.getTimeOfPickup() + `</td>
+                            <td>` + addToCartList.getPickupVenue() + `</td>
+                            <td>` + addToCartList.getReturnDate() + `</td>
+                            <td>` + addToCartList.getReturnTime() + `</td>
+                            <td>` + addToCartList.getReturnVenue() + `</td>
+                            <td>` + addToCartList.getLossDamageWaiver() + `</td>
+                            <td>` + addToCartList.getCost() + `</td></tr>`)
+        $("#addToCartTableInBookingRequest > tbody").append(row);
+        rowNoCart++;
     }
     calculateTotalCost();
     totalCostInPlacingBookingRequest.val(totalCostInBookingRequest);
     let bookingDetailsArr = [];
 
     for (let i = 0; i < addToListArr.length; i++) {
+        let cost = totalCostPerCarInRequest(addToListArr[i].getCarRegNo());
         let bookingDetails = {
-            bookingId: addToListArr[i].bookingId,
-            car_RegNo: addToListArr[i].carRegNo,
-            driverNic: addToListArr[i].driverNic,
-            carType: addToListArr[i].carType,
-            tripInKm: addToListArr[i].tripInKm,
-            dateOfPickup: addToListArr[i].dateOfPickup,
-            timeOfPickup: addToListArr[i].timeOfPickup,
-            pickupVenue: addToListArr[i].pickupVenue,
-            returnedDate: addToListArr[i].returnDate,
-            returnedTime: addToListArr[i].returnTime,
-            returnedVenue: addToListArr[i].returnVenue,
-            lossDamage: addToListArr[i].lossDamageWaiver,
-            cost: addToListArr[i].cost
+            bookingId: addToListArr[i].getBookingId(),
+            car_RegNo: addToListArr[i].getCarRegNo(),
+            driverNic: addToListArr[i].getDriverNic(),
+            carType: addToListArr[i].getCarType(),
+            rentalType: addToListArr[i].getRentalType(),
+            dateOfPickup: addToListArr[i].getDateOfPickup(),
+            timeOfPickup: addToListArr[i].getTimeOfPickup(),
+            pickupVenue: addToListArr[i].getPickupVenue(),
+            returnedDate: addToListArr[i].getReturnDate(),
+            returnedTime: addToListArr[i].getReturnTime(),
+            returnedVenue: addToListArr[i].getReturnVenue(),
+            lossDamage: addToListArr[i].getLossDamageWaiver(),
+            cost: cost
         }
         bookingDetailsArr.push(bookingDetails);
     }
-
-    let dt = new Date();
-    let date = dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
-    let time = dt.getHours() + "." + dt.getMinutes() + "." + dt.getSeconds();
     getPaymentsId();
+    let dt1 = new Date();
+    let date = undefined;
+    if (((dt1.getDate() > -1) && (dt1.getDate() < 10)) && ((dt1.getMonth() > -1) && (dt1.getMonth() < 10))) {
+        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + 0 + dt1.getDate();
+    } else if ((dt1.getMonth() > -1) && (dt1.getMonth() < 10)) {
+        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + dt1.getDate();
+    } else if ((dt1.getDate() > -1) && (dt1.getDate() < 10)) {
+        date = dt1.getFullYear() + "-" + dt1.getMonth() + "-" + 0 + dt1.getDate();
+    }
+
+    let time = dt1.getHours() + "." + dt1.getMinutes() + "." + dt1.getSeconds();
+
     let booking = {
         boId: bookingReqIdInPlacingBookingRequest.val(),
         cusNic: cusNicInPlacingBookingRequest.val(),
-        date: dt,
+        date: date,
         time: time,
         cost: totalCostInBookingRequest,
         bookingDetails: bookingDetailsArr,
@@ -228,13 +299,14 @@ $(addToCartInBookingRequestBtn).click(function () {
             paymentsId: paymentsId,
             boId: bookingReqIdInPlacingBookingRequest.val(),
             cusNic: cusNicInPlacingBookingRequest.val(),
-            dateOfPayment: dt,
+            dateOfPayment: date,
             timeOfPayment: time,
-            lossDamageWaiver: totalCostInBookingRequest,
+            lossDamageWaiver: totalCostOfLossDamageWaiver(),
             lossDamageWaiverPaymentSlip: "",
             cost: totalCostInBookingRequest,
         }
     }
+    console.log(booking)
 
     let formData = new FormData();
     formData.append("dto", new Blob([JSON.stringify(booking)], {type: "application/json"}));
@@ -256,41 +328,114 @@ $(addToCartInBookingRequestBtn).click(function () {
 
 function checkIfAlreadySameCarExists(carRegNo) {
     for (let i = 0; i < addToListArr.length; i++) {
-        if (addToListArr[i].carRegNo == carRegNo) {
+        if (addToListArr[i].getCarRegNo() == carRegNo) {
             return true;
         }
     }
     return false;
 }
 
-function addDataToCartTable() {
-    let tbody = $(addToCartTableInBookingRequest).children('tbody');
-    $(tbody).empty();
+function calculateTotalCost() {
+    totalCostInBookingRequest = 0;
+    totalCostInPlacingBookingRequest.val("");
     for (let i = 0; i < addToListArr.length; i++) {
-        let row = `<tr>
-                    <td>` + (i + 1) + `</td>
-                    <td>` + addToListArr[i].bookingId + `</td>
-                    <td>` + addToListArr[i].carRegNo + `</td>
-                    <td>` + addToListArr[i].driverNic + `</td>
-                    <td>` + addToListArr[i].carType + `</td>
-                    <td>` + addToListArr[i].tripInKm + `</td>
-                    <td>` + addToListArr[i].dateOfPickup + `</td>
-                    <td>` + addToListArr[i].timeOfPickup + `</td>
-                    <td>` + addToListArr[i].pickupVenue + `</td>
-                    <td>` + addToListArr[i].returnDate + `</td>
-                    <td>` + addToListArr[i].returnTime + `</td>
-                    <td>` + addToListArr[i].returnVenue + `</td>
-                    <td>` + addToListArr[i].lossDamageWaiver + `</td>
-                    <td>` + addToListArr[i].cost + `</td></tr>`
-        $(tbody).append(row);
+        let car = searchCarDetailsInBookingAdmin(addToListArr[i].getCarRegNo());
+        let calculatedCostOfRentingDates = undefined;
+        var pickupDate = addToListArr[i].getDateOfPickup().split("-");
+        console.log(pickupDate)
+        var day1 = pickupDate[2];
+        var month1 = pickupDate[1];
+
+        var returnDate = addToListArr[i].getReturnDate().split("-");
+        var day2 = returnDate[2];
+        var month2 = returnDate[1];
+        if (addToListArr[i].getRentalType() == 'Monthly') {
+            let rate = car.monthlyRate;
+            let months = getTotalMonthsRentingTheCar(month1, month2);
+            calculatedCostOfRentingDates = rate * months;
+
+        } else if (addToListArr[i].getRentalType() == 'Daily') {
+            let rate = car.dailyRate;
+            let days = getTotalDaysRentingTheCar(day1, day2);
+            console.log(days)
+            calculatedCostOfRentingDates = rate * days;
+            console.log(calculatedCostOfRentingDates)
+        }
+        let total = parseFloat(addToListArr[i].getLossDamageWaiver()) + calculatedCostOfRentingDates;
+        totalCostInBookingRequest += total;
     }
+    console.log(totalCostInBookingRequest)
+    totalCostInPlacingBookingRequest.val(totalCostInBookingRequest);
 }
 
-function calculateTotalCost() {
-    for (let i = 0; i < addToListArr.length; i++) {
-        totalCostInBookingRequest += parseFloat(addToListArr[i].lossDamageWaiver);
+function getTotalDaysRentingTheCar(dateOfPickup, returnDate) {
+    console.log(dateOfPickup + ' = ' + returnDate);
+    let count = dateOfPickup;
+    let count2 = 0
+    while (count < returnDate) {
+        count++;
+        count2++;
+        console.log(count);
     }
-    totalCostInPlacingBookingRequest.val(totalCostInBookingRequest);
+    console.log(count2)
+    return count2;
+}
+
+function getTotalMonthsRentingTheCar(dateOfPickup, returnDate) {
+    let count = dateOfPickup;
+    let count2 = 0
+    while (count < returnDate) {
+        count++;
+        count2++;
+        console.log(count);
+    }
+    console.log(count2)
+    return count2;
+    ;
+}
+
+function totalCostOfLossDamageWaiver() {
+    let total = 0;
+    for (let i = 0; i < addToListArr.length; i++) {
+        total += addToListArr[i].getLossDamageWaiver();
+    }
+    return total;
+}
+
+function totalCostPerCarInRequest(regNo) {
+    let totalCost = 0;
+    for (let i = 0; i < addToListArr.length; i++) {
+        if (addToListArr[i].getCarRegNo() == regNo) {
+            let car = searchCarDetailsInBookingAdmin(regNo);
+            let calculatedCostOfRentingDates = undefined;
+            console.log(addToListArr[i].getCarRegNo());
+            var pickupDate = addToListArr[i].getDateOfPickup().split("-");
+            var day1 = pickupDate[2];
+            var month1 = pickupDate[1];
+
+            var returnDate = addToListArr[i].getReturnDate().split("-");
+            var day2 = returnDate[2];
+            var month2 = returnDate[1];
+            if (addToListArr[i].getRentalType() == 'Monthly') {
+                let rate = car.monthlyRate;
+                console.log(rate);
+                let months = getTotalMonthsRentingTheCar(month1, month2);
+                calculatedCostOfRentingDates = rate * months;
+
+            } else if (addToListArr[i].getRentalType() == 'Daily') {
+                let rate = car.dailyRate;
+                console.log(rate);
+                console.log(addToListArr[i].getDateOfPickup())
+                let days = getTotalDaysRentingTheCar(day1, day2);
+                console.log(days);
+                calculatedCostOfRentingDates = rate * days;
+            }
+            let total = parseFloat(addToListArr[i].getLossDamageWaiver()) + calculatedCostOfRentingDates;
+            totalCost += total;
+        }
+    }
+    console.log(totalCost)
+    return totalCost;
 }
 
 function setBookingIdToField() {
@@ -369,7 +514,6 @@ function clearBookingRequestFields() {
     carRegNoInPlacingBookingRequest.val("");
     ifDriverNeedsForBookingRequestCheckBox.checked = false;
     carTypeInPlacingBookingRequest.val("");
-    tripInKMInPlacingBookingRequest.val("");
     dateOfPickupInPlacingBookingRequest.val("");
     timeOfPickupInPlacingBookingRequest.val("");
     pickupVenueInPlacingBookingRequest.val("");
