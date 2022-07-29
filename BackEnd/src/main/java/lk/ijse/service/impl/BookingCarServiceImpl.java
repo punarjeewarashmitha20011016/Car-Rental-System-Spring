@@ -55,14 +55,19 @@ public class BookingCarServiceImpl implements BookingCarService {
         System.out.println("Booking = " + dto.toString());
         System.out.println("Booking Details = " + dto.getBookingDetails());
         System.out.println("Payments = " + dto.getPayments());
+        System.out.println("Booking Entity = " + mapper.map(dto, Booking.class));
         System.out.println("Payments Entity = " + mapper.map(dto, Booking.class).getPayments().toString());
 
-        repo.save(mapper.map(dto, Booking.class));
+        Booking map = mapper.map(dto, Booking.class);
+
+        System.out.println("Book = "+map);
+
+        repo.save(map);
 
         if (dto.getPayments().getPaymentId() == null) {
             throw new RuntimeException("Booking a Car failed");
         }
-       /* paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));*/
+        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
 
         List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
         for (BookingDetailsDTO b : bookingList

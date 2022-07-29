@@ -19,7 +19,7 @@ public class BookingPayments {
     @Id
     private String paymentId;
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(referencedColumnName = "boId")
+    @JoinColumn(referencedColumnName = "boId",name = "boId")
     private Booking boId;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(referencedColumnName = "nic", name = "cusNic")

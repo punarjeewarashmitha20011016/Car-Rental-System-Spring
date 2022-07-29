@@ -29,6 +29,6 @@ public class Booking {
     @NotFound(action = NotFoundAction.IGNORE)
     private List<BookingDetails> bookingDetails;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "paymentId")
+    @JoinColumn(referencedColumnName = "paymentId",name = "paymentId")
     private BookingPayments payments;
 }
