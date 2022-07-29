@@ -17,11 +17,11 @@ import java.time.LocalDate;
 @Entity
 public class BookingPayments {
     @Id
-    private String paymentsId;
-    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(referencedColumnName = "boId", name = "boId")
+    private String paymentId;
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(referencedColumnName = "boId")
     private Booking boId;
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(referencedColumnName = "nic", name = "cusNic")
     private Customer cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)

@@ -25,10 +25,10 @@ public class Booking {
     private LocalDate date;
     private String time;
     private double cost;
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "bookingEntity")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookingEntity")
     @NotFound(action = NotFoundAction.IGNORE)
     private List<BookingDetails> bookingDetails;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "paymentsId")
+    @JoinColumn(referencedColumnName = "paymentId")
     private BookingPayments payments;
 }

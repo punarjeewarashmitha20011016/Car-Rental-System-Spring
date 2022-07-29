@@ -86,23 +86,23 @@ $(CurrentBookingsDetailsSearchBtn).click(function () {
 function setDataToPendingBookingsDetailsTable(arr) {
     let tbody = $(currentBookingsDetailsTableContainer).children('table').children('tbody');
     $(tbody).empty();
-    let bookingDetails = arr;
-    for (let i = 0; i < bookingDetails.length; i++) {
+    let details = arr.bookingDetails;
+    for (let i = 0; i < details.length; i++) {
         let row = `<tr>
                            <td>` + (i + 1) + `</td>
-                           <td>` + bookingDetails[i].bookingId + `</td>
-                           <td>` + bookingDetails[i].car_RegNo + `</td>
-                           <td>` + bookingDetails[i].driverNic + `</td>
-                           <td>` + bookingDetails[i].carType + `</td>
-                           <td>` + bookingDetails[i].rentalType + `</td>
-                           <td>` + bookingDetails[i].dateOfPickup + `</td>
-                           <td>` + bookingDetails[i].timeOfPickup + `</td>
-                           <td>` + bookingDetails[i].pickupVenue + `</td>
-                           <td>` + bookingDetails[i].returnedDate + `</td>
-                           <td>` + bookingDetails[i].returnedTime + `</td>
-                           <td>` + bookingDetails[i].returnedVenue + `</td>
-                           <td>` + bookingDetails[i].lossDamage + `</td>
-                           <td>` + bookingDetails[i].cost + `</td>
+                           <td>` + details[i].bookingId + `</td>
+                           <td>` + details[i].car_RegNo + `</td>
+                           <td>` + details[i].driverNic + `</td>
+                           <td>` + details[i].carType + `</td>
+                           <td>` + details[i].rentalType + `</td>
+                           <td>` + details[i].dateOfPickup + `</td>
+                           <td>` + details[i].timeOfPickup + `</td>
+                           <td>` + details[i].pickupVenue + `</td>
+                           <td>` + details[i].returnedDate + `</td>
+                           <td>` + details[i].returnedTime + `</td>
+                           <td>` + details[i].returnedVenue + `</td>
+                           <td>` + details[i].lossDamage + `</td>
+                           <td>` + details[i].cost + `</td>
                     </tr>`
         tbody.append(row);
     }
@@ -115,7 +115,8 @@ $(searchBookingBtn).click(function () {
     cusNicInBooking.val(data.cusNic);
     totalCostInBooking.val(data.cost);
     setDataToDropDownMenuForCarRegNoInBookingInAdmin(data);
-    setDataInPendingBookingDetailsToFields(data);
+    lossDamageWaiverSlipInBooking.val(data.payments.lossDamageWaiverPaymentSlip);
+    bookingObj = data;
 })
 
 function searchPendingBooking(id) {
@@ -135,6 +136,7 @@ function searchPendingBooking(id) {
 
 function setDataToDropDownMenuForCarRegNoInBookingInAdmin(data) {
     let arr = data.bookingDetails;
+    $(dropDownMenuForCarRegNoInBookingInAdmin).empty();
     console.log(arr);
     for (let i = 0; i < arr.length; i++) {
         let list = document.createElement('li');
@@ -147,13 +149,17 @@ function setDataToDropDownMenuForCarRegNoInBookingInAdmin(data) {
 }
 
 $(dropDownMenuForCarRegNoInBookingInAdmin).children('li').off('click');
-$(dropDownMenuForCarRegNoInBookingInAdmin).children('li').click(function () {
+
+$(dropDownMenuForCarRegNoInBookingInAdmin).on('click', function () {
+    console.log('clicked')
     $(carTypeInBooking).val(searchCarDetailsInBookingAdmin($(this).text().trim()).type);
     if (carObj != undefined) {
         carObj = undefined;
     }
     carObj = searchCarDetailsInBookingAdmin($(this).text().trim());
-})
+    setDataInPendingBookingDetailsToFields(carObj.c_RegNo);
+});
+
 
 function searchCarDetailsInBookingAdmin(regNo) {
     let car = undefined;
@@ -170,38 +176,40 @@ function searchCarDetailsInBookingAdmin(regNo) {
     return car;
 }
 
-function setDataInPendingBookingDetailsToFields(data) {
-    let arr = data.bookingDetails;
+function setDataInPendingBookingDetailsToFields(carRegNo) {
+    let arr = bookingObj.bookingDetails;
     for (let i = 0; i < arr.length; i++) {
-        let dt1 = arr[i].dateOfPickup;
-        let dateOfPickup = undefined;
-        if (((dt1[2] > -1) && (dt1[2] < 10)) && ((dt1[1] > -1) && (dt1[1] < 10))) {
-            dateOfPickup = dt1[0] + "-" + 0 + dt1[1] + "-" + 0 + dt1[2];
-        } else if ((dt1[2] > -1) && (dt1[2] < 10)) {
-            dateOfPickup = dt1[0] + "-" + dt1[1] + "-" + 0 + dt1[2];
-        } else if ((dt1[1] > -1) && (dt1[1] < 10)) {
-            dateOfPickup = dt1[0] + "-" + 0 + dt1[1] + "-" + dt1[2];
-        }
-        let dt2 = arr[i].returnedDate;
-        let returnedDate = undefined;
-        if (((dt2[2] > -1) && (dt2[2] < 10)) && ((dt2[1] > -1) && (dt2[1] < 10))) {
-            returnedDate = dt2[0] + "-" + 0 + dt2[1] + "-" + 0 + dt2[2];
-        } else if ((dt2[2] > -1) && (dt2[2] < 10)) {
-            returnedDate = dt2[0] + "-" + dt2[1] + "-" + 0 + dt2[2];
-        } else if ((dt2[1] > -1) && (dt2[1] < 10)) {
-            returnedDate = dt2[0] + "-" + 0 + dt2[1] + "-" + dt2[2];
-        }
+        if (arr[i].car_RegNo == carRegNo) {
+            let dt1 = arr[i].dateOfPickup;
+            let dateOfPickup = undefined;
+            if (((dt1[2] > -1) && (dt1[2] < 10)) && ((dt1[1] > -1) && (dt1[1] < 10))) {
+                dateOfPickup = dt1[0] + "-" + 0 + dt1[1] + "-" + 0 + dt1[2];
+            } else if ((dt1[2] > -1) && (dt1[2] < 10)) {
+                dateOfPickup = dt1[0] + "-" + dt1[1] + "-" + 0 + dt1[2];
+            } else if ((dt1[1] > -1) && (dt1[1] < 10)) {
+                dateOfPickup = dt1[0] + "-" + 0 + dt1[1] + "-" + dt1[2];
+            }
+            let dt2 = arr[i].returnedDate;
+            let returnedDate = undefined;
+            if (((dt2[2] > -1) && (dt2[2] < 10)) && ((dt2[1] > -1) && (dt2[1] < 10))) {
+                returnedDate = dt2[0] + "-" + 0 + dt2[1] + "-" + 0 + dt2[2];
+            } else if ((dt2[2] > -1) && (dt2[2] < 10)) {
+                returnedDate = dt2[0] + "-" + dt2[1] + "-" + 0 + dt2[2];
+            } else if ((dt2[1] > -1) && (dt2[1] < 10)) {
+                returnedDate = dt2[0] + "-" + 0 + dt2[1] + "-" + dt2[2];
+            }
 
-        $(driverNicInBooking).val(arr[i].driverNic);
-        $(rentalTypeInBooking).val(arr[i].rentalType);
-        $(dateOfPickupInBooking).val(dateOfPickup);
-        $(timeOfPickupInBooking).val(arr[i].timeOfPickup);
-        $(pickupVenueInBooking).val(arr[i].pickupVenue);
-        $(returnedDateInBooking).val(returnedDate);
-        $(returnedTimeInBooking).val(arr[i].returnedTime);
-        $(returnVenueInBooking).val(arr[i].returnedVenue);
-        $(lossDamageWaiverInBooking).val(arr[i].lossDamage);
-        $(costInBooking).val(arr[i].cost);
+            $(driverNicInBooking).val(arr[i].driverNic);
+            $(rentalTypeInBooking).val(arr[i].rentalType);
+            $(dateOfPickupInBooking).val(dateOfPickup);
+            $(timeOfPickupInBooking).val(arr[i].timeOfPickup);
+            $(pickupVenueInBooking).val(arr[i].pickupVenue);
+            $(returnedDateInBooking).val(returnedDate);
+            $(returnedTimeInBooking).val(arr[i].returnedTime);
+            $(returnVenueInBooking).val(arr[i].returnedVenue);
+            $(lossDamageWaiverInBooking).val(arr[i].lossDamage);
+            $(costInBooking).val(arr[i].cost);
+        }
     }
 }
 
@@ -229,7 +237,8 @@ $(viewListTableBtn).dblclick(function () {
     $('#viewCurrentBookingsSection').css('display', 'none');
 })
 
-let addToListArrInBooking = undefined;
+let addToListArrInBooking = new Array();
+let rowNoCartBooking = 1;
 $(addToListBtnInBooking).off('click');
 $(addToListBtnInBooking).click(function () {
 
@@ -240,65 +249,127 @@ $(addToListBtnInBooking).click(function () {
         driverNicNo = $(driverNicInBooking).val();
     }
 
-    let addToList = {
-        bookingId: bookingIdInBooking.val(),
-        carRegNo: carObj.c_RegNo,
-        cusNic: cusNicInPlacingBookingRequest.val(),
-        driverNic: driverNicNo,
-        carType: carTypeInBooking.val(),
-        tripInKm: tripInKMInBooking.val(),
-        extraKmDriven: extraKmDrivenInBooking.val(),
-        rentalType: rentalTypeInBooking,
-        dateOfPickup: dateOfPickupInBooking.val(),
-        timeOfPickup: timeOfPickupInBooking.val(),
-        pickupVenue: pickupVenueInBooking.val(),
-        returnDate: returnedDateInBooking.val(),
-        returnTime: returnedTimeInBooking.val(),
-        returnVenue: returnVenueInBooking.val(),
-        damageStatus: damageStatusInBooking.val(),
-        lossDamageWaiver: parseFloat(lossDamageWaiverInBooking.val()),
-        cost: parseFloat(costInBooking.val())
-    }
+    let addToList = new AddToCartBooking(
+        bookingIdInBooking.val(),
+        carObj.c_RegNo,
+        cusNicInPlacingBookingRequest.val(),
+        driverNicNo,
+        carTypeInBooking.val(),
+        parseFloat(tripInKMInBooking.val()),
+        parseFloat(extraKmDrivenInBooking.val()),
+        rentalTypeInBooking.val(),
+        dateOfPickupInBooking.val(),
+        timeOfPickupInBooking.val(),
+        pickupVenueInBooking.val(),
+        returnedDateInBooking.val(),
+        returnedTimeInBooking.val(),
+        returnVenueInBooking.val(),
+        damageStatusInBooking.val(),
+        parseFloat(lossDamageWaiverInBooking.val()),
+        parseFloat(costInBooking.val())
+    )
 
     if (checkIfAlreadySameCarExistsInBooking(carObj.car_RegNo) == true) {
         for (let i = 0; i < addToListArrInBooking.length; i++) {
             if (addToListArrInBooking[i].carRegNo == addToList.carRegNo) {
                 addToListArrInBooking[i] = addToList;
-                addDataToCartTableInBooking();
+                addToListArrInBooking[i].setCost(parseFloat(costInBooking.val()));
+                addToListArrInBooking[i].setDateOfPickup(dateOfPickupInBooking.val());
+                addToListArrInBooking[i].setTimeOfPickup(timeOfPickupInBooking.val());
+                addToListArrInBooking[i].setPickupVenue(pickupVenueInBooking.val());
+                addToListArrInBooking[i].setReturnDate(returnedDateInBooking.val());
+                addToListArrInBooking[i].setReturnTime(returnedTimeInBooking.val());
+                addToListArrInBooking[i].setPickupVenue(pickupVenueInBooking.val());
+                addToListArrInBooking[i].setReturnVenue(returnVenueInBooking.val());
+                addToListArrInBooking[i].setRentalType(rentalTypeInBooking.val());
+                addToListArrInBooking[i].setTripInKm(parseFloat(tripInKMInBooking.val()));
+                addToListArrInBooking[i].setExtraKmDriven(parseFloat(extraKmDrivenInBooking.val()));
+                addToListArrInBooking[i].setDamageStatus(damageStatusInBooking.val());
+                addToListArrInBooking[i].setLossDamageWaiver(parseFloat(lossDamageWaiverInBooking.val()));
+
+                $("#addToListBookingsTableContainerTable > tbody tr").filter(function () {
+                    if ($(this).children("td:nth-child(3)").text() == addToListArrInBooking[i].getCarRegNo()) {
+                        $(this).replaceWith(`<tr>
+                           <td>` + (rowNoCartBooking) + `</td>
+                            <td>` + addToList.getBookingId() + `</td>
+                            <td>` + addToList.getCarRegNo() + `</td>
+                            <td>` + addToList.getDriverNic() + `</td>
+                            <td>` + addToList.getCarType() + `</td>
+                            <td>` + addToList.getTripInKm() + `</td>
+                            <td>` + addToList.getExtraKmDriven() + `</td>
+                            <td>` + addToList.getRentalType() + `</td>
+                            <td>` + addToList.getDateOfPickup() + `</td>
+                            <td>` + addToList.getTimeOfPickup() + `</td>
+                            <td>` + addToList.getPickupVenue() + `</td>
+                            <td>` + addToList.getReturnDate() + `</td>
+                            <td>` + addToList.getReturnTime() + `</td>
+                            <td>` + addToList.getReturnVenue() + `</td>
+                            <td>` + addToList.getDamageStatus() + `</td>
+                            <td>` + addToList.getLossDamageWaiver() + `</td>
+                            <td>` + addToList.getCost() + `</td></tr>`);
+                    }
+                })
             }
         }
     } else {
         addToListArrInBooking.push(addToList);
-        addDataToCartTable();
+        let row = (`<tr>
+                            <td>` + (rowNoCartBooking) + `</td>
+                            <td>` + addToList.getBookingId() + `</td>
+                            <td>` + addToList.getCarRegNo() + `</td>
+                            <td>` + addToList.getDriverNic() + `</td>
+                            <td>` + addToList.getCarType() + `</td>
+                            <td>` + addToList.getTripInKm() + `</td>
+                            <td>` + addToList.getExtraKmDriven() + `</td>
+                            <td>` + addToList.getRentalType() + `</td>
+                            <td>` + addToList.getDateOfPickup() + `</td>
+                            <td>` + addToList.getTimeOfPickup() + `</td>
+                            <td>` + addToList.getPickupVenue() + `</td>
+                            <td>` + addToList.getReturnDate() + `</td>
+                            <td>` + addToList.getReturnTime() + `</td>
+                            <td>` + addToList.getReturnVenue() + `</td>
+                            <td>` + addToList.getDamageStatus() + `</td>
+                            <td>` + addToList.getLossDamageWaiver() + `</td>
+                            <td>` + addToList.getCost() + `</td></tr>`)
+        $("#addToListBookingsTableContainerTable > tbody").append(row);
+        rowNoCartBooking++;
     }
 
     let bookingDetailsArr = [];
 
     for (let i = 0; i < addToListArrInBooking.length; i++) {
-        let cost = totalCostPerCar(addToListArrInBooking[i].carRegNo, i);
         let bookingDetails = {
-            bookingId: addToListArrInBooking[i].bookingId,
-            car_RegNo: addToListArrInBooking[i].carRegNo,
-            driverNic: addToListArrInBooking[i].driverNic,
-            carType: addToListArrInBooking[i].carType,
-            rentalType: addToListArrInBooking[i].rentalType,
-            tripInKm: addToListArrInBooking[i].tripInKm,
-            extraKmDriven: addToListArrInBooking[i].extraKmDriven,
-            dateOfPickup: addToListArrInBooking[i].dateOfPickup,
-            timeOfPickup: addToListArrInBooking[i].timeOfPickup,
-            pickupVenue: addToListArrInBooking[i].pickupVenue,
-            returnedDate: addToListArrInBooking[i].returnDate,
-            returnedTime: addToListArrInBooking[i].returnTime,
-            returnedVenue: addToListArrInBooking[i].returnVenue,
-            damageStatus: addToListArrInBooking[i].damageStatus,
-            lossDamage: addToListArrInBooking[i].lossDamageWaiver,
-            cost: cost
+            bookingId: addToListArrInBooking[i].getBookingId(),
+            car_RegNo: addToListArrInBooking[i].getCarRegNo(),
+            driverNic: addToListArrInBooking[i].getDriverNic(),
+            carType: addToListArrInBooking[i].getCarType(),
+            rentalType: addToListArrInBooking[i].getRentalType(),
+            tripInKm: addToListArrInBooking[i].getTripInKm(),
+            extraKmDriven: addToListArrInBooking[i].getExtraKmDriven(),
+            dateOfPickup: addToListArrInBooking[i].getDateOfPickup(),
+            timeOfPickup: addToListArrInBooking[i].getTimeOfPickup(),
+            pickupVenue: addToListArrInBooking[i].getPickupVenue(),
+            returnedDate: addToListArrInBooking[i].getReturnDate(),
+            returnedTime: addToListArrInBooking[i].getReturnTime(),
+            returnedVenue: addToListArrInBooking[i].getReturnVenue(),
+            damageStatus: addToListArrInBooking[i].getDamageStatus(),
+            lossDamage: addToListArrInBooking[i].getLossDamageWaiver(),
+            cost: addToListArrInBooking[i].getCost()
         }
         bookingDetailsArr.push(bookingDetails);
     }
-    let dt = new Date();
-    let date = dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getFullYear();
-    let time = dt.getHours() + "." + dt.getMinutes() + "." + dt.getSeconds();
+    let dt1 = new Date();
+    let date = undefined;
+    if (((dt1.getDate() > -1) && (dt1.getDate() < 10)) && ((dt1.getMonth() > -1) && (dt1.getMonth() < 10))) {
+        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + 0 + dt1.getDate();
+    } else if ((dt1.getMonth() > -1) && (dt1.getMonth() < 10)) {
+        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + dt1.getDate();
+    } else if ((dt1.getDate() > -1) && (dt1.getDate() < 10)) {
+        date = dt1.getFullYear() + "-" + dt1.getMonth() + "-" + 0 + dt1.getDate();
+    }
+
+    let time = dt1.getHours() + "." + dt1.getMinutes() + "." + dt1.getSeconds();
+
 
     let payments = bookingObj.payments;
     let booking = {
@@ -309,67 +380,45 @@ $(addToListBtnInBooking).click(function () {
         cost: parseFloat(totalCostInBooking.val()),
         bookingDetails: bookingDetailsArr,
         payments: {
-            paymentsId: payments.paymentsId,
+            paymentId: payments.paymentsId,
             boId: bookingIdInBooking.val(),
             cusNic: cusNicInBooking.val(),
             dateOfPayment: date,
             timeOfPayment: time,
             lossDamageWaiver: payments.lossDamageWaiver,
             lossDamageWaiverPaymentSlip: payments.lossDamageWaiverPaymentSlip,
-            cost: parseFloat(totalCostInBooking.val),
+            cost: parseFloat(totalCostInBooking.val()),
         }
     }
+    console.log(booking);
 
-    if (confirm("Do You Want To Place This Booking..?") == true) {
-        $.ajax({
-            url: baseUrl + "bookingCarController",
-            method: "POST",
-            data: JSON.stringify(booking),
-            contentType: "application/json",
-            success: function (resp) {
-                alert(resp.message);
-            },
-            error: function (error) {
-                alert(error.message);
-            }
-        })
-    } else {
-        alert("Placing Booking Is Unsuccessful");
-    }
+    $(placeBookingBtn).off('click');
+    $(placeBookingBtn).click(function () {
+        if (confirm("Do You Want To Place This Booking..?") == true) {
+            $.ajax({
+                url: baseUrl + "bookingCarController",
+                method: "POST",
+                data: JSON.stringify(booking),
+                contentType: "application/json",
+                success: function (resp) {
+                    alert(resp.message);
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            })
+        } else {
+            alert("Placing Booking Is Unsuccessful");
+        }
+    })
 })
 
 function checkIfAlreadySameCarExistsInBooking(carRegNo) {
+    console.log(addToListArrInBooking.length);
     for (let i = 0; i < addToListArrInBooking.length; i++) {
         if (addToListArrInBooking[i].carRegNo == carRegNo) {
             return true;
         }
     }
     return false;
-}
-
-function addDataToCartTableInBooking() {
-    let tbody = $('#addToListBookingsTableContainerTable').children('tbody');
-    $(tbody).empty();
-    for (let i = 0; i < addToListArrInBooking.length; i++) {
-        let row = `<tr>
-                    <td>` + (i + 1) + `</td>
-                    <td>` + addToListArrInBooking[i].bookingId + `</td>
-                    <td>` + addToListArrInBooking[i].carRegNo + `</td>
-                    <td>` + addToListArrInBooking[i].driverNic + `</td>
-                    <td>` + addToListArrInBooking[i].carType + `</td>
-                    <td>` + addToListArrInBooking[i].tripInKm + `</td>
-                    <td>` + addToListArrInBooking[i].extraKmDriven + `</td>
-                    <td>` + addToListArrInBooking[i].rentalType + `</td>
-                    <td>` + addToListArrInBooking[i].dateOfPickup + `</td>
-                    <td>` + addToListArrInBooking[i].timeOfPickup + `</td>
-                    <td>` + addToListArrInBooking[i].pickupVenue + `</td>
-                    <td>` + addToListArrInBooking[i].returnDate + `</td>
-                    <td>` + addToListArrInBooking[i].returnTime + `</td>
-                    <td>` + addToListArrInBooking[i].returnVenue + `</td>
-                    <td>` + addToListArrInBooking[i].damageStatus + `</td>
-                    <td>` + addToListArrInBooking[i].lossDamageWaiver + `</td>
-                    <td>` + addToListArrInBooking[i].cost + `</td></tr>`
-        $(tbody).append(row);
-    }
-
 }

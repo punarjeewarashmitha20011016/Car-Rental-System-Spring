@@ -17,7 +17,7 @@ public class BookingCarController {
     @Autowired
     private BookingCarService bookingCarService;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     ResponseUtil saveBooking(@RequestBody BookingDTO dto) {
         bookingCarService.bookingACar(dto);

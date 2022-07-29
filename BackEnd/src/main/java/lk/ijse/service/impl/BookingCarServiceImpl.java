@@ -4,7 +4,10 @@ import lk.ijse.dto.BookingDTO;
 import lk.ijse.dto.BookingDetailsDTO;
 import lk.ijse.dto.BookingPaymentsDTO;
 import lk.ijse.dto.DriverDTO;
-import lk.ijse.entity.*;
+import lk.ijse.entity.Booking;
+import lk.ijse.entity.BookingPayments;
+import lk.ijse.entity.Car;
+import lk.ijse.entity.Driver;
 import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
@@ -49,17 +52,22 @@ public class BookingCarServiceImpl implements BookingCarService {
             throw new RuntimeException("Booking Update failed");
         }
 
+        System.out.println("Booking = " + dto.toString());
+        System.out.println("Booking Details = " + dto.getBookingDetails());
+        System.out.println("Payments = " + dto.getPayments());
+        System.out.println("Payments Entity = " + mapper.map(dto, Booking.class).getPayments().toString());
+
         repo.save(mapper.map(dto, Booking.class));
 
-        if (dto.getPayments().getPaymentsId() == null) {
+        if (dto.getPayments().getPaymentId() == null) {
             throw new RuntimeException("Booking a Car failed");
         }
-        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
+       /* paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));*/
 
         List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
         for (BookingDetailsDTO b : bookingList
         ) {
-            bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));
+            /*bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));*/
             Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
             if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked") || car.getCarBookedOrNotStatus().equals("NOT BOOKED"))) {
                 throw new RuntimeException("Booking a Car failed");
@@ -154,7 +162,7 @@ public class BookingCarServiceImpl implements BookingCarService {
     }
 
     public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingPaymentsDTO dto) {
-        if (dto.getPaymentsId() == null) {
+        if (dto.getPaymentId() == null) {
             throw new RuntimeException("Updating Payments Entity by returning loss damage when no damage occurred in the car");
         }
         paymentsRepo.save(mapper.map(dto, BookingPayments.class));

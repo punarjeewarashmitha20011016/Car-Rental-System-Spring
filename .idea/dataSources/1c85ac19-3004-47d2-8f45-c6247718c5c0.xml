@@ -1043,7 +1043,7 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="308" name="payments_paymentsId">
+    <column id="334" parent="308" name="payments_paymentId">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1052,8 +1052,8 @@
       <ColNames>cusNic</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="336" parent="308" name="FK29grkumdu0lmeya4f8n9hootl">
-      <ColNames>payments_paymentsId</ColNames>
+    <index id="336" parent="308" name="FKkl2fr2qbxi0e6skavs66jn5ad">
+      <ColNames>payments_paymentId</ColNames>
       <Type>btree</Type>
     </index>
     <key id="337" parent="308" name="PRIMARY">
@@ -1066,10 +1066,10 @@
       <RefTableName>customer</RefTableName>
       <RefColNames>nic</RefColNames>
     </foreign-key>
-    <foreign-key id="339" parent="308" name="FK29grkumdu0lmeya4f8n9hootl">
-      <ColNames>payments_paymentsId</ColNames>
+    <foreign-key id="339" parent="308" name="FKkl2fr2qbxi0e6skavs66jn5ad">
+      <ColNames>payments_paymentId</ColNames>
       <RefTableName>bookingpayments</RefTableName>
-      <RefColNames>paymentsId</RefColNames>
+      <RefColNames>paymentId</RefColNames>
     </foreign-key>
     <column id="340" parent="309" name="bookingId">
       <Position>1</Position>
@@ -1177,7 +1177,7 @@ car_RegNo</ColNames>
       <RefTableName>car</RefTableName>
       <RefColNames>c_RegNo</RefColNames>
     </foreign-key>
-    <column id="360" parent="310" name="paymentsId">
+    <column id="360" parent="310" name="paymentId">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1210,7 +1210,7 @@ car_RegNo</ColNames>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="310" name="boId">
+    <column id="366" parent="310" name="boId_boId">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1220,8 +1220,8 @@ car_RegNo</ColNames>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="368" parent="310" name="FKcyun695wdy32mqbmex0ulvf0y">
-      <ColNames>boId</ColNames>
+    <index id="368" parent="310" name="FKn5pydf4ebtm6sdv3bb28k8a0p">
+      <ColNames>boId_boId</ColNames>
       <Type>btree</Type>
     </index>
     <index id="369" parent="310" name="FK8j3virdi5jpmt3jkvtdvrtn7p">
@@ -1230,11 +1230,11 @@ car_RegNo</ColNames>
     </index>
     <key id="370" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>paymentsId</ColNames>
+      <ColNames>paymentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="371" parent="310" name="FKcyun695wdy32mqbmex0ulvf0y">
-      <ColNames>boId</ColNames>
+    <foreign-key id="371" parent="310" name="FKn5pydf4ebtm6sdv3bb28k8a0p">
+      <ColNames>boId_boId</ColNames>
       <RefTableName>booking</RefTableName>
       <RefColNames>boId</RefColNames>
     </foreign-key>

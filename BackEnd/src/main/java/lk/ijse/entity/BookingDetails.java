@@ -40,11 +40,11 @@ public class BookingDetails implements Serializable {
     private double lossDamage;
     private double cost;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.ALL})
     @JoinColumn(name = "bookingId", referencedColumnName = "boId", insertable = false, updatable = false)
     private Booking bookingEntity;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.ALL})
     @JoinColumn(name = "car_RegNo", referencedColumnName = "c_RegNo", insertable = false, updatable = false)
     private Car carEntity;
 }

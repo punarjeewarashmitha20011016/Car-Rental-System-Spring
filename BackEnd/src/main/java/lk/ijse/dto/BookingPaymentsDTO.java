@@ -14,12 +14,13 @@ import java.time.LocalDate;
 @Data
 @ToString
 public class BookingPaymentsDTO {
-    private String paymentsId;
+    private String paymentId;
     private String boId;
-    private String cusId;
+    private String cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPayment;
     private String timeOfPayment;
     private double lossDamageWaiver;
+    private String lossDamageWaiverPaymentSlip;
     private double cost;
 }
