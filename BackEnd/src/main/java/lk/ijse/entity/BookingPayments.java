@@ -18,9 +18,9 @@ import java.time.LocalDate;
 public class BookingPayments {
     @Id
     private String paymentId;
-    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(referencedColumnName = "boId",name = "boId")
-    private Booking boId;
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    @JoinColumn(referencedColumnName = "boId", name = "boId")
+//    private Booking bookingID;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(referencedColumnName = "nic", name = "cusNic")
     private Customer cusNic;

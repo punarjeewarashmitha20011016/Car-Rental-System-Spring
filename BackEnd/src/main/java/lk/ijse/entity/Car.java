@@ -14,8 +14,8 @@ import java.util.List;
 @ToString
 @Entity
 public class Car {
-    @OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<BookingDetails> carList;
+    /*@OneToMany(mappedBy = "carEntity", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<BookingDetails> carList;*/
     @Id
     private String c_RegNo;
     private String brand;

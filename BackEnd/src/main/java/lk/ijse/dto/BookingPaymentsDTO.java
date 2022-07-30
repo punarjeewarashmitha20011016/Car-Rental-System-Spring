@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @ToString
 public class BookingPaymentsDTO {
     private String paymentId;
-    private String boId;
+    private BookingDTO bookingID;
     private String cusNic;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPayment;

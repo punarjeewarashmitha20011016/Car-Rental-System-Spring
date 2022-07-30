@@ -47,62 +47,64 @@ public class BookingCarServiceImpl implements BookingCarService {
 
     @Override
     public void bookingACar(BookingDTO dto) {
-        /*This will finalize the payment by updating the records*/
-        if (repo.existsById(dto.getBoId())) {
-            throw new RuntimeException("Booking Update failed");
-        }
+        try {
+            /*This will finalize the payment by updating the records*/
+            if (repo.existsById(dto.getBoId())) {
+                throw new RuntimeException("Booking Update failed");
+            }
 
-        System.out.println("Booking = " + dto.toString());
-        System.out.println("Booking Details = " + dto.getBookingDetails());
-        System.out.println("Payments = " + dto.getPayments());
-        System.out.println("Booking Entity = " + mapper.map(dto, Booking.class));
-        System.out.println("Payments Entity = " + mapper.map(dto, Booking.class).getPayments().toString());
+            System.out.println("Booking = " + dto.toString());
+            System.out.println("Booking Details = " + dto.getBookingDetails());
+            System.out.println("Payments = " + dto.getPayments());
+            System.out.println("Booking Entity = " + mapper.map(dto, Booking.class));
+            System.out.println("Payments Entity = " + mapper.map(dto, Booking.class).getPayments().toString());
 
-        Booking map = mapper.map(dto, Booking.class);
+            Booking map = mapper.map(dto, Booking.class);
+            System.out.println(map);
+            repo.save(map);
 
-        System.out.println("Book = "+map);
-
-        repo.save(map);
-
-        if (dto.getPayments().getPaymentId() == null) {
-            throw new RuntimeException("Booking a Car failed");
-        }
-        paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
-
-        List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
-        for (BookingDetailsDTO b : bookingList
-        ) {
-            /*bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));*/
-            Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-            if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked") || car.getCarBookedOrNotStatus().equals("NOT BOOKED"))) {
+            if (dto.getPayments().getPaymentId() == null) {
                 throw new RuntimeException("Booking a Car failed");
             }
-            /*Updating the car booked status to Not booked after returning the car*/
-            car.setCarBookedOrNotStatus("Not Booked");
-            /*Updating the mileage of the car*/
-            car = updateMileageOfTheCarAccordingToTheTrip(car, b.getTripInKm(), b.getExtraKmDriven());
-            if (b.getDriverNic() == "") {
+            paymentsRepo.save(mapper.map(dto.getPayments(), BookingPayments.class));
 
-            } else {
-                DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
-                if (driver.getAvailableStatus().equals("Not Available")) {
-                    driver.setAvailableStatus("Available");
-                    driverRepo.save(mapper.map(driver, Driver.class));
-                } else {
+            List<BookingDetailsDTO> bookingList = dto.getBookingDetails();
+            for (BookingDetailsDTO b : bookingList
+            ) {
+                /*bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));*/
+                Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
+                if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked") || car.getCarBookedOrNotStatus().equals("NOT BOOKED"))) {
                     throw new RuntimeException("Booking a Car failed");
                 }
-            }
-            if (b.getDamageStatus().equals("Damaged")) {
-                car.setMaintenanceStatus("Under Maintenance");
-            } else {
-                car.setMaintenanceStatus("No Maintenance Required");
-                dto.setCost(dto.getCost() - b.getLossDamage());
-                dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
-                repo.save(mapper.map(dto, Booking.class));
+                /*Updating the car booked status to Not booked after returning the car*/
+                car.setCarBookedOrNotStatus("Not Booked");
+                /*Updating the mileage of the car*/
+                car = updateMileageOfTheCarAccordingToTheTrip(car, b.getTripInKm(), b.getExtraKmDriven());
+                if (b.getDriverNic() == null) {
 
-                updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
+                } else {
+                    DriverDTO driver = mapper.map(driverRepo.findById(b.getDriverNic()), DriverDTO.class);
+                    if (driver.getAvailableStatus().equals("Not Available")) {
+                        driver.setAvailableStatus("Available");
+                        driverRepo.save(mapper.map(driver, Driver.class));
+                    } else {
+                        throw new RuntimeException("Booking a Car failed");
+                    }
+                }
+                if (b.getDamageStatus().equals("Damaged")) {
+                    car.setMaintenanceStatus("Under Maintenance");
+                } else {
+                    car.setMaintenanceStatus("No Maintenance Required");
+                    dto.setCost(dto.getCost() - b.getLossDamage());
+                    dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
+                    repo.save(mapper.map(dto, Booking.class));
+
+                    updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
+                }
+                carRepo.save(car);
             }
-            carRepo.save(car);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

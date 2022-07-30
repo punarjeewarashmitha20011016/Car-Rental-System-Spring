@@ -373,7 +373,7 @@ $(addToListBtnInBooking).click(function () {
 
     let payments = bookingObj.payments;
     let booking = {
-        boId: bookingIdInBooking.val(),
+        boId: bookingIdInBooking.val(), //meka yanawada>? ow sir dto ekn enw
         cusNic: cusNicInBooking.val(),
         date: date,
         time: time,
@@ -381,7 +381,9 @@ $(addToListBtnInBooking).click(function () {
         bookingDetails: bookingDetailsArr,
         payments: {
             paymentId: payments.paymentsId,
-            boId: bookingIdInBooking.val(),
+            // bookingID:{
+            //     boId:bookingIdInBooking.val(),
+            // },
             cusNic: cusNicInBooking.val(),
             dateOfPayment: date,
             timeOfPayment: time,

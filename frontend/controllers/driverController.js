@@ -209,8 +209,8 @@ function getAllDrivers() {
                                      <td>` + data[i].availableStatus + `</td>
                                      <td>` + data[i].email + `</td>
                                      <td>` + data[i].password + `</td>
-                                     <td><img src="${baseUrlDriver + "/" + data[i].nicPhoto}" width="100px"></td>
-                                     <td><img src="${baseUrlDriver + "/" + data[i].licensePhoto}" width="100px"></td>             
+                                     <td><img src="${baseUrl + "/" + data[i].nicPhoto}" width="100px"></td>
+                                     <td><img src="${baseUrl + "/" + data[i].licensePhoto}" width="100px"></td>             
                                </tr>`;
                     tbody.append(row);
                 }
