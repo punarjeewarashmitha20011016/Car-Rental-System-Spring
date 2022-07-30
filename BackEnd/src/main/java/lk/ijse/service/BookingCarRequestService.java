@@ -9,9 +9,6 @@ import java.util.List;
 @Service
 @Transactional
 public interface BookingCarRequestService {
-    String generateBookingRequestId();
-
-    String generateBookingRequestPaymentsId();
 
     void requestingABookingSave(BookingRequestDTO dto);
 

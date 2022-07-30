@@ -381,9 +381,6 @@ $(addToListBtnInBooking).click(function () {
         bookingDetails: bookingDetailsArr,
         payments: {
             paymentId: payments.paymentsId,
-            // bookingID:{
-            //     boId:bookingIdInBooking.val(),
-            // },
             cusNic: cusNicInBooking.val(),
             dateOfPayment: date,
             timeOfPayment: time,

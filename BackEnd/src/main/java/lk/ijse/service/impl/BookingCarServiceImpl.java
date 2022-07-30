@@ -13,14 +13,13 @@ import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -103,7 +102,7 @@ public class BookingCarServiceImpl implements BookingCarService {
                 }
                 carRepo.save(car);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -151,10 +150,11 @@ public class BookingCarServiceImpl implements BookingCarService {
 
     @Override
     public String generateBookingId() {
-        PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
-        Booking map = mapper.map(repo.findAll(request), Booking.class);
-        if (map.getBoId() != null) {
-            int temp = Integer.parseInt(map.getBoId().split("-")[1]);
+        List<BookingDTO> map = mapper.map(repo.findAll(), new TypeToken<List<BookingDTO>>() {
+        }.getType());
+        Collections.reverse(map);
+        if (map.get(0).getBoId() != null) {
+            int temp = Integer.parseInt(map.get(0).getBoId().split("-")[1]);
             temp = temp + 1;
             if (temp <= 9) {
                 return "BO-00" + temp;
@@ -165,6 +165,26 @@ public class BookingCarServiceImpl implements BookingCarService {
             }
         } else {
             return "BO-001";
+        }
+    }
+
+    @Override
+    public String generateBookingPaymentsId() {
+        List<BookingPaymentsDTO> map = mapper.map(paymentsRepo.findAll(), new TypeToken<List<BookingPaymentsDTO>>() {
+        }.getType());
+        Collections.reverse(map);
+        if (map.get(0).getPaymentId() != null) {
+            int temp = Integer.parseInt(map.get(0).getPaymentId().split("-")[1]);
+            temp = temp + 1;
+            if (temp <= 9) {
+                return "POR-00" + temp;
+            } else if (temp <= 99) {
+                return "POR-0" + temp;
+            } else {
+                return "POR-" + temp;
+            }
+        } else {
+            return "POR-001";
         }
     }
 
@@ -189,4 +209,5 @@ public class BookingCarServiceImpl implements BookingCarService {
         car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
         return car;
     }
+
 }

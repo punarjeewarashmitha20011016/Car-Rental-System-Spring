@@ -1852,22 +1852,21 @@
                              style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
-                                    <label class="form-label" for="carTypeInPlacingBookingRequest">Car Type</label>
-                                    <input aria-describedby="carTypeInPlacingBookingRequest" class="form-control"
-                                           id="carTypeInPlacingBookingRequest"
-                                           placeholder="Enter Car Type" type="text">
+                                    <label class="form-label" for="dateOfPickupInPlacingBookingRequest">Car Type</label>
+                                    <select class="form-select d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;" aria-label="Default select example" id="carTypeInPlacingBookingRequestMenu">
+                                        <option value="1">Luxury</option>
+                                        <option value="2">Semi-Luxury</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col d-flex">
-                                <div class="dropdown d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;">
-                                    <button id="rentalTypeInPlacingBookingRequestDropdownBtn" type="button" class="btn btn-secondary dropdown-toggle d-flex align-items-center justify-content-center" data-bs-toggle="dropdown" style="width: 80%;">
-                                      <span class="d-flex text-center">Rental Type</span>
-                                    </button>
-                                    <ul class="dropdown-menu" id="rentalTypeInPlacingBookingRequestDropdownMenu">
-                                        <li class="dropdown-item">Daily</li>
-                                        <li class="dropdown-item">Monthly</li>
-                                    </ul>
-                                  </div>
+                                <div class="d-flex flex-column" style="width: 100%;height: 50%;">
+                                    <label class="form-label" for="dateOfPickupInPlacingBookingRequest">Rental Type</label>
+                                    <select class="form-select d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;" aria-label="Default select example" id="rentalTypeInPlacingBookingRequestDropdownMenu">
+                                        <option value="1">Daily</option>
+                                        <option value="2">Monthly</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">

@@ -7,8 +7,6 @@ import lk.ijse.service.BookingCarRequestService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,46 +44,6 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Autowired
     private NotificationsRepo notificationsRepo;
-
-    @Override
-    public String generateBookingRequestId() {
-        PageRequest request = PageRequest.of(0, 1, Sort.by("boId").descending());
-        PendingBooking map = mapper.map(pendingBookingRepo.findAll(request), PendingBooking.class);
-        if (map.getBoId() != null) {
-            int temp = Integer.parseInt(map.getBoId().split("-")[1]);
-            temp = temp + 1;
-            if (temp <= 9) {
-                return "BO-00" + temp;
-            } else if (temp <= 99) {
-                return "BO-0" + temp;
-            } else {
-                return "BO-" + temp;
-            }
-        } else {
-            return "BO-001";
-        }
-    }
-
-    @Override
-    public String generateBookingRequestPaymentsId() {
-        System.out.println("generateBookingRequestPaymentsId()");
-        PageRequest request = PageRequest.of(0, 1, Sort.by("paymentsId").descending());
-        BookingRequestPayments map = mapper.map(paymentsRepo.findAll(request), BookingRequestPayments.class);
-        if (map.getBoId() != null) {
-            System.out.println(map.getBoId());
-            int temp = Integer.parseInt(map.getPaymentsId().split("-")[1]);
-            temp = temp + 1;
-            if (temp <= 9) {
-                return "POR-00" + temp;
-            } else if (temp <= 99) {
-                return "POR-0" + temp;
-            } else {
-                return "POR-" + temp;
-            }
-        } else {
-            return "POR-001";
-        }
-    }
 
     @Override
     public void requestingABookingSave(BookingRequestDTO dto) {

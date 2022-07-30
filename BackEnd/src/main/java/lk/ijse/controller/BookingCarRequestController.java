@@ -83,16 +83,6 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Car Searched Successfully", bookingCarService.searchCarsForBooking(regNo));
     }
 
-    @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil generateBookingId() {
-        return new ResponseUtil(200, "Booking Request Id generated Successfully", bookingCarService.generateBookingRequestId());
-    }
-
-    @GetMapping(path = "generatePaymentsRequestId", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil generatePaymentsRequestId() {
-        return new ResponseUtil(200, "Payments Request Id generated Successfully", bookingCarService.generateBookingRequestPaymentsId());
-    }
-
     @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());

@@ -5,13 +5,9 @@ var carRegNoInPlacingBookingRequestPattern = /^[A-Z]{2,3}[-][0-9]{3}$/
 var cusNicInPlacingBookingRequest = $("#cusNicInPlacingBookingRequest");
 var cusNicInPlacingBookingRequestPattern = /^(([0-9]{9}[Vv]{1})||([0-9]{12}))$/
 var ifDriverNeedsForBookingRequestCheckBox = $("#ifDriverNeedsForBookingRequestCheckBox");
-var carTypeInPlacingBookingRequest = $("#carTypeInPlacingBookingRequest");
-var carTypeInPlacingBookingRequestPattern = /^[A-z ]{2,}$/
 
-/*
-var tripInKMInPlacingBookingRequest = $("#tripInKMInPlacingBookingRequest");
-var tripInKMInPlacingBookingRequestPattern = /^[0-9]{1,}$/
-*/
+var carTypeInPlacingBookingRequestDropdownBtn = $("#carTypeInPlacingBookingRequestDropdownBtn");
+var carTypeInPlacingBookingRequestMenu = $("#carTypeInPlacingBookingRequestMenu");
 var rentalTypeInPlacingBookingRequestDropdownBtn = $("#rentalTypeInPlacingBookingRequestDropdownBtn");
 var rentalTypeInPlacingBookingRequestDropdownMenu = $("#rentalTypeInPlacingBookingRequestDropdownMenu");
 
@@ -41,7 +37,6 @@ var addToCartTableInBookingRequest = $("#addToCartTableInBookingRequest");
 
 var bookingReqFieldArr = [bookingReqIdInPlacingBookingRequest, carRegNoInPlacingBookingRequest,
     cusNicInPlacingBookingRequest,
-    carTypeInPlacingBookingRequest,
     pickupVenueInPlacingBookingRequest, returnVenueInPlacingBookingRequest,
     lossDamageWaiverInPlacingBookingRequest, costInPlacingBookingRequest,
     totalCostInPlacingBookingRequest
@@ -66,35 +61,30 @@ cusNicInPlacingBookingRequest.keyup(function (e) {
     let index = 2;
     validate(cusNicInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
-carTypeInPlacingBookingRequest.off('keyup');
-carTypeInPlacingBookingRequest.keyup(function (e) {
-    let index = 3;
-    validate(carTypeInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
-})
 
 pickupVenueInPlacingBookingRequest.off('keyup');
 pickupVenueInPlacingBookingRequest.keyup(function (e) {
-    let index = 4;
+    let index = 3;
     validate(pickupVenueInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 returnVenueInPlacingBookingRequest.off('keyup');
 returnVenueInPlacingBookingRequest.keyup(function (e) {
-    let index = 5;
+    let index = 4;
     validate(returnVenueInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 lossDamageWaiverInPlacingBookingRequest.off('keyup');
 lossDamageWaiverInPlacingBookingRequest.keyup(function (e) {
-    let index = 6;
+    let index = 5;
     validate(lossDamageWaiverInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 costInPlacingBookingRequest.off('keyup');
 costInPlacingBookingRequest.keyup(function (e) {
-    let index = 7;
+    let index = 6;
     validate(costInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 totalCostInPlacingBookingRequest.off('keyup');
 totalCostInPlacingBookingRequest.keyup(function (e) {
-    let index = 8;
+    let index = 7;
     validate(totalCostInPlacingBookingRequestPattern, bookingReqFieldArr, index, e, addToCartInBookingRequestBtn, null, null)
 })
 
@@ -104,7 +94,6 @@ $(document).ready(function () {
     costInPlacingBookingRequest.prop('disabled', true);
     lossDamageWaiverInPlacingBookingRequest.prop('disabled', true);
     carRegNoInPlacingBookingRequest.prop('disabled', true);
-    carTypeInPlacingBookingRequest.prop('disabled', true);
     cusNicInPlacingBookingRequest.prop('disabled', true);
     bookingReqIdInPlacingBookingRequest.prop('disabled', true);
     placeBookingRequestBtn.prop('disabled', true);
@@ -148,15 +137,10 @@ function assignDriverToField() {
     }
 }
 
+
 var addToListArr = new Array();
 var totalCostInBookingRequest = 0;
 let rowNoCart = 1;
-let rentalType = undefined;
-$(rentalTypeInPlacingBookingRequestDropdownMenu).children('li').off('click');
-$(rentalTypeInPlacingBookingRequestDropdownMenu).children('li').click(function () {
-    rentalType = $(this).text().trim();
-})
-
 $(addToCartInBookingRequestBtn).off('click');
 $(addToCartInBookingRequestBtn).click(function () {
     let lossDamageFile = {
@@ -176,8 +160,8 @@ $(addToCartInBookingRequestBtn).click(function () {
         carRegNoInPlacingBookingRequest.val(),
         cusNicInPlacingBookingRequest.val(),
         driverNic,
-        carTypeInPlacingBookingRequest.val(),
-        rentalType,
+        $('#carTypeInPlacingBookingRequestMenu :selected').text(),
+        $('#rentalTypeInPlacingBookingRequestDropdownMenu :selected').text(),
         dateOfPickupInPlacingBookingRequest.val(),
         timeOfPickupInPlacingBookingRequest.val(),
         pickupVenueInPlacingBookingRequest.val(),
@@ -200,9 +184,9 @@ $(addToCartInBookingRequestBtn).click(function () {
                 addToListArr[i].setPickupVenue(pickupVenueInPlacingBookingRequest.val());
                 addToListArr[i].setReturnDate(returnedDateInPlacingBookingRequest.val());
                 addToListArr[i].setReturnTime(returnedTimeInPlacingBookingRequest.val());
-                addToListArr[i].setPickupVenue(pickupVenueInPlacingBookingRequest.val());
                 addToListArr[i].setReturnVenue(returnVenueInPlacingBookingRequest.val());
-                addToListArr[i].setRentalType(rentalType);
+                addToListArr[i].setCarType($('#carTypeInPlacingBookingRequestMenu :selected').text());
+                addToListArr[i].setRentalType($('#rentalTypeInPlacingBookingRequestDropdownMenu :selected').text());
                 console.log(addToListArr[i].getCost())
                 $("#addToCartTableInBookingRequest > tbody tr").filter(function () {
                     if ($(this).children("td:nth-child(3)").text() == addToListArr[i].getCarRegNo()) {
@@ -440,7 +424,7 @@ function totalCostPerCarInRequest(regNo) {
 
 function setBookingIdToField() {
     $.ajax({
-        url: baseUrl + "bookingCarRequestController/generateBookingId",
+        url: baseUrl + "bookingCarController/generateBookingId",
         method: "GET",
         success: function (resp) {
             if (resp.status == 200) {
@@ -477,7 +461,7 @@ function placeBookingRequest(formData) {
 
 function getPaymentsId() {
     $.ajax({
-        url: baseUrl + "bookingCarRequestController/generatePaymentsRequestId",
+        url: baseUrl + "bookingCarController/generatePaymentsId",
         method: "GET",
         async: false,
         success: function (resp) {
@@ -497,7 +481,12 @@ function searchCarDetails() {
             if (resp.status == 200) {
                 let data = resp.data;
                 console.log(data.toString())
-                carTypeInPlacingBookingRequest.val(data.type)
+                carTypeInPlacingBookingRequestMenu.val(data.type)
+                if (data.carType == 'Luxury') {
+                    $("#carTypeInPlacingBookingRequestMenu option[value='0']").prop('selected', true);
+                } else {
+                    $("#carTypeInPlacingBookingRequestMenu option[value='1']").prop('selected', true);
+                }
                 lossDamageWaiverInPlacingBookingRequest.val(data.lossDamageWaiver)
                 costInPlacingBookingRequest.val(data.lossDamageWaiver);
             }
@@ -513,7 +502,6 @@ function clearBookingRequestFields() {
     cusNicInPlacingBookingRequest.val("");
     carRegNoInPlacingBookingRequest.val("");
     ifDriverNeedsForBookingRequestCheckBox.checked = false;
-    carTypeInPlacingBookingRequest.val("");
     dateOfPickupInPlacingBookingRequest.val("");
     timeOfPickupInPlacingBookingRequest.val("");
     pickupVenueInPlacingBookingRequest.val("");

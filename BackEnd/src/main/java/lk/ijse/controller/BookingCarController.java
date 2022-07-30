@@ -55,4 +55,8 @@ public class BookingCarController {
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking ID generated Successfully", bookingCarService.generateBookingId());
     }
+    @GetMapping(path = "generatePaymentsId", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil generatePaymentsRequestId() {
+        return new ResponseUtil(200, "Payments Id generated Successfully", bookingCarService.generateBookingPaymentsId());
+    }
 }
