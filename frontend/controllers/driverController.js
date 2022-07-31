@@ -10,8 +10,6 @@ var driverEmailField = $("#driverEmailField");
 var driverEmailFieldPattern = /^[A-z0-9.]{5,30}[@][A-z]{3,7}[.](com|lk|uk|[a-z]){1,}$/
 var driverPasswordField = $("#driverPasswordField");
 var driverPasswordFieldPattern = /^[A-z.!@#$%&() ]{2,}$/;
-var driverAvailableStatusField = $("#driverAvailableStatusField");
-var driverAvailableStatusFieldPattern = /^(Available||Not Available)$/
 var driverAddressField = $("#driverAddressField");
 var driverAddressFieldPattern = /^[A-z0-9,.  ]*[/]?[0-9]*[ ]?[A-z,. ]*$/
 var nicFileInDriver = $("#nicFileInDriver");
@@ -23,11 +21,11 @@ var driverUpdateBtn = $("#driverUpdateBtn");
 var driverDeleteBtn = $("#driverDeleteBtn");
 var driverViewAllBtn = $("#driverViewAllBtn");
 
-var driverInputsArr = [driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField];
+var driverInputsArr = [driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAddressField];
 
 
-$(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField).off('keydown');
-$(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAvailableStatusField, driverAddressField).keydown(function (e) {
+$(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAddressField).off('keydown');
+$(driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAddressField).keydown(function (e) {
     if (e.key == 'Tab') {
         e.preventDefault();
     }
@@ -67,14 +65,9 @@ driverPasswordField.keyup(function (e) {
     let index = 5;
     validate(driverPasswordFieldPattern, driverInputsArr, index, e, driverSaveBtn, driverUpdateBtn, driverDeleteBtn)
 })
-driverAvailableStatusField.off('keyup');
-driverAvailableStatusField.keyup(function (e) {
-    let index = 6;
-    validate(driverAvailableStatusFieldPattern, driverInputsArr, index, e, driverSaveBtn, driverUpdateBtn, driverDeleteBtn)
-})
 driverAddressField.off('keyup');
 driverAddressField.keyup(function (e) {
-    let index = 7;
+    let index = 6;
     validate(driverAddressFieldPattern, driverInputsArr, index, e, driverSaveBtn, driverUpdateBtn, driverDeleteBtn)
 })
 $(driverSaveBtn).off('click');
@@ -88,7 +81,7 @@ $(driverSaveBtn).click(function () {
         nicPhoto: "",
         contactNo: parseInt(driverContactNoField.val()),
         address: driverAddressField.val(),
-        availableStatus: driverAvailableStatusField.val(),
+        availableStatus: $("#availabilityStatusMenuInDriver :selected").text(),
         email: driverEmailField.val(),
         password: driverPasswordField.val()
     }
@@ -133,7 +126,7 @@ $(driverUpdateBtn).click(function () {
         nicPhoto: "",
         contactNo: parseInt(driverContactNoField.val()),
         address: driverAddressField.val(),
-        availableStatus: driverAvailableStatusField.val(),
+        availableStatus: $("#availabilityStatusMenuInDriver :selected").text(),
         email: driverEmailField.val(),
         password: driverPasswordField.val()
     }
@@ -234,8 +227,6 @@ function clearAllDriverFields() {
     $(driverPasswordField).css("border", "1px solid #ced4da");
     driverAddressField.val("");
     $(driverAddressField).css("border", "1px solid #ced4da");
-    driverAvailableStatusField.val("");
-    $(driverAvailableStatusField).css("border", "1px solid #ced4da");
     licenseFileInDriver.val("");
     $(licenseFileInDriver).css("border", "1px solid #ced4da");
     nicFileInDriver.val("");

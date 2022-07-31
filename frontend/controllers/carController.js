@@ -2,12 +2,7 @@ var carRegNoFieldInCar = $("#carRegNoFieldInCar");
 var carRegNoFieldInCarPattern = /^[A-Z]{2,3}[-][0-9]{3}$/
 var carBrandFieldInCar = $("#carBrandFieldInCar");
 var carBrandFieldInCarPattern = /^[A-z ]{2,}$/
-var carTypeFieldInCar = $("#carTypeFieldInCar");
-var carTypeFieldInCarPattern = /^[A-z ]{2,}$/
-var carTransmissionTypeFieldInCar = $("#carTransmissionTypeFieldInCar");
-var carTransmissionTypeFieldInCarPattern = /^((Auto||AUTO)||(MANUAL||Manual))$/
-var carFuelTypeFieldInCar = $("#carFuelTypeFieldInCar");
-var carFuelTypeFieldInCarPattern = /^((Petrol||PETROL)||(Diesel||DIESEL))$/
+
 var carPassengersFieldInCar = $("#carPassengersFieldInCar");
 var carPassengersFieldInCarPattern = /^[0-9]{1,}$/
 var carMileageInKmFieldInCar = $("#carMileageInKmFieldInCar");
@@ -24,10 +19,6 @@ var carDailyRateFieldInCar = $("#carDailyRateFieldInCar");
 var carDailyRateFieldInCarPattern = /^[0-9]{1,}$/
 var carMonthlyRateFieldInCar = $("#carMonthlyRateFieldInCar");
 var carMonthlyRateFieldInCarPattern = /^[0-9]{1,}$/
-var carBookedOrNotStatusFieldInCar = $("#carBookedOrNotStatusFieldInCar");
-var carBookedOrNotStatusFieldInCarPattern = /^((Booked||BOOKED)||(Not Booked||NOT BOOKED))$/
-var carMaintenanceStatusFieldInCar = $("#carMaintenanceStatusFieldInCar");
-var carMaintenanceStatusFieldInCarPattern = /^((Under Maintenance||UNDER MAINTENANCE)||(No Maintenance Required||NO MAINTENANCE REQUIRED))$/
 var carImgFile = $("#carImgFile");
 var carLossDamageWaiverFieldInCar = $("#carLossDamageWaiverFieldInCar");
 var carLossDamageWaiverFieldInCarPattern = /^[0-9]{1,}$/
@@ -41,17 +32,17 @@ var carDeleteBtnInCar = $("#carDeleteBtnInCar");
 var carViewAllBtn = $("#carViewAllBtn");
 var viewCarScheduleBtn = $("#viewCarScheduleBtn");
 
-var carInputsArr = [carRegNoFieldInCar, carBrandFieldInCar, carTypeFieldInCar, carTransmissionTypeFieldInCar, carFuelTypeFieldInCar,
+var carInputsArr = [carRegNoFieldInCar, carBrandFieldInCar,
     carPassengersFieldInCar, carMileageInKmFieldInCar, freeKmPerDayFieldInCar, freeKmPerMonthFieldInCar, carPriceForExtraKmFieldInCar, carDailyRateFieldInCar,
-    carMonthlyRateFieldInCar, carBookedOrNotStatusFieldInCar, carMaintenanceStatusFieldInCar, carLossDamageWaiverFieldInCar
+    carMonthlyRateFieldInCar, carLossDamageWaiverFieldInCar
 ];
 
-$(carRegNoFieldInCar, carBrandFieldInCar, carTypeFieldInCar, carTransmissionTypeFieldInCar, carFuelTypeFieldInCar,
+$(carRegNoFieldInCar, carBrandFieldInCar,
     carPassengersFieldInCar, carMileageInKmFieldInCar, freeKmPerDayFieldInCar, freeKmPerMonthFieldInCar, carPriceForExtraKmFieldInCar, carDailyRateFieldInCar,
-    carMonthlyRateFieldInCar, carBookedOrNotStatusFieldInCar, carMaintenanceStatusFieldInCar, carImgFile, carLossDamageWaiverFieldInCar).off('keydown');
-$(carRegNoFieldInCar, carBrandFieldInCar, carTypeFieldInCar, carTransmissionTypeFieldInCar, carFuelTypeFieldInCar,
+    carMonthlyRateFieldInCar, carImgFile, carLossDamageWaiverFieldInCar).off('keydown');
+$(carRegNoFieldInCar, carBrandFieldInCar,
     carPassengersFieldInCar, carMileageInKmFieldInCar, freeKmPerDayFieldInCar, freeKmPerMonthFieldInCar, carPriceForExtraKmFieldInCar, carDailyRateFieldInCar,
-    carMonthlyRateFieldInCar, carBookedOrNotStatusFieldInCar, carMaintenanceStatusFieldInCar, carImgFile, carLossDamageWaiverFieldInCar).keydown(function (e) {
+    carMonthlyRateFieldInCar, carImgFile, carLossDamageWaiverFieldInCar).keydown(function (e) {
     if (e.key == 'Tab') {
         e.preventDefault();
     }
@@ -66,79 +57,51 @@ carBrandFieldInCar.keyup(function (e) {
     let index = 1;
     validate(carBrandFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
-carTypeFieldInCar.off('keyup');
-carTypeFieldInCar.keyup(function (e) {
-    let index = 2;
-    validate(carTypeFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
-})
-carTransmissionTypeFieldInCar.off('keyup');
-carTransmissionTypeFieldInCar.keyup(function (e) {
-    let index = 3;
-    validate(carTransmissionTypeFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
-})
-
-carFuelTypeFieldInCar.off('keyup');
-carFuelTypeFieldInCar.keyup(function (e) {
-    let index = 4;
-    validate(carFuelTypeFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
-})
 
 carPassengersFieldInCar.off('keyup');
 carPassengersFieldInCar.keyup(function (e) {
-    let index = 5;
+    let index = 2;
     validate(carPassengersFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 carMileageInKmFieldInCar.off('keyup');
 carMileageInKmFieldInCar.keyup(function (e) {
-    let index = 6;
+    let index = 3;
     validate(carMileageInKmFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 freeKmPerDayFieldInCar.off('keyup');
 freeKmPerDayFieldInCar.keyup(function (e) {
-    let index = 7;
+    let index = 4;
     validate(freeKmPerDayFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 freeKmPerMonthFieldInCar.off('keyup');
 freeKmPerMonthFieldInCar.keyup(function (e) {
-    let index = 8;
+    let index = 5;
     validate(freeKmPerMonthFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 carPriceForExtraKmFieldInCar.off('keyup');
 carPriceForExtraKmFieldInCar.keyup(function (e) {
-    let index = 9;
+    let index = 6;
     validate(carPriceForExtraKmFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 carDailyRateFieldInCar.off('keyup');
 carDailyRateFieldInCar.keyup(function (e) {
-    let index = 10;
+    let index = 7;
     validate(carDailyRateFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
 carMonthlyRateFieldInCar.off('keyup');
 carMonthlyRateFieldInCar.keyup(function (e) {
-    let index = 11;
+    let index = 8;
     validate(carMonthlyRateFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
-})
-
-carBookedOrNotStatusFieldInCar.off('keyup');
-carBookedOrNotStatusFieldInCar.keyup(function (e) {
-    let index = 12;
-    validate(carBookedOrNotStatusFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
-})
-
-carMaintenanceStatusFieldInCar.off('keyup');
-carMaintenanceStatusFieldInCar.keyup(function (e) {
-    let index = 13;
-    validate(carMaintenanceStatusFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 carLossDamageWaiverFieldInCar.off('keyup');
 carLossDamageWaiverFieldInCar.keyup(function (e) {
-    let index = 14;
+    let index = 9;
     validate(carLossDamageWaiverFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
 })
 
@@ -149,9 +112,9 @@ $(carSaveBtnInCar).click(function () {
     var dto = {
         c_RegNo: carRegNoFieldInCar.val(),
         brand: carBrandFieldInCar.val(),
-        type: carTypeFieldInCar.val(),
-        transmissionType: carTransmissionTypeFieldInCar.val(),
-        fuelType: carFuelTypeFieldInCar.val(),
+        type: $('#carTypeMenuInCar :selected').text(),
+        transmissionType: $('#transmissionTypeMenuInCar :selected').text(),
+        fuelType: $('#fuelTypeMenuInCar :selected').text(),
         images: {},
         noOfPassengers: parseInt(carPassengersFieldInCar.val()),
         mileageInKm: parseFloat(carMileageInKmFieldInCar.val()),
@@ -160,8 +123,8 @@ $(carSaveBtnInCar).click(function () {
         priceForExtraKm: parseFloat(carPriceForExtraKmFieldInCar.val()),
         dailyRate: parseFloat(carDailyRateFieldInCar.val()),
         monthlyRate: parseFloat(carMonthlyRateFieldInCar.val()),
-        carBookedOrNotStatus: carBookedOrNotStatusFieldInCar.val(),
-        maintenanceStatus: carMaintenanceStatusFieldInCar.val(),
+        carBookedOrNotStatus: $('#bookedStatusMenuInCar :selected').text(),
+        maintenanceStatus: $('#maintenanceStatusMenuInCar :selected').text(),
         lossDamageWaiver: carLossDamageWaiverFieldInCar.val()
     }
     data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
@@ -169,7 +132,7 @@ $(carSaveBtnInCar).click(function () {
         data.append("carImgFile", file[i], file[i].name);
     }
 
-    if (confirm("Do You Want To Save This Car Details..?")==true){
+    if (confirm("Do You Want To Save This Car Details..?") == true) {
         $.ajax({
             url: baseUrl + "car",
             method: "POST",
@@ -199,9 +162,9 @@ $(carUpdateBtnInCar).click(function () {
     var dto = {
         c_RegNo: carRegNoFieldInCar.val(),
         brand: carBrandFieldInCar.val(),
-        type: carTypeFieldInCar.val(),
-        transmissionType: carTransmissionTypeFieldInCar.val(),
-        fuelType: carFuelTypeFieldInCar.val(),
+        type: $('#carTypeMenuInCar :selected').text(),
+        transmissionType: $('#transmissionTypeMenuInCar :selected').text(),
+        fuelType: $('#fuelTypeMenuInCar :selected').text(),
         images: {},
         noOfPassengers: parseInt(carPassengersFieldInCar.val()),
         mileageInKm: parseFloat(carMileageInKmFieldInCar.val()),
@@ -210,8 +173,8 @@ $(carUpdateBtnInCar).click(function () {
         priceForExtraKm: parseFloat(carPriceForExtraKmFieldInCar.val()),
         dailyRate: parseFloat(carDailyRateFieldInCar.val()),
         monthlyRate: parseFloat(carMonthlyRateFieldInCar.val()),
-        carBookedOrNotStatus: carBookedOrNotStatusFieldInCar.val(),
-        maintenanceStatus: carMaintenanceStatusFieldInCar.val(),
+        carBookedOrNotStatus: $('#bookedStatusMenuInCar :selected').text(),
+        maintenanceStatus: $('#maintenanceStatusMenuInCar :selected').text(),
         lossDamageWaiver: carLossDamageWaiverFieldInCar.val()
     }
     data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
@@ -219,7 +182,7 @@ $(carUpdateBtnInCar).click(function () {
         data.append("carImgFile", file[i], file[i].name);
     }
 
-    if (confirm("Do You Want To Update This Car Details..?")==true){
+    if (confirm("Do You Want To Update This Car Details..?") == true) {
         $.ajax({
             url: baseUrl + "car",
             method: "PUT",
@@ -244,7 +207,7 @@ $(carUpdateBtnInCar).click(function () {
 
 $(carDeleteBtnInCar).off('click');
 $(carDeleteBtnInCar).click(function () {
-    if (confirm("Do You Want To Delete This Car..?")==true){
+    if (confirm("Do You Want To Delete This Car..?") == true) {
         $.ajax({
             url: baseUrl + "car?regNo=" + carRegNoFieldInCar.val(),
             method: "DELETE",
@@ -271,12 +234,6 @@ function clearCarFields() {
     $(carRegNoFieldInCar).css("border", "1px solid #ced4da");
     carBrandFieldInCar.val("");
     $(carBrandFieldInCar).css("border", "1px solid #ced4da");
-    carTypeFieldInCar.val("");
-    $(carTypeFieldInCar).css("border", "1px solid #ced4da");
-    carTransmissionTypeFieldInCar.val("");
-    $(carTransmissionTypeFieldInCar).css("border", "1px solid #ced4da");
-    carFuelTypeFieldInCar.val("");
-    $(carFuelTypeFieldInCar).css("border", "1px solid #ced4da");
     carPassengersFieldInCar.val("");
     $(carPassengersFieldInCar).css("border", "1px solid #ced4da");
     carMileageInKmFieldInCar.val("");
@@ -291,10 +248,6 @@ function clearCarFields() {
     $(carDailyRateFieldInCar).css("border", "1px solid #ced4da");
     carMonthlyRateFieldInCar.val("");
     $(carMonthlyRateFieldInCar).css("border", "1px solid #ced4da");
-    carBookedOrNotStatusFieldInCar.val("");
-    $(carBookedOrNotStatusFieldInCar).css("border", "1px solid #ced4da");
-    carMaintenanceStatusFieldInCar.val("");
-    $(carMaintenanceStatusFieldInCar).css("border", "1px solid #ced4da");
     carLossDamageWaiverFieldInCar.val("");
     $(carLossDamageWaiverFieldInCar).css("border", "1px solid #ced4da");
     carImgFile.val("");

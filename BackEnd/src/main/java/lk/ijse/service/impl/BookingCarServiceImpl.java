@@ -44,6 +44,16 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Autowired
     private BookingPaymentsRepo paymentsRepo;
 
+
+    @Autowired
+    private PendingBookingRepo pendingBookingRepo;
+
+    @Autowired
+    private PendingBookingDetailsRepo pendingBookingDetailsRepo;
+
+    @Autowired
+    private PendingBookingPaymentsRepo pendingBookingPaymentsRepo;
+
     @Override
     public void bookingACar(BookingDTO dto) {
         try {
@@ -101,6 +111,15 @@ public class BookingCarServiceImpl implements BookingCarService {
                     updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
                 }
                 carRepo.save(car);
+            }
+            /*Deleting Pending Records After Successful Booking Done*/
+            if (pendingBookingRepo.existsById(dto.getBoId())) {
+                pendingBookingRepo.deleteById(dto.getBoId());
+                if (pendingBookingPaymentsRepo.existsById(dto.getPayments().getPaymentId())) {
+                    pendingBookingPaymentsRepo.deleteById(dto.getPayments().getPaymentId());
+                }
+            }else {
+                throw new RuntimeException("Pending Booking Update is Not Successful");
             }
         } catch (Exception e) {
             e.printStackTrace();

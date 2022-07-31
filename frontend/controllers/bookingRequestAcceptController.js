@@ -11,7 +11,6 @@ var bookingRequestTimeInAcceptAdmin = $("#bookingRequestTimeInAcceptAdmin");
 var bookingRequestCostInAcceptAdmin = $("#bookingRequestCostInAcceptAdmin");
 
 var bookingRequestSaveBtnInAcceptAdmin = $("#bookingRequestSaveBtnInAcceptAdmin");
-var bookingRequestUpdateBtnInAcceptAdmin = $("#bookingRequestUpdateBtnInAcceptAdmin");
 var bookingRequestDeleteBtnInAcceptAdmin = $("#bookingRequestDeleteBtnInAcceptAdmin");
 
 let notificationsForCustomerSection = $("#notificationsForCustomer");
@@ -115,29 +114,6 @@ $(bookingRequestSaveBtnInAcceptAdmin).click(function () {
         }
     }
 })
-$(bookingRequestUpdateBtnInAcceptAdmin).click(function () {
-    searchBookingRequestById(bookingRequestIdInAcceptAdmin.val());
-    console.log(bookingRequestSearchedObj)
-    if (bookingRequestIdInAcceptAdmin.val() == bookingRequestSearchedObj.boId) {
-        if (confirm("Do You Want To Update This Booking Request..?") == true) {
-            $.ajax({
-                url: baseUrl + "bookingCarRequestController/pendingBookingRequestUpdate",
-                method: "POST",
-                data: JSON.stringify(bookingRequestSearchedObj),
-                contentType: "application/json",
-                success: function (resp) {
-                    if (resp.status == 200) {
-                        alert(resp.message);
-
-                    }
-                },
-                error: function (error) {
-                    alert(error.message);
-                }
-            })
-        }
-    }
-})
 $(bookingRequestDeleteBtnInAcceptAdmin).click(function () {
     searchBookingRequestById(bookingRequestIdInAcceptAdmin.val());
     console.log(bookingRequestSearchedObj)
@@ -148,7 +124,6 @@ $(bookingRequestDeleteBtnInAcceptAdmin).click(function () {
             success: function (resp) {
                 if (resp.status == 200) {
                     alert(resp.message);
-
                 }
             },
             error: function (error) {

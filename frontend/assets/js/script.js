@@ -499,6 +499,7 @@ $(loginBtn).click(function () {
                             viewAllBookingsBtn.append(aforViewBookingBtn);
                             let viewAllBookingInViewAllBookingSection = $("#viewAllBookingInViewAllBookingSection");
                             $(viewAllBookingsBtn).click(function () {
+                                getAllBookings();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -1041,6 +1042,7 @@ function getAllCars() {
     $.ajax({
         url: baseUrl + "car/getAll",
         method: "GET",
+        async: false,
         success: function (resp) {
             if (resp.status = 200) {
                 let data = resp.data;
@@ -1058,7 +1060,8 @@ function getAllCars() {
                                      <td>` + data[i].fuelType + `</td>
                                      <td>` + data[i].noOfPassengers + `</td>
                                      <td>` + data[i].mileageInKm + `</td>
-                                     <td>` + data[i].freeMileage + `</td>
+                                     <td>` + data[i].freeKmPerDay + `</td>
+                                     <td>` + data[i].freeKmPerMonth + `</td>
                                      <td>` + data[i].priceForExtraKm + `</td>
                                      <td>` + data[i].dailyRate + `</td>
                                      <td>` + data[i].monthlyRate + `</td>
@@ -1082,6 +1085,7 @@ function addCarsToViewInTheHome(arr) {
     carBookingChooserBtnArr.splice(0, carBookingChooserBtnArr.length);
     let cardsContainingContainerInCustomerSection = $("#cardsContainingContainerInCustomerSection");
     $(cardsContainingContainerInCustomerSection).empty();
+    console.log("Cars Arr Length = " + arr.length)
     for (let i = 0; i < arr.length; i++) {
         let rootContainerDiv = document.createElement("div");
         rootContainerDiv.className = 'col-1 card d-flex ms-3 me-3 align-items-center justify-content-center shadow-lg';
@@ -1151,6 +1155,7 @@ function addCarsToViewInTheHome(arr) {
 
         let h5InFirstChildDivInBtnContainer = document.createElement('h5');
         let topic = arr[i].images.firstImage.split("/")[1];
+        console.log("Topic = " + topic);
         h5InFirstChildDivInBtnContainer.innerHTML = topic.split("(")[0];
 
         let secondChildDivInBtnContainer = document.createElement('div');

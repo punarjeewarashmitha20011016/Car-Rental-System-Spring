@@ -260,18 +260,8 @@ $(addToCartInBookingRequestBtn).click(function () {
         bookingDetailsArr.push(bookingDetails);
     }
     getPaymentsId();
-    let dt1 = new Date();
-    let date = undefined;
-    if (((dt1.getDate() > -1) && (dt1.getDate() < 10)) && ((dt1.getMonth() > -1) && (dt1.getMonth() < 10))) {
-        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + 0 + dt1.getDate();
-    } else if ((dt1.getMonth() > -1) && (dt1.getMonth() < 10)) {
-        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + dt1.getDate();
-    } else if ((dt1.getDate() > -1) && (dt1.getDate() < 10)) {
-        date = dt1.getFullYear() + "-" + dt1.getMonth() + "-" + 0 + dt1.getDate();
-    }
-
-    let time = dt1.getHours() + "." + dt1.getMinutes() + "." + dt1.getSeconds();
-
+    let date = new Date().toISOString().substring(0, 10);
+    let time = new Date().toLocaleTimeString();
     let booking = {
         boId: bookingReqIdInPlacingBookingRequest.val(),
         cusNic: cusNicInPlacingBookingRequest.val(),
@@ -480,13 +470,13 @@ function searchCarDetails() {
         success: function (resp) {
             if (resp.status == 200) {
                 let data = resp.data;
-                console.log(data.toString())
-                carTypeInPlacingBookingRequestMenu.val(data.type)
-                if (data.carType == 'Luxury') {
-                    $("#carTypeInPlacingBookingRequestMenu option[value='0']").prop('selected', true);
-                } else {
+                console.log("Car Type Searched = " + data.type)
+                if (data.type == 'Luxury') {
                     $("#carTypeInPlacingBookingRequestMenu option[value='1']").prop('selected', true);
+                } else {
+                    $("#carTypeInPlacingBookingRequestMenu option[value='2']").prop('selected', true);
                 }
+
                 lossDamageWaiverInPlacingBookingRequest.val(data.lossDamageWaiver)
                 costInPlacingBookingRequest.val(data.lossDamageWaiver);
             }

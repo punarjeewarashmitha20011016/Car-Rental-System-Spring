@@ -439,27 +439,27 @@
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
-                                                <label class="form-label d-flex" for="carTypeFieldInCar">Type</label>
-                                                <input aria-describedby="carTypeFieldInCar" class="form-control d-flex"
-                                                       id="carTypeFieldInCar"
-                                                       placeholder="Enter Car Type" type="text" style="width: 90%;">
+                                               <label class="form-label" for="carTypeMenuInCar">Car Type</label>
+                                                <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="carTypeMenuInCar">
+                                                    <option value="1">Luxury</option>
+                                                    <option value="2">Semi-Luxury</option>
+                                                </select>
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
-                                                <label class="form-label" for="carTransmissionTypeFieldInCar">Transmission
-                                                    Type</label>
-                                                <input aria-describedby="carTransmissionTypeFieldInCar"
-                                                       class="form-control"
-                                                       id="carTransmissionTypeFieldInCar"
-                                                       placeholder="Enter Car Transmission Type"
-                                                       type="text" style="width: 90%;">
+                                                <label class="form-label" for="transmissionTypeMenuInCar">Transmission Type</label>
+                                                <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="transmissionTypeMenuInCar">
+                                                    <option value="1">Auto</option>
+                                                    <option value="2">Manual</option>
+                                                </select>
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
-                                                <label class="form-label" for="carFuelTypeFieldInCar">Fuel Type</label>
-                                                <input aria-describedby="carFuelTypeFieldInCar" class="form-control"
-                                                       id="carFuelTypeFieldInCar"
-                                                       placeholder="Enter Car Fuel Type" type="text" style="width: 90%;">
+                                                 <label class="form-label" for="fuelTypeMenuInCar">Transmission Type</label>
+                                                 <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="fuelTypeMenuInCar">
+                                                     <option value="1">Petrol</option>
+                                                     <option value="2">Diesel</option>
+                                                 </select>
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
@@ -520,24 +520,19 @@
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
-                                                <label class="form-label" for="carBookedOrNotStatusFieldInCar">Booked Or
-                                                    Not
-                                                    Status</label>
-                                                <input aria-describedby="carBookedOrNotStatusFieldInCar"
-                                                       class="form-control"
-                                                       id="carBookedOrNotStatusFieldInCar"
-                                                       placeholder="Enter Car Booked Or Not Status"
-                                                       type="text" style="width: 90%;">
+                                                <label class="form-label" for="bookedStatusMenuInCar">Booked Status</label>
+                                                <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="bookedStatusMenuInCar">
+                                                     <option value="1">Booked</option>
+                                                     <option value="2">Not Booked</option>
+                                                </select>
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
-                                                <label class="form-label"
-                                                       for="carMaintenanceStatusFieldInCar">Maintenance Status</label>
-                                                <input aria-describedby="carMaintenanceStatusFieldInCar"
-                                                       class="form-control"
-                                                       id="carMaintenanceStatusFieldInCar"
-                                                       placeholder="Enter Car Maintenance Status"
-                                                       type="text" style="width: 90%;">
+                                                 <label class="form-label" for="maintenanceStatusMenuInCar">Maintenance Status</label>
+                                                 <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="maintenanceStatusMenuInCar">
+                                                      <option value="1">No Maintenance Required</option>
+                                                      <option value="2">Under Maintenance</option>
+                                                 </select>
                                             </div>
                                             <div class="col-3 mt-0 mb-0 d-flex flex-column justify-content-center align-items-start"
                                                  style="height: calc(100%/5*1);">
@@ -772,11 +767,11 @@
                                 <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
                                      style="height: calc(100%/4*1);">
                                     <div class="w-75 d-flex flex-column justify-content-center align-items-center">
-                                        <label class="form-label" for="driverAvailableStatusField">Availability
-                                            Status</label>
-                                        <input class="form-control" id="driverAvailableStatusField"
-                                               placeholder="Enter Availability Status"
-                                               type="text">
+                                        <label class="form-label" for="availabilityStatusMenuInDriver">Availability Status</label>
+                                        <select class="form-select d-flex align-items-center justify-content-center" style="width: 90%;height: 50%;" aria-label="Default select example" id="availabilityStatusMenuInDriver">
+                                              <option value="1">Available</option>
+                                              <option value="2">Not Available</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="mb-1 col-6 d-flex flex-column justify-content-center align-items-center"
@@ -863,7 +858,7 @@
                            placeholder="Search Booking Request" type="text">
                 </div>
                 <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                    <button id="bookingRequestSearchFieldInAcceptRequestBtn" class="btn btn-primary ms-2 me-2 col-10">Search</button>
+                    <button id="bookingRequestSearchFieldInAcceptRequestBtn" class="btn btn-primary ms-2 me-2 col-10" type="button">Search</button>
                 </div>
             </div>
             <div class="row d-flex" style="width: 90%;height:40%;">
@@ -968,12 +963,11 @@
                             <div class="row d-flex flex-row justify-content-center align-items-center"
                                  style="width: 100%;height: 100%;">
                                 <div class="col-12 d-flex flex-row h-50 justify-content-center align-items-center">
-                                    <button id="bookingRequestSaveBtnInAcceptAdmin" class="btn btn-primary ms-2 me-2 col-3">Save</button>
-                                    <button id="bookingRequestUpdateBtnInAcceptAdmin" class="btn btn-secondary ms-2 me-2 col-3">Update</button>
-                                    <button id="bookingRequestDeleteBtnInAcceptAdmin" class="btn btn-danger ms-2 me-2  col-3">Delete</button>
+                                    <button id="bookingRequestSaveBtnInAcceptAdmin" class="btn btn-primary ms-2 me-2 col-3"  type="button">Save</button>
+                                    <button id="bookingRequestDeleteBtnInAcceptAdmin" class="btn btn-danger ms-2 me-2  col-3"  type="button">Delete</button>
                                     <a class="ms-2 me-2 col-3"
                                        id="bookingRequestDetailsBtn">
-                                        <button class="btn btn-info w-100 h-100">View All</button>
+                                        <button type="button" class="btn btn-info w-100 h-100">View All</button>
                                     </a>
                                 </div>
                             </div>
@@ -1186,11 +1180,11 @@
                              style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
-                                    <label class="form-label" for="damageStatusInBooking">Damage
-                                        Status</label>
-                                    <input aria-describedby="damageStatusInBooking" class="form-control"
-                                           id="damageStatusInBooking"
-                                           placeholder="Enter Damage Status" type="text">
+                                    <label class="form-label" for="damageStatusMenuInBooking">Damaged Status</label>
+                                    <select class="form-select d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;" aria-label="Default select example" id="damageStatusMenuInBooking">
+                                          <option value="1">Not Damaged</option>
+                                          <option value="2">Damaged</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col d-flex">
@@ -1355,7 +1349,7 @@
                                        placeholder="Search Booking" type="text">
                             </div>
                             <div class="col-2 btnContainer d-flex flex-row align-items-center justify-content-center">
-                                <button class="btn btn-primary ms-2 me-2 col-10" type="button">Search</button>
+                                <button id="bookingSearchFieldBtn" class="btn btn-primary ms-2 me-2 col-10" type="button">Search</button>
                             </div>
                             <div class="col-4 d-flex flex-row align-items-center justify-content-center">
                                 <a class="ms-2 me-2 col-10 d-flex text-decoration-none flex-column"
@@ -1372,7 +1366,7 @@
                      style="width: 100%;height: 90%;">
                     <div id="viewAllBookingInViewAllBookingSection" class="col-12 shadow-lg"
                          style="height: 90%;display: flex;overflow: auto;">
-                        <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                        <table id="viewAllBookingTable" class="table table-hover table-bordered" style="width: 100%;height: 100%;">
                             <thead>
                             <tr>
                                 <th scope="col">Row No</th>
@@ -1389,7 +1383,7 @@
                     </div>
                     <div id="viewAllBookingDetailsSection" class="col-12 shadow-lg"
                          style="height: 90%;display: none;overflow: auto;">
-                        <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                        <table id="viewAllBookingDetailsTable" class="table table-hover table-bordered" style="width: 100%;height: 100%;">
                             <thead>
                             <tr>
                                 <th scope="col">Row No</th>
@@ -1852,7 +1846,7 @@
                              style="width: 100%;height: calc(100%/4*1);">
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
-                                    <label class="form-label" for="dateOfPickupInPlacingBookingRequest">Car Type</label>
+                                    <label class="form-label" for="carTypeInPlacingBookingRequestMenu">Car Type</label>
                                     <select class="form-select d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;" aria-label="Default select example" id="carTypeInPlacingBookingRequestMenu">
                                         <option value="1">Luxury</option>
                                         <option value="2">Semi-Luxury</option>
@@ -1861,7 +1855,7 @@
                             </div>
                             <div class="col d-flex">
                                 <div class="d-flex flex-column" style="width: 100%;height: 50%;">
-                                    <label class="form-label" for="dateOfPickupInPlacingBookingRequest">Rental Type</label>
+                                    <label class="form-label" for="rentalTypeInPlacingBookingRequestDropdownMenu">Rental Type</label>
                                     <select class="form-select d-flex align-items-center justify-content-center" style="width: 100%;height: 50%;" aria-label="Default select example" id="rentalTypeInPlacingBookingRequestDropdownMenu">
                                         <option value="1">Daily</option>
                                         <option value="2">Monthly</option>
@@ -2191,5 +2185,6 @@
 <script src="../frontend/controllers/placingBookingRequestController.js"></script>
 <script src="../frontend/controllers/bookingRequestAcceptController.js"></script>
 <script src="../frontend/controllers/placeBookingController.js"></script>
+<script src="../frontend/controllers/viewAllBookingsController.js"></script>
 </body>
 </html>

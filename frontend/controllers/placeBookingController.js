@@ -6,7 +6,6 @@ var bookingIdInBooking = $("#bookingIdInBooking");
 var searchBookingBtn = $("#searchBookingBtn");
 
 var dropDownMenuForCarRegNoInBookingInAdmin = $("#dropDownMenuForCarRegNoInBookingInAdmin");
-var carRegDropDownBtnInBookingAdmin = $("#carRegDropDownBtnInBookingAdmin");
 
 var totalCostInBooking = $("#totalCostInBooking")
 
@@ -22,7 +21,6 @@ var pickupVenueInBooking = $("#pickupVenueInBooking");
 var returnedDateInBooking = $("#returnedDateInBooking");
 var returnedTimeInBooking = $("#returnedTimeInBooking");
 var returnVenueInBooking = $("#returnVenueInBooking");
-var damageStatusInBooking = $("#damageStatusInBooking");
 var lossDamageWaiverInBooking = $("#lossDamageWaiverInBooking");
 var lossDamageWaiverSlipInBooking = $("#lossDamageWaiverSlipInBooking");
 var costInBooking = $("#costInBooking");
@@ -117,6 +115,17 @@ $(searchBookingBtn).click(function () {
     setDataToDropDownMenuForCarRegNoInBookingInAdmin(data);
     lossDamageWaiverSlipInBooking.val(data.payments.lossDamageWaiverPaymentSlip);
     bookingObj = data;
+
+    $(dropDownMenuForCarRegNoInBookingInAdmin).children('li').click(function () {
+        console.log('Hi tere')
+        console.log($(this).text())
+        $(carTypeInBooking).val(searchCarDetailsInBookingAdmin($(this).text().trim()).type);
+        if (carObj != undefined) {
+            carObj = undefined;
+        }
+        carObj = searchCarDetailsInBookingAdmin($(this).text().trim());
+        setDataInPendingBookingDetailsToFields(carObj.c_RegNo);
+    })
 })
 
 function searchPendingBooking(id) {
@@ -148,20 +157,9 @@ function setDataToDropDownMenuForCarRegNoInBookingInAdmin(data) {
     }
 }
 
-$(dropDownMenuForCarRegNoInBookingInAdmin).children('li').off('click');
-
-$(dropDownMenuForCarRegNoInBookingInAdmin).on('click', function () {
-    console.log('clicked')
-    $(carTypeInBooking).val(searchCarDetailsInBookingAdmin($(this).text().trim()).type);
-    if (carObj != undefined) {
-        carObj = undefined;
-    }
-    carObj = searchCarDetailsInBookingAdmin($(this).text().trim());
-    setDataInPendingBookingDetailsToFields(carObj.c_RegNo);
-});
-
 
 function searchCarDetailsInBookingAdmin(regNo) {
+    console.log(regNo)
     let car = undefined;
     $.ajax({
         url: baseUrl + "bookingCarRequestController/searchCarsInBooking?regNo=" + regNo,
@@ -248,7 +246,7 @@ $(addToListBtnInBooking).click(function () {
     } else {
         driverNicNo = $(driverNicInBooking).val();
     }
-
+    console.log("Car Reg No = " + carObj.c_RegNo);
     let addToList = new AddToCartBooking(
         bookingIdInBooking.val(),
         carObj.c_RegNo,
@@ -264,7 +262,7 @@ $(addToListBtnInBooking).click(function () {
         returnedDateInBooking.val(),
         returnedTimeInBooking.val(),
         returnVenueInBooking.val(),
-        damageStatusInBooking.val(),
+        $("#damageStatusMenuInBooking :selected").text(),
         parseFloat(lossDamageWaiverInBooking.val()),
         parseFloat(costInBooking.val())
     )
@@ -284,7 +282,7 @@ $(addToListBtnInBooking).click(function () {
                 addToListArrInBooking[i].setRentalType(rentalTypeInBooking.val());
                 addToListArrInBooking[i].setTripInKm(parseFloat(tripInKMInBooking.val()));
                 addToListArrInBooking[i].setExtraKmDriven(parseFloat(extraKmDrivenInBooking.val()));
-                addToListArrInBooking[i].setDamageStatus(damageStatusInBooking.val());
+                addToListArrInBooking[i].setDamageStatus($("#damageStatusMenuInBooking :selected").text());
                 addToListArrInBooking[i].setLossDamageWaiver(parseFloat(lossDamageWaiverInBooking.val()));
 
                 $("#addToListBookingsTableContainerTable > tbody tr").filter(function () {
@@ -358,22 +356,12 @@ $(addToListBtnInBooking).click(function () {
         }
         bookingDetailsArr.push(bookingDetails);
     }
-    let dt1 = new Date();
-    let date = undefined;
-    if (((dt1.getDate() > -1) && (dt1.getDate() < 10)) && ((dt1.getMonth() > -1) && (dt1.getMonth() < 10))) {
-        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + 0 + dt1.getDate();
-    } else if ((dt1.getMonth() > -1) && (dt1.getMonth() < 10)) {
-        date = dt1.getFullYear() + "-" + 0 + dt1.getMonth() + "-" + dt1.getDate();
-    } else if ((dt1.getDate() > -1) && (dt1.getDate() < 10)) {
-        date = dt1.getFullYear() + "-" + dt1.getMonth() + "-" + 0 + dt1.getDate();
-    }
-
-    let time = dt1.getHours() + "." + dt1.getMinutes() + "." + dt1.getSeconds();
-
+    let date = new Date().toISOString().substring(0, 10);
+    let time = new Date().toLocaleTimeString();
 
     let payments = bookingObj.payments;
     let booking = {
-        boId: bookingIdInBooking.val(), //meka yanawada>? ow sir dto ekn enw
+        boId: bookingIdInBooking.val(),
         cusNic: cusNicInBooking.val(),
         date: date,
         time: time,
@@ -401,6 +389,7 @@ $(addToListBtnInBooking).click(function () {
                 contentType: "application/json",
                 success: function (resp) {
                     alert(resp.message);
+                    getAllBookings();
                 },
                 error: function (error) {
                     alert(error.message);
@@ -415,7 +404,7 @@ $(addToListBtnInBooking).click(function () {
 function checkIfAlreadySameCarExistsInBooking(carRegNo) {
     console.log(addToListArrInBooking.length);
     for (let i = 0; i < addToListArrInBooking.length; i++) {
-        if (addToListArrInBooking[i].carRegNo == carRegNo) {
+        if (addToListArrInBooking[i].getCarRegNo() == carRegNo) {
             return true;
         }
     }

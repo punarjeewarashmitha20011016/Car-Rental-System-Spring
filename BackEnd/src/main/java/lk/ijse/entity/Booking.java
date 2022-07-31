@@ -25,7 +25,7 @@ public class Booking {
     private LocalDate date;
     private String time;
     private double cost;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookingEntity",fetch =    FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookingEntity", fetch = FetchType.EAGER)
     @NotFound(action = NotFoundAction.IGNORE)
     private List<BookingDetails> bookingDetails;
     @OneToOne(cascade = CascadeType.ALL)
