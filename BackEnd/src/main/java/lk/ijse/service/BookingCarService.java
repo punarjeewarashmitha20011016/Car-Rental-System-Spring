@@ -21,6 +21,12 @@ public interface BookingCarService {
 
     int getCountOfTotalBookingsOfTheDay();
 
+    double getDailyIncome();
+
+    double getMonthlyIncome();
+
+    double getAnnualIncome();
+
     String generateBookingId();
 
     String generateBookingPaymentsId();

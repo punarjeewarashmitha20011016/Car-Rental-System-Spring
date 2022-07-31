@@ -118,7 +118,7 @@ public class BookingCarServiceImpl implements BookingCarService {
                 if (pendingBookingPaymentsRepo.existsById(dto.getPayments().getPaymentId())) {
                     pendingBookingPaymentsRepo.deleteById(dto.getPayments().getPaymentId());
                 }
-            }else {
+            } else {
                 throw new RuntimeException("Pending Booking Update is Not Successful");
             }
         } catch (Exception e) {
@@ -229,4 +229,20 @@ public class BookingCarServiceImpl implements BookingCarService {
         return car;
     }
 
+    @Override
+    public double getDailyIncome() {
+        return paymentsRepo.findAllByDateOfPayment(LocalDate.now()).getCost();
+    }
+
+    @Override
+    public double getMonthlyIncome() {
+        LocalDate date = LocalDate.now();
+        return paymentsRepo.findMonthlyIncome(date.getMonthValue());
+    }
+
+    @Override
+    public double getAnnualIncome() {
+        LocalDate date = LocalDate.now();
+        return paymentsRepo.findAnnualIncome(date.getYear());
+    }
 }

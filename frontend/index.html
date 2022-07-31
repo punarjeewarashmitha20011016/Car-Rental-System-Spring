@@ -1426,7 +1426,7 @@
                             <div class="card text-bg-primary mb-3" style="width: 80%;height: 80%;">
                                 <div class="card-header">Daily Income</div>
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <h5 class="card-title d-flex">10</h5>
+                                    <h5 id="dailyIncomeHTag" class="card-title d-flex">10</h5>
                                 </div>
                             </div>
                         </div>
@@ -1435,7 +1435,7 @@
                             <div class="card text-bg-primary mb-3" style="width: 80%;height: 80%;">
                                 <div class="card-header">Monthly Income</div>
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <h5 class="card-title d-flex">10</h5>
+                                    <h5 id="monthlyIncomeHTag" class="card-title d-flex">10</h5>
                                 </div>
                             </div>
                         </div>
@@ -1444,7 +1444,7 @@
                             <div class="card text-bg-primary mb-3" style="width: 80%;height: 80%;">
                                 <div class="card-header">Annual Income</div>
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <h5 class="card-title d-flex">10</h5>
+                                    <h5 id="annualIncomeHTag" class="card-title d-flex">10</h5>
                                 </div>
                             </div>
                         </div>
@@ -1454,7 +1454,7 @@
             <div class="row d-flex flex-row align-items-center justify-content-center"
                  style="width: 90%;height: 60%;">
                 <div class="col-11 d-flex shadow-lg" style="height: 90%;overflow: auto;">
-                    <table class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                    <table id="incomeTableInIncome" class="table table-hover table-bordered" style="width: 100%;height: 100%;">
                         <thead>
                         <tr>
                             <th scope="col">Row No</th>
@@ -1469,54 +1469,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -2186,5 +2138,6 @@
 <script src="../frontend/controllers/bookingRequestAcceptController.js"></script>
 <script src="../frontend/controllers/placeBookingController.js"></script>
 <script src="../frontend/controllers/viewAllBookingsController.js"></script>
+<script src="../frontend/controllers/incomeController.js"></script>
 </body>
 </html>

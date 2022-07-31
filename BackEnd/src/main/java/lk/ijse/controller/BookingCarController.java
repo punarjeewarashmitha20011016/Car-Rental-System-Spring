@@ -55,8 +55,24 @@ public class BookingCarController {
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking ID generated Successfully", bookingCarService.generateBookingId());
     }
+
     @GetMapping(path = "generatePaymentsId", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil generatePaymentsRequestId() {
         return new ResponseUtil(200, "Payments Id generated Successfully", bookingCarService.generateBookingPaymentsId());
     }
+
+    @GetMapping(path = "getDailyIncome", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getDailyIncome() {
+        return new ResponseUtil(200, "Daily Income Fetched Successfully", bookingCarService.getDailyIncome());
+    }
+    @GetMapping(path = "getMonthlyIncome", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getMonthlyIncome() {
+        return new ResponseUtil(200, "Monthly Income Fetched Successfully", bookingCarService.getMonthlyIncome());
+    }
+    @GetMapping(path = "getAnnualIncome", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getAnnualIncome() {
+        return new ResponseUtil(200, "Annual Income Fetched Successfully", bookingCarService.getAnnualIncome());
+    }
+
+
 }

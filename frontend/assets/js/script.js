@@ -352,6 +352,10 @@ $(loginBtn).click(function () {
                             aforIncomeBtn.className = "text-black text-decoration-none";
                             incomeBtn.append(aforIncomeBtn);
                             $(incomeBtn).click(function () {
+                                setDataToIncomeTable();
+                                getDailyIncome();
+                                getMonthlyIncome();
+                                getAnnualIncome();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
