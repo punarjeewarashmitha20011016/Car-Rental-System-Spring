@@ -1,9 +1,6 @@
 package lk.ijse.service.impl;
 
-import lk.ijse.dto.BookingDTO;
-import lk.ijse.dto.BookingDetailsDTO;
-import lk.ijse.dto.BookingPaymentsDTO;
-import lk.ijse.dto.DriverDTO;
+import lk.ijse.dto.*;
 import lk.ijse.entity.Booking;
 import lk.ijse.entity.BookingPayments;
 import lk.ijse.entity.Car;
@@ -16,11 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -82,7 +77,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             ) {
                 /*bookingCarDetailsRepo.save(mapper.map(b, BookingDetails.class));*/
                 Car car = mapper.map(carRepo.findById(b.getCar_RegNo()), Car.class);
-                if (car.getC_RegNo() == null || (car.getCarBookedOrNotStatus().equals("Not Booked") || car.getCarBookedOrNotStatus().equals("NOT BOOKED"))) {
+                if (car.getC_RegNo() == null || car.getCarBookedOrNotStatus().equals("Not Booked")) {
                     throw new RuntimeException("Booking a Car failed");
                 }
                 /*Updating the car booked status to Not booked after returning the car*/
@@ -236,5 +231,40 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Override
     public int getCountOfTotalBookingsOfTheDay() {
         return repo.countAllByDate(LocalDate.now());
+    }
+
+    @Override
+    public int getCountOfTodayPendingBookings() {
+        return pendingBookingRepo.countAllByDate(LocalDate.now());
+    }
+
+    @Override
+    public List<CarScheduleDTO> getCarSchedule() {
+        List<PendingBookingsDTO> all = mapper.map(pendingBookingRepo.findAll(), new TypeToken<List<PendingBookingsDTO>>() {
+        }.getType());
+        List<CarScheduleDTO> scheduleDTOS = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            for (int j = 0; j < all.get(i).getBookingDetails().size(); j++) {
+                CarDTO map = mapper.map(carRepo.findById(all.get(i).getBookingDetails().get(i).getCar_RegNo()), CarDTO.class);
+                scheduleDTOS.add(new CarScheduleDTO(all.get(i).getBookingDetails().get(j).getCar_RegNo(), map.getCarBookedOrNotStatus(), all.get(i).getBookingDetails().get(i).getDateOfPickup(), all.get(i).getBookingDetails().get(i).getTimeOfPickup(), all.get(i).getBookingDetails().get(i).getReturnedDate(), all.get(i).getBookingDetails().get(i).getReturnedTime()));
+            }
+        }
+        return scheduleDTOS;
+    }
+
+    @Override
+    public List<DriverScheduleDTO> getDriverSchedule(String nic) {
+        List<PendingBookingsDTO> all = mapper.map(pendingBookingRepo.findAll(), new TypeToken<List<PendingBookingsDTO>>() {
+        }.getType());
+        List<DriverScheduleDTO> scheduleDTOS = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            for (int j = 0; j < all.get(i).getBookingDetails().size(); j++) {
+                if ((all.get(i).getBookingDetails().get(j).getDriverNic() != null) && (all.get(i).getBookingDetails().get(j).getDriverNic() == nic)) {
+                    DriverDTO map = mapper.map(driverRepo.findById(all.get(i).getBookingDetails().get(j).getDriverNic()), DriverDTO.class);
+                    scheduleDTOS.add(new DriverScheduleDTO(all.get(i).getBookingDetails().get(j).getDriverNic(), map.getName(), all.get(i).getBookingDetails().get(i).getBookingId(), map.getAvailableStatus(), all.get(i).getBookingDetails().get(i).getDateOfPickup(), all.get(i).getBookingDetails().get(i).getTimeOfPickup(), all.get(i).getBookingDetails().get(i).getReturnedDate(), all.get(i).getBookingDetails().get(i).getReturnedTime()));
+                }
+            }
+        }
+        return scheduleDTOS;
     }
 }

@@ -165,7 +165,12 @@ $(loginBtn).click(function () {
                     if (resp.data == true) {
                         $(signupBtn).css('display', 'none');
                         if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
-                            console.log('admin')
+                            setNumberOfRegisteredCustomersId();
+                            setCountOfBookingsToday();
+                            setCountOfCars();
+                            setCountOfPendingBookingsToday();
+                            setCountOfRegisteredDrivers();
+                            setCountAllCarsUnderAndNeedMaintenance();
                             let homeBtn = document.createElement("li");
                             homeBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
                             let aforhomeBtn = document.createElement('a');
@@ -870,6 +875,7 @@ $(loginBtn).click(function () {
                         $(viewDriverAccountSection).css('display', 'none');
 
                         if ($(navBarItems).children('div:nth-child(2)').children('ul').children().length == 0) {
+                            setDriverScheduleToTable();
                             let driverScheduleBtn = document.createElement("li");
                             driverScheduleBtn.className = 'nav-nav-item d-flex flex-column align-items-center justify-content-center ms-3 me-3';
                             let aforDriverScheduleBtn = document.createElement('a');
@@ -882,6 +888,7 @@ $(loginBtn).click(function () {
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(driverScheduleBtn);
 
                             $(driverScheduleBtn).click(function () {
+                                setDriverScheduleToTable();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -916,6 +923,7 @@ $(loginBtn).click(function () {
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(viewMyAccountBtn);
 
                             $(viewMyAccountBtn).click(function () {
+                                setDriverAccountDetailsToTable();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');

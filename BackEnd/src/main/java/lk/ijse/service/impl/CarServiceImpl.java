@@ -82,4 +82,14 @@ public class CarServiceImpl implements CarService {
         }
         return scheduleDTOList;
     }
+
+    @Override
+    public int countAllCars() {
+        return repo.countAllCars();
+    }
+
+    @Override
+    public int countAllCarsUnderAndNeedMaintenance() {
+        return repo.countAllByMaintenanceStatus("Under Maintenance");
+    }
 }

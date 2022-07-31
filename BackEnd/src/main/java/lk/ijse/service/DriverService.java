@@ -1,7 +1,6 @@
 package lk.ijse.service;
 
 import lk.ijse.dto.DriverDTO;
-import lk.ijse.dto.DriverScheduleDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,9 @@ public interface DriverService {
 
     DriverDTO search(String nic);
 
-    List<DriverScheduleDTO> getDriverScheduleList();
-
     boolean checkDriverLogin(String email, String password);
+
+    int countAllDrivers();
+
+    DriverDTO searchDriverByUsername(String userName);
 }

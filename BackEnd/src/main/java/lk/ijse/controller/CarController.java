@@ -63,6 +63,16 @@ public class CarController {
         return new ResponseUtil(200, "Data Fetched Successfully", carService.carScheduleList());
     }
 
+    @GetMapping(path = "countAllCars", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil countAllCars() {
+        return new ResponseUtil(200, "Data Fetched Successfully", carService.countAllCars());
+    }
+
+    @GetMapping(path = "countAllCarsUnderAndNeedMaintenance", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil countAllCarsUnderAndNeedMaintenance() {
+        return new ResponseUtil(200, "Data Fetched Successfully", carService.countAllCarsUnderAndNeedMaintenance());
+    }
+
     private CarImagesDTO saveAnUpdateFileForCarImages(MultipartFile[] files) {
         MultipartFile file1 = files[0];
         MultipartFile file2 = files[1];

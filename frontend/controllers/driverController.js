@@ -14,12 +14,12 @@ var driverAddressField = $("#driverAddressField");
 var driverAddressFieldPattern = /^[A-z0-9,.  ]*[/]?[0-9]*[ ]?[A-z,. ]*$/
 var nicFileInDriver = $("#nicFileInDriver");
 var licenseFileInDriver = $("#licenseFileInDriver");
-var driverViewAllTableContainer = $("#driverViewAllTableContainer");
 
 var driverSaveBtn = $("#driverSaveBtn");
 var driverUpdateBtn = $("#driverUpdateBtn");
 var driverDeleteBtn = $("#driverDeleteBtn");
 var driverViewAllBtn = $("#driverViewAllBtn");
+
 
 var driverInputsArr = [driverNicField, driverNameField, driverLicenseField, driverContactNoField, driverEmailField, driverPasswordField, driverAddressField];
 
@@ -34,6 +34,28 @@ driverNicField.off('keyup');
 driverNicField.keyup(function (e) {
     let index = 0;
     validate(driverNicFieldPattern, driverInputsArr, index, e, driverSaveBtn, driverUpdateBtn, driverDeleteBtn)
+    if ((driverNicField.val().length == 10) || (driverNicField.val().length == 12)) {
+        if (e.key == 'Shift') {
+            let driver = searchDriverDetails();
+            console.log(driver);
+            driverNicField.val(driver.nic);
+            driverNameField.val(driver.name);
+            driverLicenseField.val(driver.licenseNo);
+            driverContactNoField.val(driver.contactNo);
+            driverAddressField.val(driver.address);
+            $("#availabilityStatusMenuInDriver :selected").text()
+            if (driver.availableStatus == 'Available') {
+                $("#availabilityStatusMenuInDriver option[value='1']").prop('selected', true);
+            } else {
+                $("#availabilityStatusMenuInDriver option[value='2']").prop('selected', true);
+            }
+            driverEmailField.val(driver.email);
+            driverPasswordField.val(driver.password);
+        } else if (e.key == 'backspace' || e.keyCode == 8) {
+            console.log('backspace');
+            clearAllDriverFields();
+        }
+    }
 })
 
 driverNameField.off('keyup');
@@ -180,6 +202,12 @@ $(driverDeleteBtn).click(function () {
     }
 })
 
+
+$(driverViewAllBtn).off('click');
+$(driverViewAllBtn).click(function () {
+    getAllDrivers();
+})
+
 function getAllDrivers() {
     $.ajax({
         url: baseUrl + "driver/getAll",
@@ -231,4 +259,87 @@ function clearAllDriverFields() {
     $(licenseFileInDriver).css("border", "1px solid #ced4da");
     nicFileInDriver.val("");
     $(nicFileInDriver).css("border", "1px solid #ced4da");
+}
+
+function searchDriverByUsername() {
+    let driver = undefined;
+    $.ajax({
+        url: baseUrl + "driver/searchDriverByUsername?userName=" + userNameLoginId.val(),
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                driver = resp.data;
+            }
+        }
+    })
+    return driver;
+}
+
+
+function setDriverScheduleToTable() {
+    let driver = searchDriverByUsername();
+    $.ajax({
+        url: baseUrl + "bookingCarController/getDriverSchedule?nic=" + driver.nic,
+        method: "GET",
+        success: function (resp) {
+            if (resp.status == 200) {
+                let tbody = $('#driverScheduleTable').children('tbody');
+                $(tbody).empty();
+                let data = resp.data;
+                for (let i = 0; i < data.length; i++) {
+                    let row = `<tr>
+                                    <td>` + (i + 1) + `</td>
+                                    <td>` + data[i].nic + `</td>
+                                    <td>` + data[i].name + `</td>
+                                    <td>` + data[i].boId + `</td>
+                                    <td>` + data[i].availableStatus + `</td>
+                                    <td>` + data[i].pickupDate + `</td>
+                                    <td>` + data[i].pickupTime + `</td>
+                                    <td>` + data[i].returnedDate + `</td>
+                                    <td>` + data[i].returnedTime + `</td>
+                                </tr>`;
+
+                    $(tbody).append(row);
+                }
+            }
+        }
+    })
+}
+
+function setDriverAccountDetailsToTable() {
+    let driver = searchDriverByUsername();
+    console.log(driver);
+    let tbody = $('#driverAccountTable tbody');
+    $(tbody).empty();
+    let row = `<tr>
+                    <td>` + (1) + `</td>
+                    <td>` + driver.nic + `</td>
+                    <td>` + driver.name + `</td>
+                    <td>` + driver.licenseNo + `</td>
+                    <td>` + driver.contactNo + `</td>
+                    <td>` + driver.address + `</td>
+                    <td>` + driver.availableStatus + `</td>
+                    <td>` + driver.email + `</td>
+                    <td>` + driver.password + `</td>
+                    <td><img src="${baseUrl + "/" + driver.nicPhoto}" width="100px"></td>
+                    <td><img src="${baseUrl + "/" + driver.licensePhoto}" width="100px"></td>
+               </tr>`
+    $(tbody).append(row);
+}
+
+function searchDriverDetails() {
+    let driver = undefined;
+    console.log(driverNicField.val());
+    $.ajax({
+        url: baseUrl + "driver/search?nic=" + driverNicField.val(),
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                driver = resp.data;
+            }
+        }
+    })
+    return driver;
 }

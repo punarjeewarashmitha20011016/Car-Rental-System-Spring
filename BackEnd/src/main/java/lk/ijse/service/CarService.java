@@ -22,4 +22,7 @@ public interface CarService {
 
     List<CarScheduleDTO> carScheduleList();
 
+    int countAllCars();
+
+    int countAllCarsUnderAndNeedMaintenance();
 }

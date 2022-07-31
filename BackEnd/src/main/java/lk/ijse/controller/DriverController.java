@@ -23,8 +23,8 @@ public class DriverController {
     ResponseUtil save(@RequestPart("dto") DriverDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
-        dto.setNicPhoto("uploads/" +nicFile.getOriginalFilename());
-        dto.setLicensePhoto("uploads/" +licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
         driverService.save(dto);
         return new ResponseUtil(200, "Driver Saved Successfully", dto);
     }
@@ -54,15 +54,19 @@ public class DriverController {
     ResponseUtil search(@RequestParam String nic) {
         return new ResponseUtil(200, "Driver Searched Successfully", driverService.search(nic));
     }
-
-    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil getDriverSchedule() {
-        return new ResponseUtil(200, "Data Fetched Successfully", driverService.getDriverScheduleList());
+    @GetMapping(path = "searchDriverByUsername", params = {"userName"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil searchDriverByUsername(@RequestParam String userName) {
+        return new ResponseUtil(200, "Driver Searched Successfully", driverService.searchDriverByUsername(userName));
     }
 
     @GetMapping(path = "loginCheckDriver", params = {"email", "password"})
     ResponseUtil checkDriverLogin(@RequestParam String email, @RequestParam String password) {
-        return new ResponseUtil(200, "Admin Login Successful", driverService.checkDriverLogin(email, password));
+        return new ResponseUtil(200, "Driver Login Successful", driverService.checkDriverLogin(email, password));
+    }
+
+    @GetMapping(path = "countRegisteredDrivers")
+    ResponseUtil countRegisteredDrivers() {
+        return new ResponseUtil(200, "Count Registered Drivers Successfully", driverService.countAllDrivers());
     }
 
     private MultipartFile saveAnUpdateFile(MultipartFile file1) {

@@ -23,7 +23,6 @@ var carImgFile = $("#carImgFile");
 var carLossDamageWaiverFieldInCar = $("#carLossDamageWaiverFieldInCar");
 var carLossDamageWaiverFieldInCarPattern = /^[0-9]{1,}$/
 
-var carScheduleTableContainer = $("#carScheduleTableContainer");
 var carViewAllTableContainer = $("#carViewAllTableContainer");
 
 var carSaveBtnInCar = $("#carSaveBtnInCar");
@@ -229,6 +228,11 @@ $(carViewAllBtn).click(function () {
     getAllCars();
 })
 
+$(viewCarScheduleBtn).off('click');
+$(viewCarScheduleBtn).click(function () {
+    setCarScheduleToTable();
+})
+
 function clearCarFields() {
     carRegNoFieldInCar.val("");
     $(carRegNoFieldInCar).css("border", "1px solid #ced4da");
@@ -254,5 +258,30 @@ function clearCarFields() {
     $(carImgFile).css("border", "1px solid #ced4da");
 }
 
+
+function setCarScheduleToTable() {
+    $.ajax({
+        url: baseUrl + "bookingCarController/getCarSchedule",
+        method: 'GET',
+        success: function (resp) {
+            let data = resp.data;
+            let tbody = $('#carScheduleTable').children("tbody");
+            $(tbody).empty();
+            for (let i = 0; i < data.length; i++) {
+                let row = `<tr>
+                                <td>` + (i + 1) + `</td>
+                                <td>` + data[i].c_RegNo + `</td>
+                                <td>` + data[i].bookedStatus + `</td>
+                                <td>` + data[i].bookedDate + `</td>
+                                <td>` + data[i].bookedTime + `</td>
+                                <td>` + data[i].returnedDate + `</td>
+                                <td>` + data[i].returnedTime + `</td>
+                            </tr>`
+
+                $(tbody).append(row);
+            }
+        }
+    })
+}
 
 
