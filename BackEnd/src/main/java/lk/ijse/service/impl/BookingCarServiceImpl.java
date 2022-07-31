@@ -155,19 +155,6 @@ public class BookingCarServiceImpl implements BookingCarService {
     }
 
     @Override
-    public int getCountOfTotalBookingsOfTheDay() {
-        Calendar cal = Calendar.getInstance();
-        Date date = cal.getTime();
-        List<BookingDTO> dtoList = mapper.map(repo.getAllByDate(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date))), new TypeToken<List<BookingDTO>>() {
-        }.getType());
-        int count = 0;
-        for (int i = 0; i < dtoList.size(); i++) {
-            count++;
-        }
-        return count;
-    }
-
-    @Override
     public String generateBookingId() {
         List<BookingDTO> map = mapper.map(repo.findAll(), new TypeToken<List<BookingDTO>>() {
         }.getType());
@@ -244,5 +231,10 @@ public class BookingCarServiceImpl implements BookingCarService {
     public double getAnnualIncome() {
         LocalDate date = LocalDate.now();
         return paymentsRepo.findAnnualIncome(date.getYear());
+    }
+
+    @Override
+    public int getCountOfTotalBookingsOfTheDay() {
+        return repo.countAllByDate(LocalDate.now());
     }
 }

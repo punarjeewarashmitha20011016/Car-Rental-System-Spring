@@ -21,5 +21,7 @@ public interface CustomerService {
 
     boolean checkCustomerLogin(String email, String password);
 
-    CustomerDTO searchCustomerByEmailAndPassword(String email,String password);
+    CustomerDTO searchCustomerByEmailAndPassword(String email, String password);
+
+    int countAllCustomers();
 }

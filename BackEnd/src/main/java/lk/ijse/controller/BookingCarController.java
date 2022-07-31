@@ -46,11 +46,6 @@ public class BookingCarController {
         return new ResponseUtil(200, "Booking Searched Successfully", bookingCarService.searchBooking(boId));
     }
 
-    @GetMapping(path = "getCountOfTodayBookings", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil getCountOfTodayBookings() {
-        return new ResponseUtil(200, "Today Booking Count generated Successfully", bookingCarService.getCountOfTotalBookingsOfTheDay());
-    }
-
     @GetMapping(path = "generateBookingId", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil generateBookingId() {
         return new ResponseUtil(200, "Booking ID generated Successfully", bookingCarService.generateBookingId());
@@ -65,14 +60,20 @@ public class BookingCarController {
     ResponseUtil getDailyIncome() {
         return new ResponseUtil(200, "Daily Income Fetched Successfully", bookingCarService.getDailyIncome());
     }
+
     @GetMapping(path = "getMonthlyIncome", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getMonthlyIncome() {
         return new ResponseUtil(200, "Monthly Income Fetched Successfully", bookingCarService.getMonthlyIncome());
     }
+
     @GetMapping(path = "getAnnualIncome", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAnnualIncome() {
         return new ResponseUtil(200, "Annual Income Fetched Successfully", bookingCarService.getAnnualIncome());
     }
 
+    @GetMapping(path = "getCountOfTodayBookings", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getCountOfTodayBookings() {
+        return new ResponseUtil(200, "Today Booking Count generated Successfully", bookingCarService.getCountOfTotalBookingsOfTheDay());
+    }
 
 }

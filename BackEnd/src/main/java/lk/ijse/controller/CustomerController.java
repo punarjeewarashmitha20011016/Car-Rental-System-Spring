@@ -67,6 +67,11 @@ public class CustomerController {
         return new ResponseUtil(200, "Customer Search Successful", customerService.searchCustomerByEmailAndPassword(email, password));
     }
 
+    @GetMapping(path = "countAllCustomers", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil countAllCustomers() {
+        return new ResponseUtil(200, "Customer Counted Successfully", customerService.countAllCustomers());
+    }
+
     private MultipartFile saveAnUpdateFile(MultipartFile file1) {
         MultipartFile file = file1;
         try {

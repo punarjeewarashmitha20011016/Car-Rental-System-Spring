@@ -19,8 +19,6 @@ public interface BookingCarService {
 
     List<BookingDTO> getAll();
 
-    int getCountOfTotalBookingsOfTheDay();
-
     double getDailyIncome();
 
     double getMonthlyIncome();
@@ -30,4 +28,6 @@ public interface BookingCarService {
     String generateBookingId();
 
     String generateBookingPaymentsId();
+
+    int getCountOfTotalBookingsOfTheDay();
 }

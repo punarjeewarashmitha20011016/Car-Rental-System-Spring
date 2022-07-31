@@ -80,4 +80,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("Customer Doesn't Exists");
         }
     }
+
+    @Override
+    public int countAllCustomers() {
+        return repo.countAllCustomers();
+    }
 }
