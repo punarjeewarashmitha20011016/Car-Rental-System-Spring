@@ -35,8 +35,8 @@ public class CustomerController {
     ResponseUtil update(@RequestPart("dto") CustomerDTO dto, @RequestPart("nicPhoto") MultipartFile nicPhoto, @RequestPart("licensePhoto") MultipartFile licensePhoto) {
         MultipartFile licenseFile = saveAnUpdateFile(licensePhoto);
         MultipartFile nicFile = saveAnUpdateFile(nicPhoto);
-        dto.setNicPhoto(nicFile.getOriginalFilename());
-        dto.setLicensePhoto(licenseFile.getOriginalFilename());
+        dto.setNicPhoto("uploads/" + nicFile.getOriginalFilename());
+        dto.setLicensePhoto("uploads/" + licenseFile.getOriginalFilename());
         customerService.update(dto);
         return new ResponseUtil(200, "Customer Updated Successfully", dto);
     }

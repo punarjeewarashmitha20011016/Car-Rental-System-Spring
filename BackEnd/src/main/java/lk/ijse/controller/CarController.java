@@ -24,9 +24,6 @@ public class CarController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil save(@RequestPart("dto") CarDTO dto, @RequestPart("carImgFile") MultipartFile[] files) {
-        System.out.println("POST");
-        System.out.println(dto.toString());
-        System.out.println(files.toString());
         CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
         carService.save(dto);

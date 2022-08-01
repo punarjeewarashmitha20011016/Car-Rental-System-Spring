@@ -239,15 +239,13 @@ function searchCustomerForAccountTableDataLoading() {
             let table = $("#customerAccountDetailsTable > tbody");
             $(table).empty();
             let row = `<tr>
-                        <td>1</td>
-                        <td>customer.nic</td>
-                        <td>customer.name</td>
-                        <td>customer.nicNo</td>
-                        <td>customer.licenseNo</td>
-                        <td>customer.contactNo</td>
-                        <td>customer.email</td>
-                        <td>customer.password</td>
-                        <td>customer.nicPhoto</td>
+                        <td>` + 1 + `</td>
+                        <td>` + customer.nic + `</td>
+                        <td>` + customer.name + `</td>
+                        <td>` + customer.licenseNo + `</td>
+                        <td>` + customer.contactNo + `</td>
+                        <td>` + customer.email + `</td>
+                        <td>` + customer.password + `</td>
                         <td><img src="${baseUrl + "/" + customer.nicPhoto}" width="100px"></td>
                         <td><img src="${baseUrl + "/" + customer.licensePhoto}" width="100px"></td>
                        </tr>`
