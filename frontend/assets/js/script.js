@@ -788,7 +788,7 @@ $(loginBtn).click(function () {
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(placeBookingRequestBtn);
                             $(placeBookingRequestBtn).click(function () {
                                 setBookingRequestView();
-                                searchCarDetails();
+                                appendCarSelectionOrInputContainer();
                             })
 
                             let notificationsBtn = document.createElement("li");
@@ -1174,9 +1174,6 @@ function addCarsToViewInTheHome(arr) {
         secondChildDivInBtnContainer.className = 'col-12 d-flex align-items-center justify-content-center';
         secondChildDivInBtnContainer.style.height = '40%';
 
-        /*let btnWrapperATag = document.createElement('a');
-        btnWrapperATag.style.textDecoration = 'none';
-        btnWrapperATag.href = "#placingBookingRequestInCustomer"*/
         let btn = document.createElement('button');
         btn.className = 'btn btn-primary';
         btn.innerHTML = 'Book Now';
@@ -1189,8 +1186,9 @@ function addCarsToViewInTheHome(arr) {
         carBookingChooserBtnArr.push(btnWithCarRegNo);
         $(btn).click(function () {
             setBookingRequestView();
-            carRegNoInPlacingBookingRequest.val(carBookingChooserBtnArr[i].carRegNo);
-            searchCarDetails();
+            appendCarSelectionOrInputContainer();
+            $('#carRegNoInPlacingBookingRequest').val(carBookingChooserBtnArr[i].carRegNo);
+            searchCarDetails(carBookingChooserBtnArr[i].carRegNo);
         })
         firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
         secondChildDivInBtnContainer.append(btn);
@@ -1212,6 +1210,24 @@ function setViewAllCarsBookingBtnsDisableAndEnable(bool) {
             $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
         }
     }
+}
+
+function appendCarSelectionOrInputContainer() {
+    let appendCarSelectionOrInputContainerId = $("#appendCarSelectionOrInputContainerId");
+    $(appendCarSelectionOrInputContainerId).empty();
+    let label = document.createElement('label');
+    label.className = 'form-label';
+    label.htmlFor = 'carRegNoInPlacingBookingRequest';
+    label.innerHTML = 'Car Reg No';
+
+    let input = document.createElement('input');
+    input.className = 'form-control';
+    input.id = 'carRegNoInPlacingBookingRequest';
+    input.placeholder = 'Enter Car Reg No';
+    input.type = 'text';
+
+    $(appendCarSelectionOrInputContainerId).append(label);
+    $(appendCarSelectionOrInputContainerId).append(input);
 }
 
 function setBookingRequestView() {

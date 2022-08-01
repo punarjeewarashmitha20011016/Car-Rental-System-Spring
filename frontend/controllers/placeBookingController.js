@@ -239,7 +239,6 @@ let addToListArrInBooking = new Array();
 let rowNoCartBooking = 1;
 $(addToListBtnInBooking).off('click');
 $(addToListBtnInBooking).click(function () {
-
     let driverNicNo = undefined;
     if ($(driverNicInBooking).val() == "") {
         driverNicNo = null;
