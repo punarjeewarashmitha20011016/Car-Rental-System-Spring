@@ -50,6 +50,49 @@ carRegNoFieldInCar.off('keyup');
 carRegNoFieldInCar.keyup(function (e) {
     let index = 0;
     validate(carRegNoFieldInCarPattern, carInputsArr, index, e, carSaveBtnInCar, carUpdateBtnInCar, carDeleteBtnInCar)
+    if (carRegNoFieldInCar.val().length == 7) {
+        if (e.key == 'Shift') {
+            let car = searchCarInCarController();
+            carBrandFieldInCar.val(car.brand);
+            if (car.type == 'Luxury') {
+                $("#carTypeMenuInCar option[value='1']").prop('selected', true);
+            } else {
+                $("#carTypeMenuInCar option[value='2']").prop('selected', true);
+            }
+            if (car.transmissionType == 'Auto') {
+                $("#transmissionTypeMenuInCar option[value='1']").prop('selected', true);
+            } else {
+                $("#transmissionTypeMenuInCar option[value='2']").prop('selected', true);
+            }
+            if (car.fuelType == 'Petrol') {
+                $("#fuelTypeMenuInCar option[value='1']").prop('selected', true);
+            } else {
+                $("#fuelTypeMenuInCar option[value='2']").prop('selected', true);
+            }
+
+            carPassengersFieldInCar.val(car.noOfPassengers);
+            carMileageInKmFieldInCar.val(car.mileageInKm);
+            freeKmPerDayFieldInCar.val(car.freeKmPerDay);
+            freeKmPerMonthFieldInCar.val(car.freeKmPerMonth);
+            carPriceForExtraKmFieldInCar.val(car.priceForExtraKm);
+            carDailyRateFieldInCar.val(car.dailyRate);
+            carMonthlyRateFieldInCar.val(car.monthlyRate);
+
+            if (car.carBookedOrNotStatus == 'Booked') {
+                $("#bookedStatusMenuInCar option[value='1']").prop('selected', true);
+            } else {
+                $("#bookedStatusMenuInCar option[value='2']").prop('selected', true);
+            }
+            if (car.maintenanceStatus == 'No Maintenance Required') {
+                $("#maintenanceStatusMenuInCar option[value='1']").prop('selected', true);
+            } else {
+                $("#maintenanceStatusMenuInCar option[value='2']").prop('selected', true);
+            }
+            lossDamageWaiverSlipInBooking.val(car.lossDamageWaiver);
+        } else if (e.key == 'backspace' || e.keyCode == 8) {
+            clearCarFields();
+        }
+    }
 })
 carBrandFieldInCar.off('keyup');
 carBrandFieldInCar.keyup(function (e) {
@@ -284,4 +327,21 @@ function setCarScheduleToTable() {
     })
 }
 
+function searchCarInCarController() {
+    let car = undefined;
+    $.ajax({
+        url: baseUrl + "car/search?regNo=" + carRegNoFieldInCar.val(),
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                car = resp.data;
+            }
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    })
+    return car;
+}
 

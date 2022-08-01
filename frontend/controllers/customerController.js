@@ -34,6 +34,18 @@ cusNicField.off('keyup');
 cusNicField.keyup(function (e) {
     let index = 0;
     validate(cusNicFieldPattern, cusInputsArr, index, e, cusSaveBtnInCustomer, cusUpdateBtnInCustomer, cusDeleteBtnInCustomer)
+    if ((cusNicField.val().length == 10) || (cusNicField.val().length == 12)) {
+        if (e.key == 'Shift' || e.keyCode == 16) {
+            let customer = searchCustomer();
+            cusNameField.val(customer.name)
+            cusLicenseField.val(customer.licenseNo)
+            cusContactNoField.val(customer.contactNo)
+            cusEmailField.val(customer.email);
+            cusPasswordField.val(customer.password);
+        } else if (e.key == 'backspace' || e.keyCode == 8) {
+            clearAllCustomerFields();
+        }
+    }
 })
 
 cusNameField.off('keyup');
@@ -245,4 +257,22 @@ function searchCustomerForAccountTableDataLoading() {
             alert(error.message);
         }
     })
+}
+
+function searchCustomer() {
+    let customer = undefined;
+    $.ajax({
+        url: baseUrl + "customer/search?nic=" + cusNicField.val(),
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                customer = resp.data;
+            }
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    })
+    return customer;
 }
