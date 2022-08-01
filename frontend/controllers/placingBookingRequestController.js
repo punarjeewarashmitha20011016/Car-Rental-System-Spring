@@ -610,9 +610,11 @@ function clearBookingRequestFields() {
     dateOfPickupInPlacingBookingRequest.val("");
     timeOfPickupInPlacingBookingRequest.val("");
     pickupVenueInPlacingBookingRequest.val("");
+    $(pickupVenueInPlacingBookingRequest).css("border", "1px solid #ced4da");
     returnedDateInPlacingBookingRequest.val("");
     returnedTimeInPlacingBookingRequest.val("");
     returnVenueInPlacingBookingRequest.val("");
+    $(returnVenueInPlacingBookingRequest).css("border", "1px solid #ced4da");
     lossDamageWaiverInPlacingBookingRequest.val("");
     $(lossDamageWaiverInPlacingBookingRequest).css("border", "1px solid #ced4da");
     costInPlacingBookingRequest.val("");

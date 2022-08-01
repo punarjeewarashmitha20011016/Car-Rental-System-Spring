@@ -39,11 +39,12 @@ function setRequestsDataToTable() {
     $.ajax({
         url: baseUrl + "bookingCarRequestController/getAll",
         method: "GET",
+        async: false,
         success: function (resp) {
             if (resp.status == 200) {
                 let data = resp.data;
                 let tbody = $(bookingRequestTableContainer).children("table").children("tbody");
-                tbody.empty();
+                $(tbody).empty();
                 for (let i = 0; i < data.length; i++) {
                     let dt = data[i].date;
                     let tm = data[i].time;
@@ -58,7 +59,7 @@ function setRequestsDataToTable() {
                            <td>` + data[i].cost + `</td>
                     </tr>`
 
-                    tbody.append(row);
+                    $(tbody).append(row);
                 }
                 setDataFromRequestTableToContainerWhenClickedARow();
             }
@@ -119,11 +120,14 @@ $(bookingRequestDeleteBtnInAcceptAdmin).click(function () {
     console.log(bookingRequestSearchedObj)
     if (confirm("Do You Want To Decline This Booking Request..?") == true) {
         $.ajax({
-            url: baseUrl + "bookingCarRequestController/deleteBookingRequest?boId=" + bookingRequestIdInAcceptAdmin.val(),
+            url: baseUrl + "bookingCarRequestController/deleteBookingRequestWhenDeclined?boId=" + bookingRequestIdInAcceptAdmin.val(),
             method: "DELETE",
             success: function (resp) {
                 if (resp.status == 200) {
                     alert(resp.message);
+                    setNotificationsToDisplay();
+                    setRequestsDataToTable();
+                    clearFieldsInRequestAcceptInAdmin();
                 }
             },
             error: function (error) {
@@ -184,6 +188,7 @@ function setNotificationsToDisplay() {
     $(notificationsForCustomerSection).children('div:nth-child(1)').children('div:nth-child(1)').empty();
     let notificationsArr = getAllNotifications();
     for (let i = 0; i < notificationsArr.length; i++) {
+        console.log(notificationsArr[i]);
         let notificationRow = document.createElement("div");
         notificationRow.className = 'd-flex row flex-row justify-content-center align-items-center mt-2 mb-2';
         notificationRow.style.width = '100%';
@@ -201,7 +206,7 @@ function setNotificationsToDisplay() {
 
         let msgTxt = document.createElement('h5');
         msgTxt.className = 'd-flex text-center text-white';
-        msgTxt.innerHTML = notificationsArr[i].boId + ' Is Accepted. Collect Your Rental Car On Pickup Date'
+        msgTxt.innerHTML = notificationsArr[i].message;
 
         message.append(msgTxt);
 

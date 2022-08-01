@@ -18,6 +18,8 @@ public interface BookingCarRequestService {
 
     void deleteABookingRequest(String boId);
 
+    void deleteBookingRequestWhenDeclined(String boId);
+
     BookingRequestDTO searchRequestBooking(String boId);
 
     PendingBookingsDTO searchPendingBooking(String boId);
@@ -31,4 +33,6 @@ public interface BookingCarRequestService {
     DriverDTO getAvailableDriver();
 
     List<NotificationsDTO> getAllNotifications();
+
+    List<CusBookingsDTO> getCustomerOwnBookings(String nic);
 }

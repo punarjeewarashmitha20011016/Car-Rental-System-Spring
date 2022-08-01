@@ -708,10 +708,11 @@ $(loginBtn).click(function () {
                             aForViewMyBookingsBtn.className = "text-black text-decoration-none";
                             viewMyBookingsBtn.append(aForViewMyBookingsBtn);
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(viewMyBookingsBtn);
-                            let viewBookingDetailsBtnInCustomer = $("#viewtBookingDetailsBtnInCustomer");
+                            let viewBookingDetailsBtnInCustomer = $("#viewBookingDetailsBtnInCustomer");
                             let viewAllBookingDetailsInCustomerSection = $("#viewAllBookingDetailsInCustomerSection")
                             let viewAllBookingInViewAllCustomerSection = $("#viewAllBookingInViewAllCustomerSection");
                             $(viewMyBookingsBtn).click(function () {
+                                getCustomerOwnBookings();
                                 $(headerNav).css('display', 'block');
                                 $(homeSection).css('display', 'none');
                                 $(customerSection).css('display', 'none');
@@ -735,6 +736,7 @@ $(loginBtn).click(function () {
                                 $(viewDriverAccountSection).css('display', 'none');
                             })
                             $(viewBookingDetailsBtnInCustomer).click(function () {
+                                console.log('clicked')
                                 $(viewAllBookingDetailsInCustomerSection).css('display', 'flex');
                                 $(viewAllBookingInViewAllCustomerSection).css('display', 'none');
                             })
@@ -1118,7 +1120,7 @@ function addCarsToViewInTheHome(arr) {
         let firstImg = document.createElement('img');
         firstImg.className = 'w-100 h-100';
         firstImg.alt = "";
-        firstImg.src = baseUrl + "/" + arr[i].images.firstImage;
+        firstImg.src = baseUrl + arr[i].images.firstImage;
 
         firstImgDiv.append(firstImg);
 
@@ -1128,7 +1130,7 @@ function addCarsToViewInTheHome(arr) {
         let secondImg = document.createElement('img');
         secondImg.className = 'w-100 h-100';
         secondImg.alt = "";
-        secondImg.src = baseUrl + "/" + arr[i].images.secondImage;
+        secondImg.src = baseUrl + arr[i].images.secondImage;
 
         secondImgDiv.append(secondImg);
 
@@ -1138,7 +1140,7 @@ function addCarsToViewInTheHome(arr) {
         let thirdImg = document.createElement('img');
         thirdImg.className = 'w-100 h-100';
         thirdImg.alt = "";
-        thirdImg.src = baseUrl + "/" + arr[i].images.thirdImage;
+        thirdImg.src = baseUrl + arr[i].images.thirdImage;
 
         thirdImgDiv.append(thirdImg);
 
@@ -1148,7 +1150,7 @@ function addCarsToViewInTheHome(arr) {
         let fourthImg = document.createElement('img');
         fourthImg.className = 'w-100 h-100';
         fourthImg.alt = "";
-        fourthImg.src = baseUrl + "/" + arr[i].images.fourthImage;
+        fourthImg.src = baseUrl + arr[i].images.fourthImage;
 
         fourthImgDiv.append(fourthImg);
 

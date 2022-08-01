@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -169,23 +170,41 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public void deleteABookingRequest(String boId) {
+        if (repo.existsById(boId)) {
+            BookingRequestDTO request = mapper.map(repo.findById(boId), BookingRequestDTO.class);
+            paymentsRepo.deleteById(request.getPayments().getPaymentsId());
+            repo.deleteById(boId);
+        } else {
+            throw new RuntimeException("Booking Request Deleted Successfully");
+        }
+    }
+
+    @Override
+    public void deleteBookingRequestWhenDeclined(String boId) {
         /*This invokes when admin decline the booking request or when admin accepts*/
         /*For decline = this invokes because the relevant request should by deleted from the entity and payments of loss damage should be returned by deleting the relevant record */
         /*For accepts = this invokes because the relevant booking request entity should be deleted as that entity should be saved in the booking entity and request payment should be deleted*/
 
         /*After declining admin should notify customer with an email with the fact that leads to decline*/
+        try {
+            if (!repo.existsById(boId)) {
+                throw new RuntimeException("Deleting Booking Request failed");
+            }
 
-        if (!repo.existsById(boId)) {
-            throw new RuntimeException("Deleting Booking Request failed");
-        }
+            BookingRequestDTO bookingRequestDTO = searchRequestBooking(boId);
+            if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
+                throw new RuntimeException("Deleting Booking Request failed");
+            }
+            if (notificationsRepo.existsByBoId(boId)) {
+                notificationsRepo.deleteByBoId(boId);
+            }
+            notificationsRepo.save(new Notifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
+            paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
+            repo.deleteById(boId);
 
-        BookingRequestDTO bookingRequestDTO = searchRequestBooking(boId);
-        if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
-            throw new RuntimeException("Deleting Booking Request failed");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        notificationsRepo.save(new Notifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
-        paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
-        repo.deleteById(boId);
     }
 
     @Override
@@ -242,5 +261,31 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
         List<NotificationsDTO> map = mapper.map(notificationsRepo.findAll(), new TypeToken<List<NotificationsDTO>>() {
         }.getType());
         return map;
+    }
+
+    @Override
+    public List<CusBookingsDTO> getCustomerOwnBookings(String nic) {
+        List<PendingBookingsDTO> pendingList = mapper.map(pendingBookingRepo.findAll(), new TypeToken<List<PendingBookingsDTO>>() {
+        }.getType());
+        System.out.println(pendingList.toString());
+        List<BookingRequestDTO> requestList = mapper.map(repo.findAll(), new TypeToken<List<BookingRequestDTO>>() {
+        }.getType());
+        List<CusBookingsDTO> list = new ArrayList<>();
+        for (int i = 0; i < requestList.size(); i++) {
+            if (requestList.get(i).getCusNic().equals(nic)) {
+                List<CusOwnBookingDetailsDTO> details = mapper.map(requestList.get(i).getBookingDetails(), new TypeToken<List<CusOwnBookingDetailsDTO>>() {
+                }.getType());
+                list.add(new CusBookingsDTO(requestList.get(i).getBoId(), "Requested", requestList.get(i).getCusNic(), requestList.get(i).getDate(), requestList.get(i).getTime(), requestList.get(i).getCost(), details));
+            }
+        }
+
+        for (int i = 0; i < pendingList.size(); i++) {
+            if (pendingList.get(i).getCusNic().equals(nic)) {
+                List<CusOwnBookingDetailsDTO> details = mapper.map(pendingList.get(i).getBookingDetails(), new TypeToken<List<CusOwnBookingDetailsDTO>>() {
+                }.getType());
+                list.add(new CusBookingsDTO(pendingList.get(i).getBoId(), "Pending", pendingList.get(i).getCusNic(), pendingList.get(i).getDate(), pendingList.get(i).getTime(), pendingList.get(i).getCost(), details));
+            }
+        }
+        return list;
     }
 }

@@ -230,15 +230,11 @@ function getAllCustomers() {
 }
 
 function searchCustomerForAccountTableDataLoading() {
-    $.ajax({
-        url: baseUrl + "customer/searchCustomerByEmailAndPassword?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
-        method: "GET",
-        success: function (resp) {
-            let customer = resp.data;
-            cusNicInPlacingBookingRequest.val(customer.nic);
-            let table = $("#customerAccountDetailsTable > tbody");
-            $(table).empty();
-            let row = `<tr>
+    let customer = searchCustomerByEmail();
+    cusNicInPlacingBookingRequest.val(customer.nic);
+    let table = $("#customerAccountDetailsTable > tbody");
+    $(table).empty();
+    let row = `<tr>
                         <td>` + 1 + `</td>
                         <td>` + customer.nic + `</td>
                         <td>` + customer.name + `</td>
@@ -249,12 +245,7 @@ function searchCustomerForAccountTableDataLoading() {
                         <td><img src="${baseUrl + "/" + customer.nicPhoto}" width="100px"></td>
                         <td><img src="${baseUrl + "/" + customer.licensePhoto}" width="100px"></td>
                        </tr>`
-            $(table).append(row);
-        },
-        error: function (error) {
-            alert(error.message);
-        }
-    })
+    $(table).append(row);
 }
 
 function searchCustomer() {
@@ -267,6 +258,22 @@ function searchCustomer() {
             if (resp.status == 200) {
                 customer = resp.data;
             }
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    })
+    return customer;
+}
+
+function searchCustomerByEmail() {
+    let customer = undefined;
+    $.ajax({
+        url: baseUrl + "customer/searchCustomerByEmailAndPassword?email=" + userNameLoginId.val() + "&password=" + passwordLoginId.val(),
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            customer = resp.data;
         },
         error: function (error) {
             alert(error.message);

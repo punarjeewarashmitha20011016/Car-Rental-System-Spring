@@ -58,6 +58,12 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Booking Request deleted Successfully", null);
     }
 
+    @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE, path = "deleteBookingRequestWhenDeclined")
+    ResponseUtil deleteBookingRequestWhenDeclined(@RequestParam String boId) {
+        bookingCarService.deleteBookingRequestWhenDeclined(boId);
+        return new ResponseUtil(200, "Booking Request deleted Successfully", null);
+    }
+
     @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil getAll() {
         return new ResponseUtil(200, "Data Fetched Successfully", bookingCarService.getAll());
@@ -86,6 +92,11 @@ public class BookingCarRequestController {
     @GetMapping(path = "checkAvailableDriver", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseUtil checkAvailableDriverForBooking() {
         return new ResponseUtil(200, "Driver is randomly Selected for booking Successfully", bookingCarService.getAvailableDriver());
+    }
+
+    @GetMapping(path = "getCustomerOwnBookings", produces = MediaType.APPLICATION_JSON_VALUE, params = {"nic"})
+    ResponseUtil getCustomerOwnBookings(@RequestParam String nic) {
+        return new ResponseUtil(200, "Customer Own Bookings Fetched Successfully", bookingCarService.getCustomerOwnBookings(nic));
     }
 
     @GetMapping(path = "getAllNotifications", produces = MediaType.APPLICATION_JSON_VALUE)
