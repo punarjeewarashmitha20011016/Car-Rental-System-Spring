@@ -1,6 +1,5 @@
 var placeBookingBtn = $("#placeBookingBtn");
 var updateBookingBtn = $("#updateBookingBtn");
-var deleteBookingBtn = $("#deleteBookingBtn");
 
 var bookingIdInBooking = $("#bookingIdInBooking");
 var searchBookingBtn = $("#searchBookingBtn");

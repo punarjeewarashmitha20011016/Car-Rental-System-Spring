@@ -40,16 +40,14 @@ public class BookingCarRequestController {
         return new ResponseUtil(200, "Pending Booking Saved Successfully", dto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseUtil update(@RequestBody BookingRequestDTO dto) {
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "updateBookingRequest")
+    ResponseUtil update(@RequestPart("dto") BookingRequestDTO dto, @RequestPart("lossDamageWaiverSlip") MultipartFile lossDamageWaiver) {
+        BookingRequestPaymentsDTO payments = dto.getPayments();
+        MultipartFile file = saveAnUpdateFile(lossDamageWaiver);
+        payments.setLossDamageWaiverPaymentSlip(file.getOriginalFilename());
+        dto.setBookingDetails(dto.getBookingDetails());
         bookingCarService.requestingABookingUpdate(dto);
         return new ResponseUtil(200, "Booking Request Updated Successfully", dto);
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "updatePendingBooking")
-    ResponseUtil updatePendingBooking(@RequestBody PendingBookingsDTO dto) {
-        /*bookingCarService.*/
-        return new ResponseUtil(200, "Pending Booking Updated Successfully", dto);
     }
 
     @DeleteMapping(params = {"boId"}, produces = MediaType.APPLICATION_JSON_VALUE, path = "deleteBookingRequest")

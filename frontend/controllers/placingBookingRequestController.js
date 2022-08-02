@@ -361,7 +361,31 @@ $(addToCartInBookingRequestBtn).click(function () {
             placeBookingRequest(formData);
         }
     })
+
+    $(updateBookingRequestBtn).off('click');
+    $(updateBookingRequestBtn).click(function () {
+        if (confirm("Do you want to place this booking..?") == true) {
+            updateBookingRequest(formData);
+        }
+    })
 })
+
+$(deleteBookingRequestBtn).off('click');
+$(deleteBookingRequestBtn).click(function () {
+    $.ajax({
+        url: baseUrl + "bookingCarRequestController/deleteBookingRequest",
+        method: "DELETE",
+        success: function (resp) {
+            if (resp.status == 200) {
+                alert(resp.message);
+                totalCostInBookingRequest = 0;
+                clearBookingRequestFields();
+                setBookingIdToField();
+            }
+        }
+    })
+})
+
 
 function checkIfAlreadySameCarExists(carRegNo) {
     for (let i = 0; i < addToListArr.length; i++) {
@@ -546,6 +570,28 @@ function placeBookingRequest(formData) {
     $.ajax({
         url: baseUrl + "bookingCarRequestController/placeBookingRequest",
         method: "POST",
+        async: true,
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                alert(resp.message);
+                totalCostInBookingRequest = 0;
+                clearBookingRequestFields();
+                setBookingIdToField();
+            }
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    })
+}
+
+function updateBookingRequest(formData) {
+    $.ajax({
+        url: baseUrl + "bookingCarRequestController/updateBookingRequest",
+        method: 'PUT',
         async: true,
         data: formData,
         contentType: false,
