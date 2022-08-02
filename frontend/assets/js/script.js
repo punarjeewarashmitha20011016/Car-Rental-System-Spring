@@ -1267,6 +1267,7 @@ function addCarsToViewInTheHome(arr) {
             appendCarSelectionOrInputContainer();
             $('#carRegNoInPlacingBookingRequest').val(carBookingChooserBtnArr[i].carRegNo);
             searchCarDetails(carBookingChooserBtnArr[i].carRegNo);
+            setBookingIdToField();
         })
         firstChildDivInBtnContainer.append(h5InFirstChildDivInBtnContainer);
         secondChildDivInBtnContainer.append(btn);
@@ -1283,7 +1284,7 @@ function setViewAllCarsBookingBtnsDisableAndEnable(bool) {
     for (let i = 0; i < carBookingChooserBtnArr.length; i++) {
         if (bool == true) {
             let car = checkWhetherCarIsAlreadyBookedOrNot(carBookingChooserBtnArr[i].carRegNo);
-            if (car.carBookedOrNotStatus == 'Booked') {
+            if (car.carBookedOrNotStatus == 'Booked' || car.maintenanceStatus == 'Under Maintenance') {
                 $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
             } else {
                 $(carBookingChooserBtnArr[i].btn).prop('disabled', false);

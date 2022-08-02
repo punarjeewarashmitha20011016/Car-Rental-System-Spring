@@ -24,9 +24,6 @@ var lossDamageWaiverInBooking = $("#lossDamageWaiverInBooking");
 var lossDamageWaiverSlipInBooking = $("#lossDamageWaiverSlipInBooking");
 var costInBooking = $("#costInBooking");
 
-var bookingRequestSearchFieldInAdmin = $("#bookingRequestSearchFieldInAdmin");
-var bookingRequestSearchBtnInAdmin = $("#bookingRequestSearchBtnInAdmin");
-
 var currentBookingsTableContainer = $("#currentBookingsTableContainer");
 var currentBookingsDetailsTableContainer = $("#currentBookingsDetailsTableContainer");
 var CurrentBookingsDetailsSearchField = $("#CurrentBookingsDetailsSearchField");
@@ -212,6 +209,13 @@ function setDataInPendingBookingDetailsToFields(carRegNo) {
 
 function setDisabledRequiredFieldsInBookingInAdmin() {
     disableOrEnablePlaceBookingRequestBtns(cusNicInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(rentalTypeInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(dateOfPickupInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(timeOfPickupInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(pickupVenueInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(returnedDateInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(returnedTimeInBooking, true)
+    disableOrEnablePlaceBookingRequestBtns(returnVenueInBooking, true)
     disableOrEnablePlaceBookingRequestBtns(driverNicInBooking, true)
     disableOrEnablePlaceBookingRequestBtns(carTypeInBooking, true)
     disableOrEnablePlaceBookingRequestBtns(lossDamageWaiverInBooking, true)

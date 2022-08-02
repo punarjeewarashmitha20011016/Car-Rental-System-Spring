@@ -41,7 +41,7 @@ driverNicField.keyup(function (e) {
             driverNicField.val(driver.nic);
             driverNameField.val(driver.name);
             driverLicenseField.val(driver.licenseNo);
-            driverContactNoField.val(driver.contactNo);
+            driverContactNoField.val(0 + driver.contactNo);
             driverAddressField.val(driver.address);
             $("#availabilityStatusMenuInDriver :selected").text()
             if (driver.availableStatus == 'Available') {

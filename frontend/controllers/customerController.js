@@ -39,7 +39,7 @@ cusNicField.keyup(function (e) {
             let customer = searchCustomer();
             cusNameField.val(customer.name)
             cusLicenseField.val(customer.licenseNo)
-            cusContactNoField.val(customer.contactNo)
+            cusContactNoField.val(0 + customer.contactNo)
             cusEmailField.val(customer.email);
             cusPasswordField.val(customer.password);
         } else if (e.key == 'backspace' || e.keyCode == 8) {

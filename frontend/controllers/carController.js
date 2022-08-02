@@ -77,6 +77,7 @@ carRegNoFieldInCar.keyup(function (e) {
             carPriceForExtraKmFieldInCar.val(car.priceForExtraKm);
             carDailyRateFieldInCar.val(car.dailyRate);
             carMonthlyRateFieldInCar.val(car.monthlyRate);
+            carLossDamageWaiverFieldInCar.val(car.lossDamageWaiver);
 
             if (car.carBookedOrNotStatus == 'Booked') {
                 $("#bookedStatusMenuInCar option[value='1']").prop('selected', true);

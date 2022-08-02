@@ -36,6 +36,8 @@ var bookingReqFieldArr = [bookingReqIdInPlacingBookingRequest, $('#carRegNoInPla
 ]
 
 var driverNicForUpdatingDriver = undefined;
+var boolForSearchOrNormal = false;
+
 
 bookingReqIdInPlacingBookingRequest.off('keyup');
 bookingReqIdInPlacingBookingRequest.keyup(function (e) {
@@ -51,6 +53,7 @@ bookingReqIdInPlacingBookingRequest.keyup(function (e) {
         if (e.key == 'shift' || e.keyCode == 16) {
             try {
                 if (confirm("Do You Want To Search This Request..?") == true) {
+                    boolForSearchOrNormal = true;
                     let booking = searchBookingRequest();
                     setComboBoxToCarRegNoField(booking.bookingDetails);
                     for (let i = 0; i < booking.bookingDetails.length; i++) {
@@ -151,6 +154,7 @@ totalCostInPlacingBookingRequest.keyup(function (e) {
 
 $(document).ready(function () {
     disableOrEnablePlaceBookingRequestBtns(totalCostInPlacingBookingRequest, true);
+    disableOrEnablePlaceBookingRequestBtns($("#carTypeInPlacingBookingRequestMenu"), true);
     disableOrEnablePlaceBookingRequestBtns(costInPlacingBookingRequest, true);
     disableOrEnablePlaceBookingRequestBtns(lossDamageWaiverInPlacingBookingRequest, true);
     disableOrEnablePlaceBookingRequestBtns($('#carRegNoInPlacingBookingRequest'), true);
@@ -208,17 +212,30 @@ $(addToCartInBookingRequestBtn).click(function () {
         file: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0],
         fileName: $(lossDamageWaiverSlipInPlacingBookingRequest)[0].files[0].name
     }
-    let driver = assignDriverToField();
+
     let driverNic = undefined;
-    if (driver != undefined) {
-        driverNic = driver;
+    if (driverNicForUpdatingDriver == undefined) {
+        let driver = assignDriverToField();
+        if (driver != undefined) {
+            driverNic = driver;
+        } else {
+            driverNic = null;
+        }
     } else {
-        driverNic = null;
+        driverNic = driverNicForUpdatingDriver;
+    }
+
+    let carRegNo = undefined;
+
+    if (boolForSearchOrNormal == false) {
+        carRegNo = $('#carRegNoInPlacingBookingRequest').val();
+    } else {
+        carRegNo = $('#carRegNoMenuInPlacingBookingRequest :selected').text();
     }
 
     let addToCartList = new AddToCart(
         bookingReqIdInPlacingBookingRequest.val(),
-        $('#carRegNoInPlacingBookingRequest').val(),
+        carRegNo,
         cusNicInPlacingBookingRequest.val(),
         driverNic,
         $('#carTypeInPlacingBookingRequestMenu :selected').text(),
@@ -322,7 +339,12 @@ $(addToCartInBookingRequestBtn).click(function () {
         }
         bookingDetailsArr.push(bookingDetails);
     }
-    getPaymentsId();
+
+    if (boolForSearchOrNormal == false) {
+        getPaymentsId();
+    } else {
+        paymentsId = searchBookingRequest().payments.paymentsId;
+    }
     let date = new Date().toISOString().substring(0, 10);
     let time = new Date().toLocaleTimeString();
     let booking = {
@@ -364,7 +386,7 @@ $(addToCartInBookingRequestBtn).click(function () {
 
     $(updateBookingRequestBtn).off('click');
     $(updateBookingRequestBtn).click(function () {
-        if (confirm("Do you want to place this booking..?") == true) {
+        if (confirm("Do you want to update this booking..?") == true) {
             updateBookingRequest(formData);
         }
     })
@@ -495,6 +517,7 @@ function totalCostPerCarInRequest(regNo) {
             totalCost += total;
         }
     }
+    costInPlacingBookingRequest.val(totalCost);
     console.log(totalCost)
     return totalCost;
 }
@@ -583,6 +606,7 @@ function placeBookingRequest(formData) {
             }
         },
         error: function (error) {
+            console.log("Error : " + error);
             alert(error.message);
         }
     })
@@ -602,6 +626,7 @@ function updateBookingRequest(formData) {
                 totalCostInBookingRequest = 0;
                 clearBookingRequestFields();
                 setBookingIdToField();
+                boolForSearchOrNormal = false;
             }
         },
         error: function (error) {

@@ -1022,6 +1022,20 @@
                     >Place Booking
                     </button>
                 </div>
+                <!-- <div class="col-2 d-flex align-items-center justify-content-center" style="height: 80%;">
+                    <button class="btn btn-secondary ms-2 me-2" id="updateBookingBtn"
+                            style="width: 90%;height: 100%;"
+                            type="button"
+                    >Update Booking
+                    </button>
+                </div>
+                <div class="col-2 d-flex align-items-center justify-content-center" style="height: 80%;">
+                    <button class="btn btn-danger ms-2 me-2" id="deleteBookingBtn"
+                            style="width: 90%;height: 100%;"
+                            type="button"
+                    >Delete Booking
+                    </button>
+                </div> -->
                 <div class="col-2 d-flex align-items-center justify-content-center" style="height: 80%;">
                     <button class="btn btn-outline-primary ms-2 me-2" id="addToListBtnInBooking"
                             style="width: 90%;height: 100%;"
@@ -1583,7 +1597,7 @@
                 <div class="row d-flex flex-row  align-items-center justify-content-center "
                      style="width: 100%;height: 90%;">
                     <div class="col-12 flex-column align-items-center justify-content-center shadow-lg"
-                         style="height: 90%;overflow: auto;">
+                         style="height: 90%;overflow: auto;width: 90%;">
                         <div id="viewAllBookingInViewAllCustomerSection" class="col-12 shadow-lg"
                              style="height: 100%;display: flex;">
                             <table id="cusOwnBookingsTable" class="table table-hover table-bordered" style="width: 100%;height: 100%;">
@@ -1602,9 +1616,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="viewAllBookingDetailsInCustomerSection" class="col-12 shadow-lg"
-                             style="height: 100%;display: none;">
-                            <table id="cusOwnBookingsDetailsTable" class="table table-hover table-bordered" style="width: 100%;height: 100%;">
+                        <div id="viewAllBookingDetailsInCustomerSection" class="col-12"
+                             style="height: 100%;display: none;width: auto;">
+                            <table id="cusOwnBookingsDetailsTable" class="table table-hover table-bordered" style="height: 100%;">
                                 <thead>
                                     <tr>
                                         <th scope="col">Row No</th>
@@ -1883,7 +1897,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center align-items-center shadow-lg"
+            <div class="row d-flex justify-content-start align-items-center shadow-lg"
                  style="width: 90%;height: 40%;overflow: auto;">
                 <table id="addToCartTableInBookingRequest" class="table table-hover table-bordered">
                     <thead>

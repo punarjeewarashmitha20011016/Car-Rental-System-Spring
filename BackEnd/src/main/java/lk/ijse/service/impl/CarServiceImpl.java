@@ -7,6 +7,7 @@ import lk.ijse.entity.Car;
 import lk.ijse.entity.CarMileageCheck;
 import lk.ijse.repo.BookingCarDetailsRepo;
 import lk.ijse.repo.CarMileageCheckRepo;
+import lk.ijse.repo.CarNotificationsRepo;
 import lk.ijse.repo.CarRepo;
 import lk.ijse.service.CarService;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,8 @@ public class CarServiceImpl implements CarService {
     private BookingCarDetailsRepo detailsRepo;
     @Autowired
     private CarMileageCheckRepo carMileageCheckRepo;
+    @Autowired
+    private CarNotificationsRepo carNotificationsRepo;
 
     public void save(CarDTO dto) {
         if (repo.existsById(dto.getC_RegNo())) {
@@ -40,6 +43,9 @@ public class CarServiceImpl implements CarService {
 
     public void update(CarDTO dto) {
         if (repo.existsById(dto.getC_RegNo())) {
+            if (dto.getMaintenanceStatus().equals("No Maintenance Required")) {
+                carNotificationsRepo.deleteByRegNo(dto.getC_RegNo());
+            }
             repo.save(mapper.map(dto, Car.class));
         } else {
             throw new RuntimeException("Car Update Failed");

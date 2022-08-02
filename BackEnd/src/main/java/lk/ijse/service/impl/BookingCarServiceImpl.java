@@ -52,6 +52,9 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Autowired
     private CarMileageCheckRepo carMileageCheckRepo;
 
+    @Autowired
+    private CustomerNotificationsRepo customerNotificationsRepo;
+
     @Override
     public void bookingACar(BookingDTO dto) {
         try {
@@ -122,6 +125,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             } else {
                 throw new RuntimeException("Pending Booking Update is Not Successful");
             }
+            customerNotificationsRepo.deleteByBoId(dto.getBoId());
         } catch (Exception e) {
             e.printStackTrace();
         }
