@@ -389,6 +389,7 @@ $(addToListBtnInBooking).click(function () {
                 success: function (resp) {
                     alert(resp.message);
                     getAllBookings();
+                    clearBookingFieldInAdmin();
                 },
                 error: function (error) {
                     alert(error.message);
@@ -470,4 +471,39 @@ function getAllNotificationsOfAdmin() {
         }
     })
     return data;
+}
+
+function clearBookingFieldInAdmin() {
+    bookingIdInBooking.val("");
+    $(bookingIdInBooking).css("border", "1px solid #ced4da");
+    cusNicInBooking.val("");
+    $(cusNicInBooking).css("border", "1px solid #ced4da");
+    driverNicInBooking.val("");
+    $(driverNicInBooking).css("border", "1px solid #ced4da");
+    carTypeInBooking.val("");
+    $(carTypeInBooking).css("border", "1px solid #ced4da");
+    rentalTypeInBooking.val("");
+    $(rentalTypeInBooking).css("border", "1px solid #ced4da");
+    tripInKMInBooking.val("");
+    $(tripInKMInBooking).css("border", "1px solid #ced4da");
+    extraKmDrivenInBooking.val("");
+    $(extraKmDrivenInBooking).css("border", "1px solid #ced4da");
+    dateOfPickupInBooking.val("");
+    timeOfPickupInBooking.val("");
+    pickupVenueInBooking.val("");
+    $(pickupVenueInBooking).css("border", "1px solid #ced4da");
+    returnedDateInBooking.val("");
+    returnedTimeInBooking.val("");
+    returnVenueInBooking.val("");
+    $(returnVenueInBooking).css("border", "1px solid #ced4da");
+    $("#damageStatusMenuInBooking option:selected").prop("selected", false)
+    lossDamageWaiverInBooking.val("");
+    $(lossDamageWaiverInBooking).css("border", "1px solid #ced4da");
+    lossDamageWaiverSlipInBooking.val("");
+    $(lossDamageWaiverSlipInBooking).css("border", "1px solid #ced4da");
+    costInBooking.val("");
+    $(costInBooking).css("border", "1px solid #ced4da");
+    totalCostInBooking.val("");
+    $(totalCostInBooking).css("border", "1px solid #ced4da");
+    $(dropDownMenuForCarRegNoInBookingInAdmin).empty();
 }

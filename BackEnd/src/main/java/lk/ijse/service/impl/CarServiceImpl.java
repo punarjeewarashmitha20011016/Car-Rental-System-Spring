@@ -4,7 +4,9 @@ import lk.ijse.dto.BookingDetailsDTO;
 import lk.ijse.dto.CarDTO;
 import lk.ijse.dto.CarScheduleDTO;
 import lk.ijse.entity.Car;
+import lk.ijse.entity.CarMileageCheck;
 import lk.ijse.repo.BookingCarDetailsRepo;
+import lk.ijse.repo.CarMileageCheckRepo;
 import lk.ijse.repo.CarRepo;
 import lk.ijse.service.CarService;
 import org.modelmapper.ModelMapper;
@@ -25,12 +27,15 @@ public class CarServiceImpl implements CarService {
     private ModelMapper mapper;
     @Autowired
     private BookingCarDetailsRepo detailsRepo;
+    @Autowired
+    private CarMileageCheckRepo carMileageCheckRepo;
 
     public void save(CarDTO dto) {
         if (repo.existsById(dto.getC_RegNo())) {
             throw new RuntimeException("Car Save Failed");
         }
         repo.save(mapper.map(dto, Car.class));
+        carMileageCheckRepo.save(new CarMileageCheck(dto.getC_RegNo(), dto.getMileageInKm(), 5000.0));
     }
 
     public void update(CarDTO dto) {
@@ -44,6 +49,7 @@ public class CarServiceImpl implements CarService {
     public void delete(String regNo) {
         if (repo.existsById(regNo)) {
             repo.deleteById(regNo);
+            carMileageCheckRepo.deleteByRegNo(regNo);
         } else {
             throw new RuntimeException("Car Delete Failed");
         }

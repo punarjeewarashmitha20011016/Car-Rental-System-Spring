@@ -856,6 +856,7 @@ $(loginBtn).click(function () {
                             placeBookingRequestBtn.append(aForPlaceBookingRequestBtn);
                             $(navBarItems).children('div:nth-child(2)').children('ul').append(placeBookingRequestBtn);
                             $(placeBookingRequestBtn).click(function () {
+                                setBookingIdToField();
                                 setBookingRequestView();
                                 appendCarSelectionOrInputContainer();
                             })

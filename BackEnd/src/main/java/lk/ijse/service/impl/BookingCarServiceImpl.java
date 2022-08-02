@@ -49,6 +49,9 @@ public class BookingCarServiceImpl implements BookingCarService {
     @Autowired
     private CarNotificationsRepo carNotificationsRepo;
 
+    @Autowired
+    private CarMileageCheckRepo carMileageCheckRepo;
+
     @Override
     public void bookingACar(BookingDTO dto) {
         try {
@@ -103,6 +106,7 @@ public class BookingCarServiceImpl implements BookingCarService {
                     }
                     dto.setCost(dto.getCost() - b.getLossDamage());
                     dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
+                    b.setCost(b.getCost() - b.getLossDamage());
                     repo.save(mapper.map(dto, Booking.class));
 
                     updateBookingPaymentsByCheckingCarDamagedOrNot(dto.getPayments());
@@ -156,19 +160,22 @@ public class BookingCarServiceImpl implements BookingCarService {
         List<BookingDTO> map = mapper.map(repo.findAll(), new TypeToken<List<BookingDTO>>() {
         }.getType());
         Collections.reverse(map);
-        if (map.get(0).getBoId() != null) {
-            int temp = Integer.parseInt(map.get(0).getBoId().split("-")[1]);
-            temp = temp + 1;
-            if (temp <= 9) {
-                return "BO-00" + temp;
-            } else if (temp <= 99) {
-                return "BO-0" + temp;
-            } else {
-                return "BO-" + temp;
+        if (map.size() != 0) {
+            if (map.get(0).getBoId() != null) {
+                int temp = Integer.parseInt(map.get(0).getBoId().split("-")[1]);
+                temp = temp + 1;
+                if (temp <= 9) {
+                    return "BO-00" + temp;
+                } else if (temp <= 99) {
+                    return "BO-0" + temp;
+                } else {
+                    return "BO-" + temp;
+                }
             }
         } else {
             return "BO-001";
         }
+        return null;
     }
 
     @Override
@@ -176,19 +183,22 @@ public class BookingCarServiceImpl implements BookingCarService {
         List<BookingPaymentsDTO> map = mapper.map(paymentsRepo.findAll(), new TypeToken<List<BookingPaymentsDTO>>() {
         }.getType());
         Collections.reverse(map);
-        if (map.get(0).getPaymentId() != null) {
-            int temp = Integer.parseInt(map.get(0).getPaymentId().split("-")[1]);
-            temp = temp + 1;
-            if (temp <= 9) {
-                return "POR-00" + temp;
-            } else if (temp <= 99) {
-                return "POR-0" + temp;
-            } else {
-                return "POR-" + temp;
+        if (map.size() != 0) {
+            if (map.get(0).getPaymentId() != null) {
+                int temp = Integer.parseInt(map.get(0).getPaymentId().split("-")[1]);
+                temp = temp + 1;
+                if (temp <= 9) {
+                    return "POR-00" + temp;
+                } else if (temp <= 99) {
+                    return "POR-0" + temp;
+                } else {
+                    return "POR-" + temp;
+                }
             }
         } else {
             return "POR-001";
         }
+        return null;
     }
 
     public void updateBookingPaymentsByCheckingCarDamagedOrNot(BookingPaymentsDTO dto) {
@@ -204,17 +214,19 @@ public class BookingCarServiceImpl implements BookingCarService {
         totalTripToUpdate = tripInKm + extraKmDriven;
         car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
 
-        double checkForMaintenanceMileage = car.getMileageInKm() + 5000.0;
-        if (car.getMileageInKm() == checkForMaintenanceMileage) {
+        CarMileageCheck check = carMileageCheckRepo.findByRegNo(c.getC_RegNo());
+        /*Check whether mileage of the car meets service km range between service km range to an additional added 1000km range*/
+        if ((car.getMileageInKm() == check.getNextServiceMileage()) || ((car.getMileageInKm() <= check.getNextServiceMileage() + 1000) && (car.getMileageInKm() >= check.getNextServiceMileage()))) {
             car.setMaintenanceStatus("Under Maintenance");
-            carNotificationsRepo.save(new CarNotifications(car.getC_RegNo(), "is Under Maintenance Stage"));
-        } else {
-            if (car.getMaintenanceStatus().equals("Under Maintenance")) {
-                car.setMaintenanceStatus("No Maintenance Required");
-                carNotificationsRepo.deleteByRegNo(car.getC_RegNo());
+            carNotificationsRepo.save(new CarNotifications(car.getC_RegNo(), car.getC_RegNo() + " is Under Maintenance Stage"));
+            check.setNextServiceMileage(check.getNextServiceMileage() + 5000);
+            if (carMileageCheckRepo.existsByRegNo(car.getC_RegNo())) {
+                carMileageCheckRepo.save(check);
             }
+        } else {
+            car.setMaintenanceStatus("No Maintenance Required");
+            carNotificationsRepo.deleteByRegNo(car.getC_RegNo());
         }
-
         return car;
     }
 
