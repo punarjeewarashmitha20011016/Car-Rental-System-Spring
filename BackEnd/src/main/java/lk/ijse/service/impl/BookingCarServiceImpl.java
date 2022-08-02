@@ -288,9 +288,9 @@ public class BookingCarServiceImpl implements BookingCarService {
         List<DriverScheduleDTO> scheduleDTOS = new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             for (int j = 0; j < all.get(i).getBookingDetails().size(); j++) {
-                if ((all.get(i).getBookingDetails().get(j).getDriverNic() != null) && (all.get(i).getBookingDetails().get(j).getDriverNic() == nic)) {
+                if ((all.get(i).getBookingDetails().get(j).getDriverNic() != null) && (all.get(i).getBookingDetails().get(j).getDriverNic().equals(nic))) {
                     DriverDTO map = mapper.map(driverRepo.findById(all.get(i).getBookingDetails().get(j).getDriverNic()), DriverDTO.class);
-                    scheduleDTOS.add(new DriverScheduleDTO(all.get(i).getBookingDetails().get(j).getDriverNic(), map.getName(), all.get(i).getBookingDetails().get(i).getBookingId(), map.getAvailableStatus(), all.get(i).getBookingDetails().get(i).getDateOfPickup(), all.get(i).getBookingDetails().get(i).getTimeOfPickup(), all.get(i).getBookingDetails().get(i).getReturnedDate(), all.get(i).getBookingDetails().get(i).getReturnedTime()));
+                    scheduleDTOS.add(new DriverScheduleDTO(all.get(i).getBookingDetails().get(j).getDriverNic(), map.getName(), all.get(i).getBookingDetails().get(j).getBookingId(), map.getAvailableStatus(), all.get(i).getBookingDetails().get(j).getDateOfPickup(), all.get(i).getBookingDetails().get(j).getTimeOfPickup(), all.get(i).getBookingDetails().get(j).getReturnedDate(), all.get(i).getBookingDetails().get(j).getReturnedTime()));
                 }
             }
         }

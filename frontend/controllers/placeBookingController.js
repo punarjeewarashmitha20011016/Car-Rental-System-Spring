@@ -1,5 +1,4 @@
 var placeBookingBtn = $("#placeBookingBtn");
-var updateBookingBtn = $("#updateBookingBtn");
 
 var bookingIdInBooking = $("#bookingIdInBooking");
 var searchBookingBtn = $("#searchBookingBtn");
@@ -30,6 +29,7 @@ var CurrentBookingsDetailsSearchField = $("#CurrentBookingsDetailsSearchField");
 var CurrentBookingsDetailsSearchBtn = $("#CurrentBookingsDetailsSearchBtn");
 
 var addToListBtnInBooking = $("#addToListBtnInBooking");
+var clearListBtnInBooking = $("#clearListBtnInBooking");
 var viewListTableBtn = $("#viewListTableBtn");
 
 let bookingObj = undefined;
@@ -401,6 +401,11 @@ $(addToListBtnInBooking).click(function () {
         } else {
             alert("Placing Booking Is Unsuccessful");
         }
+    })
+
+    $(clearListBtnInBooking).off(click);
+    $(clearListBtnInBooking).click(function () {
+        $("#addToListBookingsTableContainerTable > tbody").empty();
     })
 })
 

@@ -390,6 +390,11 @@ $(addToCartInBookingRequestBtn).click(function () {
             updateBookingRequest(formData);
         }
     })
+
+    $(clearCartBtnInBookingRequest).off('click');
+    $(clearCartBtnInBookingRequest).click(function () {
+        $("#addToCartTableInBookingRequest > tbody").empty();
+    })
 })
 
 $(deleteBookingRequestBtn).off('click');
