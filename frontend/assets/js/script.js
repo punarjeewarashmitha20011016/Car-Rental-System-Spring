@@ -1281,8 +1281,12 @@ function addCarsToViewInTheHome(arr) {
 function setViewAllCarsBookingBtnsDisableAndEnable(bool) {
     for (let i = 0; i < carBookingChooserBtnArr.length; i++) {
         if (bool == true) {
-            console.log('false')
-            $(carBookingChooserBtnArr[i].btn).prop('disabled', false);
+            let car = checkWhetherCarIsAlreadyBookedOrNot(carBookingChooserBtnArr[i].carRegNo);
+            if (car.carBookedOrNotStatus == 'Booked') {
+                $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
+            } else {
+                $(carBookingChooserBtnArr[i].btn).prop('disabled', false);
+            }
         } else {
             $(carBookingChooserBtnArr[i].btn).prop('disabled', true);
         }
@@ -1329,5 +1333,27 @@ function setBookingRequestView() {
     $(viewDriverScheduleInDriverSection).css('display', 'none');
     $(viewDriverAccountSection).css('display', 'none');
     $(notificationsForAdmin).css('display', 'none');
+
+}
+
+
+function checkWhetherCarIsAlreadyBookedOrNot(regNo) {
+    let car = undefined;
+    $.ajax({
+        url: baseUrl + "car/search?regNo=" + regNo,
+        async: false,
+        method: 'GET',
+        success: function (resp) {
+            if (resp.status == 200) {
+                car = resp.data;
+            }
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+
+    })
+    return car;
+
 
 }
