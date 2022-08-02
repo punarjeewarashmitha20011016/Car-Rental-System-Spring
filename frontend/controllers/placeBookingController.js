@@ -409,3 +409,65 @@ function checkIfAlreadySameCarExistsInBooking(carRegNo) {
     }
     return false;
 }
+
+function setNotificationsToDisplayOnAdmin() {
+    $('#notificationsForAdmin').children('div:nth-child(1)').children('div:nth-child(1)').empty();
+    let notificationsArr = getAllNotificationsOfAdmin();
+    for (let i = 0; i < notificationsArr.length; i++) {
+        console.log(notificationsArr[i]);
+        let notificationRow = document.createElement("div");
+        notificationRow.className = 'd-flex row flex-row justify-content-center align-items-center mt-2 mb-2';
+        notificationRow.style.width = '100%';
+        notificationRow.style.height = 'calc(100%/5)';
+        notificationRow.style.backgroundColor = 'rgb(142 201 181)';
+        notificationRow.style.borderRadius = '3%'
+
+        let notification = document.createElement('div');
+        notification.className = 'd-flex col-12 flex-row justify-content-center align-items-center';
+        notification.style.height = '100%';
+
+        let message = document.createElement('div');
+        message.className = 'd-flex col-8 justify-content-start align-items-center';
+        message.style.height = '100%';
+
+        let msgTxt = document.createElement('h5');
+        msgTxt.className = 'd-flex text-center text-white';
+        msgTxt.innerHTML = notificationsArr[i].message;
+
+        message.append(msgTxt);
+
+        let clearBtn = document.createElement('div');
+        clearBtn.className = 'd-flex col-4 justify-content-center align-items-center text-center';
+        clearBtn.style.height = '100%';
+
+        let closeBtn = document.createElement('i');
+        closeBtn.className = 'fa-solid fa-xmark d-flex text-black fa-2x';
+        closeBtn.style.cursor = 'pointer';
+
+        $(closeBtn).click(function () {
+            $(notificationRow).remove();
+        })
+
+        clearBtn.append(closeBtn);
+        notification.append(message);
+        notification.append(closeBtn);
+        notificationRow.append(notification);
+        $('#notificationsForAdmin').children('div:nth-child(1)').children('div:nth-child(1)').append(notificationRow);
+    }
+}
+
+
+function getAllNotificationsOfAdmin() {
+    let data = undefined;
+    $.ajax({
+        url: baseUrl + "bookingCarController/getAllNotificationOfAdmin",
+        method: "GET",
+        async: false,
+        success: function (resp) {
+            if (resp.status == 200) {
+                data = resp.data;
+            }
+        }
+    })
+    return data;
+}

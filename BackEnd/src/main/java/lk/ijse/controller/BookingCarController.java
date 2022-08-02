@@ -85,9 +85,14 @@ public class BookingCarController {
     ResponseUtil getCarSchedule() {
         return new ResponseUtil(200, "Car Schedule Fetched Successfully", bookingCarService.getCarSchedule());
     }
-    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE,params = {"nic"})
+
+    @GetMapping(path = "getDriverSchedule", produces = MediaType.APPLICATION_JSON_VALUE, params = {"nic"})
     ResponseUtil getDriverSchedule(@RequestParam("nic") String nic) {
         return new ResponseUtil(200, "Driver Schedule Fetched Successfully", bookingCarService.getDriverSchedule(nic));
     }
 
+    @GetMapping(path = "getAllNotificationOfAdmin", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseUtil getAllNotificationOfAdmin() {
+        return new ResponseUtil(200, "Admin Notifications Fetched Successfully", bookingCarService.getAdminNotifications());
+    }
 }

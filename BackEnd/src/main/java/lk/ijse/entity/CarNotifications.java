@@ -15,15 +15,15 @@ import javax.persistence.Id;
 @Data
 @ToString
 @Entity
-public class Notifications {
+public class CarNotifications {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String boId;
+    private String regNo;
     private String message;
 
-    public Notifications(String boId, String message) {
-        this.boId = boId;
+    public CarNotifications(String regNo, String message) {
+        this.regNo = regNo;
         this.message = message;
     }
 }

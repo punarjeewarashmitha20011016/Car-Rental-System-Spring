@@ -1,10 +1,7 @@
 package lk.ijse.service.impl;
 
 import lk.ijse.dto.*;
-import lk.ijse.entity.Booking;
-import lk.ijse.entity.BookingPayments;
-import lk.ijse.entity.Car;
-import lk.ijse.entity.Driver;
+import lk.ijse.entity.*;
 import lk.ijse.repo.*;
 import lk.ijse.service.BookingCarService;
 import org.modelmapper.ModelMapper;
@@ -48,6 +45,9 @@ public class BookingCarServiceImpl implements BookingCarService {
 
     @Autowired
     private PendingBookingPaymentsRepo pendingBookingPaymentsRepo;
+
+    @Autowired
+    private CarNotificationsRepo carNotificationsRepo;
 
     @Override
     public void bookingACar(BookingDTO dto) {
@@ -98,7 +98,9 @@ public class BookingCarServiceImpl implements BookingCarService {
                 if (b.getDamageStatus().equals("Damaged")) {
                     car.setMaintenanceStatus("Under Maintenance");
                 } else {
-                    car.setMaintenanceStatus("No Maintenance Required");
+                    if (!car.getMaintenanceStatus().equals("Under Maintenance")) {
+                        car.setMaintenanceStatus("No Maintenance Required");
+                    }
                     dto.setCost(dto.getCost() - b.getLossDamage());
                     dto.getPayments().setCost(dto.getPayments().getCost() - b.getLossDamage());
                     repo.save(mapper.map(dto, Booking.class));
@@ -199,16 +201,27 @@ public class BookingCarServiceImpl implements BookingCarService {
     Car updateMileageOfTheCarAccordingToTheTrip(Car c, double tripInKm, double extraKmDriven) {
         Car car = c;
         double totalTripToUpdate = 0.0;
-        /*if (extraKmDriven > c.getFreeMileage()) {
-            totalTripToUpdate = tripInKm + extraKmDriven;
-        } else {
-            totalTripToUpdate = tripInKm;
-        }
-        car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
-        return car;*/
         totalTripToUpdate = tripInKm + extraKmDriven;
         car.setMileageInKm(car.getMileageInKm() + totalTripToUpdate);
+
+        double checkForMaintenanceMileage = car.getMileageInKm() + 5000.0;
+        if (car.getMileageInKm() == checkForMaintenanceMileage) {
+            car.setMaintenanceStatus("Under Maintenance");
+            carNotificationsRepo.save(new CarNotifications(car.getC_RegNo(), "is Under Maintenance Stage"));
+        } else {
+            if (car.getMaintenanceStatus().equals("Under Maintenance")) {
+                car.setMaintenanceStatus("No Maintenance Required");
+                carNotificationsRepo.deleteByRegNo(car.getC_RegNo());
+            }
+        }
+
         return car;
+    }
+
+    @Override
+    public List<CarNotificationsDTO> getAdminNotifications() {
+        return mapper.map(carNotificationsRepo.findAll(), new TypeToken<List<CarNotificationsDTO>>() {
+        }.getType());
     }
 
     @Override

@@ -9,8 +9,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class NotificationsDTO {
+public class CarNotificationsDTO {
     private int id;
-    private String boId;
+    private String regNo;
     private String message;
+
+    public CarNotificationsDTO(String regNo, String message) {
+        this.regNo = regNo;
+        this.message = message;
+    }
 }

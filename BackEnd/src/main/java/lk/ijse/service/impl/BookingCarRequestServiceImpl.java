@@ -44,7 +44,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     private BookingRequestPaymentsRepo paymentsRepo;
 
     @Autowired
-    private NotificationsRepo notificationsRepo;
+    private CustomerNotificationsRepo notificationsRepo;
 
     @Override
     public void requestingABookingSave(BookingRequestDTO dto) {
@@ -130,7 +130,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
         if (pendingBookingRepo.existsById(dto.getBoId())) {
             /*Deleting the requested booking entity*/
-            notificationsRepo.save(new Notifications(dto.getBoId(), dto.getBoId() + " Is Accepted. Collect Your Rental Car On Pickup Date"));
+            notificationsRepo.save(new CustomerNotifications(dto.getBoId(), dto.getBoId() + " Is Accepted. Collect Your Rental Car On Pickup Date"));
             repo.deleteById(dto.getBoId());
         }
     }
@@ -198,7 +198,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             if (notificationsRepo.existsByBoId(boId)) {
                 notificationsRepo.deleteByBoId(boId);
             }
-            notificationsRepo.save(new Notifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
+            notificationsRepo.save(new CustomerNotifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
             paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
             repo.deleteById(boId);
 
@@ -257,8 +257,8 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
     }
 
     @Override
-    public List<NotificationsDTO> getAllNotifications() {
-        List<NotificationsDTO> map = mapper.map(notificationsRepo.findAll(), new TypeToken<List<NotificationsDTO>>() {
+    public List<CustomerNotificationsDTO> getAllNotifications() {
+        List<CustomerNotificationsDTO> map = mapper.map(notificationsRepo.findAll(), new TypeToken<List<CustomerNotificationsDTO>>() {
         }.getType());
         return map;
     }
