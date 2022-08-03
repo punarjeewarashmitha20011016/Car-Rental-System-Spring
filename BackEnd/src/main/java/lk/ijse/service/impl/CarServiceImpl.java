@@ -38,7 +38,7 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("Car Save Failed");
         }
         repo.save(mapper.map(dto, Car.class));
-        carMileageCheckRepo.save(new CarMileageCheck(dto.getC_RegNo(), dto.getMileageInKm(), 5000.0));
+        carMileageCheckRepo.save(new CarMileageCheck(dto.getC_RegNo(), dto.getMileageInKm(), dto.getMileageInKm() + 5000.0));
     }
 
     public void update(CarDTO dto) {
@@ -47,6 +47,9 @@ public class CarServiceImpl implements CarService {
                 carNotificationsRepo.deleteByRegNo(dto.getC_RegNo());
             }
             repo.save(mapper.map(dto, Car.class));
+            if (carMileageCheckRepo.existsByRegNo(dto.getC_RegNo())) {
+                carMileageCheckRepo.save(new CarMileageCheck(dto.getC_RegNo(), dto.getMileageInKm(), dto.getMileageInKm() + 5000.0));
+            }
         } else {
             throw new RuntimeException("Car Update Failed");
         }

@@ -170,6 +170,7 @@ $(carSaveBtnInCar).click(function () {
         maintenanceStatus: $('#maintenanceStatusMenuInCar :selected').text(),
         lossDamageWaiver: carLossDamageWaiverFieldInCar.val()
     }
+    console.log(dto);
     data.append("dto", new Blob([JSON.stringify(dto)], {type: "application/json"}));
     for (let i = 0; i < file.length; i++) {
         data.append("carImgFile", file[i], file[i].name);
