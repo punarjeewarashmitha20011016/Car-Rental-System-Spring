@@ -393,6 +393,7 @@ $(addToCartInBookingRequestBtn).click(function () {
 
     $(clearCartBtnInBookingRequest).off('click');
     $(clearCartBtnInBookingRequest).click(function () {
+        addToListArr.splice(0, addToListArr.length);
         $("#addToCartTableInBookingRequest > tbody").empty();
     })
 })
