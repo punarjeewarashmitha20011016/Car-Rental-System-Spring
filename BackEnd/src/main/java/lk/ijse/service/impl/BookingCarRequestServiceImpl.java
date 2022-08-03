@@ -130,6 +130,9 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
         if (pendingBookingRepo.existsById(dto.getBoId())) {
             /*Deleting the requested booking entity*/
+            if (notificationsRepo.existsByBoId(dto.getBoId())) {
+                notificationsRepo.deleteByBoId(dto.getBoId());
+            }
             notificationsRepo.save(new CustomerNotifications(dto.getBoId(), dto.getBoId() + " Is Accepted. Collect Your Rental Car On Pickup Date"));
             repo.deleteById(dto.getBoId());
         }
@@ -137,6 +140,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public void requestingABookingUpdate(BookingRequestDTO dto) {
+        /*Customer Requested Booking Request Can Be Updated In Here*/
         if (!repo.existsById(dto.getBoId())) {
             throw new RuntimeException("Updating a Booking Request failed");
         }
@@ -187,7 +191,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
 
     @Override
     public void deleteBookingRequestWhenDeclined(String boId) {
-        /*This invokes when admin decline the booking request or when admin accepts*/
+        /*This invokes when admin decline the booking request*/
         /*For decline = this invokes because the relevant request should by deleted from the entity and payments of loss damage should be returned by deleting the relevant record */
         /*For accepts = this invokes because the relevant booking request entity should be deleted as that entity should be saved in the booking entity and request payment should be deleted*/
 
@@ -201,10 +205,8 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
                 throw new RuntimeException("Deleting Booking Request failed");
             }
-            if (notificationsRepo.existsByBoId(boId)) {
-                notificationsRepo.deleteByBoId(boId);
-            }
             notificationsRepo.save(new CustomerNotifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
+            System.out.println(bookingRequestDTO.getPayments().getPaymentsId());
             paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
             repo.deleteById(boId);
 

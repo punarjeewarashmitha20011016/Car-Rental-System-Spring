@@ -1055,6 +1055,8 @@ $(signupBtnInLogin).click(function () {
 })
 
 $(logoutBtn).click(function () {
+    cusNicInPlacingBookingRequest.val("");
+    $(cusNicInPlacingBookingRequest).css("border", "1px solid #ced4da");
     $(headerNav).css('display', 'none');
     $(homeSection).css('display', 'none');
     $(customerSection).css('display', 'none');

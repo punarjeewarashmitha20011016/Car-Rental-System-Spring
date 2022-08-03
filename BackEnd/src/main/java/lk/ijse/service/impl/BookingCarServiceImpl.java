@@ -163,6 +163,7 @@ public class BookingCarServiceImpl implements BookingCarService {
     public String generateBookingId() {
         List<BookingDTO> map = mapper.map(repo.findAll(), new TypeToken<List<BookingDTO>>() {
         }.getType());
+        System.out.println(map);
         Collections.reverse(map);
         if (map.size() != 0) {
             if (map.get(0).getBoId() != null) {

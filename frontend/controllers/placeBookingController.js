@@ -403,7 +403,7 @@ $(addToListBtnInBooking).click(function () {
         }
     })
 
-    $(clearListBtnInBooking).off(click);
+    $(clearListBtnInBooking).off('click');
     $(clearListBtnInBooking).click(function () {
         addToListArrInBooking.splice(0, addToListArrInBooking.length);
         $("#addToListBookingsTableContainerTable > tbody").empty();
