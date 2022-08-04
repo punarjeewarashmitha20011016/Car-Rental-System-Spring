@@ -569,31 +569,6 @@ function setBookingIdToField() {
     /*Searching BoId And PaymentsId from PendingBooking and Booking Request Tables for
     * Checking Whether Generated Booking Id Is Available In One Of The Tables*/
     try {
-        /*console.log(boIdInBooking)
-        $.ajax({
-            url: baseUrl + "bookingCarRequestController/search?boId=" + boIdInBooking,
-            method: "GET",
-            async: false,
-            success: function (resp) {
-                if (resp.status == 200) {
-                    boIdInBookingRequest = resp.data.boId;
-                    paymentIdInBookingRequest = resp.data.payments.paymentsId;
-                }
-            }
-        })
-
-        $.ajax({
-            url: baseUrl + "bookingCarRequestController/searchPendingBooking?boId=" + boIdInBooking,
-            method: "GET",
-            async: false,
-            success: function (resp) {
-                if (resp.status == 200) {
-                    boIdInPendingBooking = resp.data.boId;
-                    paymentIdInPendingBooking = resp.data.payments.paymentsId;
-                }
-            }
-        })*/
-
         $.ajax({
             url: baseUrl + "bookingCarRequestController/getAll",
             method: "GET",
@@ -784,11 +759,13 @@ function setBookingIdToField() {
                 bookingReqIdInPlacingBookingRequest.val(boId);
             }
             console.log('no check')
-        } else if (idBookingInt > (idPendingInt && idRequestInt)) {
+        } else if ((idBookingInt > idPendingInt) && (idBookingInt > idRequestInt)) {
             console.log("condition last = bookingid :" + idBookingInt + " / pending : " + idPendingInt + " / request : " + idRequestInt)
             bookingReqIdInPlacingBookingRequest.val(boIdInBooking);
         } else if ((idPendingInt == undefined) && (idRequestInt == undefined)) {
             console.log('condition last last last');
+            bookingReqIdInPlacingBookingRequest.val(boIdInBooking);
+        } else if ((idBookingInt > idPendingInt) || (idBookingInt > idRequestInt)) {
             bookingReqIdInPlacingBookingRequest.val(boIdInBooking);
         }
 
@@ -857,6 +834,8 @@ function setBookingIdToField() {
             console.log("condition last")
             paymentsId = paymentIdInBooking;
         } else if ((idPendingPaymentInt == undefined) && (idRequestPaymentInt == undefined)) {
+            paymentsId = paymentIdInBooking;
+        } else if ((idBookingPaymentInt > idPendingPaymentInt) || (idBookingPaymentInt > idRequestPaymentInt)) {
             paymentsId = paymentIdInBooking;
         }
     }

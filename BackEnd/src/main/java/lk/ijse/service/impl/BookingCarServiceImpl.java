@@ -103,6 +103,10 @@ public class BookingCarServiceImpl implements BookingCarService {
                 }
                 if (b.getDamageStatus().equals("Damaged")) {
                     car.setMaintenanceStatus("Under Maintenance");
+                    System.out.println("Damaged");
+                    if (!carNotificationsRepo.existsByRegNo(car.getC_RegNo())) {
+                        carNotificationsRepo.save(new CarNotifications(car.getC_RegNo(), car.getC_RegNo() + " is Under Maintenance Stage"));
+                    }
                 } else {
                     if (!car.getMaintenanceStatus().equals("Under Maintenance")) {
                         car.setMaintenanceStatus("No Maintenance Required");
