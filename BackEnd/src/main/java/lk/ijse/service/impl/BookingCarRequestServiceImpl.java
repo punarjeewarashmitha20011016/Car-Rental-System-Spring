@@ -205,7 +205,7 @@ public class BookingCarRequestServiceImpl implements BookingCarRequestService {
             if (!paymentsRepo.existsById(bookingRequestDTO.getPayments().getPaymentsId())) {
                 throw new RuntimeException("Deleting Booking Request failed");
             }
-            notificationsRepo.save(new CustomerNotifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request"));
+            notificationsRepo.save(new CustomerNotifications(boId, boId + " Is Declined. Because We Are Not Satisfied With Your Request..Please Try Again With A New Request"));
             System.out.println(bookingRequestDTO.getPayments().getPaymentsId());
             paymentsRepo.deleteById(bookingRequestDTO.getPayments().getPaymentsId());
             repo.deleteById(boId);
