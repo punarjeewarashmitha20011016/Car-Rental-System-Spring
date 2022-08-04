@@ -55,6 +55,7 @@ bookingReqIdInPlacingBookingRequest.keyup(function (e) {
                 if (confirm("Do You Want To Search This Request..?") == true) {
                     boolForSearchOrNormal = true;
                     let booking = searchBookingRequest();
+                    console.log(booking);
                     setComboBoxToCarRegNoField(booking.bookingDetails);
                     for (let i = 0; i < booking.bookingDetails.length; i++) {
                         if (booking.bookingDetails[i].car_RegNo == $("#carRegNoMenuInPlacingBookingRequest :selected").text()) {
@@ -741,7 +742,7 @@ function setBookingIdToField() {
         console.log("idRequestInt - " + idRequestInt);
         console.log("idPendingInt - " + idPendingInt);
 
-        if (idBookingInt == (idPendingInt || idRequestInt)) {
+        if (idBookingInt == (idPendingInt | idRequestInt)) {
             console.log("condition 1")
             let boId = undefined;
             let id = parseInt(boIdInBooking.split("-")[1]);
@@ -754,9 +755,10 @@ function setBookingIdToField() {
                 boId = "BO-" + id;
             }
             bookingReqIdInPlacingBookingRequest.val(boId);
-        } else if (idBookingInt < (idPendingInt || idRequestInt)) {
+        } else if (idBookingInt < (idPendingInt | idRequestInt)) {
             console.log('boid in booking is less than')
-            if ((idRequestInt > idPendingInt) || (idPendingInt == undefined)) {
+            if ((idRequestInt > idPendingInt) | (idPendingInt == undefined)) {
+                console.log("check")
                 let boId = undefined;
                 let id = parseInt(boIdInBookingRequest.split("-")[1]);
                 id = id + 1;
@@ -768,7 +770,7 @@ function setBookingIdToField() {
                     boId = "BO-" + id;
                 }
                 bookingReqIdInPlacingBookingRequest.val(boId);
-            } else if ((idPendingInt > idRequestInt) || (idRequestInt == undefined)) {
+            } else if ((idPendingInt > idRequestInt) | (idRequestInt == undefined)) {
                 let boId = undefined;
                 let id = parseInt(boIdInPendingBooking.split("-")[1]);
                 id = id + 1;
@@ -781,11 +783,12 @@ function setBookingIdToField() {
                 }
                 bookingReqIdInPlacingBookingRequest.val(boId);
             }
-
-        } else if (idBookingInt > (((idPendingInt == undefined) || (idRequestInt == undefined) || (idPendingInt != undefined) || (idRequestInt != undefined)))) {
-            console.log("condition last")
+            console.log('no check')
+        } else if (idBookingInt > (idPendingInt && idRequestInt)) {
+            console.log("condition last = bookingid :" + idBookingInt + " / pending : " + idPendingInt + " / request : " + idRequestInt)
             bookingReqIdInPlacingBookingRequest.val(boIdInBooking);
-        } else if ((idPendingInt == undefined) || (idRequestInt == undefined)) {
+        } else if ((idPendingInt == undefined) && (idRequestInt == undefined)) {
+            console.log('condition last last last');
             bookingReqIdInPlacingBookingRequest.val(boIdInBooking);
         }
 
@@ -809,7 +812,7 @@ function setBookingIdToField() {
         console.log("idRequestPaymentInt - " + idRequestPaymentInt);
         console.log("idPendingPaymentInt - " + idPendingPaymentInt);
 
-        if (idBookingPaymentInt == (idPendingPaymentInt || idRequestPaymentInt)) {
+        if (idBookingPaymentInt == (idPendingPaymentInt | idRequestPaymentInt)) {
             console.log("condition 1")
             let pId = undefined;
             let id = parseInt(paymentIdInBooking.split("-")[1]);
@@ -822,9 +825,9 @@ function setBookingIdToField() {
                 pId = "POR-" + id;
             }
             paymentsId = pId;
-        } else if (idBookingPaymentInt < (idPendingPaymentInt || idRequestPaymentInt)) {
+        } else if (idBookingPaymentInt < (idPendingPaymentInt | idRequestPaymentInt)) {
             console.log('boid in booking is less than')
-            if ((idRequestPaymentInt > idPendingPaymentInt) || (idPendingPaymentInt == undefined)) {
+            if ((idRequestPaymentInt > idPendingPaymentInt) | (idPendingPaymentInt == undefined)) {
                 let pId = undefined;
                 let id = parseInt(paymentIdInBookingRequest.split("-")[1]);
                 id = id + 1;
@@ -836,7 +839,7 @@ function setBookingIdToField() {
                     pId = "POR-" + id;
                 }
                 paymentsId = pId;
-            } else if ((idPendingPaymentInt > idRequestPaymentInt) || (idRequestPaymentInt == undefined)) {
+            } else if ((idPendingPaymentInt > idRequestPaymentInt) | (idRequestPaymentInt == undefined)) {
                 let pId = undefined;
                 let id = parseInt(paymentIdInPendingBooking.split("-")[1]);
                 id = id + 1;
@@ -850,10 +853,10 @@ function setBookingIdToField() {
                 paymentsId = pId;
             }
 
-        } else if (idBookingPaymentInt > (((idPendingPaymentInt == undefined) || (idRequestPaymentInt == undefined) || (idPendingPaymentInt != undefined) || (idRequestPaymentInt != undefined)))) {
+        } else if (idBookingPaymentInt > (idPendingPaymentInt && idRequestPaymentInt)) {
             console.log("condition last")
             paymentsId = paymentIdInBooking;
-        } else if ((idPendingPaymentInt == undefined) || (idRequestPaymentInt == undefined)) {
+        } else if ((idPendingPaymentInt == undefined) && (idRequestPaymentInt == undefined)) {
             paymentsId = paymentIdInBooking;
         }
     }
@@ -932,6 +935,9 @@ function searchCarDetails(regNo) {
 function clearBookingRequestFields() {
     bookingReqIdInPlacingBookingRequest.val("");
     $(bookingReqIdInPlacingBookingRequest).css("border", "1px solid #ced4da");
+    $('#carRegNoInPlacingBookingRequest').val("");
+    $('#carRegNoInPlacingBookingRequest').css("border", "1px solid #ced4da");
+
     $("#carRegNoInPlacingBookingRequest option:selected").prop("selected", false)
     $("#rentalTypeInPlacingBookingRequestDropdownMenu option:selected").prop("selected", false)
     $("#ifDriverNeedsForBookingRequestCheckBox").prop("checked", false);
@@ -951,6 +957,7 @@ function clearBookingRequestFields() {
     $(totalCostInPlacingBookingRequest).css("border", "1px solid #ced4da");
     lossDamageWaiverSlipInPlacingBookingRequest.val("");
     $(lossDamageWaiverSlipInPlacingBookingRequest).css("border", "1px solid #ced4da");
+    addToListArr.splice(0, addToListArr.length);
     $('#addToCartTableInBookingRequest > tbody').empty();
 }
 

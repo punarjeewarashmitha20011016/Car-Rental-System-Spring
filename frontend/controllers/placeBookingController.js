@@ -483,6 +483,8 @@ function getAllNotificationsOfAdmin() {
 }
 
 function clearBookingFieldInAdmin() {
+    addToListArrInBooking.splice(0, addToListArrInBooking.length);
+    $("#addToListBookingsTableContainerTable > tbody").empty();
     bookingIdInBooking.val("");
     $(bookingIdInBooking).css("border", "1px solid #ced4da");
     cusNicInBooking.val("");
