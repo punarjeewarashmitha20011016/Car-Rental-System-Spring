@@ -66,7 +66,7 @@ public class BookingCarServiceImpl implements BookingCarService {
             System.out.println("Booking = " + dto.toString());
             System.out.println("Booking Details = " + dto.getBookingDetails());
             System.out.println("Payments = " + dto.getPayments());
-            System.out.println("Booking Entity = " + mapper.map(dto, Booking.class));
+            System.out.println("Booking Entity = " + mapper.map(dto, Booking.class).toString());
             System.out.println("Payments Entity = " + mapper.map(dto, Booking.class).getPayments().toString());
 
             Booking map = mapper.map(dto, Booking.class);

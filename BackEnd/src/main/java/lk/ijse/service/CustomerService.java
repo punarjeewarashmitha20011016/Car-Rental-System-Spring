@@ -2,12 +2,10 @@ package lk.ijse.service;
 
 import lk.ijse.dto.CustomerDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public interface CustomerService {
     void save(CustomerDTO dto);
 

@@ -26,6 +26,7 @@ public class CarController {
     ResponseUtil save(@RequestPart("dto") CarDTO dto, @RequestPart("carImgFile") MultipartFile[] files) {
         CarImagesDTO carImages = saveAnUpdateFileForCarImages(files);
         dto.setImages(carImages);
+        System.out.println("DTO = "+dto);
         carService.save(dto);
         return new ResponseUtil(200, "Car Saved Successfully", dto);
     }

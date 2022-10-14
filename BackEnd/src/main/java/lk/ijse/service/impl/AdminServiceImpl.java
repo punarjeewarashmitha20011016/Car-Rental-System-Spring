@@ -30,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
     public void update(AdminDTO dto) {
         if (repo.existsById(dto.getNic())) {
             repo.save(mapper.map(dto, Admin.class));
-        }else {
+        } else {
             throw new RuntimeException("Admin Update Failed");
         }
     }
@@ -39,7 +39,7 @@ public class AdminServiceImpl implements AdminService {
         System.out.println(nic);
         if (repo.existsById(nic)) {
             repo.deleteById(nic);
-        }else {
+        } else {
             throw new RuntimeException("Admin Delete Failed");
         }
     }
@@ -52,19 +52,19 @@ public class AdminServiceImpl implements AdminService {
     public AdminDTO search(String nic) {
         if (repo.existsById(nic)) {
             return mapper.map(repo.findById(nic), AdminDTO.class);
-        }else {
+        } else {
             throw new RuntimeException("Admin Search Failed");
         }
     }
 
     @Override
     public boolean checkAdminLogin(String email, String password) {
-        try{
+        try {
             if (!repo.existsAdminByEmailAndPassword(email, password)) {
                 return false;
             }
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return true;

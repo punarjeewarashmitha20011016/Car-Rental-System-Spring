@@ -1,5 +1,7 @@
 package lk.ijse.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,9 +30,11 @@ public class BookingRequestDetails implements Serializable {
     private Driver driverNic;
     private String carType;
     private String rentalType;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateOfPickup;
     private String timeOfPickup;
     private String pickupVenue;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate returnedDate;
     private String returnedTime;
     private String returnedVenue;
