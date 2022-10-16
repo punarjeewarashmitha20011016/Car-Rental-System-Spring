@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @CrossOrigin
 @RestControllerAdvice
 public class AppAdvisor {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({Exception.class})
     public ResponseUtil exceptionHandler(Exception e) {
         return new ResponseUtil(500, e.getMessage(), null);
